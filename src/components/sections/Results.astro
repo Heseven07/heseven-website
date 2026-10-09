@@ -1,0 +1,23 @@
+---
+import { results } from '../../data/home';
+---
+
+<section class="bg-ink-2 py-24 md:py-32" aria-labelledby="results-title">
+  <div class="container-x grid gap-14 md:grid-cols-2">
+    <div class="md:sticky md:top-32 md:self-start" data-reveal>
+      <p class="eyebrow">{results.eyebrow}</p>
+      <h2 id="results-title" class="mt-4 text-4xl font-bold sm:text-5xl">
+        {results.title}
+      </h2>
+    </div>
+    <ol class="flex flex-col gap-4">
+      {results.points.map((p, i) => (
+        <li class="card p-8 md:p-10" data-reveal style={`--reveal-delay:${i * 100}`}>
+          <span class="font-display text-sm text-lime">0{i + 1}</span>
+          <h3 class="mt-4 text-2xl font-semibold">{p.title}</h3>
+          <p class="mt-3 text-muted">{p.body}</p>
+        </li>
+      ))}
+    </ol>
+  </div>
+</section>

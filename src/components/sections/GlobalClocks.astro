@@ -1,0 +1,41 @@
+---
+import { offices } from '../../data/home';
+---
+
+<section class="border-y border-line py-16" aria-labelledby="clocks-title">
+  <div class="container-x">
+    <h2 id="clocks-title" class="eyebrow text-center">
+      Working across time zones
+    </h2>
+    <ul class="mt-10 grid grid-cols-2 gap-8 md:grid-cols-4">
+      {offices.map((o) => (
+        <li class="text-center">
+          <time class="clock font-display text-4xl font-bold tabular-nums md:text-5xl" data-tz={o.timeZone}>
+            --:--
+          </time>
+          <p class="mt-2 text-sm text-muted">{o.city}</p>
+        </li>
+      ))}
+    </ul>
+  </div>
+</section>
+
+<script>
+  let timer: number | undefined;
+  function tick() {
+    document.querySelectorAll<HTMLTimeElement>('.clock[data-tz]').forEach((el) => {
+      el.textContent = new Intl.DateTimeFormat('en-GB', {
+        hour: '2-digit',
+        minute: '2-digit',
+        timeZone: el.dataset.tz,
+      }).format(new Date());
+    });
+  }
+  function initClocks() {
+    clearInterval(timer);
+    if (!document.querySelector('.clock')) return;
+    tick();
+    timer = window.setInterval(tick, 15_000);
+  }
+  document.addEventListener('astro:page-load', initClocks);
+</script>

@@ -95,6 +95,243 @@
   .consent-actions {
     @apply mt-3 flex justify-end gap-2;
   }
+  .btn-lg {
+    @apply px-7 py-4 text-base;
+  }
+  .btn .arrow {
+    transition: transform 0.4s var(--ease-out-expo);
+  }
+  .btn:hover .arrow,
+  .group:hover .arrow {
+    transform: translateX(4px);
+  }
+  .eyebrow {
+    @apply font-display text-xs font-semibold tracking-[0.22em] text-lime uppercase;
+  }
+  .pill {
+    @apply rounded-full border border-line bg-white/5 px-4 py-1.5 text-sm text-fg/90;
+  }
+  .link-underline {
+    @apply font-medium text-fg;
+    background: linear-gradient(currentColor, currentColor) 0 100% / 100% 1px no-repeat;
+    transition: background-size 0.4s var(--ease-out-expo);
+  }
+  .link-underline:hover {
+    background-size: 0 1px;
+    background-position: 100% 100%;
+  }
+
+  /* Cards */
+  .card {
+    @apply rounded-3xl border border-line bg-ink-3/40;
+    transition:
+      border-color 0.4s,
+      background-color 0.4s,
+      transform 0.6s var(--ease-out-expo);
+  }
+  a.card:hover {
+    @apply border-white/20 bg-ink-3/80;
+    transform: translateY(-4px);
+  }
+  .card-accent {
+    background: linear-gradient(
+      140deg,
+      color-mix(in oklab, var(--color-violet) 35%, transparent),
+      transparent 70%
+    );
+  }
+  .icon-badge {
+    @apply grid size-12 place-items-center rounded-2xl bg-lime/10 text-lime;
+  }
+
+  /* Header */
+  .site-header {
+    @apply fixed inset-x-0 top-0 z-40;
+    transition:
+      background-color 0.4s,
+      border-color 0.4s;
+    border-bottom: 1px solid transparent;
+  }
+  .site-header.is-scrolled,
+  .site-header.is-open {
+    @apply border-line bg-ink/80 backdrop-blur-xl;
+  }
+  .nav-link {
+    @apply transition-colors hover:text-fg;
+  }
+  .menu-toggle {
+    @apply relative grid size-11 place-items-center rounded-full border border-line;
+  }
+  .menu-toggle span {
+    @apply absolute h-px w-5 bg-fg;
+    transition: transform 0.4s var(--ease-out-expo);
+  }
+  .menu-toggle span:first-child {
+    transform: translateY(-4px);
+  }
+  .menu-toggle span:last-child {
+    transform: translateY(4px);
+  }
+  .is-open .menu-toggle span:first-child {
+    transform: rotate(45deg);
+  }
+  .is-open .menu-toggle span:last-child {
+    transform: rotate(-45deg);
+  }
+  .mobile-menu {
+    @apply h-[calc(100dvh-4rem)] overflow-y-auto border-t border-line;
+  }
+
+  /* Hero */
+  .hero-title {
+    font-size: clamp(3rem, 9vw, 7.5rem);
+    line-height: 0.95;
+    letter-spacing: -0.035em;
+  }
+  .hero-bg {
+    @apply pointer-events-none absolute inset-0 -z-10;
+  }
+  .hero-glow {
+    position: absolute;
+    inset: -20% -10% auto auto;
+    width: min(90vw, 1000px);
+    aspect-ratio: 1;
+    background: radial-gradient(
+      closest-side,
+      color-mix(in oklab, var(--color-violet) 55%, transparent),
+      color-mix(in oklab, var(--color-violet-deep) 25%, transparent) 55%,
+      transparent
+    );
+    filter: blur(20px);
+  }
+  .hero-grid {
+    position: absolute;
+    inset: 0;
+    background-image:
+      linear-gradient(var(--color-line) 1px, transparent 1px),
+      linear-gradient(90deg, var(--color-line) 1px, transparent 1px);
+    background-size: 72px 72px;
+    mask-image: radial-gradient(ellipse 80% 60% at 50% 0%, #000 30%, transparent 75%);
+    opacity: 0.5;
+  }
+
+  /* Marquee */
+  .marquee {
+    @apply flex overflow-hidden;
+    mask-image: linear-gradient(90deg, transparent, #000 10%, #000 90%, transparent);
+  }
+  .marquee-track {
+    @apply flex shrink-0 items-center gap-16 pr-16 font-display text-2xl font-semibold whitespace-nowrap text-fg/60 md:text-3xl;
+    animation: marquee 40s linear infinite;
+  }
+  .marquee:hover .marquee-track {
+    animation-play-state: paused;
+  }
+
+  /* Work */
+  .work-img {
+    transition: transform 1.2s var(--ease-out-expo);
+  }
+  .work-card:hover .work-img {
+    transform: scale(1.04);
+  }
+
+  /* Process */
+  .process-step {
+    @apply relative;
+  }
+  .process-dot {
+    @apply relative z-10 grid size-12 place-items-center rounded-full border border-lime/40 bg-ink font-display font-bold text-lime;
+  }
+  @media (min-width: 768px) {
+    .process-step:not(:last-child)::after {
+      content: '';
+      position: absolute;
+      top: 1.5rem;
+      left: 3rem;
+      right: -1.5rem;
+      height: 1px;
+      background: linear-gradient(
+        90deg,
+        color-mix(in oklab, var(--color-lime) 40%, transparent),
+        var(--color-line)
+      );
+    }
+  }
+
+  /* FAQ */
+  .faq {
+    @apply border-b border-line;
+  }
+  .faq summary {
+    @apply flex cursor-pointer list-none items-center justify-between gap-6 py-6;
+  }
+  .faq summary::-webkit-details-marker {
+    display: none;
+  }
+  .faq-icon {
+    @apply relative size-5 shrink-0;
+  }
+  .faq-icon::before,
+  .faq-icon::after {
+    content: '';
+    @apply absolute top-1/2 left-0 h-px w-5 bg-lime;
+    transition: transform 0.4s var(--ease-out-expo);
+  }
+  .faq-icon::after {
+    transform: rotate(90deg);
+  }
+  .faq[open] .faq-icon::after {
+    transform: rotate(0deg);
+  }
+  .faq::details-content {
+    block-size: 0;
+    overflow: clip;
+    transition:
+      block-size 0.5s var(--ease-out-expo),
+      content-visibility 0.5s allow-discrete;
+  }
+  .faq[open]::details-content {
+    block-size: auto;
+  }
+
+  /* CTA */
+  .cta-panel {
+    background:
+      radial-gradient(
+        60% 80% at 50% 0%,
+        color-mix(in oklab, var(--color-violet) 70%, transparent),
+        transparent 70%
+      ),
+      var(--color-violet-deep);
+  }
+
+  /* Footer */
+  .footer-title {
+    @apply font-display text-xs font-semibold tracking-[0.22em] text-muted uppercase;
+  }
+  .footer-list {
+    @apply mt-5 flex flex-col gap-3;
+  }
+  .footer-list a {
+    @apply transition-colors hover:text-lime;
+  }
+}
+
+@keyframes marquee {
+  to {
+    transform: translateX(-100%);
+  }
+}
+@keyframes hero-in {
+  from {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+}
+
+:root {
+  interpolate-size: allow-keywords;
 }
 
 /* ---------- Motion ---------- */
@@ -114,7 +351,17 @@
   }
 }
 
+@media (prefers-reduced-motion: no-preference) {
+  .hero-in {
+    animation: hero-in 1s var(--ease-out-expo) both;
+    animation-delay: calc(var(--i, 0) * 90ms + 100ms);
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
+  .marquee-track {
+    animation: none;
+  }
   ::view-transition-group(*),
   ::view-transition-old(*),
   ::view-transition-new(*) {

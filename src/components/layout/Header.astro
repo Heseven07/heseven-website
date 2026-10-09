@@ -1,0 +1,90 @@
+---
+import Logo from '../ui/Logo.astro';
+import Arrow from '../ui/Arrow.astro';
+import { nav } from '../../data/home';
+---
+
+<header class="site-header" transition:persist="site-header">
+  <div class="container-x flex h-16 items-center justify-between gap-6 md:h-20">
+    <Logo />
+    <nav aria-label="Main" class="hidden md:block">
+      <ul class="flex items-center gap-8 text-sm text-muted">
+        {nav.map((item) => (
+          <li>
+            <a href={item.href} class="nav-link">
+              {item.label}
+            </a>
+          </li>
+        ))}
+      </ul>
+    </nav>
+    <div class="flex items-center gap-3">
+      <a href="/contact/" class="btn btn-primary btn-sm hidden sm:inline-flex">
+        Start a project <Arrow />
+      </a>
+      <button
+        type="button"
+        class="menu-toggle md:hidden"
+        aria-expanded="false"
+        aria-controls="mobile-menu"
+        aria-label="Open menu"
+      >
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+  </div>
+  <div id="mobile-menu" class="mobile-menu md:hidden" hidden>
+    <nav aria-label="Mobile" class="container-x py-6">
+      <ul class="flex flex-col gap-1">
+        {nav.map((item) => (
+          <li>
+            <a href={item.href} class="block py-3 font-display text-3xl font-semibold">
+              {item.label}
+            </a>
+          </li>
+        ))}
+      </ul>
+      <a href="/contact/" class="btn btn-primary mt-6 w-full">
+        Start a project <Arrow />
+      </a>
+    </nav>
+  </div>
+</header>
+
+<script>
+  function initHeader() {
+    const header = document.querySelector<HTMLElement>('.site-header');
+    const toggle = header?.querySelector<HTMLButtonElement>('.menu-toggle');
+    const menu = document.getElementById('mobile-menu');
+    if (!header || !toggle || !menu || header.dataset.ready) return;
+    header.dataset.ready = 'true';
+
+    const setOpen = (open: boolean) => {
+      toggle.setAttribute('aria-expanded', String(open));
+      toggle.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
+      menu.hidden = !open;
+      header.classList.toggle('is-open', open);
+    };
+    toggle.addEventListener('click', () => setOpen(menu.hidden === true));
+    menu.addEventListener('click', (e) => {
+      if ((e.target as Element).closest('a')) setOpen(false);
+    });
+    document.addEventListener('keydown', (e) => e.key === 'Escape' && setOpen(false));
+    document.addEventListener('astro:after-swap', () => setOpen(false));
+
+    // Solid background once the page is scrolled (rAF-throttled, passive).
+    let ticking = false;
+    const onScroll = () => {
+      if (ticking) return;
+      ticking = true;
+      requestAnimationFrame(() => {
+        header.classList.toggle('is-scrolled', scrollY > 8);
+        ticking = false;
+      });
+    };
+    addEventListener('scroll', onScroll, { passive: true });
+    onScroll();
+  }
+  document.addEventListener('astro:page-load', initHeader);
+</script>

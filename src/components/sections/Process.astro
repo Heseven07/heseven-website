@@ -1,0 +1,21 @@
+---
+import SectionHeading from '../ui/SectionHeading.astro';
+import { process } from '../../data/home';
+---
+
+<section id="process" class="scroll-mt-24 bg-ink-2 py-24 md:py-32" aria-labelledby="process-title">
+  <div class="container-x">
+    <SectionHeading id="process-title" eyebrow={process.eyebrow} title={process.title} />
+    <ol class="process mt-16 grid gap-10 md:grid-cols-5 md:gap-6">
+      {process.steps.map((s, i) => (
+        <li class="process-step" data-reveal style={`--reveal-delay:${i * 90}`}>
+          <span class="process-dot" aria-hidden="true">
+            {i + 1}
+          </span>
+          <h3 class="mt-6 text-xl font-semibold">{s.title}</h3>
+          <p class="mt-2 text-muted">{s.body}</p>
+        </li>
+      ))}
+    </ol>
+  </div>
+</section>

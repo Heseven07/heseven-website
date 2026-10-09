@@ -1,0 +1,42 @@
+---
+import { Picture } from 'astro:assets';
+import SectionHeading from '../ui/SectionHeading.astro';
+import { work } from '../../data/home';
+---
+
+<section id="work" class="container-x scroll-mt-24 py-24 md:py-32" aria-labelledby="work-title">
+  <SectionHeading
+    id="work-title"
+    eyebrow="Selected work"
+    title="Work we're proud of."
+    lead="Real stores, measurable outcomes."
+  />
+  <ul class="mt-14 grid gap-6 md:grid-cols-2">
+    {work.map((w, i) => (
+      <li data-reveal style={`--reveal-delay:${(i % 2) * 100}`}>
+        <article class="work-card group">
+          <div class="overflow-hidden rounded-3xl border border-line">
+            <Picture
+              src={w.image}
+              alt={`${w.client} Shopify store`}
+              widths={[480, 720, 960, 1200]}
+              sizes="(min-width: 768px) 50vw, 100vw"
+              formats={['avif', 'webp']}
+              class="work-img aspect-[4/3] w-full object-cover"
+            />
+          </div>
+          <div class="mt-5 flex items-start justify-between gap-4">
+            <div>
+              <h3 class="text-2xl font-semibold">{w.client}</h3>
+              <p class="mt-1 text-sm text-muted">{w.sector}</p>
+            </div>
+            <p class="text-right">
+              <span class="block font-display text-3xl font-bold text-lime">{w.metric}</span>
+              <span class="text-sm text-muted">{w.metricLabel}</span>
+            </p>
+          </div>
+        </article>
+      </li>
+    ))}
+  </ul>
+</section>

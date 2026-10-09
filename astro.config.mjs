@@ -21,7 +21,8 @@ export default defineConfig({
       filter: (page) => !/\/(thanks|styleguide)\/$/.test(page),
     }),
   ],
-  // Self-hosted, latin-only, exact weights. Files come from @fontsource packages (no network at build).
+  // Self-hosted, latin-only, ONE weight per family (both preloaded) — keeps LCP font-swap off the critical path.
+  // Adding a weight costs ~20 KB and Lighthouse points; check `npm run lighthouse` if you do. Files come from @fontsource packages (no network at build).
   fonts: [
     {
       provider: fontProviders.local(),
@@ -30,7 +31,6 @@ export default defineConfig({
       fallbacks: ['sans-serif'],
       options: {
         variants: [
-          { weight: 600, style: 'normal', src: ['@fontsource/syne/files/syne-latin-600-normal.woff2'] },
           { weight: 700, style: 'normal', src: ['@fontsource/syne/files/syne-latin-700-normal.woff2'] },
         ],
       },
@@ -43,7 +43,6 @@ export default defineConfig({
       options: {
         variants: [
           { weight: 400, style: 'normal', src: ['@fontsource/roboto/files/roboto-latin-400-normal.woff2'] },
-          { weight: 500, style: 'normal', src: ['@fontsource/roboto/files/roboto-latin-500-normal.woff2'] },
         ],
       },
     },

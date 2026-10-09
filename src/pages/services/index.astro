@@ -1,0 +1,19 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import PageHero from '../../components/layout/PageHero.astro';
+import Services from '../../components/sections/Services.astro';
+import Cta from '../../components/sections/Cta.astro';
+---
+
+<BaseLayout
+  title="Shopify Services"
+  description="Shopify store development, migrations, conversion optimisation, speed, SEO and maintenance from a certified Shopify Partner agency."
+>
+  <PageHero
+    eyebrow="Services"
+    title="Shopify services that move revenue."
+    lead="Pick one, or let us run the whole roadmap."
+  />
+  <Services />
+  <Cta />
+</BaseLayout>

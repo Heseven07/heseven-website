@@ -7,7 +7,7 @@ export default defineConfig({
   retries: process.env.CI ? 1 : 0,
   reporter: process.env.CI ? 'github' : 'list',
   use: {
-    baseURL: 'http://localhost:4321',
+    baseURL: 'http://localhost:4322',
     trace: 'on-first-retry',
   },
   projects: [
@@ -15,8 +15,8 @@ export default defineConfig({
     { name: 'mobile', use: { ...devices['Pixel 7'] } },
   ],
   webServer: {
-    command: 'npx astro preview --ignore-lock',
-    url: 'http://localhost:4321',
+    command: 'npx astro preview --ignore-lock --port 4322',
+    url: 'http://localhost:4322',
     reuseExistingServer: !process.env.CI,
   },
 });

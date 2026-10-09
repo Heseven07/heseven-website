@@ -7,7 +7,12 @@ module.exports = {
     collect: {
       staticDistDir: './dist',
       // Add every indexable page template here as it's built (404 is noindex by design, so excluded).
-      url: ['http://localhost/'],
+      url: [
+        'http://localhost/',
+        'http://localhost/services/',
+        'http://localhost/services/store-development/',
+        'http://localhost/contact/',
+      ],
       numberOfRuns: 3,
       settings: {
         // CI runners are slower than real devices; this keeps results stable.
