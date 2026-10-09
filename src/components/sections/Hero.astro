@@ -1,5 +1,6 @@
 ---
 import Arrow from '../ui/Arrow.astro';
+import Counter from '../ui/Counter.astro';
 import { hero } from '../../data/home';
 ---
 
@@ -13,7 +14,7 @@ import { hero } from '../../data/home';
       {hero.eyebrow}
     </p>
     <h1 id="hero-title" class="hero-title mt-6 max-w-5xl font-bold">
-      {hero.titleBefore} <span class="text-lime">{hero.titleAccent}</span> {hero.titleAfter}
+      {hero.titleBefore} <span class="text-shimmer">{hero.titleAccent}</span> {hero.titleAfter}
     </h1>
     <ul class="hero-in mt-8 flex flex-wrap gap-2" style="--i:2" aria-label="What we do">
       {hero.tags.map((t) => (
@@ -24,7 +25,7 @@ import { hero } from '../../data/home';
       {hero.lead}
     </p>
     <div class="hero-in mt-10 flex flex-wrap gap-3" style="--i:4">
-      <a href={hero.primary.href} class="btn btn-primary btn-lg">
+      <a href={hero.primary.href} class="btn btn-primary btn-lg" data-magnetic>
         {hero.primary.label} <Arrow />
       </a>
       <a href={hero.secondary.href} class="btn btn-ghost btn-lg">
@@ -36,7 +37,9 @@ import { hero } from '../../data/home';
       {hero.stats.map((s, i) => (
         <div class="bg-ink/80 p-6 backdrop-blur md:p-8" data-reveal style={`--reveal-delay:${i * 80}`}>
           <dt class="text-sm text-muted">{s.label}</dt>
-          <dd class="mt-2 font-display text-4xl font-bold md:text-5xl">{s.value}</dd>
+          <dd class="mt-2 font-display text-4xl font-bold md:text-5xl">
+            <Counter value={s.value} />
+          </dd>
         </div>
       ))}
     </dl>

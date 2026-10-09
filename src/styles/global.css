@@ -228,35 +228,224 @@
     animation-play-state: paused;
   }
 
-  /* Work */
+  /* Work — 3D tilt cards */
+  .work-media {
+    --rx: 0deg;
+    --ry: 0deg;
+    position: relative;
+    overflow: hidden;
+    border-radius: 1.5rem;
+    border: 1px solid var(--color-line);
+    transform: perspective(1100px) rotateX(var(--rx)) rotateY(var(--ry));
+    transition:
+      transform 0.6s var(--ease-out-expo),
+      border-color 0.4s,
+      box-shadow 0.6s var(--ease-out-expo);
+    will-change: transform;
+  }
+  .work-card:hover .work-media {
+    transition-duration: 0.15s, 0.4s, 0.6s;
+    border-color: rgb(255 255 255 / 0.2);
+    box-shadow: 0 40px 80px -30px color-mix(in oklab, var(--color-violet) 45%, transparent);
+  }
   .work-img {
     transition: transform 1.2s var(--ease-out-expo);
   }
   .work-card:hover .work-img {
-    transform: scale(1.04);
+    transform: scale(1.06);
+  }
+  .work-glare {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    opacity: 0;
+    background: radial-gradient(
+      circle at var(--mx, 50%) var(--my, 50%),
+      rgb(255 255 255 / 0.22),
+      transparent 45%
+    );
+    mix-blend-mode: overlay;
+    transition: opacity 0.4s;
+  }
+  .work-card:hover .work-glare {
+    opacity: 1;
+  }
+  .work-chip {
+    @apply absolute top-4 left-4 rounded-full border border-white/15 bg-ink/60 px-3 py-1 text-xs text-fg backdrop-blur;
+  }
+  .work-cursor {
+    @apply pointer-events-none absolute top-0 left-0 inline-flex items-center gap-2 rounded-full bg-lime px-4 py-2 text-sm font-medium text-ink;
+    translate: calc(var(--cx, 50%) - 50%) calc(var(--cy, 50%) - 50%);
+    scale: 0.6;
+    opacity: 0;
+    transition:
+      opacity 0.3s,
+      scale 0.4s var(--ease-out-expo);
+  }
+  .work-card:hover .work-cursor {
+    opacity: 1;
+    scale: 1;
+  }
+  @media (hover: none), (pointer: coarse) {
+    .work-cursor {
+      display: none;
+    }
   }
 
-  /* Process */
+  /* Process — scroll-drawn timeline */
+  .process-line {
+    position: absolute;
+    background: var(--color-line);
+    border-radius: 2px;
+    overflow: hidden;
+  }
+  .process-line-fill {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(var(--dir, 90deg), var(--color-violet), var(--color-lime));
+    transform-origin: 0 0;
+    transform: scaleX(var(--p, 0));
+    box-shadow: 0 0 16px var(--color-lime);
+  }
+  .process-line[data-axis='y'] .process-line-fill {
+    --dir: 180deg;
+    transform: scaleY(var(--p, 0));
+  }
   .process-step {
-    @apply relative;
+    @apply relative flex gap-5 md:block;
   }
   .process-dot {
-    @apply relative z-10 grid size-12 place-items-center rounded-full border border-lime/40 bg-ink font-display font-bold text-lime;
+    @apply relative z-10 grid size-12 shrink-0 place-items-center rounded-full border border-line bg-ink-2 font-display font-bold text-muted;
+    transition:
+      background-color 0.5s,
+      color 0.5s,
+      border-color 0.5s,
+      box-shadow 0.5s,
+      scale 0.5s var(--ease-out-expo);
+  }
+  .process-body {
+    @apply pt-2.5 md:pt-0;
+    translate: 0 12px;
+    transition: translate 0.8s var(--ease-out-expo);
+  }
+  /* Not-yet-reached steps are dimmed with colour, not opacity, so text keeps AA contrast. */
+  .process-body h3 {
+    color: var(--color-muted);
+    transition: color 0.6s;
+  }
+  .process-step.is-active .process-body h3 {
+    color: var(--color-fg);
   }
   @media (min-width: 768px) {
-    .process-step:not(:last-child)::after {
-      content: '';
-      position: absolute;
-      top: 1.5rem;
-      left: 3rem;
-      right: -1.5rem;
-      height: 1px;
-      background: linear-gradient(
-        90deg,
-        color-mix(in oklab, var(--color-lime) 40%, transparent),
-        var(--color-line)
-      );
+    .process-body {
+      margin-top: 1.5rem;
     }
+  }
+  .process-step.is-active .process-dot {
+    @apply border-lime bg-lime text-ink;
+    scale: 1.08;
+    box-shadow: 0 0 0 8px color-mix(in oklab, var(--color-lime) 15%, transparent);
+  }
+  .process-step.is-active .process-body {
+    translate: 0 0;
+  }
+  @media (min-width: 768px) and (min-height: 640px) and (prefers-reduced-motion: no-preference) {
+    .process-section {
+      height: 280vh;
+    }
+    .process-pin {
+      position: sticky;
+      top: 0;
+      height: 100vh;
+      display: flex;
+      align-items: center;
+    }
+  }
+  html:not(.js) .process-body {
+    translate: none;
+  }
+
+  /* Spotlight cards */
+  .card-spotlight {
+    position: relative;
+    isolation: isolate;
+  }
+  .card-spotlight::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    border-radius: inherit;
+    background: radial-gradient(
+      380px circle at var(--sx, 50%) var(--sy, 0%),
+      color-mix(in oklab, var(--color-violet) 22%, transparent),
+      transparent 70%
+    );
+    opacity: 0;
+    transition: opacity 0.4s;
+  }
+  .card-spotlight:hover::before {
+    opacity: 1;
+  }
+  .icon-badge {
+    transition:
+      rotate 0.6s var(--ease-out-expo),
+      scale 0.6s var(--ease-out-expo),
+      background-color 0.4s;
+  }
+  .group:hover .icon-badge {
+    rotate: -8deg;
+    scale: 1.08;
+    @apply bg-lime/20;
+  }
+
+  /* Counters never reflow while counting */
+  .counter {
+    display: inline-block;
+    font-variant-numeric: tabular-nums;
+  }
+
+  /* Hero accent shimmer (paint-only, doesn't affect LCP timing) */
+  .text-shimmer {
+    color: var(--color-lime);
+    background: linear-gradient(100deg, var(--color-lime) 40%, #f2ffd9 50%, var(--color-lime) 60%) 0 0 / 250%
+      100%;
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+
+  /* Nav underline */
+  .nav-link {
+    position: relative;
+  }
+  .nav-link::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: -6px;
+    height: 1px;
+    background: var(--color-lime);
+    scale: 0 1;
+    transform-origin: right;
+    transition: scale 0.4s var(--ease-out-expo);
+  }
+  .nav-link:hover::after {
+    scale: 1 1;
+    transform-origin: left;
+  }
+
+  /* Reading progress (CSS scroll-driven; no JS, ignored by older browsers) */
+  .scroll-progress {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: -1px;
+    height: 2px;
+    background: linear-gradient(90deg, var(--color-violet), var(--color-lime));
+    transform-origin: 0 50%;
+    scale: 0 1;
   }
 
   /* FAQ */
@@ -366,5 +555,103 @@
   ::view-transition-old(*),
   ::view-transition-new(*) {
     animation: none !important;
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  /* Self-drawing icons */
+  .js .icon-draw path {
+    stroke-dasharray: 1;
+    stroke-dashoffset: 1;
+    transition: stroke-dashoffset 1.4s var(--ease-out-expo) 0.2s;
+  }
+  .js .is-visible .icon-draw path,
+  .js .icon-draw.is-visible path {
+    stroke-dashoffset: 0;
+  }
+  .group:hover .icon-draw path {
+    animation: icon-draw 0.9s var(--ease-out-expo);
+  }
+
+  /* 3D flip-up reveal for work cards */
+  .js .reveal-3d[data-reveal] {
+    transform: perspective(1200px) translateY(60px) rotateX(14deg) scale(0.96);
+    transform-origin: 50% 100%;
+    transition:
+      opacity 1s var(--ease-out-expo),
+      transform 1.2s var(--ease-out-expo);
+  }
+  .js .reveal-3d[data-reveal].is-visible {
+    transform: none;
+  }
+
+  /* Stars pop in one by one */
+  .js .is-visible .star {
+    animation: star-pop 0.6s var(--ease-out-expo) both;
+    animation-delay: calc(var(--j) * 90ms + 300ms);
+  }
+
+  .text-shimmer {
+    animation: shimmer 6s ease-in-out 1.2s infinite;
+  }
+  .hero-glow {
+    animation: drift 18s ease-in-out infinite alternate;
+  }
+  .cta-panel::before {
+    content: '';
+    position: absolute;
+    z-index: -1;
+    width: 60%;
+    aspect-ratio: 1;
+    left: -10%;
+    bottom: -40%;
+    background: radial-gradient(
+      closest-side,
+      color-mix(in oklab, var(--color-lime) 30%, transparent),
+      transparent
+    );
+    animation: drift 14s ease-in-out infinite alternate-reverse;
+  }
+
+  @supports (animation-timeline: scroll()) {
+    .scroll-progress {
+      animation: grow-x linear both;
+      animation-timeline: scroll(root block);
+    }
+  }
+}
+
+@keyframes icon-draw {
+  from {
+    stroke-dashoffset: 1;
+  }
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+@keyframes star-pop {
+  from {
+    opacity: 0;
+    scale: 0.3;
+    rotate: -30deg;
+  }
+}
+@keyframes shimmer {
+  0%,
+  60% {
+    background-position: 100% 0;
+  }
+  100% {
+    background-position: -50% 0;
+  }
+}
+@keyframes drift {
+  to {
+    transform: translate(-8%, 10%) scale(1.15);
+  }
+}
+@keyframes grow-x {
+  to {
+    scale: 1 1;
   }
 }

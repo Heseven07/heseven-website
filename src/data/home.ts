@@ -3,6 +3,7 @@
  * Moves to Sanity in Phase 4 — keep shapes stable so components don't change.
  */
 import type { ImageMetadata } from 'astro';
+import { icons } from './icons';
 import powerlete from '../assets/work/powerlete.jpg';
 import vroom from '../assets/work/vroom-classic.jpg';
 import caorunn from '../assets/work/caorunn-gin.jpg';
@@ -58,37 +59,37 @@ export const services: Service[] = [
     slug: 'store-development',
     title: 'Store Development',
     summary: 'Custom Shopify and Shopify Plus themes built for speed, conversion and easy editing.',
-    icon: 'M4 6h16M4 12h16M4 18h10',
+    icon: icons.code,
   },
   {
     slug: 'platform-migration',
     title: 'Platform Migration',
     summary: 'Move from WooCommerce, Magento or BigCommerce with zero data loss and SEO intact.',
-    icon: 'M4 12h12m0 0-4-4m4 4-4 4M20 5v14',
+    icon: icons.migrate,
   },
   {
     slug: 'conversion-optimisation',
     title: 'Conversion Optimisation',
     summary: 'Research-led UX changes and A/B tests that turn more visitors into customers.',
-    icon: 'M4 18 10 12l4 4 6-8',
+    icon: icons.trend,
   },
   {
     slug: 'speed-optimisation',
     title: 'Speed Optimisation',
     summary: 'Core Web Vitals fixes, app audits and image pipelines for a faster storefront.',
-    icon: 'M13 3 5 14h6l-1 7 8-11h-6l1-7Z',
+    icon: icons.bolt,
   },
   {
     slug: 'shopify-seo',
     title: 'Shopify SEO',
     summary: 'Technical SEO, structured data and content that compounds organic revenue.',
-    icon: 'M11 18a7 7 0 1 0 0-14 7 7 0 0 0 0 14Zm5-2 4 4',
+    icon: icons.search,
   },
   {
     slug: 'store-maintenance',
     title: 'Store Maintenance',
     summary: 'A dedicated team on retainer for updates, fixes and continuous improvements.',
-    icon: 'M12 8v4l3 2m6-2a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z',
+    icon: icons.clock,
   },
 ];
 
@@ -97,14 +98,17 @@ export const results = {
   title: 'Every decision is measured against revenue.',
   points: [
     {
+      icon: icons.target,
       title: 'Strategy first',
       body: 'We start with your numbers — traffic, conversion, AOV — and prioritise the work that moves them.',
     },
     {
+      icon: icons.users,
       title: 'Dedicated experts',
       body: 'A named designer, developer and project lead who know your store inside out.',
     },
     {
+      icon: icons.report,
       title: 'Transparent reporting',
       body: 'Clear timelines, weekly updates and reports you can actually read.',
     },
@@ -212,14 +216,31 @@ export const whyUs = {
   eyebrow: 'Why Heseven',
   title: 'Senior people, small-team focus, global reach.',
   pillars: [
-    { title: 'Global expertise', body: 'Brands across the UK, US, Europe, Australia and India.' },
     {
+      icon: icons.globe,
+      title: 'Global expertise',
+      body: 'Brands across the UK, US, Europe, Australia and India.',
+    },
+    {
+      icon: icons.sliders,
       title: 'Tailored solutions',
       body: 'No templates-in-disguise. Built around your products and customers.',
     },
-    { title: 'Creative team', body: 'Designers and developers who sweat the details together.' },
-    { title: 'End-to-end service', body: 'Strategy, design, build, SEO and support under one roof.' },
-    { title: '100% satisfaction', body: 'We are not done until you are proud to share your store.' },
+    {
+      icon: icons.sparkles,
+      title: 'Creative team',
+      body: 'Designers and developers who sweat the details together.',
+    },
+    {
+      icon: icons.layers,
+      title: 'End-to-end service',
+      body: 'Strategy, design, build, SEO and support under one roof.',
+    },
+    {
+      icon: icons.heart,
+      title: '100% satisfaction',
+      body: 'We are not done until you are proud to share your store.',
+    },
   ],
 };
 

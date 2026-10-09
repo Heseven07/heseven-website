@@ -1,4 +1,5 @@
 ---
+import Icon from '../ui/Icon.astro';
 import { results } from '../../data/home';
 ---
 
@@ -12,8 +13,18 @@ import { results } from '../../data/home';
     </div>
     <ol class="flex flex-col gap-4">
       {results.points.map((p, i) => (
-        <li class="card p-8 md:p-10" data-reveal style={`--reveal-delay:${i * 100}`}>
-          <span class="font-display text-sm text-lime">0{i + 1}</span>
+        <li
+          class="card card-spotlight group p-8 md:p-10"
+          data-spotlight
+          data-reveal
+          style={`--reveal-delay:${i * 100}`}
+        >
+          <div class="flex items-center justify-between">
+            <span class="icon-badge">
+              <Icon d={p.icon} />
+            </span>
+            <span class="font-display text-sm text-muted">0{i + 1}</span>
+          </div>
           <h3 class="mt-4 text-2xl font-semibold">{p.title}</h3>
           <p class="mt-3 text-muted">{p.body}</p>
         </li>
