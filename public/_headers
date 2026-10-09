@@ -17,8 +17,8 @@
 /*.svg
   Cache-Control: public, max-age=86400
 
-# Preview deployments must never be indexed.
-https://:project.pages.dev/*
-  X-Robots-Tag: noindex
+# Per-branch/PR preview deployments must never be indexed.
+# (The main <project>.pages.dev URL stays indexable so PageSpeed Insights reports SEO correctly;
+#  every page's canonical tag points to heseven.com, so it can't compete with the real domain.)
 https://:version.:project.pages.dev/*
   X-Robots-Tag: noindex
