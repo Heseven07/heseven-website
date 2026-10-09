@@ -1,35 +1,33 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+import Hero from '../components/sections/Hero.astro';
+import ClientMarquee from '../components/sections/ClientMarquee.astro';
+import About from '../components/sections/About.astro';
+import Services from '../components/sections/Services.astro';
+import Results from '../components/sections/Results.astro';
+import Work from '../components/sections/Work.astro';
+import Testimonials from '../components/sections/Testimonials.astro';
+import Process from '../components/sections/Process.astro';
+import WhyUs from '../components/sections/WhyUs.astro';
+import GlobalClocks from '../components/sections/GlobalClocks.astro';
+import Faq from '../components/sections/Faq.astro';
+import Cta from '../components/sections/Cta.astro';
 ---
 
-<BaseLayout>
-  <section class="container-x flex min-h-[80dvh] flex-col justify-center gap-6 py-24">
-    <p class="text-sm tracking-[0.2em] text-muted uppercase">Shopify Partner Agency</p>
-    <h1 class="max-w-4xl text-5xl font-bold sm:text-7xl">
-      Your <span class="text-lime">Shopify</span> Growth Partner
-    </h1>
-    <p class="max-w-xl text-lg text-muted">
-      Placeholder homepage — Phase 0 scaffold. Full design lands in Phase 1–2.
-    </p>
-    <div class="flex flex-wrap gap-3">
-      <a href="/contact/" class="btn btn-primary">
-        Get your quote
-      </a>
-      <a href="#work" class="btn btn-ghost">
-        See our work
-      </a>
-    </div>
-  </section>
-  <section id="work" class="container-x grid gap-6 py-24 sm:grid-cols-3">
-    {[1, 2, 3].map((n, i) => (
-      <article
-        data-reveal
-        style={`--reveal-delay:${i * 100}`}
-        class="rounded-3xl border border-line bg-ink-2 p-8"
-      >
-        <h2 class="text-2xl font-semibold">Case study {n}</h2>
-        <p class="mt-2 text-muted">Placeholder content.</p>
-      </article>
-    ))}
-  </section>
+<BaseLayout
+  title="Shopify Partner Agency — Store Design, Development & Growth"
+  description="Heseven is a Shopify Partner agency that designs, builds and grows high-converting e-commerce stores. Store builds, migrations, CRO, speed, SEO and support."
+>
+  <Hero />
+  <ClientMarquee />
+  <About />
+  <Services />
+  <Results />
+  <Work />
+  <Testimonials />
+  <Process />
+  <WhyUs />
+  <GlobalClocks />
+  <Faq />
+  <Cta />
 </BaseLayout>

@@ -18,7 +18,8 @@
     "lighthouse": "lhci autorun",
     "icons": "node scripts/generate-icons.mjs",
     "prepare": "husky",
-    "astro": "astro"
+    "astro": "astro",
+    "deploy": "npm run build && wrangler deploy"
   },
   "dependencies": {
     "@astrojs/sitemap": "^3.7.4",

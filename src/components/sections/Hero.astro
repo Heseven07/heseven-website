@@ -1,0 +1,47 @@
+---
+import Arrow from '../ui/Arrow.astro';
+import Counter from '../ui/Counter.astro';
+import { hero } from '../../data/home';
+---
+
+<section class="hero relative isolate overflow-hidden" aria-labelledby="hero-title">
+  <div class="hero-bg" aria-hidden="true">
+    <div class="hero-glow"></div>
+    <div class="hero-grid"></div>
+  </div>
+  <div class="container-x pt-36 pb-20 md:pt-48 md:pb-28">
+    <p class="eyebrow hero-in" style="--i:0">
+      {hero.eyebrow}
+    </p>
+    <h1 id="hero-title" class="hero-title mt-6 max-w-5xl font-bold">
+      {hero.titleBefore} <span class="text-shimmer">{hero.titleAccent}</span> {hero.titleAfter}
+    </h1>
+    <ul class="hero-in mt-8 flex flex-wrap gap-2" style="--i:2" aria-label="What we do">
+      {hero.tags.map((t) => (
+        <li class="pill">{t}</li>
+      ))}
+    </ul>
+    <p class="hero-in mt-8 max-w-xl text-lg text-muted sm:text-xl" style="--i:3">
+      {hero.lead}
+    </p>
+    <div class="hero-in mt-10 flex flex-wrap gap-3" style="--i:4">
+      <a href={hero.primary.href} class="btn btn-primary btn-lg" data-magnetic>
+        {hero.primary.label} <Arrow />
+      </a>
+      <a href={hero.secondary.href} class="btn btn-ghost btn-lg">
+        {hero.secondary.label}
+      </a>
+    </div>
+
+    <dl class="mt-20 grid grid-cols-2 gap-px overflow-hidden rounded-3xl border border-line bg-line md:grid-cols-4">
+      {hero.stats.map((s, i) => (
+        <div class="bg-ink/80 p-6 backdrop-blur md:p-8" data-reveal style={`--reveal-delay:${i * 80}`}>
+          <dt class="text-sm text-muted">{s.label}</dt>
+          <dd class="mt-2 font-display text-4xl font-bold md:text-5xl">
+            <Counter value={s.value} />
+          </dd>
+        </div>
+      ))}
+    </dl>
+  </div>
+</section>

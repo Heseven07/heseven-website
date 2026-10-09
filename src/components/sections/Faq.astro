@@ -1,0 +1,34 @@
+---
+import SectionHeading from '../ui/SectionHeading.astro';
+import JsonLd from '../seo/JsonLd.astro';
+import { faqs } from '../../data/home';
+
+const schema = {
+  '@type': 'FAQPage',
+  mainEntity: faqs.map((f) => ({
+    '@type': 'Question',
+    name: f.q,
+    acceptedAnswer: { '@type': 'Answer', text: f.a },
+  })),
+};
+---
+
+<section class="container-x py-24 md:py-32" aria-labelledby="faq-title">
+  <div class="grid gap-12 md:grid-cols-12">
+    <div class="md:col-span-4">
+      <SectionHeading id="faq-title" eyebrow="FAQ" title="Questions, answered." />
+    </div>
+    <div class="md:col-span-8">
+      {faqs.map((f, i) => (
+        <details class="faq" name="faq" open={i === 0} data-reveal style={`--reveal-delay:${i * 60}`}>
+          <summary>
+            <span class="font-display text-lg font-semibold sm:text-xl">{f.q}</span>
+            <span class="faq-icon" aria-hidden="true" />
+          </summary>
+          <p class="pb-6 text-muted">{f.a}</p>
+        </details>
+      ))}
+    </div>
+  </div>
+  <JsonLd data={schema} />
+</section>

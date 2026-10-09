@@ -1,0 +1,13 @@
+{
+  // Cloudflare Workers static assets — the site is 100% prebuilt HTML, so no Worker script runs.
+  // _headers and _redirects in public/ are applied by Cloudflare automatically.
+  // Deploy: npm run deploy
+  "$schema": "./node_modules/wrangler/config-schema.json",
+  "name": "heseven-website",
+  "compatibility_date": "2026-10-06",
+  "assets": {
+    "directory": "./dist",
+    "not_found_handling": "404-page",
+    "html_handling": "force-trailing-slash",
+  },
+}

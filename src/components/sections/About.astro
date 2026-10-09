@@ -1,0 +1,29 @@
+---
+import { about } from '../../data/home';
+---
+
+<section id="about" class="container-x scroll-mt-24 py-24 md:py-36" aria-labelledby="about-title">
+  <div class="grid gap-10 md:grid-cols-12">
+    <p class="eyebrow md:col-span-3" data-reveal>
+      {about.eyebrow}
+    </p>
+    <div class="md:col-span-9">
+      <h2 id="about-title" class="text-3xl leading-tight font-semibold sm:text-5xl" data-reveal>
+        {about.title}
+      </h2>
+      <p class="mt-8 max-w-2xl text-lg text-muted" data-reveal style="--reveal-delay:100">
+        {about.body}
+      </p>
+      <a
+        href="https://www.shopify.com/partners/directory/partner/heseven"
+        class="link-underline mt-8 inline-block"
+        rel="noopener"
+        target="_blank"
+        data-reveal
+        style="--reveal-delay:200"
+      >
+        View our Shopify Partner profile
+      </a>
+    </div>
+  </div>
+</section>

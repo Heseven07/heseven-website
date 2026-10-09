@@ -1,0 +1,21 @@
+---
+interface Props {
+  eyebrow?: string;
+  title: string;
+  lead?: string;
+}
+const { eyebrow, title, lead } = Astro.props;
+---
+
+<section class="relative isolate overflow-hidden">
+  <div class="hero-bg" aria-hidden="true">
+    <div class="hero-glow"></div>
+    <div class="hero-grid"></div>
+  </div>
+  <div class="container-x pt-36 pb-16 md:pt-48 md:pb-24">
+    {eyebrow && <p class="eyebrow">{eyebrow}</p>}
+    <h1 class="mt-5 max-w-4xl text-5xl font-bold sm:text-7xl">{title}</h1>
+    {lead && <p class="mt-6 max-w-2xl text-lg text-muted sm:text-xl">{lead}</p>}
+    <slot />
+  </div>
+</section>
