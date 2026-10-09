@@ -1,0 +1,173 @@
+---
+/**
+ * Consent-gated GA4 + Meta Pixel.
+ *
+ * Both are OFF until an ID is set in the environment (.env / Cloudflare Pages vars):
+ *   PUBLIC_GA4_ID=G-XXXXXXXXXX
+ *   PUBLIC_META_PIXEL_ID=000000000000000
+ *
+ * Nothing third-party loads until the visitor accepts the cookie banner, and even then
+ * only once the browser is idle. Lighthouse never clicks "Accept", so scores stay at 100.
+ * If no ID is set, this component renders nothing (no banner, no script).
+ *
+ * ---- Original vendor snippets (for reference; the loader below is equivalent) ----
+ *
+ * <!-- Google tag (gtag.js) -->
+ * <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+ * <script>
+ *   window.dataLayer = window.dataLayer || [];
+ *   function gtag(){dataLayer.push(arguments);}
+ *   gtag('js', new Date());
+ *   gtag('config', 'G-XXXXXXXXXX');
+ * </script>
+ *
+ * <!-- Meta Pixel Code -->
+ * <script>
+ *   !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+ *   n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
+ *   n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;
+ *   t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,
+ *   document,'script','https://connect.facebook.net/en_US/fbevents.js');
+ *   fbq('init', '000000000000000');
+ *   fbq('track', 'PageView');
+ * </script>
+ */
+const ga4Id = import.meta.env.PUBLIC_GA4_ID ?? '';
+const pixelId = import.meta.env.PUBLIC_META_PIXEL_ID ?? '';
+const enabled = Boolean(ga4Id || pixelId);
+---
+
+{enabled && (
+  <>
+    <div
+      id="consent"
+      class="consent"
+      role="dialog"
+      aria-live="polite"
+      aria-label="Cookie consent"
+      hidden
+      transition:persist
+    >
+      <p>
+        We use cookies to measure how the site is used and to improve our ads.{' '}
+        <a href="/privacy/">Privacy policy</a>
+      </p>
+      <div class="consent-actions">
+        <button type="button" data-consent="reject" class="btn btn-ghost btn-sm">
+          Reject
+        </button>
+        <button type="button" data-consent="accept" class="btn btn-primary btn-sm">
+          Accept
+        </button>
+      </div>
+    </div>
+    <script is:inline define:vars={{ ga4Id, pixelId }}>
+      /* eslint-disable -- ES5 inline loader kept close to the vendor snippets so they are easy to diff/update. */
+      (function () {
+        if (window.__hsAnalytics) return;
+        window.__hsAnalytics = true;
+        var KEY = 'hs-consent';
+        var loaded = false;
+
+        function read() {
+          try {
+            return localStorage.getItem(KEY);
+          } catch (e) {
+            return null;
+          }
+        }
+        function write(v) {
+          try {
+            localStorage.setItem(KEY, v);
+          } catch (e) {}
+        }
+        function idle(fn) {
+          'requestIdleCallback' in window ? requestIdleCallback(fn, { timeout: 4000 }) : setTimeout(fn, 2000);
+        }
+        function addScript(src) {
+          var s = document.createElement('script');
+          s.async = true;
+          s.src = src;
+          document.head.appendChild(s);
+        }
+
+        function load() {
+          if (loaded) return;
+          loaded = true;
+          if (ga4Id) {
+            window.dataLayer = window.dataLayer || [];
+            window.gtag = function () {
+              dataLayer.push(arguments);
+            };
+            gtag('consent', 'default', {
+              ad_storage: 'granted',
+              analytics_storage: 'granted',
+              ad_user_data: 'granted',
+              ad_personalization: 'granted',
+            });
+            gtag('js', new Date());
+            gtag('config', ga4Id);
+            addScript('https://www.googletagmanager.com/gtag/js?id=' + ga4Id);
+          }
+          if (pixelId) {
+            !(function (f, b, e, v, n, t, s) {
+              if (f.fbq) return;
+              n = f.fbq = function () {
+                n.callMethod ? n.callMethod.apply(n, arguments) : n.queue.push(arguments);
+              };
+              if (!f._fbq) f._fbq = n;
+              n.push = n;
+              n.loaded = !0;
+              n.version = '2.0';
+              n.queue = [];
+              t = b.createElement(e);
+              t.async = !0;
+              t.src = v;
+              s = b.getElementsByTagName(e)[0];
+              s.parentNode.insertBefore(t, s);
+            })(window, document, 'script', 'https://connect.facebook.net/en_US/fbevents.js');
+            fbq('init', pixelId);
+            fbq('track', 'PageView');
+          }
+        }
+
+        // Client-side navigations (view transitions): GA4 tracks history changes itself; Meta needs a nudge.
+        var first = true;
+        document.addEventListener('astro:page-load', function () {
+          if (first) {
+            first = false;
+            return;
+          }
+          if (loaded && window.fbq) fbq('track', 'PageView');
+        });
+
+        var banner = document.getElementById('consent');
+        var choice = read();
+        if (choice === 'accept') {
+          idle(load);
+        } else if (!choice && banner) {
+          idle(function () {
+            banner.hidden = false;
+          });
+        }
+
+        document.addEventListener('click', function (e) {
+          var btn = e.target instanceof Element && e.target.closest('[data-consent]');
+          if (!btn) return;
+          var v = btn.getAttribute('data-consent');
+          write(v);
+          var b = document.getElementById('consent');
+          if (b) b.hidden = true;
+          if (v === 'accept') idle(load);
+        });
+
+        // Footer "Cookie settings" link: <button data-consent-open>
+        document.addEventListener('click', function (e) {
+          if (!(e.target instanceof Element) || !e.target.closest('[data-consent-open]')) return;
+          var b = document.getElementById('consent');
+          if (b) b.hidden = false;
+        });
+      })();
+    </script>
+  </>
+)}

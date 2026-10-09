@@ -1,0 +1,47 @@
+---
+import { ClientRouter } from 'astro:transitions';
+import { Font } from 'astro:assets';
+import SEO, { type Props as SEOProps } from '../components/seo/SEO.astro';
+import OrganizationSchema from '../components/seo/OrganizationSchema.astro';
+import Analytics from '../components/layout/Analytics.astro';
+import '../styles/global.css';
+
+export type Props = SEOProps;
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <script is:inline>
+      document.documentElement.classList.add('js');
+    </script>
+    <meta name="theme-color" content="#0b0a10" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="icon" href="/favicon.ico" sizes="32x32" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+    <link rel="manifest" href="/site.webmanifest" />
+    <link rel="sitemap" href="/sitemap-index.xml" />
+    <Font cssVariable="--font-syne" preload={[{ weight: 700 }]} />
+    <Font cssVariable="--font-roboto" preload={[{ weight: 400 }]} />
+    <SEO {...Astro.props} />
+    <OrganizationSchema />
+    <ClientRouter fallback="swap" />
+    <slot name="head" />
+  </head>
+  <body>
+    <a href="#main" class="skip-link">
+      Skip to content
+    </a>
+    <slot name="header" />
+    <main id="main">
+      <slot />
+    </main>
+    <slot name="footer" />
+    <Analytics />
+    <script>
+      import '../scripts/motion';
+    </script>
+  </body>
+</html>

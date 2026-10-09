@@ -1,0 +1,123 @@
+@import 'tailwindcss';
+@import 'lenis/dist/lenis.css';
+
+/* ---------- Design tokens ---------- */
+@theme inline {
+  --font-display: var(--font-syne), ui-sans-serif, system-ui, sans-serif;
+  --font-sans: var(--font-roboto), ui-sans-serif, system-ui, sans-serif;
+}
+
+@theme {
+  /* Surfaces (dark, premium) */
+  --color-ink: #0b0a10;
+  --color-ink-2: #14121c;
+  --color-ink-3: #1d1a28;
+  --color-line: rgb(255 255 255 / 0.1);
+
+  /* Text */
+  --color-fg: #f5f4f9;
+  --color-muted: #a9a5b8;
+
+  /* Brand */
+  --color-violet: #8b6cff;
+  --color-violet-deep: #5a3fd1;
+  --color-lime: #b5f36b;
+
+  --radius-pill: 999px;
+  --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* ---------- Base ---------- */
+@layer base {
+  html {
+    color-scheme: dark;
+    background: var(--color-ink);
+    color: var(--color-fg);
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+  body {
+    @apply font-sans text-base leading-relaxed;
+    min-height: 100dvh;
+  }
+  h1,
+  h2,
+  h3,
+  h4 {
+    @apply font-display tracking-tight text-balance;
+    line-height: 1.05;
+  }
+  p {
+    text-wrap: pretty;
+  }
+  :focus-visible {
+    outline: 2px solid var(--color-lime);
+    outline-offset: 3px;
+  }
+  ::selection {
+    background: var(--color-violet);
+    color: #fff;
+  }
+}
+
+/* ---------- Primitives ---------- */
+@layer components {
+  .container-x {
+    @apply mx-auto w-full max-w-7xl px-5 sm:px-8;
+  }
+  .btn {
+    @apply inline-flex items-center justify-center gap-2 rounded-full px-6 py-3 text-sm font-medium transition-[transform,background-color,color] duration-300;
+    transition-timing-function: var(--ease-out-expo);
+  }
+  .btn:active {
+    transform: scale(0.97);
+  }
+  .btn-sm {
+    @apply px-4 py-2 text-xs;
+  }
+  .btn-primary {
+    @apply bg-lime text-ink hover:bg-white;
+  }
+  .btn-ghost {
+    @apply border border-line text-fg hover:bg-white/10;
+  }
+  .skip-link {
+    @apply sr-only focus:not-sr-only focus:fixed focus:top-3 focus:left-3 focus:z-[100] focus:rounded-full focus:bg-lime focus:px-4 focus:py-2 focus:text-ink;
+  }
+
+  /* Cookie consent (fixed: never causes layout shift) */
+  .consent {
+    @apply fixed right-4 bottom-4 left-4 z-50 mx-auto max-w-md rounded-2xl border border-line bg-ink-2/95 p-4 text-xs text-muted shadow-2xl backdrop-blur sm:left-auto;
+  }
+  .consent a {
+    @apply text-fg underline underline-offset-2;
+  }
+  .consent-actions {
+    @apply mt-3 flex justify-end gap-2;
+  }
+}
+
+/* ---------- Motion ---------- */
+/* Scroll reveal: only hidden when JS is running, so no-JS / crawlers see everything. */
+@media (prefers-reduced-motion: no-preference) {
+  .js [data-reveal] {
+    opacity: 0;
+    transform: translateY(24px);
+    transition:
+      opacity 0.9s var(--ease-out-expo),
+      transform 0.9s var(--ease-out-expo);
+    transition-delay: calc(var(--reveal-delay, 0) * 1ms);
+  }
+  .js [data-reveal].is-visible {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  ::view-transition-group(*),
+  ::view-transition-old(*),
+  ::view-transition-new(*) {
+    animation: none !important;
+  }
+}

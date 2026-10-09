@@ -1,0 +1,28 @@
+---
+import JsonLd from './JsonLd.astro';
+import { SITE } from '../../config/site';
+
+const org = {
+  '@type': 'ProfessionalService',
+  '@id': `${SITE.url}/#organization`,
+  name: SITE.name,
+  legalName: SITE.legalName,
+  url: SITE.url,
+  email: SITE.email,
+  logo: `${SITE.url}/logo.png`,
+  image: `${SITE.url}${SITE.ogImage}`,
+  foundingDate: String(SITE.foundingYear),
+  address: { '@type': 'PostalAddress', ...SITE.address },
+  areaServed: ['GB', 'US', 'AU', 'IN', 'EU'],
+  sameAs: Object.values(SITE.social),
+};
+const website = {
+  '@type': 'WebSite',
+  '@id': `${SITE.url}/#website`,
+  url: SITE.url,
+  name: SITE.name,
+  publisher: { '@id': `${SITE.url}/#organization` },
+};
+---
+
+<JsonLd data={[org, website]} />

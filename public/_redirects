@@ -1,0 +1,15 @@
+# 301s from the old Shopify URLs → new routes (preserves existing rankings).
+# Cloudflare Pages format: <from> <to> <status>
+
+/pages/contact-us                          /contact/                         301
+/pages/about                               /about/                           301
+/blogs/news                                /blog/                            301
+/blogs/news/*                              /blog/:splat/                     301
+/pages/shopify-plus-development-agency     /services/shopify-plus/           301
+/pages/shopify-maintenance-service         /services/store-maintenance/      301
+/pages/virtual-assistant-for-shopify       /services/virtual-assistant/      301
+/pages/white-label-shopify-development     /services/white-label/            301
+/collections/*                             /                                 301
+/products/*                                /                                 301
+/cart                                      /                                 301
+/account/*                                 /                                 301
