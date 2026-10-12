@@ -451,7 +451,7 @@
   /* Contact — quote form */
   .qf-card {
     @apply relative overflow-hidden rounded-[2rem] border border-line bg-ink-2/80 p-6 shadow-2xl backdrop-blur-xl sm:p-10;
-    box-shadow: 0 40px 120px -40px color-mix(in oklab, var(--color-violet) 40%, transparent);
+    box-shadow: 0 40px 100px -40px rgb(0 0 0 / 0.7);
   }
   .qf-head {
     @apply flex items-center justify-between gap-4;
@@ -731,6 +731,40 @@
     opacity: 0.07;
     mix-blend-mode: overlay;
     background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  }
+
+  /* Breathing glow behind the quote form: two blurred halos pulse out of sync (scale + opacity only). */
+  .qf-glow {
+    position: relative;
+    isolation: isolate;
+  }
+  .qf-glow::before,
+  .qf-glow::after {
+    content: '';
+    position: absolute;
+    z-index: -1;
+    inset: -14% -16%;
+    border-radius: 50%;
+    pointer-events: none;
+    filter: blur(50px);
+  }
+  .qf-glow::before {
+    background: radial-gradient(
+      60% 60% at 50% 45%,
+      color-mix(in oklab, var(--color-violet) 75%, transparent),
+      transparent 70%
+    );
+    opacity: 0.75;
+  }
+  .qf-glow::after {
+    background:
+      radial-gradient(40% 45% at 85% 85%, color-mix(in oklab, #1fb5b8 70%, transparent), transparent 70%),
+      radial-gradient(
+        35% 40% at 15% 10%,
+        color-mix(in oklab, var(--color-lime) 45%, transparent),
+        transparent 70%
+      );
+    opacity: 0.35;
   }
 
   /* FAQ */
@@ -1081,5 +1115,36 @@
   }
   66% {
     transform: translate(85cqw, 90cqh) scale(1.1);
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .qf-glow::before {
+    animation: glow-pulse 4.5s ease-in-out infinite;
+  }
+  .qf-glow::after {
+    animation: glow-pulse-alt 6s ease-in-out infinite;
+  }
+}
+@keyframes glow-pulse {
+  0%,
+  100% {
+    opacity: 0.35;
+    transform: scale(0.85);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.1);
+  }
+}
+@keyframes glow-pulse-alt {
+  0%,
+  100% {
+    opacity: 0.8;
+    transform: scale(1.08) rotate(0deg);
+  }
+  50% {
+    opacity: 0.2;
+    transform: scale(0.9) rotate(10deg);
   }
 }
