@@ -52,6 +52,27 @@ PUBLIC_META_PIXEL_ID=000000000000000
 
 A cookie banner then appears; scripts load only after "Accept". The original vendor snippets are kept as comments in `src/components/layout/Analytics.astro`.
 
+## Blog / CMS (Sanity)
+
+- **Edit content:** https://heseven.sanity.studio (log in with the Heseven Google account; invite teammates in Sanity → Members).
+- **Project:** `flt9h8js`, dataset `production` (public read, so builds need no secrets). Org: Heseven.
+- **Content types:** Blog post (title, slug, excerpt, main image + alt, rich body with images, date, author,
+  categories, "featured", SEO overrides incl. noindex), Author, Category. Schemas: `studio/schemaTypes/`.
+- **How the site uses it:** `src/lib/sanity.ts` fetches published posts **at build time**; pages are static.
+  Images are downloaded and re-encoded to AVIF/WebP by Astro, so visitors never hit Sanity's CDN.
+- **Pages:** `/blog/`, `/blog/<slug>/` (TOC, share, author box, related posts, BlogPosting + Breadcrumb JSON-LD),
+  `/blog/category/<slug>/`, `/rss.xml`.
+- **After publishing in Sanity** the site needs a rebuild + deploy (`npm run deploy`) until auto-deploy is set up.
+- **Keep old Shopify slugs** when migrating posts: `/blogs/news/<slug>` already 301s to `/blog/<slug>/`.
+
+Studio is a separate app with its own `package.json`:
+
+```bash
+cd studio && npm install
+npm run dev      # local Studio at http://localhost:3333
+npm run deploy   # publish Studio to heseven.sanity.studio
+```
+
 ## Contact form
 
 `/contact/` is a 4-step quote form (`src/components/contact/QuoteForm.astro`, logic in `src/scripts/quote-form.ts`).

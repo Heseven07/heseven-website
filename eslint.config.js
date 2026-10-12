@@ -7,6 +7,7 @@ export default [
       'dist/',
       '.astro/',
       '.wrangler/',
+      'studio/', // separate Sanity Studio app with its own tooling
       'node_modules/',
       '.lighthouseci/',
       'playwright-report/',

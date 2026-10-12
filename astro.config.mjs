@@ -12,6 +12,10 @@ export default defineConfig({
     // Inline all CSS: removes the render-blocking stylesheet request (mobile LCP).
     inlineStylesheets: 'always',
   },
+  // Blog images come from Sanity's CDN and are optimised at build time (AVIF/WebP, served from our domain).
+  image: {
+    domains: ['cdn.sanity.io'],
+  },
   prefetch: {
     prefetchAll: true,
     defaultStrategy: 'hover',

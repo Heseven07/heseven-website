@@ -1,7 +1,7 @@
 import { test, expect } from '@playwright/test';
 import AxeBuilder from '@axe-core/playwright';
 
-const pages = ['/', '/services/', '/services/store-development/', '/contact/'];
+const pages = ['/', '/services/', '/services/store-development/', '/contact/', '/blog/'];
 
 for (const path of pages) {
   test(`${path} renders with SEO essentials`, async ({ page }) => {

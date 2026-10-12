@@ -1,0 +1,54 @@
+---
+import SanityImage from './SanityImage.astro';
+import { formatDate, type Post } from '../../lib/sanity';
+
+interface Props {
+  post: Post;
+  featured?: boolean;
+  eager?: boolean;
+  /** Heading level: h2 on list pages, h3 when nested under another h2 (e.g. "Keep reading"). */
+  headingLevel?: 2 | 3;
+}
+const { post, featured = false, eager = false, headingLevel = 2 } = Astro.props;
+const Heading = headingLevel === 2 ? 'h2' : 'h3';
+---
+
+<article class:list={['post-card group', featured && 'post-card--featured']}>
+  <a href={`/blog/${post.slug}/`} class="post-card-media" tabindex="-1" aria-hidden="true">
+    <SanityImage
+      image={post.mainImage}
+      width={featured ? 1600 : 960}
+      ratio={16 / 9}
+      sizes={
+        featured
+          ? '(min-width: 1024px) 60vw, 100vw'
+          : '(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw'
+      }
+      loading={eager ? 'eager' : 'lazy'}
+      fetchpriority={eager ? 'high' : 'auto'}
+      class="post-card-img aspect-video w-full object-cover"
+    />
+  </a>
+  <div class="post-card-body">
+    {post.categories.length > 0 && (
+      <ul class="flex flex-wrap gap-2">
+        {post.categories.slice(0, 2).map((c) => (
+          <li>
+            <a href={`/blog/category/${c.slug}/`} class="tag">
+              {c.title}
+            </a>
+          </li>
+        ))}
+      </ul>
+    )}
+    <Heading class:list={['mt-4 font-semibold', featured ? 'text-3xl sm:text-4xl' : 'text-xl sm:text-2xl']}>
+      <a href={`/blog/${post.slug}/`} class="post-card-link">
+        {post.title}
+      </a>
+    </Heading>
+    <p class:list={['mt-3 text-muted', !featured && 'line-clamp-3']}>{post.excerpt}</p>
+    <p class="mt-5 text-sm text-muted">
+      <time datetime={post.publishedAt}>{formatDate(post.publishedAt)}</time> · {post.readingMinutes} min read
+    </p>
+  </div>
+</article>

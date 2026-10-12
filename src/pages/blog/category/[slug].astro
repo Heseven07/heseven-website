@@ -1,0 +1,61 @@
+---
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import PageHero from '../../../components/layout/PageHero.astro';
+import PostCard from '../../../components/blog/PostCard.astro';
+import Cta from '../../../components/sections/Cta.astro';
+import { getAllPosts, getAllCategories } from '../../../lib/sanity';
+
+export async function getStaticPaths() {
+  const [posts, categories] = await Promise.all([getAllPosts(), getAllCategories()]);
+  return categories.map((category) => ({
+    params: { slug: category.slug },
+    props: {
+      category,
+      categories,
+      posts: posts.filter((p) => p.categories.some((c) => c.slug === category.slug)),
+    },
+  }));
+}
+
+const { category, categories, posts } = Astro.props;
+---
+
+<BaseLayout
+  title={`${category.title} — Shopify Blog`}
+  description={
+    category.description ?? `Heseven articles about ${category.title.toLowerCase()} for Shopify brands.`
+  }
+>
+  <PageHero eyebrow="Blog category" title={category.title} lead={category.description}>
+    <nav aria-label="Blog categories" class="mt-10">
+      <ul class="flex flex-wrap gap-2.5">
+        <li>
+          <a href="/blog/" class="chip-link">
+            All posts
+          </a>
+        </li>
+        {categories.map((c) => (
+          <li>
+            <a
+              href={`/blog/category/${c.slug}/`}
+              class:list={['chip-link', c.slug === category.slug && 'is-active']}
+              aria-current={c.slug === category.slug ? 'page' : undefined}
+            >
+              {c.title} <span class="text-muted">{c.count}</span>
+            </a>
+          </li>
+        ))}
+      </ul>
+    </nav>
+  </PageHero>
+  <section class="container-x pb-24 md:pb-32" aria-label="Posts">
+    <ul class="grid gap-x-6 gap-y-14 sm:grid-cols-2 lg:grid-cols-3">
+      {posts.map((p, i) => (
+        <li data-reveal style={`--reveal-delay:${(i % 3) * 80}`}>
+          <PostCard post={p} eager={i === 0} />
+        </li>
+      ))}
+    </ul>
+  </section>
+  <Cta />
+</BaseLayout>
