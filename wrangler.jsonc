@@ -15,7 +15,9 @@
     "html_handling": "force-trailing-slash",
   },
   "vars": {
-    "CONTACT_TO": "info@heseven.com",
+    // TEMPORARY: Resend's test sender can only deliver to the Resend account owner's address.
+    // Switch back to info@heseven.com once heseven.com is verified in Resend (and update CONTACT_FROM).
+    "CONTACT_TO": "heseven07@gmail.com",
     // Until heseven.com is verified in Resend, Resend only allows this sender.
     "CONTACT_FROM": "Heseven Website <onboarding@resend.dev>",
   },
