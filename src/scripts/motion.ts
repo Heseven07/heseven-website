@@ -10,6 +10,16 @@ import { initInteractions } from './interactions';
 const reduceMotion = matchMedia('(prefers-reduced-motion: reduce)').matches;
 let lenis: Lenis | null = null;
 let observer: IntersectionObserver | null = null;
+let inviewObserver: IntersectionObserver | null = null;
+
+/** Toggle `.is-inview` on [data-inview] elements, so expensive loops (e.g. the footer aurora) only run on screen. */
+function initInview() {
+  inviewObserver?.disconnect();
+  inviewObserver = new IntersectionObserver((entries) => {
+    for (const entry of entries) entry.target.classList.toggle('is-inview', entry.isIntersecting);
+  });
+  document.querySelectorAll('[data-inview]').forEach((el) => inviewObserver!.observe(el));
+}
 
 function initLenis() {
   if (reduceMotion || lenis) return;
@@ -37,6 +47,7 @@ document.addEventListener('astro:page-load', () => {
   initLenis();
   lenis?.resize();
   initReveal();
+  initInview();
   initCounters(reduceMotion);
   initProcess(reduceMotion);
   initInteractions(reduceMotion);
