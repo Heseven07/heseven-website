@@ -1,5 +1,8 @@
 ---
 import { offices } from '../../data/home';
+
+// HH:MM:SS, one span per digit (tabular-nums keeps every digit the same width).
+const slots = ['h', 'h', ':', 'm', 'm', ':', 's', 's'];
 ---
 
 <section class="border-y border-line py-16" aria-labelledby="clocks-title">
@@ -7,11 +10,27 @@ import { offices } from '../../data/home';
     <h2 id="clocks-title" class="eyebrow text-center">
       Working across time zones
     </h2>
-    <ul class="mt-10 grid grid-cols-2 gap-8 md:grid-cols-4">
+    <ul class="mt-10 grid grid-cols-2 gap-x-6 gap-y-10 lg:grid-cols-4">
       {offices.map((o) => (
         <li class="text-center">
-          <time class="clock font-display text-4xl font-bold tabular-nums md:text-5xl" data-tz={o.timeZone}>
-            --:--
+          <time
+            class="clock font-display text-[1.75rem] font-bold sm:text-4xl xl:text-5xl"
+            data-tz={o.timeZone}
+          >
+            <span class="sr-only" data-sr data-city={o.city}>
+              Local time in {o.city}
+            </span>
+            {slots.map((kind, i) =>
+              kind === ':' ? (
+                <span class:list={['clock-colon', i === 5 && 'clock-sec']} aria-hidden="true">
+                  :
+                </span>
+              ) : (
+                <span class:list={['clock-digit', kind === 's' && 'clock-sec']} aria-hidden="true">
+                  -
+                </span>
+              ),
+            )}
           </time>
           <p class="mt-2 text-sm text-muted">{o.city}</p>
         </li>
@@ -21,21 +40,74 @@ import { offices } from '../../data/home';
 </section>
 
 <script>
-  let timer: number | undefined;
-  function tick() {
-    document.querySelectorAll<HTMLTimeElement>('.clock[data-tz]').forEach((el) => {
-      el.textContent = new Intl.DateTimeFormat('en-GB', {
+  const reduceMotion = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  let timeout: number | undefined;
+  let io: IntersectionObserver | null = null;
+  let visible = false;
+
+  const formatters = new Map<string, Intl.DateTimeFormat>();
+  const fmt = (tz: string) => {
+    let f = formatters.get(tz);
+    if (!f) {
+      f = new Intl.DateTimeFormat('en-GB', {
         hour: '2-digit',
         minute: '2-digit',
-        timeZone: el.dataset.tz,
-      }).format(new Date());
+        second: '2-digit',
+        hourCycle: 'h23',
+        timeZone: tz,
+      });
+      formatters.set(tz, f);
+    }
+    return f;
+  };
+
+  function render(animate: boolean) {
+    const now = new Date();
+    document.querySelectorAll<HTMLTimeElement>('.clock[data-tz]').forEach((clock) => {
+      const text = fmt(clock.dataset.tz!).format(now).replace(/\D/g, ''); // "HHMMSS"
+      clock.setAttribute('datetime', now.toISOString());
+      // Screen-reader text changes once a minute (HH:MM), never every second.
+      const sr = clock.querySelector<HTMLElement>('[data-sr]');
+      const spoken = `${text.slice(0, 2)}:${text.slice(2, 4)} in ${sr?.dataset.city}`;
+      if (sr && sr.textContent !== spoken) sr.textContent = spoken;
+      clock.querySelectorAll<HTMLElement>('.clock-digit').forEach((digit, i) => {
+        const next = text[i] ?? '-';
+        if (digit.textContent === next) return;
+        digit.textContent = next;
+        if (animate && !reduceMotion) {
+          digit.animate(
+            [
+              { transform: 'translateY(-40%)', opacity: 0 },
+              { transform: 'none', opacity: 1 },
+            ],
+            { duration: 380, easing: 'cubic-bezier(0.16, 1, 0.3, 1)' },
+          );
+        }
+      });
     });
   }
-  function initClocks() {
-    clearInterval(timer);
-    if (!document.querySelector('.clock')) return;
-    tick();
-    timer = window.setInterval(tick, 15_000);
+
+  // Tick exactly on each second boundary, only while the section is on screen and the tab is visible.
+  function loop() {
+    clearTimeout(timeout);
+    if (!visible || document.hidden) return;
+    render(true);
+    timeout = window.setTimeout(loop, 1000 - (Date.now() % 1000) + 5);
   }
+
+  function initClocks() {
+    clearTimeout(timeout);
+    io?.disconnect();
+    const section = document.querySelector('.clock')?.closest('section');
+    if (!section) return;
+    render(false);
+    io = new IntersectionObserver(([entry]) => {
+      visible = Boolean(entry?.isIntersecting);
+      loop();
+    });
+    io.observe(section);
+  }
+
+  document.addEventListener('visibilitychange', loop);
   document.addEventListener('astro:page-load', initClocks);
 </script>
