@@ -12,7 +12,8 @@ const trackingEnabled = Boolean(import.meta.env.PUBLIC_GA4_ID || import.meta.env
     <div class="md:col-span-5">
       <Logo />
       <p class="mt-5 max-w-sm text-muted">
-        Shopify Partner agency designing, building and growing e-commerce brands since {SITE.foundingYear}.
+        Shopify Plus Partner agency designing, building and growing e-commerce brands since{' '}
+        {SITE.foundingYear}.
       </p>
       <a
         href={`mailto:${SITE.email}`}
@@ -20,6 +21,13 @@ const trackingEnabled = Boolean(import.meta.env.PUBLIC_GA4_ID || import.meta.env
       >
         {SITE.email}
       </a>
+      <address class="mt-6 text-sm leading-relaxed text-muted not-italic">
+        {SITE.legalName}
+        <br />
+        {SITE.address.streetAddress}, {SITE.address.addressLocality}
+        <br />
+        {SITE.address.addressRegion}, {SITE.address.postalCode}, United Kingdom
+      </address>
     </div>
     <nav aria-label="Services" class="md:col-span-3">
       <h2 class="footer-title">Services</h2>

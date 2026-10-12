@@ -594,6 +594,28 @@
     @apply mt-0.5 grid size-6 shrink-0 place-items-center rounded-full bg-lime/15 text-lime;
   }
 
+  /* World clocks: Syne's tabular digits are all one width, so ticking never shifts layout */
+  .clock {
+    @apply inline-flex justify-center leading-none;
+    font-variant-numeric: tabular-nums;
+  }
+  .clock-digit {
+    display: inline-block;
+  }
+  .clock-colon {
+    display: inline-block;
+    padding-inline: 0.04em;
+    translate: 0 -0.06em;
+  }
+  .clock-sec {
+    color: var(--color-lime);
+  }
+  @media (prefers-reduced-motion: no-preference) {
+    .clock-colon {
+      animation: colon-blink 2s steps(1, end) infinite;
+    }
+  }
+
   /* FAQ */
   .faq {
     @apply border-b border-line;
@@ -833,5 +855,10 @@
   100% {
     transform: scale(2.6);
     opacity: 0;
+  }
+}
+@keyframes colon-blink {
+  50% {
+    opacity: 0.35;
   }
 }

@@ -10,9 +10,10 @@ export const SITE = {
   email: 'info@heseven.com',
   foundingYear: 2018,
   address: {
-    streetAddress: 'TODO: street address',
+    streetAddress: '72 Shelton Street',
     addressLocality: 'London',
-    postalCode: 'TODO',
+    addressRegion: 'Greater London',
+    postalCode: 'WC2H 9JQ',
     addressCountry: 'GB',
   },
   social: {
