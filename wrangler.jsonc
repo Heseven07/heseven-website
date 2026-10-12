@@ -1,13 +1,24 @@
 {
-  // Cloudflare Workers static assets — the site is 100% prebuilt HTML, so no Worker script runs.
+  // Static site on Cloudflare (Workers static assets). The Worker in worker/index.ts runs ONLY for
+  // /api/* (contact form); every page and asset is served directly without invoking it.
   // _headers and _redirects in public/ are applied by Cloudflare automatically.
   // Deploy: npm run deploy
   "$schema": "./node_modules/wrangler/config-schema.json",
   "name": "heseven-website",
+  "main": "worker/index.ts",
   "compatibility_date": "2026-10-06",
   "assets": {
     "directory": "./dist",
+    "binding": "ASSETS",
+    "run_worker_first": ["/api/*"],
     "not_found_handling": "404-page",
     "html_handling": "force-trailing-slash",
   },
+  "vars": {
+    "CONTACT_TO": "info@heseven.com",
+    // Until heseven.com is verified in Resend, Resend only allows this sender.
+    "CONTACT_FROM": "Heseven Website <onboarding@resend.dev>",
+  },
+  // Secrets (never commit): npx wrangler secret put RESEND_API_KEY / TURNSTILE_SECRET_KEY
+  "observability": { "enabled": true },
 }

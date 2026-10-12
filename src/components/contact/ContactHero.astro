@@ -1,0 +1,90 @@
+---
+import QuoteForm from './QuoteForm.astro';
+import Counter from '../ui/Counter.astro';
+import { contactHero as c } from '../../data/contact';
+---
+
+<section class="relative isolate overflow-hidden" aria-labelledby="contact-title">
+  <div class="hero-bg" aria-hidden="true">
+    <div class="hero-glow"></div>
+    <div class="hero-grid"></div>
+  </div>
+  <!-- Mobile order: intro → form → proof. Desktop: intro + proof left, sticky form right. -->
+  <div class="container-x grid gap-12 pt-32 pb-20 md:pt-40 lg:grid-cols-12 lg:gap-x-16 lg:gap-y-0 lg:pb-28">
+    <div class="lg:col-span-6 lg:pt-6">
+      <p class="eyebrow hero-in" style="--i:0">
+        {c.eyebrow}
+      </p>
+      <h1 id="contact-title" class="mt-6 text-5xl leading-[0.98] font-bold sm:text-6xl xl:text-7xl">
+        {c.title}
+      </h1>
+      <p class="hero-in mt-6 max-w-xl text-lg text-muted" style="--i:2">
+        {c.lead}
+      </p>
+      <p class="hero-in mt-6 inline-flex items-center gap-2.5 text-sm" style="--i:3">
+        <span class="live-dot" aria-hidden="true"></span>
+        {c.responseNote}
+      </p>
+    </div>
+
+    <div class="lg:col-span-6 lg:col-start-7 lg:row-span-2 lg:row-start-1">
+      <div class="lg:sticky lg:top-28">
+        <QuoteForm />
+      </div>
+    </div>
+
+    <div class="lg:col-span-6 lg:pt-12">
+      <dl class="grid max-w-md grid-cols-3 gap-6 border-y border-line py-6">
+        {c.stats.map((s) => (
+          <div>
+            <dd class="font-display text-3xl font-bold">
+              <Counter value={s.value} />
+            </dd>
+            <dt class="mt-1 text-xs text-muted">{s.label}</dt>
+          </div>
+        ))}
+      </dl>
+
+      <ul class="mt-10 flex flex-col gap-5">
+        {c.perks.map((p, i) => (
+          <li class="flex gap-4" data-reveal style={`--reveal-delay:${i * 90}`}>
+            <span class="check-badge" aria-hidden="true">
+              <svg
+                viewBox="0 0 24 24"
+                width="14"
+                height="14"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="3"
+              >
+                <path d="m5 12.5 4.5 4.5L19 7.5" stroke-linecap="round" stroke-linejoin="round" />
+              </svg>
+            </span>
+            <div>
+              <p class="font-medium">{p.title}</p>
+              <p class="text-sm text-muted">{p.body}</p>
+            </div>
+          </li>
+        ))}
+      </ul>
+
+      <figure
+        class="mt-10 flex max-w-md items-center gap-4 rounded-2xl border border-line bg-ink-2/60 p-4"
+        data-reveal
+      >
+        <span
+          class="grid size-11 shrink-0 place-items-center rounded-full bg-violet font-display text-sm font-bold text-white"
+          aria-hidden="true"
+        >
+          {c.quote.initials}
+        </span>
+        <div>
+          <blockquote class="text-sm">“{c.quote.text}”</blockquote>
+          <figcaption class="mt-1 text-xs text-muted">
+            — {c.quote.name}, {c.quote.company}
+          </figcaption>
+        </div>
+      </figure>
+    </div>
+  </div>
+</section>

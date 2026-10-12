@@ -1,0 +1,17 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import PageHero from '../components/layout/PageHero.astro';
+---
+
+<!-- Reached only by the no-JS form fallback. noindex + disallowed in robots.txt. -->
+<BaseLayout title="Thanks — brief received" description="Thanks for contacting Heseven." noindex>
+  <PageHero
+    eyebrow="Message sent"
+    title="Thanks — brief received."
+    lead="A strategist will reply within one business day."
+  >
+    <a href="/" class="btn btn-primary btn-lg mt-10">
+      Back to home
+    </a>
+  </PageHero>
+</BaseLayout>

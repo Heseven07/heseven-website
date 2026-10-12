@@ -1,0 +1,201 @@
+---
+/**
+ * Staged quote form (Elms-style, heseven fields).
+ * - With JS: one question per step, progress bar, auto-advance on single-choice steps,
+ *   async submit to /api/contact, inline success. Logic: src/scripts/quote-form.ts
+ * - Without JS: every step is visible and the form posts normally (worker redirects to /thanks/).
+ */
+import Arrow from '../ui/Arrow.astro';
+import { quoteForm } from '../../data/contact';
+import { SITE } from '../../config/site';
+
+const turnstileSiteKey = import.meta.env.PUBLIC_TURNSTILE_SITE_KEY ?? '';
+const steps = 4;
+// "1k – 5k" → ["", "1k", " – ", "5k", ""] so a currency symbol can precede each amount.
+const splitAmounts = (label: string) => label.split(/(\d+k\+?)/);
+---
+
+<div class="qf-card" id="quote">
+  <div class="qf-head">
+    <p class="eyebrow">Start a project</p>
+    <p class="qf-count text-sm text-muted" aria-hidden="true">
+      Step <span data-qf-current>1</span> of {steps}
+    </p>
+  </div>
+  <div class="qf-progress" aria-hidden="true">
+    <span data-qf-bar></span>
+  </div>
+
+  <form class="quote-form" action="/api/contact" method="post" data-quote-form data-steps={steps}>
+    <!-- 1 · Need -->
+    <fieldset class="qf-step" data-step="1">
+      <legend class="qf-legend" tabindex="-1">
+        What do you need?
+      </legend>
+      <p class="qf-hint">Pick the closest — we'll refine it together.</p>
+      <div class="qf-chips" data-autoadvance>
+        {quoteForm.needs.map((n) => (
+          <label class="chip">
+            <input type="radio" name="need" value={n} required />
+            <span>{n}</span>
+          </label>
+        ))}
+      </div>
+    </fieldset>
+
+    <!-- 2 · Budget -->
+    <fieldset class="qf-step" data-step="2">
+      <legend class="qf-legend" tabindex="-1">
+        What's your budget?
+      </legend>
+      <div class="qf-currency" role="radiogroup" aria-label="Currency">
+        <label class="seg">
+          <input type="radio" name="currency" value="USD" checked />
+          <span>USD $</span>
+        </label>
+        <label class="seg">
+          <input type="radio" name="currency" value="GBP" />
+          <span>GBP £</span>
+        </label>
+      </div>
+      <div class="qf-chips" data-autoadvance>
+        {quoteForm.budgets.map((b) => (
+          <label class="chip">
+            <input type="radio" name="budget" value={b} required />
+            <span>
+              {splitAmounts(b).map((part) =>
+                /^\d/.test(part) ? (
+                  <>
+                    <span class="cur">$</span>
+                    {part}
+                  </>
+                ) : (
+                  part
+                ),
+              )}
+            </span>
+          </label>
+        ))}
+      </div>
+    </fieldset>
+
+    <!-- 3 · Project -->
+    <fieldset class="qf-step" data-step="3">
+      <legend class="qf-legend" tabindex="-1">
+        Tell us about the project
+      </legend>
+      <div class="qf-field">
+        <label for="qf-message">A few lines about your project</label>
+        <textarea
+          id="qf-message"
+          name="message"
+          rows="4"
+          required
+          minlength="10"
+          maxlength="5000"
+          placeholder="Goals, current platform, must-have features, launch date…"
+        ></textarea>
+      </div>
+      <div class="qf-field">
+        <label for="qf-website">
+          Website URL <span class="text-muted">(optional)</span>
+        </label>
+        <input
+          id="qf-website"
+          name="website"
+          type="text"
+          inputmode="url"
+          autocomplete="url"
+          maxlength="200"
+          placeholder="yourstore.com"
+        />
+      </div>
+      <div class="qf-field">
+        <span class="qf-label" id="qf-timeline-label">
+          Ideal timeline <span class="text-muted">(optional)</span>
+        </span>
+        <div class="qf-chips" role="radiogroup" aria-labelledby="qf-timeline-label">
+          {quoteForm.timelines.map((t) => (
+            <label class="chip chip-sm">
+              <input type="radio" name="timeline" value={t} />
+              <span>{t}</span>
+            </label>
+          ))}
+        </div>
+      </div>
+    </fieldset>
+
+    <!-- 4 · Contact -->
+    <fieldset class="qf-step" data-step="4">
+      <legend class="qf-legend" tabindex="-1">
+        Where should we reply?
+      </legend>
+      <div class="grid gap-4 sm:grid-cols-2">
+        <div class="qf-field">
+          <label for="qf-name">Full name</label>
+          <input id="qf-name" name="name" type="text" autocomplete="name" required maxlength="120" />
+        </div>
+        <div class="qf-field">
+          <label for="qf-email">Work email</label>
+          <input id="qf-email" name="email" type="email" autocomplete="email" required maxlength="200" />
+        </div>
+      </div>
+      <div class="qf-field">
+        <label for="qf-country">
+          Country <span class="text-muted">(optional)</span>
+        </label>
+        <input id="qf-country" name="country" type="text" autocomplete="country-name" maxlength="80" />
+      </div>
+      <!-- Honeypot: humans never see or fill this. -->
+      <div class="qf-hp" aria-hidden="true">
+        <label for="qf-company">Company (leave this empty)</label>
+        <input id="qf-company" name="company" type="text" tabindex="-1" autocomplete="off" />
+      </div>
+      <input type="hidden" name="formMs" value="" />
+      {turnstileSiteKey && <div class="qf-turnstile" data-turnstile data-sitekey={turnstileSiteKey} />}
+      <p class="mt-4 text-xs text-muted">
+        By sending this you agree to our{' '}
+        <a href="/privacy/" class="underline">
+          privacy policy
+        </a>
+        . No spam — ever.
+      </p>
+    </fieldset>
+
+    <p class="qf-error" role="alert" data-qf-error></p>
+
+    <div class="qf-nav">
+      <button type="button" class="btn btn-ghost" data-qf-back hidden>
+        Back
+      </button>
+      <button type="button" class="btn btn-primary ml-auto" data-qf-next hidden>
+        Next <Arrow />
+      </button>
+      <button type="submit" class="btn btn-primary ml-auto" data-qf-submit>
+        <span data-qf-submit-label>Get my quote</span>
+        <Arrow />
+      </button>
+    </div>
+  </form>
+
+  <div class="qf-success" data-qf-success hidden tabindex="-1">
+    <span class="qf-success-icon" aria-hidden="true">
+      <svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" stroke-width="2.4">
+        <path d="m5 12.5 4.5 4.5L19 7.5" stroke-linecap="round" stroke-linejoin="round" pathLength="1"></path>
+      </svg>
+    </span>
+    <h2 class="mt-6 text-3xl font-bold">Thanks — brief received.</h2>
+    <p class="mt-3 text-muted">
+      A strategist will reply within one business day. Anything to add? Email{' '}
+      <a class="text-lime underline" href={`mailto:${SITE.email}`}>
+        {SITE.email}
+      </a>
+      .
+    </p>
+  </div>
+</div>
+
+<script>
+  import { initQuoteForm } from '../../scripts/quote-form';
+  document.addEventListener('astro:page-load', initQuoteForm);
+</script>
