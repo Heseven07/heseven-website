@@ -448,6 +448,152 @@
     scale: 0 1;
   }
 
+  /* Contact — quote form */
+  .qf-card {
+    @apply relative overflow-hidden rounded-[2rem] border border-line bg-ink-2/80 p-6 shadow-2xl backdrop-blur-xl sm:p-10;
+    box-shadow: 0 40px 120px -40px color-mix(in oklab, var(--color-violet) 40%, transparent);
+  }
+  .qf-head {
+    @apply flex items-center justify-between gap-4;
+  }
+  .qf-count,
+  .qf-progress {
+    display: none;
+  }
+  /* With JS, render the staged layout from the first paint (no shrink after hydration → CLS 0). */
+  .js .qf-count {
+    display: block;
+  }
+  .js .quote-form:not(.is-ready) .qf-step:not([data-step='1']),
+  .js .quote-form:not(.is-ready) [data-qf-submit] {
+    display: none;
+  }
+  .js .quote-form:not(.is-ready) .qf-nav [data-qf-next] {
+    display: inline-flex;
+  }
+  .js .qf-progress {
+    @apply mt-5 block h-1 overflow-hidden rounded-full bg-white/10;
+  }
+  .qf-progress span {
+    @apply block h-full rounded-full;
+    background: linear-gradient(90deg, var(--color-violet), var(--color-lime));
+    transform-origin: 0 50%;
+    transform: scaleX(0.25);
+    transition: transform 0.6s var(--ease-out-expo);
+  }
+  .qf-step {
+    @apply mt-8 min-w-0 border-0 p-0;
+  }
+  .qf-step + .qf-step {
+    @apply border-t border-line pt-8;
+  }
+  .js .qf-step + .qf-step {
+    @apply border-0 pt-0;
+  }
+  .qf-legend {
+    @apply font-display text-2xl font-bold outline-none sm:text-3xl;
+  }
+  .qf-hint {
+    @apply mt-2 text-sm text-muted;
+  }
+  .qf-chips {
+    @apply mt-6 flex flex-wrap gap-2.5;
+  }
+  .chip {
+    @apply relative cursor-pointer;
+  }
+  .chip input,
+  .seg input {
+    position: absolute;
+    opacity: 0;
+    inset: 0;
+    cursor: pointer;
+  }
+  .chip > span {
+    @apply inline-flex items-center rounded-full border border-line bg-white/[0.03] px-4 py-2.5 text-sm transition-all duration-300;
+  }
+  .chip-sm > span {
+    @apply px-3.5 py-2 text-xs;
+  }
+  .chip:hover > span {
+    @apply border-white/30 bg-white/[0.07];
+  }
+  .chip input:checked + span {
+    @apply border-lime bg-lime font-medium text-ink;
+    box-shadow: 0 0 0 4px color-mix(in oklab, var(--color-lime) 18%, transparent);
+  }
+  .chip input:focus-visible + span,
+  .seg input:focus-visible + span {
+    outline: 2px solid var(--color-lime);
+    outline-offset: 3px;
+  }
+  .qf-currency {
+    @apply mt-5 inline-flex rounded-full border border-line p-1;
+  }
+  .seg {
+    @apply relative;
+  }
+  .seg > span {
+    @apply block cursor-pointer rounded-full px-4 py-1.5 text-xs text-muted transition-colors;
+  }
+  .seg input:checked + span {
+    @apply bg-white/10 text-fg;
+  }
+  .qf-field {
+    @apply mt-5 flex flex-col gap-2;
+  }
+  .qf-field label,
+  .qf-label {
+    @apply text-sm text-fg;
+  }
+  .qf-field input,
+  .qf-field textarea {
+    @apply w-full rounded-2xl border border-line bg-ink/60 px-4 py-3.5 text-base text-fg transition-[border-color,box-shadow] placeholder:text-muted/70;
+  }
+  .qf-field input:focus,
+  .qf-field textarea:focus {
+    @apply border-lime outline-none;
+    box-shadow: 0 0 0 4px color-mix(in oklab, var(--color-lime) 15%, transparent);
+  }
+  .qf-field input[aria-invalid='true'],
+  .qf-field textarea[aria-invalid='true'] {
+    @apply border-red-400;
+  }
+  .qf-hp {
+    position: absolute;
+    left: -10000px;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+  }
+  .qf-turnstile {
+    @apply mt-5 min-h-[65px];
+  }
+  .qf-error {
+    @apply mt-5 rounded-xl border border-red-400/30 bg-red-400/10 px-4 py-3 text-sm text-red-200;
+  }
+  .qf-error:empty {
+    display: none;
+  }
+  .qf-nav {
+    @apply mt-8 flex items-center gap-3;
+  }
+  .qf-nav [hidden] {
+    display: none;
+  }
+  .qf-success {
+    @apply py-6 text-center outline-none;
+  }
+  .qf-success-icon {
+    @apply mx-auto grid size-16 place-items-center rounded-full bg-lime text-ink;
+  }
+  .live-dot {
+    @apply relative inline-block size-2.5 rounded-full bg-lime;
+  }
+  .check-badge {
+    @apply mt-0.5 grid size-6 shrink-0 place-items-center rounded-full bg-lime/15 text-lime;
+  }
+
   /* FAQ */
   .faq {
     @apply border-b border-line;
@@ -653,5 +799,39 @@
 @keyframes grow-x {
   to {
     scale: 1 1;
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .is-staged .qf-step:not([hidden]) {
+    animation: step-in 0.6s var(--ease-out-expo) both;
+  }
+  .live-dot::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    background: inherit;
+    animation: ping 1.8s cubic-bezier(0, 0, 0.2, 1) infinite;
+  }
+  .qf-success:not([hidden]) .qf-success-icon {
+    animation: star-pop 0.7s var(--ease-out-expo) both;
+  }
+  .qf-success:not([hidden]) path {
+    stroke-dasharray: 1;
+    animation: icon-draw 0.8s var(--ease-out-expo) 0.25s both;
+  }
+}
+@keyframes step-in {
+  from {
+    opacity: 0;
+    transform: translateX(24px);
+  }
+}
+@keyframes ping {
+  75%,
+  100% {
+    transform: scale(2.6);
+    opacity: 0;
   }
 }

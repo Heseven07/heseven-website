@@ -1,0 +1,31 @@
+---
+import SectionHeading from '../ui/SectionHeading.astro';
+import Icon from '../ui/Icon.astro';
+import { nextSteps } from '../../data/contact';
+---
+
+<section class="bg-ink-2 py-24 md:py-32" aria-labelledby="next-title">
+  <div class="container-x">
+    <SectionHeading id="next-title" eyebrow="What happens next" title="What happens after you press send." />
+    <ol class="mt-14 grid gap-4 md:grid-cols-3">
+      {nextSteps.map((s, i) => (
+        <li
+          class="card card-spotlight group p-8 md:p-10"
+          data-spotlight
+          data-reveal
+          style={`--reveal-delay:${i * 100}`}
+        >
+          <div class="flex items-center justify-between">
+            <span class="icon-badge">
+              <Icon d={s.icon} />
+            </span>
+            <span class="font-display text-sm text-muted">0{i + 1}</span>
+          </div>
+          <p class="mt-8 text-xs font-semibold tracking-[0.18em] text-lime uppercase">{s.when}</p>
+          <h3 class="mt-2 text-2xl font-semibold">{s.title}</h3>
+          <p class="mt-3 text-muted">{s.body}</p>
+        </li>
+      ))}
+    </ol>
+  </div>
+</section>

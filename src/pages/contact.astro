@@ -1,21 +1,33 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
-import PageHero from '../components/layout/PageHero.astro';
+import ContactHero from '../components/contact/ContactHero.astro';
+import NextSteps from '../components/contact/NextSteps.astro';
+import ContactDetails from '../components/contact/ContactDetails.astro';
+import ClientMarquee from '../components/sections/ClientMarquee.astro';
+import Testimonials from '../components/sections/Testimonials.astro';
+import Faq from '../components/sections/Faq.astro';
+import GlobalClocks from '../components/sections/GlobalClocks.astro';
+import JsonLd from '../components/seo/JsonLd.astro';
 import { SITE } from '../config/site';
+
+const schema = {
+  '@type': 'ContactPage',
+  name: 'Contact Heseven',
+  url: `${SITE.url}/contact/`,
+  about: { '@id': `${SITE.url}/#organization` },
+};
 ---
 
 <BaseLayout
-  title="Contact — Start a Project"
-  description="Tell us about your Shopify project. Heseven replies within one business day with next steps and a fixed, itemised quote."
+  title="Contact — Get a Shopify Project Quote"
+  description="Tell us about your Shopify project. A Heseven strategist replies within one business day with next steps, a free scoping call and a fixed-price quote."
 >
-  <PageHero
-    eyebrow="Contact"
-    title="Let's build something great."
-    lead="Tell us about your store and goals. We reply within one business day."
-  >
-    <!-- Phase 3: multi-step quote form (Cloudflare Function + Turnstile + Resend) -->
-    <a href={`mailto:${SITE.email}`} class="btn btn-primary btn-lg mt-10">
-      {SITE.email}
-    </a>
-  </PageHero>
+  <ContactHero />
+  <ClientMarquee />
+  <NextSteps />
+  <Testimonials />
+  <Faq />
+  <GlobalClocks />
+  <ContactDetails />
+  <JsonLd data={schema} />
 </BaseLayout>

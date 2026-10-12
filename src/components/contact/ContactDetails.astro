@@ -1,0 +1,54 @@
+---
+import Icon from '../ui/Icon.astro';
+import { icons } from '../../data/icons';
+import { SITE } from '../../config/site';
+
+const items = [
+  { label: 'Email us', value: SITE.email, href: `mailto:${SITE.email}`, icon: icons.report },
+  {
+    label: 'Office',
+    value: `${SITE.address.addressLocality}, United Kingdom — working worldwide`,
+    href: null,
+    icon: icons.globe,
+  },
+  { label: 'Response time', value: 'Within 1 business day, usually hours', href: null, icon: icons.clock },
+];
+---
+
+<section class="container-x py-24 md:py-32" aria-labelledby="details-title">
+  <div class="grid gap-12 lg:grid-cols-12">
+    <div class="lg:col-span-5" data-reveal>
+      <p class="eyebrow">Prefer email?</p>
+      <h2 id="details-title" class="mt-4 text-4xl font-bold sm:text-5xl">
+        Email, call, or send the form.
+      </h2>
+      <a href="#quote" class="link-underline mt-8 inline-block">
+        Back to the form ↑
+      </a>
+    </div>
+    <ul class="grid gap-4 lg:col-span-7">
+      {items.map((it, i) => (
+        <li data-reveal style={`--reveal-delay:${i * 80}`}>
+          <div class="card card-spotlight group flex items-center gap-5 p-6" data-spotlight>
+            <span class="icon-badge">
+              <Icon d={it.icon} />
+            </span>
+            <div class="min-w-0">
+              <p class="text-xs font-semibold tracking-[0.18em] text-muted uppercase">{it.label}</p>
+              {it.href ? (
+                <a
+                  href={it.href}
+                  class="mt-1 block truncate font-display text-xl font-semibold hover:text-lime"
+                >
+                  {it.value}
+                </a>
+              ) : (
+                <p class="mt-1 font-display text-xl font-semibold">{it.value}</p>
+              )}
+            </div>
+          </div>
+        </li>
+      ))}
+    </ul>
+  </div>
+</section>

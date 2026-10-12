@@ -52,6 +52,30 @@ PUBLIC_META_PIXEL_ID=000000000000000
 
 A cookie banner then appears; scripts load only after "Accept". The original vendor snippets are kept as comments in `src/components/layout/Analytics.astro`.
 
+## Contact form
+
+`/contact/` is a 4-step quote form (`src/components/contact/QuoteForm.astro`, logic in `src/scripts/quote-form.ts`).
+It posts to `/api/contact`, handled by the only server code in the project: `worker/index.ts`
+(runs for `/api/*` only — every page stays static).
+
+- **Spam protection:** honeypot field, minimum fill time, same-origin check, and Cloudflare Turnstile.
+  Turnstile's script loads only when the visitor reaches the last step, so it never affects Lighthouse.
+- **Delivery:** [Resend](https://resend.com) emails each brief to `CONTACT_TO` (set in `wrangler.jsonc`) with reply-to set to the visitor.
+- **Until keys are set**, the API answers 503 and the form shows a pre-filled `mailto:` link instead — no enquiry is lost.
+- **Analytics:** on success it fires GA4 `generate_lead` and Meta `Lead` (only if the visitor accepted cookies).
+
+To switch on email delivery:
+
+```bash
+npx wrangler secret put RESEND_API_KEY        # from resend.com → API Keys
+npx wrangler secret put TURNSTILE_SECRET_KEY  # from Cloudflare → Turnstile (optional but recommended)
+```
+
+Put the Turnstile **site** key in `.env` as `PUBLIC_TURNSTILE_SITE_KEY`, then `npm run deploy`.
+To send from `@heseven.com`, verify the domain in Resend and update `CONTACT_FROM` in `wrangler.jsonc`.
+
+Test the Worker locally: `npm run build && npx wrangler dev`.
+
 ## Workflow
 
 - `main` is protected; work on a branch and open a PR.
