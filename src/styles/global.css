@@ -653,7 +653,6 @@
     aspect-ratio: 1;
     margin: calc(max(45cqw, 340px) / -2) 0 0 calc(max(45cqw, 340px) / -2); /* centre on its point */
     border-radius: 50%;
-    filter: blur(60px);
     opacity: 0.75;
     mix-blend-mode: screen;
   }
@@ -743,28 +742,31 @@
     content: '';
     position: absolute;
     z-index: -1;
-    inset: -14% -16%;
-    border-radius: 50%;
+    inset: -18% -20%;
     pointer-events: none;
-    filter: blur(50px);
+    /* No filter: soft radial gradients need no blur, and blur + animated scale forces
+       a re-blur every frame on GPU-less machines (Lighthouse CI / PageSpeed servers). */
+    will-change: transform, opacity;
   }
+  /* Gradients fade to fully transparent inside the box, so no edge ever shows. */
   .qf-glow::before {
     background: radial-gradient(
-      60% 60% at 50% 45%,
-      color-mix(in oklab, var(--color-violet) 75%, transparent),
-      transparent 70%
+      closest-side,
+      color-mix(in oklab, var(--color-violet) 70%, transparent),
+      color-mix(in oklab, var(--color-violet-deep) 35%, transparent) 55%,
+      transparent
     );
-    opacity: 0.75;
+    opacity: 0.9;
   }
   .qf-glow::after {
     background:
-      radial-gradient(40% 45% at 85% 85%, color-mix(in oklab, #1fb5b8 70%, transparent), transparent 70%),
+      radial-gradient(25% 25% at 75% 75%, color-mix(in oklab, #1fb5b8 70%, transparent), transparent),
       radial-gradient(
-        35% 40% at 15% 10%,
+        22% 22% at 25% 25%,
         color-mix(in oklab, var(--color-lime) 45%, transparent),
-        transparent 70%
+        transparent
       );
-    opacity: 0.35;
+    opacity: 0.6;
   }
 
   /* Blog ------------------------------------------------------------------ */
@@ -1211,11 +1213,12 @@
 }
 
 @media (prefers-reduced-motion: no-preference) {
+  /* Start after load so nothing animates while the page is still loading/being measured. */
   .qf-glow::before {
-    animation: glow-pulse 4.5s ease-in-out infinite;
+    animation: glow-pulse 4.5s ease-in-out 2.5s infinite;
   }
   .qf-glow::after {
-    animation: glow-pulse-alt 6s ease-in-out infinite;
+    animation: glow-pulse-alt 6s ease-in-out 2.5s infinite;
   }
 }
 @keyframes glow-pulse {
