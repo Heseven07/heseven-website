@@ -1,0 +1,87 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import PageHero from '../../components/layout/PageHero.astro';
+import PostCard from '../../components/blog/PostCard.astro';
+import Cta from '../../components/sections/Cta.astro';
+import JsonLd from '../../components/seo/JsonLd.astro';
+import { getAllPosts, getAllCategories } from '../../lib/sanity';
+import { SITE } from '../../config/site';
+
+const posts = await getAllPosts();
+const categories = await getAllCategories();
+const featured = posts.find((p) => p.featured) ?? posts[0];
+const rest = posts.filter((p) => p !== featured);
+
+const schema = {
+  '@type': 'Blog',
+  name: `${SITE.name} Blog`,
+  url: `${SITE.url}/blog/`,
+  publisher: { '@id': `${SITE.url}/#organization` },
+  blogPost: posts.slice(0, 20).map((p) => ({
+    '@type': 'BlogPosting',
+    headline: p.title,
+    url: `${SITE.url}/blog/${p.slug}/`,
+    datePublished: p.publishedAt,
+  })),
+};
+---
+
+<BaseLayout
+  title="Shopify Blog — Growth, CRO, Speed & SEO Insights"
+  description="Practical Shopify advice from the Heseven team: conversion optimisation, site speed, SEO, migrations and store development."
+>
+  <PageHero
+    eyebrow="Blog"
+    title="Insights for growing Shopify brands."
+    lead="Practical lessons from 1000+ stores: conversion, speed, SEO and everything in between."
+  >
+    {categories.length > 0 && (
+      <nav aria-label="Blog categories" class="mt-10">
+        <ul class="flex flex-wrap gap-2.5">
+          <li>
+            <a href="/blog/" class="chip-link is-active" aria-current="page">
+              All posts
+            </a>
+          </li>
+          {categories.map((c) => (
+            <li>
+              <a href={`/blog/category/${c.slug}/`} class="chip-link">
+                {c.title} <span class="text-muted">{c.count}</span>
+              </a>
+            </li>
+          ))}
+        </ul>
+      </nav>
+    )}
+  </PageHero>
+
+  <section class="container-x pb-24 md:pb-32" aria-label="Posts">
+    {posts.length === 0 ? (
+      <div class="card p-10 text-center md:p-16">
+        <h2 class="text-3xl font-bold">First posts are on the way.</h2>
+        <p class="mx-auto mt-4 max-w-md text-muted">
+          We're writing up what we've learned from 1000+ Shopify stores. In the meantime, tell us what you'd
+          like to read about.
+        </p>
+        <a href="/contact/" class="btn btn-primary mt-8">
+          Get in touch
+        </a>
+      </div>
+    ) : (
+      <>
+        {featured && <PostCard post={featured} featured eager />}
+        {rest.length > 0 && (
+          <ul class="mt-16 grid gap-x-6 gap-y-14 sm:grid-cols-2 lg:grid-cols-3">
+            {rest.map((p, i) => (
+              <li data-reveal style={`--reveal-delay:${(i % 3) * 80}`}>
+                <PostCard post={p} />
+              </li>
+            ))}
+          </ul>
+        )}
+      </>
+    )}
+  </section>
+  <Cta />
+  <JsonLd data={schema} />
+</BaseLayout>

@@ -1,0 +1,246 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import SanityImage from '../../components/blog/SanityImage.astro';
+import PostCard from '../../components/blog/PostCard.astro';
+import Cta from '../../components/sections/Cta.astro';
+import JsonLd from '../../components/seo/JsonLd.astro';
+import { getAllPosts, formatDate, imageUrl, type Post } from '../../lib/sanity';
+import { toSegments, headings } from '../../lib/portable-text';
+import { SITE } from '../../config/site';
+
+export async function getStaticPaths() {
+  const posts = await getAllPosts();
+  return posts.map((post) => {
+    const cats = new Set(post.categories.map((c) => c.slug));
+    const related = posts
+      .filter((p) => p._id !== post._id)
+      .map((p) => ({ p, score: p.categories.filter((c) => cats.has(c.slug)).length }))
+      .sort((a, b) => b.score - a.score || +new Date(b.p.publishedAt) - +new Date(a.p.publishedAt))
+      .slice(0, 3)
+      .map(({ p }) => p);
+    return { params: { slug: post.slug }, props: { post, related } };
+  });
+}
+
+const { post, related } = Astro.props as { post: Post; related: Post[] };
+const url = new URL(`/blog/${post.slug}/`, Astro.site).href;
+const segments = toSegments(post.body);
+const toc = headings(post.body);
+const shareImage = imageUrl(post.seo?.ogImage ?? post.mainImage)
+  .width(1200)
+  .height(630)
+  .fit('crop')
+  .format('jpg')
+  .url();
+
+const schema = [
+  {
+    '@type': 'BlogPosting',
+    '@id': `${url}#article`,
+    headline: post.title,
+    description: post.seo?.description ?? post.excerpt,
+    image: shareImage,
+    datePublished: post.publishedAt,
+    dateModified: post._updatedAt,
+    mainEntityOfPage: url,
+    author: post.author
+      ? { '@type': 'Person', name: post.author.name, jobTitle: post.author.role }
+      : { '@id': `${SITE.url}/#organization` },
+    publisher: { '@id': `${SITE.url}/#organization` },
+    articleSection: post.categories[0]?.title,
+    keywords: post.categories.map((c) => c.title).join(', '),
+    wordCount: post.readingMinutes * 225,
+  },
+  {
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      { '@type': 'ListItem', position: 1, name: 'Home', item: `${SITE.url}/` },
+      { '@type': 'ListItem', position: 2, name: 'Blog', item: `${SITE.url}/blog/` },
+      { '@type': 'ListItem', position: 3, name: post.title, item: url },
+    ],
+  },
+];
+
+const share = [
+  {
+    label: 'LinkedIn',
+    href: `https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(url)}`,
+  },
+  {
+    label: 'X',
+    href: `https://twitter.com/intent/tweet?url=${encodeURIComponent(url)}&text=${encodeURIComponent(post.title)}`,
+  },
+  { label: 'WhatsApp', href: `https://wa.me/?text=${encodeURIComponent(`${post.title} ${url}`)}` },
+];
+---
+
+<BaseLayout
+  title={post.seo?.title ?? post.title}
+  description={post.seo?.description ?? post.excerpt}
+  image={shareImage}
+  type="article"
+  noindex={post.seo?.noindex}
+>
+  <article>
+    <header class="relative isolate overflow-hidden">
+      <div class="hero-bg" aria-hidden="true">
+        <div class="hero-glow"></div>
+        <div class="hero-grid"></div>
+      </div>
+      <div class="container-x pt-32 md:pt-40">
+        <nav aria-label="Breadcrumb" class="text-sm text-muted">
+          <ol class="flex flex-wrap items-center gap-2">
+            <li>
+              <a href="/" class="hover:text-fg">
+                Home
+              </a>
+            </li>
+            <li aria-hidden="true">/</li>
+            <li>
+              <a href="/blog/" class="hover:text-fg">
+                Blog
+              </a>
+            </li>
+            {post.categories[0] && (
+              <>
+                <li aria-hidden="true">/</li>
+                <li>
+                  <a href={`/blog/category/${post.categories[0].slug}/`} class="hover:text-fg">
+                    {post.categories[0].title}
+                  </a>
+                </li>
+              </>
+            )}
+          </ol>
+        </nav>
+        <h1 class="mt-6 max-w-4xl text-4xl leading-[1.05] font-bold sm:text-6xl">{post.title}</h1>
+        <p class="mt-6 max-w-2xl text-lg text-muted sm:text-xl">{post.excerpt}</p>
+        <div class="mt-8 flex flex-wrap items-center gap-x-6 gap-y-3 text-sm text-muted">
+          {post.author && (
+            <span class="flex items-center gap-3">
+              {post.author.image && (
+                <SanityImage
+                  image={post.author.image}
+                  width={80}
+                  ratio={1}
+                  sizes="40px"
+                  class="size-10 rounded-full"
+                  alt=""
+                />
+              )}
+              <span>
+                <span class="block font-medium text-fg">{post.author.name}</span>
+                {post.author.role}
+              </span>
+            </span>
+          )}
+          <time datetime={post.publishedAt}>{formatDate(post.publishedAt)}</time>
+          <span>{post.readingMinutes} min read</span>
+        </div>
+      </div>
+      <div class="container-x mt-12">
+        <SanityImage
+          image={post.mainImage}
+          width={1600}
+          ratio={16 / 9}
+          sizes="(min-width: 1280px) 1216px, 100vw"
+          loading="eager"
+          fetchpriority="high"
+          class="aspect-video w-full rounded-[2rem] border border-line object-cover"
+        />
+      </div>
+    </header>
+
+    <div class="container-x grid gap-12 py-16 md:py-24 lg:grid-cols-12">
+      <div class="prose min-w-0 lg:col-span-8">
+        {segments.map((seg) =>
+          seg.type === 'html' ? (
+            <Fragment set:html={seg.html} />
+          ) : (
+            <figure>
+              <SanityImage
+                image={seg.block as never}
+                width={1280}
+                sizes="(min-width: 1024px) 66vw, 100vw"
+                class="w-full rounded-2xl border border-line"
+              />
+              {(seg.block as { caption?: string }).caption && (
+                <figcaption>{(seg.block as { caption?: string }).caption}</figcaption>
+              )}
+            </figure>
+          ),
+        )}
+      </div>
+
+      <aside class="lg:col-span-4">
+        <div class="flex flex-col gap-8 lg:sticky lg:top-28">
+          {toc.length > 1 && (
+            <nav aria-labelledby="toc-title" class="card p-6">
+              <h2 id="toc-title" class="eyebrow">
+                On this page
+              </h2>
+              <ol class="toc mt-4 flex flex-col gap-2 text-sm">
+                {toc.map((h) => (
+                  <li class:list={[h.depth === 3 && 'pl-4']}>
+                    <a href={`#${h.id}`}>{h.text}</a>
+                  </li>
+                ))}
+              </ol>
+            </nav>
+          )}
+          <div class="card p-6">
+            <h2 class="eyebrow">Share</h2>
+            <ul class="mt-4 flex flex-wrap gap-2">
+              {share.map((s) => (
+                <li>
+                  <a href={s.href} target="_blank" rel="noopener" class="chip-link">
+                    {s.label}
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </div>
+        </div>
+      </aside>
+    </div>
+
+    {post.author?.bio && (
+      <section class="container-x pb-16" aria-label="About the author">
+        <div class="card flex flex-col gap-5 p-8 sm:flex-row sm:items-center lg:w-2/3">
+          {post.author.image && (
+            <SanityImage
+              image={post.author.image}
+              width={160}
+              ratio={1}
+              sizes="80px"
+              class="size-20 shrink-0 rounded-full"
+              alt=""
+            />
+          )}
+          <div>
+            <p class="eyebrow">Written by</p>
+            <p class="mt-2 font-display text-xl font-semibold">{post.author.name}</p>
+            <p class="mt-2 text-muted">{post.author.bio}</p>
+          </div>
+        </div>
+      </section>
+    )}
+  </article>
+
+  {related.length > 0 && (
+    <section class="container-x border-t border-line py-24" aria-labelledby="related-title">
+      <h2 id="related-title" class="text-3xl font-bold sm:text-4xl">
+        Keep reading
+      </h2>
+      <ul class="mt-12 grid gap-x-6 gap-y-14 sm:grid-cols-2 lg:grid-cols-3">
+        {related.map((p) => (
+          <li>
+            <PostCard post={p} headingLevel={3} />
+          </li>
+        ))}
+      </ul>
+    </section>
+  )}
+  <Cta />
+  <JsonLd data={schema} />
+</BaseLayout>

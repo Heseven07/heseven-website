@@ -12,6 +12,7 @@ module.exports = {
         'http://localhost/services/',
         'http://localhost/services/store-development/',
         'http://localhost/contact/',
+        'http://localhost/blog/',
       ],
       numberOfRuns: 3,
       settings: {
