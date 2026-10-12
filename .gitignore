@@ -30,3 +30,6 @@ test-results/
 .wrangler/
 .env.*
 !.env.example
+
+# local editor/agent config
+.claude/

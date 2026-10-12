@@ -1,0 +1,15 @@
+---
+/** Placeholder wordmark — swap the SVG for the real logo when assets arrive. */
+interface Props {
+  class?: string;
+}
+const { class: className = '' } = Astro.props;
+---
+
+<a href="/" class:list={['inline-flex items-center gap-2.5', className]} aria-label="Heseven — home">
+  <svg viewBox="0 0 64 64" width="32" height="32" aria-hidden="true">
+    <rect width="64" height="64" rx="14" fill="var(--color-lime)"></rect>
+    <path d="M18 16h8v13h12V16h8v32h-8V36H26v12h-8z" fill="var(--color-ink)"></path>
+  </svg>
+  <span class="font-display text-lg font-bold tracking-tight">heseven</span>
+</a>

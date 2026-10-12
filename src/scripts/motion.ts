@@ -3,6 +3,9 @@
  * Bundled module script → executes once; re-binds on every view-transition navigation.
  */
 import Lenis from 'lenis';
+import { initCounters } from './counters';
+import { initProcess } from './process';
+import { initInteractions } from './interactions';
 
 const reduceMotion = matchMedia('(prefers-reduced-motion: reduce)').matches;
 let lenis: Lenis | null = null;
@@ -34,6 +37,9 @@ document.addEventListener('astro:page-load', () => {
   initLenis();
   lenis?.resize();
   initReveal();
+  initCounters(reduceMotion);
+  initProcess(reduceMotion);
+  initInteractions(reduceMotion);
 });
 
 // Lenis must jump (not glide) to the top of a freshly swapped page.

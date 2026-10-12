@@ -1,0 +1,51 @@
+---
+import { Picture } from 'astro:assets';
+import SectionHeading from '../ui/SectionHeading.astro';
+import Counter from '../ui/Counter.astro';
+import Arrow from '../ui/Arrow.astro';
+import { work } from '../../data/home';
+---
+
+<section id="work" class="container-x scroll-mt-24 py-24 md:py-32" aria-labelledby="work-title">
+  <SectionHeading
+    id="work-title"
+    eyebrow="Selected work"
+    title="Work we're proud of."
+    lead="Real stores, measurable outcomes."
+  />
+  <ul class="work-grid mt-14 grid gap-x-6 gap-y-14 md:grid-cols-2">
+    {work.map((w, i) => (
+      <li class:list={['reveal-3d', i % 2 === 1 && 'md:translate-y-24']} data-reveal>
+        <article class="work-card group" data-tilt>
+          <div class="work-media">
+            <Picture
+              src={w.image}
+              alt={`${w.client} Shopify store`}
+              widths={[480, 720, 960, 1200]}
+              sizes="(min-width: 768px) 50vw, 100vw"
+              formats={['avif', 'webp']}
+              class="work-img aspect-[4/3] w-full object-cover"
+            />
+            <span class="work-glare" aria-hidden="true" />
+            <span class="work-chip">{w.sector}</span>
+            <span class="work-cursor" aria-hidden="true">
+              View project <Arrow />
+            </span>
+          </div>
+          <div class="mt-6 flex items-start justify-between gap-4">
+            <div>
+              <h3 class="text-2xl font-semibold transition-colors group-hover:text-lime">{w.client}</h3>
+              <p class="mt-1 text-sm text-muted">{w.sector}</p>
+            </div>
+            <p class="text-right">
+              <span class="block font-display text-3xl font-bold text-lime">
+                <Counter value={w.metric} />
+              </span>
+              <span class="text-sm text-muted">{w.metricLabel}</span>
+            </p>
+          </div>
+        </article>
+      </li>
+    ))}
+  </ul>
+</section>

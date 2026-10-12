@@ -1,0 +1,20 @@
+---
+import { clients } from '../../data/home';
+// Rendered twice for a seamless loop; the copy is hidden from assistive tech.
+---
+
+<section class="border-y border-line py-10" aria-label="Brands we have worked with">
+  <p class="container-x mb-6 text-center text-sm text-muted">Trusted by 1000+ e-commerce brands</p>
+  <div class="marquee">
+    <ul class="marquee-track">
+      {clients.map((c) => (
+        <li>{c}</li>
+      ))}
+    </ul>
+    <ul class="marquee-track" aria-hidden="true">
+      {clients.map((c) => (
+        <li>{c}</li>
+      ))}
+    </ul>
+  </div>
+</section>

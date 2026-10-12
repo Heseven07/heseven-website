@@ -1,0 +1,89 @@
+---
+import Logo from '../ui/Logo.astro';
+import { SITE } from '../../config/site';
+import { nav, services } from '../../data/home';
+
+const year = new Date().getFullYear();
+const trackingEnabled = Boolean(import.meta.env.PUBLIC_GA4_ID || import.meta.env.PUBLIC_META_PIXEL_ID);
+---
+
+<footer class="border-t border-line pt-20 pb-10">
+  <div class="container-x grid gap-12 md:grid-cols-12">
+    <div class="md:col-span-5">
+      <Logo />
+      <p class="mt-5 max-w-sm text-muted">
+        Shopify Partner agency designing, building and growing e-commerce brands since {SITE.foundingYear}.
+      </p>
+      <a
+        href={`mailto:${SITE.email}`}
+        class="mt-6 inline-block font-display text-2xl font-semibold hover:text-lime"
+      >
+        {SITE.email}
+      </a>
+    </div>
+    <nav aria-label="Services" class="md:col-span-3">
+      <h2 class="footer-title">Services</h2>
+      <ul class="footer-list">
+        {services.map((s) => (
+          <li>
+            <a href={`/services/${s.slug}/`}>{s.title}</a>
+          </li>
+        ))}
+      </ul>
+    </nav>
+    <nav aria-label="Company" class="md:col-span-2">
+      <h2 class="footer-title">Company</h2>
+      <ul class="footer-list">
+        {nav.map((n) => (
+          <li>
+            <a href={n.href}>{n.label}</a>
+          </li>
+        ))}
+      </ul>
+    </nav>
+    <div class="md:col-span-2">
+      <h2 class="footer-title">Follow</h2>
+      <ul class="footer-list">
+        <li>
+          <a href={SITE.social.linkedin} rel="noopener" target="_blank">
+            LinkedIn
+          </a>
+        </li>
+        <li>
+          <a href={SITE.social.instagram} rel="noopener" target="_blank">
+            Instagram
+          </a>
+        </li>
+        <li>
+          <a href={SITE.social.facebook} rel="noopener" target="_blank">
+            Facebook
+          </a>
+        </li>
+      </ul>
+    </div>
+  </div>
+  <div class="container-x mt-16 flex flex-col gap-4 border-t border-line pt-8 text-sm text-muted sm:flex-row sm:items-center sm:justify-between">
+    <p>
+      © {year} {SITE.legalName}. All rights reserved.
+    </p>
+    <ul class="flex flex-wrap gap-6">
+      <li>
+        <a href="/privacy/" class="hover:text-fg">
+          Privacy
+        </a>
+      </li>
+      <li>
+        <a href="/terms/" class="hover:text-fg">
+          Terms
+        </a>
+      </li>
+      {trackingEnabled && (
+        <li>
+          <button type="button" data-consent-open class="hover:text-fg">
+            Cookie settings
+          </button>
+        </li>
+      )}
+    </ul>
+  </div>
+</footer>

@@ -1,0 +1,21 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import PageHero from '../components/layout/PageHero.astro';
+import { SITE } from '../config/site';
+---
+
+<BaseLayout
+  title="Contact — Start a Project"
+  description="Tell us about your Shopify project. Heseven replies within one business day with next steps and a fixed, itemised quote."
+>
+  <PageHero
+    eyebrow="Contact"
+    title="Let's build something great."
+    lead="Tell us about your store and goals. We reply within one business day."
+  >
+    <!-- Phase 3: multi-step quote form (Cloudflare Function + Turnstile + Resend) -->
+    <a href={`mailto:${SITE.email}`} class="btn btn-primary btn-lg mt-10">
+      {SITE.email}
+    </a>
+  </PageHero>
+</BaseLayout>

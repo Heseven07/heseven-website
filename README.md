@@ -60,8 +60,15 @@ A cookie banner then appears; scripts load only after "Accept". The original ven
 - CI (`.github/workflows/ci.yml`): format → lint → typecheck → build → Lighthouse CI + Playwright.
 - Cloudflare Pages builds a preview URL for every PR and deploys `main` to production.
 
-## Cloudflare Pages settings
+## Deploying (Cloudflare)
 
-- Build command: `npm run build`
-- Output directory: `dist`
-- Environment variable: `NODE_VERSION=24`
+Hosted as **static assets on Cloudflare Workers** (the current version of Cloudflare Pages). No Worker script runs: every page is prebuilt HTML, and `public/_headers` / `public/_redirects` are applied by Cloudflare. Config: `wrangler.jsonc`.
+
+```bash
+npx wrangler login   # once per machine
+npm run deploy       # build + upload
+```
+
+Live (test) URL: https://heseven-website.heseven-website.workers.dev
+
+> Do not add `@astrojs/cloudflare` unless a page genuinely needs server rendering — it puts a Worker in front of every request.

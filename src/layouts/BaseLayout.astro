@@ -4,6 +4,8 @@ import { Font } from 'astro:assets';
 import SEO, { type Props as SEOProps } from '../components/seo/SEO.astro';
 import OrganizationSchema from '../components/seo/OrganizationSchema.astro';
 import Analytics from '../components/layout/Analytics.astro';
+import Header from '../components/layout/Header.astro';
+import Footer from '../components/layout/Footer.astro';
 import '../styles/global.css';
 
 export type Props = SEOProps;
@@ -34,11 +36,11 @@ export type Props = SEOProps;
     <a href="#main" class="skip-link">
       Skip to content
     </a>
-    <slot name="header" />
+    <Header />
     <main id="main">
       <slot />
     </main>
-    <slot name="footer" />
+    <Footer />
     <Analytics />
     <script>
       import '../scripts/motion';
