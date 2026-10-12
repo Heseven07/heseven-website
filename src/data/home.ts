@@ -1,5 +1,5 @@
 /**
- * Homepage content. Placeholder copy adapted from the current heseven.com.
+ * Homepage content. Copy adapted from the current heseven.com.
  * Moves to Sanity in Phase 4 — keep shapes stable so components don't change.
  */
 import type { ImageMetadata } from 'astro';
@@ -39,11 +39,11 @@ export const hero = {
 
 export const clients = [
   'Powerlete',
-  'Vroom Classic',
+  'Vroom! Classics',
   'Caorunn Gin',
-  'Ornellagorza',
-  'Aquadoc',
-  'Waldo Watch',
+  'Ornella Gorza',
+  'AquaDoc',
+  'Waldo Watches',
   'Grenla',
   'ModMyCar',
 ];
@@ -123,6 +123,8 @@ export type CaseStudy = {
   metric: string;
   metricLabel: string;
   image: ImageMetadata;
+  /** Live store. Omit while a store is offline/password-protected. */
+  url?: string;
 };
 export const work: CaseStudy[] = [
   {
@@ -132,11 +134,12 @@ export const work: CaseStudy[] = [
     metric: '+38%',
     metricLabel: 'Conversion rate',
     image: powerlete,
+    url: 'https://www.powerleteclo.com/',
   },
   {
     slug: 'vroom-classic',
-    client: 'Vroom Classic',
-    sector: 'Classic Car Parts',
+    client: 'Vroom! Classics',
+    sector: 'Classic Car Marketplace',
     metric: '−45%',
     metricLabel: 'Bounce rate',
     image: vroom,
@@ -148,30 +151,34 @@ export const work: CaseStudy[] = [
     metric: '+64%',
     metricLabel: 'Conversion rate',
     image: caorunn,
+    url: 'https://www.caorunngin.com/',
   },
   {
     slug: 'ornellagorza',
-    client: 'Ornellagorza',
-    sector: 'Wine Maker',
+    client: 'Ornella Gorza',
+    sector: 'Italian Leather Bags',
     metric: '2.1×',
     metricLabel: 'Revenue',
     image: ornella,
+    url: 'https://ornellagorza.com/',
   },
   {
     slug: 'aquadoc',
-    client: 'Aquadoc',
-    sector: 'Pool Care',
+    client: 'AquaDoc',
+    sector: 'Pool & Spa Care',
     metric: '−38%',
     metricLabel: 'Load time',
     image: aquadoc,
+    url: 'https://www.mavaquadoc.com/',
   },
   {
     slug: 'waldo-watch',
-    client: 'Waldo Watch',
-    sector: 'Streaming Platform',
+    client: 'Waldo Watches',
+    sector: 'Swiss Dive Watches',
     metric: '+52%',
     metricLabel: 'Customer LTV',
     image: waldo,
+    url: 'https://waldowatches.com/',
   },
 ];
 
