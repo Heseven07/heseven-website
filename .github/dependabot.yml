@@ -9,6 +9,11 @@ updates:
         patterns: ['astro', '@astrojs/*']
       tooling:
         patterns: ['eslint*', 'prettier*', 'typescript*', '@playwright/*', '@lhci/*']
+    # Major versions (e.g. TypeScript 7, Astro 8) can break the build or the 100 Lighthouse budget,
+    # so they're upgraded deliberately on a branch instead of by bot. Minor/patch updates still flow.
+    ignore:
+      - dependency-name: '*'
+        update-types: ['version-update:semver-major']
   - package-ecosystem: github-actions
     directory: /
     schedule:
