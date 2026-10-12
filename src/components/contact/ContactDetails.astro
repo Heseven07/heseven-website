@@ -7,7 +7,7 @@ const items = [
   { label: 'Email us', value: SITE.email, href: `mailto:${SITE.email}`, icon: icons.report },
   {
     label: 'Office',
-    value: `${SITE.address.addressLocality}, United Kingdom — working worldwide`,
+    value: `${SITE.address.streetAddress}, ${SITE.address.addressLocality} ${SITE.address.postalCode}, UK`,
     href: null,
     icon: icons.globe,
   },

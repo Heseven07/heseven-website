@@ -1,15 +1,39 @@
 ---
-/** Placeholder wordmark — swap the SVG for the real logo when assets arrive. */
+/**
+ * Heseven logo: the brand mark + "Shopify Plus Partner" badge, as on heseven.com.
+ * Sources live in brand-source/ (original PNGs from heseven.com); Astro serves tiny resized WebP/AVIF.
+ */
+import { Image } from 'astro:assets';
+import mark from '../../assets/brand/heseven-mark-white.png';
+import partner from '../../assets/brand/shopify-plus-partner-white.png';
+
 interface Props {
   class?: string;
+  /** Show the Shopify Plus Partner badge next to the mark (hidden on very small screens). */
+  badge?: boolean;
 }
-const { class: className = '' } = Astro.props;
+const { class: className = '', badge = true } = Astro.props;
 ---
 
-<a href="/" class:list={['inline-flex items-center gap-2.5', className]} aria-label="Heseven — home">
-  <svg viewBox="0 0 64 64" width="32" height="32" aria-hidden="true">
-    <rect width="64" height="64" rx="14" fill="var(--color-lime)"></rect>
-    <path d="M18 16h8v13h12V16h8v32h-8V36H26v12h-8z" fill="var(--color-ink)"></path>
-  </svg>
-  <span class="font-display text-lg font-bold tracking-tight">heseven</span>
+<a href="/" class:list={['logo group inline-flex items-center', className]} aria-label="Heseven — home">
+  <Image
+    src={mark}
+    alt=""
+    height={40}
+    densities={[1, 2]}
+    loading="eager"
+    class="logo-mark h-9 w-auto md:h-10"
+  />
+  {badge && (
+    <>
+      <span class="mx-3.5 hidden h-8 w-px bg-white/25 sm:block" aria-hidden="true" />
+      <Image
+        src={partner}
+        alt="Shopify Plus Partner"
+        height={28}
+        densities={[1, 2]}
+        class="hidden h-6 w-auto opacity-90 sm:block md:h-7"
+      />
+    </>
+  )}
 </a>
