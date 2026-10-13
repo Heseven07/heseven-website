@@ -63,7 +63,8 @@
 /* ---------- Primitives ---------- */
 @layer components {
   .container-x {
-    @apply mx-auto w-full max-w-7xl px-5 sm:px-8;
+    /* 90rem (1440px) content width on large screens. */
+    @apply mx-auto w-full max-w-[90rem] px-5 sm:px-8;
   }
   .btn {
     @apply inline-flex items-center justify-center gap-2 rounded-full px-6 py-3 text-sm font-medium transition-[transform,background-color,color] duration-300;
