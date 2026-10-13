@@ -109,6 +109,38 @@ Test the Worker locally: `npm run build && npx wrangler dev`.
 
 Hosted as **static assets on Cloudflare Workers** (the current version of Cloudflare Pages). No Worker script runs: every page is prebuilt HTML, and `public/_headers` / `public/_redirects` are applied by Cloudflare. Config: `wrangler.jsonc`.
 
+### Automatic (normal way)
+
+`.github/workflows/deploy.yml` builds and deploys automatically when:
+
+| Trigger               | When                                                             |
+| --------------------- | ---------------------------------------------------------------- |
+| Merge to `main`       | after a PR passes CI                                             |
+| **Publish in Sanity** | Sanity webhook → GitHub `repository_dispatch` (`sanity-publish`) |
+| Manual                | GitHub → Actions → **Deploy** → **Run workflow**                 |
+
+Rapid publishes collapse into one deploy of the latest content. A deploy takes ~2–3 minutes.
+
+**One-time setup**
+
+1. GitHub → Settings → Secrets and variables → Actions:
+   - Secret `CLOUDFLARE_API_TOKEN`: Cloudflare → My Profile → API Tokens → _Edit Cloudflare Workers_ template.
+   - Variable `CLOUDFLARE_ACCOUNT_ID` = `320e00995db5f5843ef9f80704f6eaab`.
+     Until both exist the workflow skips deploying with a warning.
+2. Sanity webhook (sanity.io/manage → project `flt9h8js` → API → Webhooks):
+   - URL `https://api.github.com/repos/Heseven07/heseven-website/dispatches`, method POST, dataset `production`
+   - Filter `_type in ["post", "author", "category"]`, triggers create/update/delete, drafts excluded
+   - Projection `{"event_type": "sanity-publish", "client_payload": {"id": _id, "type": _type}}`
+   - Headers `Authorization: Bearer <GitHub fine-grained token>` (repo `heseven-website` only,
+     **Contents: read & write**) and `Accept: application/vnd.github+json`
+   - ⏰ The GitHub token expires (max 1 year): renew it and update the webhook header before then.
+
+### Publishing a blog post
+
+Write in https://heseven.sanity.studio → **Publish** → watch GitHub → Actions → _Deploy_ → live in ~3 minutes.
+
+### Manual fallback
+
 ```bash
 npx wrangler login   # once per machine
 npm run deploy       # build + upload
