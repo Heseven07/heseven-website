@@ -63,7 +63,8 @@
 /* ---------- Primitives ---------- */
 @layer components {
   .container-x {
-    @apply mx-auto w-full max-w-7xl px-5 sm:px-8;
+    /* 90rem (1440px) content width on large screens. */
+    @apply mx-auto w-full max-w-[90rem] px-5 sm:px-8;
   }
   .btn {
     @apply inline-flex items-center justify-center gap-2 rounded-full px-6 py-3 text-sm font-medium transition-[transform,background-color,color] duration-300;
@@ -189,7 +190,8 @@
     letter-spacing: -0.035em;
   }
   .hero-bg {
-    @apply pointer-events-none absolute inset-0 -z-10;
+    /* Clips the glow itself, so the hero section can let dropdowns overflow. */
+    @apply pointer-events-none absolute inset-0 -z-10 overflow-hidden;
   }
   .hero-glow {
     position: absolute;
@@ -861,6 +863,70 @@
     @apply mt-3 text-center text-sm text-muted;
   }
 
+  /* Blog topic filter: one scrollable row + "All topics" dropdown with search */
+  .topic-bar {
+    @apply flex items-center gap-2.5;
+  }
+  .topic-row {
+    @apply flex min-w-0 flex-1 gap-2.5 overflow-x-auto py-1;
+    scrollbar-width: none;
+    mask-image: linear-gradient(90deg, #000 calc(100% - 48px), transparent);
+  }
+  .topic-row::-webkit-scrollbar {
+    display: none;
+  }
+  .topic-row .chip-link {
+    @apply whitespace-nowrap;
+  }
+  .chip-count {
+    @apply rounded-full bg-white/10 px-1.5 text-[11px] leading-5 text-fg/70 tabular-nums;
+  }
+  .chip-link.is-active .chip-count {
+    @apply bg-ink/15 text-ink/80;
+  }
+  .topic-more {
+    @apply relative shrink-0;
+  }
+  .topic-more-btn {
+    @apply cursor-pointer list-none whitespace-nowrap select-none;
+  }
+  .topic-more-btn::-webkit-details-marker {
+    display: none;
+  }
+  .topic-more[open] .topic-more-btn {
+    @apply border-lime;
+  }
+  .topic-caret {
+    transition: rotate 0.3s var(--ease-out-expo);
+  }
+  .topic-more[open] .topic-caret {
+    rotate: 180deg;
+  }
+  .topic-panel {
+    @apply absolute top-[calc(100%+10px)] right-0 z-30 w-[min(380px,calc(100vw-2.5rem))] rounded-3xl border border-line p-3 shadow-2xl;
+    background: color-mix(in oklab, var(--color-ink-2) 92%, transparent);
+    -webkit-backdrop-filter: blur(20px) saturate(160%);
+    backdrop-filter: blur(20px) saturate(160%);
+  }
+  .topic-search {
+    @apply flex items-center gap-2 rounded-2xl border border-line bg-ink/60 px-3 text-muted transition-colors focus-within:border-lime;
+  }
+  .topic-search input {
+    @apply w-full bg-transparent py-3 text-sm text-fg outline-none placeholder:text-muted;
+  }
+  .topic-list {
+    @apply mt-2 max-h-80 overflow-y-auto overscroll-contain pr-1;
+  }
+  .topic-item {
+    @apply flex items-center justify-between gap-3 rounded-xl px-3 py-2.5 text-sm text-fg/85 transition-colors hover:bg-white/[0.06] hover:text-fg;
+  }
+  .topic-item.is-active {
+    @apply bg-lime/15 text-lime;
+  }
+  .topic-empty {
+    @apply px-3 py-6 text-center text-sm text-muted;
+  }
+
   /* FAQ */
   .faq {
     @apply border-b border-line;
@@ -1241,5 +1307,17 @@
   50% {
     opacity: 0.2;
     transform: scale(0.9) rotate(10deg);
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .topic-more[open] .topic-panel {
+    animation: topic-pop 0.35s var(--ease-out-expo);
+  }
+}
+@keyframes topic-pop {
+  from {
+    opacity: 0;
+    transform: translateY(-6px) scale(0.98);
   }
 }

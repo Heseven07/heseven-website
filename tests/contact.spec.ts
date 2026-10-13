@@ -23,7 +23,7 @@ async function fillToLastStep(page: Page) {
 }
 
 test.beforeEach(async ({ page }) => {
-  await page.goto('/contact/');
+  await page.goto('/contact');
 });
 
 test('quote form walks through 4 steps and shows success', async ({ page }) => {

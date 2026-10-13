@@ -1,9 +1,11 @@
 ---
-import BaseLayout from '../../../layouts/BaseLayout.astro';
-import PageHero from '../../../components/layout/PageHero.astro';
-import PostCard from '../../../components/blog/PostCard.astro';
-import Cta from '../../../components/sections/Cta.astro';
-import { getAllPosts, getAllCategories } from '../../../lib/sanity';
+import BaseLayout from '../../../../layouts/BaseLayout.astro';
+import PageHero from '../../../../components/layout/PageHero.astro';
+import PostCard from '../../../../components/blog/PostCard.astro';
+import TopicFilter from '../../../../components/blog/TopicFilter.astro';
+import PreloadSanityImage from '../../../../components/blog/PreloadSanityImage.astro';
+import Cta from '../../../../components/sections/Cta.astro';
+import { getAllPosts, getAllCategories } from '../../../../lib/sanity';
 
 export async function getStaticPaths() {
   const [posts, categories] = await Promise.all([getAllPosts(), getAllCategories()]);
@@ -26,27 +28,17 @@ const { category, categories, posts } = Astro.props;
     category.description ?? `Heseven articles about ${category.title.toLowerCase()} for Shopify brands.`
   }
 >
+  {posts[0] && (
+    <PreloadSanityImage
+      slot="head"
+      image={posts[0].mainImage}
+      width={960}
+      ratio={16 / 9}
+      sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw"
+    />
+  )}
   <PageHero eyebrow="Blog category" title={category.title} lead={category.description}>
-    <nav aria-label="Blog categories" class="mt-10">
-      <ul class="flex flex-wrap gap-2.5">
-        <li>
-          <a href="/blog/" class="chip-link">
-            All posts
-          </a>
-        </li>
-        {categories.map((c) => (
-          <li>
-            <a
-              href={`/blog/category/${c.slug}/`}
-              class:list={['chip-link', c.slug === category.slug && 'is-active']}
-              aria-current={c.slug === category.slug ? 'page' : undefined}
-            >
-              {c.title} <span class="text-muted">{c.count}</span>
-            </a>
-          </li>
-        ))}
-      </ul>
-    </nav>
+    <TopicFilter categories={categories} active={category.slug} />
   </PageHero>
   <section class="container-x pb-24 md:pb-32" aria-label="Posts">
     <ul class="grid gap-x-6 gap-y-14 sm:grid-cols-2 lg:grid-cols-3">

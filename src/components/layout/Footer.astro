@@ -50,7 +50,7 @@ const trackingEnabled = Boolean(import.meta.env.PUBLIC_GA4_ID || import.meta.env
           <ul class="footer-list">
             {services.map((s) => (
               <li>
-                <a href={`/services/${s.slug}/`}>{s.title}</a>
+                <a href={`/services/${s.slug}`}>{s.title}</a>
               </li>
             ))}
           </ul>
@@ -92,12 +92,12 @@ const trackingEnabled = Boolean(import.meta.env.PUBLIC_GA4_ID || import.meta.env
         </p>
         <ul class="flex flex-wrap gap-6">
           <li>
-            <a href="/privacy/" class="transition-colors hover:text-lime">
+            <a href="/privacy" class="transition-colors hover:text-lime">
               Privacy
             </a>
           </li>
           <li>
-            <a href="/terms/" class="transition-colors hover:text-lime">
+            <a href="/terms" class="transition-colors hover:text-lime">
               Terms
             </a>
           </li>

@@ -12,12 +12,12 @@ import aquadoc from '../assets/work/aquadoc.jpg';
 import waldo from '../assets/work/waldo-watch.jpg';
 
 export const nav = [
-  { label: 'Services', href: '/services/' },
+  { label: 'Services', href: '/services' },
   { label: 'Work', href: '/#work' },
   { label: 'Process', href: '/#process' },
   { label: 'About', href: '/#about' },
-  { label: 'Blog', href: '/blog/' },
-  { label: 'Contact', href: '/contact/' },
+  { label: 'Blog', href: '/blogs/news' },
+  { label: 'Contact', href: '/contact' },
 ];
 
 export const hero = {
@@ -27,7 +27,7 @@ export const hero = {
   titleAfter: 'growth partner',
   lead: 'We design, build and grow high-converting Shopify stores — from first wireframe to ongoing optimisation.',
   tags: ['UI/UX Design', 'Development', 'Ongoing Support'],
-  primary: { label: 'Get your quote', href: '/contact/' },
+  primary: { label: 'Get your quote', href: '/contact' },
   secondary: { label: 'See our work', href: '/#work' },
   stats: [
     { value: '1000+', label: 'E-commerce brands served' },

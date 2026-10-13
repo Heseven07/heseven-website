@@ -1,11 +1,13 @@
 ---
-import BaseLayout from '../../layouts/BaseLayout.astro';
-import PageHero from '../../components/layout/PageHero.astro';
-import PostCard from '../../components/blog/PostCard.astro';
-import Cta from '../../components/sections/Cta.astro';
-import JsonLd from '../../components/seo/JsonLd.astro';
-import { getAllPosts, getAllCategories } from '../../lib/sanity';
-import { SITE } from '../../config/site';
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import PageHero from '../../../components/layout/PageHero.astro';
+import PostCard from '../../../components/blog/PostCard.astro';
+import TopicFilter from '../../../components/blog/TopicFilter.astro';
+import PreloadSanityImage from '../../../components/blog/PreloadSanityImage.astro';
+import Cta from '../../../components/sections/Cta.astro';
+import JsonLd from '../../../components/seo/JsonLd.astro';
+import { getAllPosts, getAllCategories } from '../../../lib/sanity';
+import { SITE } from '../../../config/site';
 
 const posts = await getAllPosts();
 const categories = await getAllCategories();
@@ -15,12 +17,12 @@ const rest = posts.filter((p) => p !== featured);
 const schema = {
   '@type': 'Blog',
   name: `${SITE.name} Blog`,
-  url: `${SITE.url}/blog/`,
+  url: `${SITE.url}/blogs/news`,
   publisher: { '@id': `${SITE.url}/#organization` },
   blogPost: posts.slice(0, 20).map((p) => ({
     '@type': 'BlogPosting',
     headline: p.title,
-    url: `${SITE.url}/blog/${p.slug}/`,
+    url: `${SITE.url}/blogs/news/${p.slug}`,
     datePublished: p.publishedAt,
   })),
 };
@@ -30,29 +32,21 @@ const schema = {
   title="Shopify Blog — Growth, CRO, Speed & SEO Insights"
   description="Practical Shopify advice from the Heseven team: conversion optimisation, site speed, SEO, migrations and store development."
 >
+  {featured && (
+    <PreloadSanityImage
+      slot="head"
+      image={featured.mainImage}
+      width={1600}
+      ratio={16 / 9}
+      sizes="(min-width: 1024px) 60vw, 100vw"
+    />
+  )}
   <PageHero
     eyebrow="Blog"
     title="Insights for growing Shopify brands."
     lead="Practical lessons from 1000+ stores: conversion, speed, SEO and everything in between."
   >
-    {categories.length > 0 && (
-      <nav aria-label="Blog categories" class="mt-10">
-        <ul class="flex flex-wrap gap-2.5">
-          <li>
-            <a href="/blog/" class="chip-link is-active" aria-current="page">
-              All posts
-            </a>
-          </li>
-          {categories.map((c) => (
-            <li>
-              <a href={`/blog/category/${c.slug}/`} class="chip-link">
-                {c.title} <span class="text-muted">{c.count}</span>
-              </a>
-            </li>
-          ))}
-        </ul>
-      </nav>
-    )}
+    {categories.length > 0 && <TopicFilter categories={categories} />}
   </PageHero>
 
   <section class="container-x pb-24 md:pb-32" aria-label="Posts">
@@ -63,7 +57,7 @@ const schema = {
           We're writing up what we've learned from 1000+ Shopify stores. In the meantime, tell us what you'd
           like to read about.
         </p>
-        <a href="/contact/" class="btn btn-primary mt-8">
+        <a href="/contact" class="btn btn-primary mt-8">
           Get in touch
         </a>
       </div>

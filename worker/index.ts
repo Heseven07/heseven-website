@@ -109,7 +109,7 @@ async function handleContact(request: Request, env: Env): Promise<Response> {
   const done = (status: number, body: Record<string, unknown>) =>
     wantsJson
       ? json(status, body)
-      : Response.redirect(new URL(status < 300 ? '/thanks/' : '/contact/?error=1', request.url).href, 303);
+      : Response.redirect(new URL(status < 300 ? '/thanks' : '/contact?error=1', request.url).href, 303);
 
   // Same-origin only (blocks other sites posting into the form).
   const origin = request.headers.get('origin');

@@ -3,8 +3,9 @@
  * Sanity image → Astro <Image>. Sanity crops to the requested aspect ratio (respecting the editor's
  * hotspot), then Astro downloads it at build time and emits responsive AVIF/WebP from our own domain.
  */
-import { Image } from 'astro:assets';
-import { imageUrl, type SanityImage } from '../../lib/sanity';
+import { Picture } from 'astro:assets';
+import type { SanityImage } from '../../lib/sanity';
+import { sanityImageOptions } from '../../lib/sanity-image';
 
 interface Props {
   image: SanityImage;
@@ -28,13 +29,12 @@ const {
   fetchpriority = 'auto',
   alt,
 } = Astro.props;
-const dims = image.asset.metadata.dimensions;
-const height = Math.round(width / (ratio ?? dims.width / dims.height));
-const src = imageUrl(image).width(width).height(height).fit('crop').url();
-const widths = [480, 720, 960, 1280, 1600].filter((w) => w < width).concat(width);
+const { src, height, widths } = sanityImageOptions(image, width, ratio);
 ---
 
-<Image
+<Picture
+  formats={['avif', 'webp']}
+  fallbackFormat="webp"
   src={src}
   width={width}
   height={height}

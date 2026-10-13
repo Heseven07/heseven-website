@@ -1,12 +1,13 @@
 ---
-import BaseLayout from '../../layouts/BaseLayout.astro';
-import SanityImage from '../../components/blog/SanityImage.astro';
-import PostCard from '../../components/blog/PostCard.astro';
-import Cta from '../../components/sections/Cta.astro';
-import JsonLd from '../../components/seo/JsonLd.astro';
-import { getAllPosts, formatDate, imageUrl, type Post } from '../../lib/sanity';
-import { toSegments, headings } from '../../lib/portable-text';
-import { SITE } from '../../config/site';
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import SanityImage from '../../../components/blog/SanityImage.astro';
+import PreloadSanityImage from '../../../components/blog/PreloadSanityImage.astro';
+import PostCard from '../../../components/blog/PostCard.astro';
+import Cta from '../../../components/sections/Cta.astro';
+import JsonLd from '../../../components/seo/JsonLd.astro';
+import { getAllPosts, formatDate, imageUrl, type Post } from '../../../lib/sanity';
+import { toSegments, headings } from '../../../lib/portable-text';
+import { SITE } from '../../../config/site';
 
 export async function getStaticPaths() {
   const posts = await getAllPosts();
@@ -23,7 +24,11 @@ export async function getStaticPaths() {
 }
 
 const { post, related } = Astro.props as { post: Post; related: Post[] };
-const url = new URL(`/blog/${post.slug}/`, Astro.site).href;
+const url = new URL(`/blogs/news/${post.slug}`, Astro.site).href;
+// Migrated posts keep Shopify's exact <title> format ("<SEO title> – Heseven"), which Google has indexed.
+// New posts use the site's standard "<title> | Heseven".
+const baseTitle = (post.seo?.title ?? post.title).trim();
+const pageTitle = post.legacy ? `${baseTitle} – ${SITE.name}` : `${baseTitle} | ${SITE.name}`;
 const segments = toSegments(post.body);
 const toc = headings(post.body);
 const shareImage = imageUrl(post.seo?.ogImage ?? post.mainImage)
@@ -41,7 +46,7 @@ const schema = [
     description: post.seo?.description ?? post.excerpt,
     image: shareImage,
     datePublished: post.publishedAt,
-    dateModified: post._updatedAt,
+    dateModified: post.updatedAt ?? post._updatedAt,
     mainEntityOfPage: url,
     author: post.author
       ? { '@type': 'Person', name: post.author.name, jobTitle: post.author.role }
@@ -55,7 +60,7 @@ const schema = [
     '@type': 'BreadcrumbList',
     itemListElement: [
       { '@type': 'ListItem', position: 1, name: 'Home', item: `${SITE.url}/` },
-      { '@type': 'ListItem', position: 2, name: 'Blog', item: `${SITE.url}/blog/` },
+      { '@type': 'ListItem', position: 2, name: 'Blog', item: `${SITE.url}/blogs/news` },
       { '@type': 'ListItem', position: 3, name: post.title, item: url },
     ],
   },
@@ -75,12 +80,20 @@ const share = [
 ---
 
 <BaseLayout
-  title={post.seo?.title ?? post.title}
+  title={pageTitle}
+  rawTitle
   description={post.seo?.description ?? post.excerpt}
   image={shareImage}
   type="article"
   noindex={post.seo?.noindex}
 >
+  <PreloadSanityImage
+    slot="head"
+    image={post.mainImage}
+    width={1600}
+    ratio={16 / 9}
+    sizes="(min-width: 1440px) 1376px, 100vw"
+  />
   <article>
     <header class="relative isolate overflow-hidden">
       <div class="hero-bg" aria-hidden="true">
@@ -97,7 +110,7 @@ const share = [
             </li>
             <li aria-hidden="true">/</li>
             <li>
-              <a href="/blog/" class="hover:text-fg">
+              <a href="/blogs/news" class="hover:text-fg">
                 Blog
               </a>
             </li>
@@ -105,7 +118,7 @@ const share = [
               <>
                 <li aria-hidden="true">/</li>
                 <li>
-                  <a href={`/blog/category/${post.categories[0].slug}/`} class="hover:text-fg">
+                  <a href={`/blogs/news/tagged/${post.categories[0].slug}`} class="hover:text-fg">
                     {post.categories[0].title}
                   </a>
                 </li>
@@ -143,7 +156,7 @@ const share = [
           image={post.mainImage}
           width={1600}
           ratio={16 / 9}
-          sizes="(min-width: 1280px) 1216px, 100vw"
+          sizes="(min-width: 1440px) 1376px, 100vw"
           loading="eager"
           fetchpriority="high"
           class="aspect-video w-full rounded-[2rem] border border-line object-cover"

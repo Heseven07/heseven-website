@@ -7,6 +7,8 @@ export interface Props {
   image?: string;
   noindex?: boolean;
   type?: 'website' | 'article';
+  /** Use `title` verbatim (no " | Heseven" suffix) — e.g. SEO titles migrated from Shopify. */
+  rawTitle?: boolean;
 }
 
 const {
@@ -15,9 +17,10 @@ const {
   image = SITE.ogImage,
   noindex = false,
   type = 'website',
+  rawTitle = false,
 } = Astro.props;
 
-const fullTitle = title ? `${title} | ${SITE.name}` : SITE.title;
+const fullTitle = title ? (rawTitle ? title : `${title} | ${SITE.name}`) : SITE.title;
 const canonical = new URL(Astro.url.pathname, Astro.site).href;
 const ogImage = new URL(image, Astro.site).href;
 ---
