@@ -13,7 +13,7 @@ export async function GET(context: APIContext) {
       title: p.title,
       description: p.excerpt,
       pubDate: new Date(p.publishedAt),
-      link: `/blog/${p.slug}/`,
+      link: `/blogs/news/${p.slug}`,
       categories: p.categories.map((c) => c.title),
     })),
   });

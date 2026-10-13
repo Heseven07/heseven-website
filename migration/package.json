@@ -1,0 +1,17 @@
+{
+  "name": "heseven-blog-migration",
+  "private": true,
+  "type": "module",
+  "description": "One-time Shopify → Sanity blog migration. See README.md.",
+  "scripts": {
+    "export": "node --env-file=../.env.migration export-shopify.mjs",
+    "import": "node import-sanity.mjs",
+    "verify": "node verify.mjs"
+  },
+  "dependencies": {
+    "@portabletext/block-tools": "^6.0.4",
+    "@sanity/client": "^8.9.0",
+    "@sanity/schema": "^6.18.0",
+    "jsdom": "^30.1.2"
+  }
+}

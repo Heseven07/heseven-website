@@ -60,10 +60,10 @@ A cookie banner then appears; scripts load only after "Accept". The original ven
   categories, "featured", SEO overrides incl. noindex), Author, Category. Schemas: `studio/schemaTypes/`.
 - **How the site uses it:** `src/lib/sanity.ts` fetches published posts **at build time**; pages are static.
   Images are downloaded and re-encoded to AVIF/WebP by Astro, so visitors never hit Sanity's CDN.
-- **Pages:** `/blog/`, `/blog/<slug>/` (TOC, share, author box, related posts, BlogPosting + Breadcrumb JSON-LD),
-  `/blog/category/<slug>/`, `/rss.xml`.
+- **Pages (identical to Shopify's URLs):** `/blogs/news`, `/blogs/news/<slug>`, `/blogs/news/tagged/<tag>`,
+  `/blogs/news.atom` and `/rss.xml`. The whole site uses Shopify's no-trailing-slash style.
 - **After publishing in Sanity** the site needs a rebuild + deploy (`npm run deploy`) until auto-deploy is set up.
-- **Keep old Shopify slugs** when migrating posts: `/blogs/news/<slug>` already 301s to `/blog/<slug>/`.
+- **64 posts migrated from Shopify**, word-for-word on the same URLs — see `migration/README.md`.
 
 Studio is a separate app with its own `package.json`:
 

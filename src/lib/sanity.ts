@@ -7,7 +7,8 @@ import { createImageUrlBuilder, type SanityImageSource } from '@sanity/image-url
 
 export const sanityConfig = {
   projectId: 'flt9h8js',
-  dataset: 'production',
+  // Override for rehearsal builds: SANITY_DATASET=migration-test npm run build
+  dataset: (import.meta.env.SANITY_DATASET as string | undefined) ?? 'production',
   apiVersion: '2026-10-01',
   studioUrl: 'https://heseven.sanity.studio',
 } as const;
@@ -55,6 +56,8 @@ export interface PortableBlock {
 export interface Post {
   _id: string;
   _updatedAt: string;
+  /** Original "last updated" date (kept from Shopify for migrated posts). */
+  updatedAt?: string;
   title: string;
   slug: string;
   excerpt: string;
@@ -65,6 +68,8 @@ export interface Post {
   categories: Category[];
   body: PortableBlock[];
   seo?: { title?: string; description?: string; ogImage?: SanityImage; noindex?: boolean };
+  /** Set on posts migrated from Shopify. */
+  legacy?: { shopifyId: string; url: string };
   readingMinutes: number;
 }
 
@@ -72,12 +77,13 @@ export interface Post {
 const imageFields = `asset->{_id, url, metadata{dimensions{width, height}, lqip}}, alt, caption, hotspot, crop`;
 
 const postFields = `
-  _id, _updatedAt, title, "slug": slug.current, excerpt, publishedAt, featured,
+  _id, _updatedAt, updatedAt, title, "slug": slug.current, excerpt, publishedAt, featured,
   mainImage{ ${imageFields} },
   author->{ name, "slug": slug.current, role, bio, image{ ${imageFields} } },
   "categories": coalesce(categories[]->{ title, "slug": slug.current, description }, []),
   body[]{ ..., _type == "image" => { ${imageFields} } },
-  seo{ title, description, noindex, ogImage{ ${imageFields} } }
+  seo{ title, description, noindex, ogImage{ ${imageFields} } },
+  legacy{ shopifyId, url }
 `;
 
 const plainText = (blocks: PortableBlock[] = []) =>

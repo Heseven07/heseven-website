@@ -16,17 +16,41 @@ export const slugify = (s: string) =>
 
 const blockText = (b: PortableBlock) => (b.children ?? []).map((c) => c.text ?? '').join('');
 
+/**
+ * Posts migrated from Shopify start at h3/h4 (no h2), which breaks heading order under the page h1.
+ * At render time only, shift every heading so the post's top level becomes h2. Stored content is untouched.
+ */
+export function normalizeHeadings(body: PortableBlock[] = []): PortableBlock[] {
+  const levels = body.map((b) =>
+    b._type === 'block' && /^h[1-6]$/.test(b.style ?? '') ? Number(b.style![1]) : 0,
+  );
+  const used = levels.filter(Boolean);
+  if (!used.length) return body;
+  const shift = Math.min(...used) - 2;
+  if (shift <= 0) return body;
+  return body.map((b, i) => (levels[i] ? { ...b, style: `h${Math.max(2, levels[i]! - shift)}` } : b));
+}
+
+/** Links to the old domain stay on this site (made relative) instead of opening a new tab. */
+const OWN_ORIGIN = /^https?:\/\/(www\.)?heseven\.com(?=\/|$)/i;
+
+const withId =
+  (tag: string) =>
+  ({ children, value }: { children?: string; value: unknown }) =>
+    `<${tag} id="${slugify(blockText(value as PortableBlock))}">${children}</${tag}>`;
+
 const components: Partial<PortableTextHtmlComponents> = {
   block: {
-    h2: ({ children, value }) =>
-      `<h2 id="${slugify(blockText(value as unknown as PortableBlock))}">${children}</h2>`,
-    h3: ({ children, value }) =>
-      `<h3 id="${slugify(blockText(value as unknown as PortableBlock))}">${children}</h3>`,
+    h2: withId('h2'),
+    h3: withId('h3'),
+    h4: ({ children }) => `<h4>${children}</h4>`,
+    h5: ({ children }) => `<h5>${children}</h5>`,
+    h6: ({ children }) => `<h6>${children}</h6>`,
   },
   marks: {
     link: ({ children, value }) => {
-      const href = String(value?.href ?? '');
-      const external = /^https?:\/\//.test(href) && !href.startsWith('https://heseven.com');
+      const href = String(value?.href ?? '').replace(OWN_ORIGIN, '') || '/';
+      const external = /^https?:\/\//.test(href);
       return `<a href="${escapeHTML(href)}"${external ? ' target="_blank" rel="noopener"' : ''}>${children}</a>`;
     },
   },
@@ -34,7 +58,8 @@ const components: Partial<PortableTextHtmlComponents> = {
 
 export type BodySegment = { type: 'html'; html: string } | { type: 'image'; block: PortableBlock };
 
-export function toSegments(body: PortableBlock[] = []): BodySegment[] {
+export function toSegments(raw: PortableBlock[] = []): BodySegment[] {
+  const body = normalizeHeadings(raw);
   const out: BodySegment[] = [];
   let run: PortableBlock[] = [];
   const flush = () => {
@@ -51,8 +76,8 @@ export function toSegments(body: PortableBlock[] = []): BodySegment[] {
   return out;
 }
 
-/** h2/h3 headings for the table of contents. */
-export const headings = (body: PortableBlock[] = []) =>
-  body
+/** h2/h3 headings (after normalisation) for the table of contents. */
+export const headings = (raw: PortableBlock[] = []) =>
+  normalizeHeadings(raw)
     .filter((b) => b._type === 'block' && (b.style === 'h2' || b.style === 'h3'))
     .map((b) => ({ depth: b.style === 'h2' ? 2 : 3, text: blockText(b), id: slugify(blockText(b)) }));

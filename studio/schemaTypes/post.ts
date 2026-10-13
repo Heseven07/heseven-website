@@ -32,7 +32,10 @@ export const post = defineType({
       rows: 3,
       group: 'content',
       description: 'One or two sentences shown on the blog list and used as the default meta description.',
-      validation: (r) => r.required().max(220),
+      validation: (r) => [
+        r.required(),
+        r.max(220).warning('Shorter excerpts (≤ 220 characters) read better on cards'),
+      ],
     }),
     defineField({
       name: 'mainImage',
@@ -45,7 +48,7 @@ export const post = defineType({
           name: 'alt',
           title: 'Alt text',
           type: 'string',
-          validation: (r) => r.required(),
+          validation: (r) => r.required().warning('Describe the image for screen readers and Google'),
         },
       ],
       validation: (r) => r.required(),
@@ -58,6 +61,13 @@ export const post = defineType({
       group: 'meta',
       initialValue: () => new Date().toISOString(),
       validation: (r) => r.required(),
+    }),
+    defineField({
+      name: 'updatedAt',
+      title: 'Last updated',
+      type: 'datetime',
+      group: 'meta',
+      description: 'Optional. Shown to Google as the modified date (migrated posts keep their Shopify date).',
     }),
     defineField({ name: 'author', type: 'reference', to: [{ type: 'author' }], group: 'meta' }),
     defineField({
@@ -74,6 +84,19 @@ export const post = defineType({
       group: 'meta',
     }),
     defineField({ name: 'seo', type: 'seo', group: 'seo' }),
+    defineField({
+      name: 'legacy',
+      title: 'Migrated from Shopify',
+      type: 'object',
+      group: 'meta',
+      readOnly: true,
+      hidden: ({ value }) => !value,
+      fields: [
+        { name: 'shopifyId', type: 'string' },
+        { name: 'url', type: 'url' },
+        { name: 'tags', type: 'array', of: [{ type: 'string' }] },
+      ],
+    }),
   ],
   orderings: [
     { title: 'Newest first', name: 'publishedDesc', by: [{ field: 'publishedAt', direction: 'desc' }] },

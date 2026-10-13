@@ -6,7 +6,8 @@ import tailwindcss from '@tailwindcss/vite';
 // https://astro.build/config
 export default defineConfig({
   site: 'https://heseven.com',
-  trailingSlash: 'always',
+  // Match Shopify's URL style exactly (no trailing slash) so migrated URLs are identical.
+  trailingSlash: 'never',
   build: {
     format: 'directory',
     // Inline all CSS: removes the render-blocking stylesheet request (mobile LCP).
@@ -22,7 +23,7 @@ export default defineConfig({
   },
   integrations: [
     sitemap({
-      filter: (page) => !/\/(thanks|styleguide)\/$/.test(page),
+      filter: (page) => !/\/(thanks|styleguide)\/?$/.test(page),
     }),
   ],
   // Self-hosted, latin-only, ONE weight per family (both preloaded) — keeps LCP font-swap off the critical path.

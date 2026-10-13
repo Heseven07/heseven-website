@@ -1,0 +1,29 @@
+---
+/**
+ * <link rel="preload"> for the LCP image (place in the layout's "head" slot). Starts the download
+ * immediately instead of when the parser reaches the <img>; URLs match <SanityImage> exactly.
+ */
+import { getImage } from 'astro:assets';
+import type { SanityImage } from '../../lib/sanity';
+import { sanityImageOptions } from '../../lib/sanity-image';
+
+interface Props {
+  image: SanityImage;
+  width: number;
+  ratio?: number;
+  sizes: string;
+}
+const { image, width, ratio, sizes } = Astro.props;
+// Matches the AVIF <source> that <SanityImage> (a <Picture>) emits; browsers without AVIF skip it.
+const img = await getImage({ ...sanityImageOptions(image, width, ratio), sizes, format: 'avif' });
+---
+
+<link
+  rel="preload"
+  as="image"
+  href={img.src}
+  imagesrcset={img.srcSet.attribute}
+  imagesizes={sizes}
+  type="image/avif"
+  fetchpriority="high"
+/>

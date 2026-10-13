@@ -14,7 +14,7 @@ const Heading = headingLevel === 2 ? 'h2' : 'h3';
 ---
 
 <article class:list={['post-card group', featured && 'post-card--featured']}>
-  <a href={`/blog/${post.slug}/`} class="post-card-media" tabindex="-1" aria-hidden="true">
+  <a href={`/blogs/news/${post.slug}`} class="post-card-media" tabindex="-1" aria-hidden="true">
     <SanityImage
       image={post.mainImage}
       width={featured ? 1600 : 960}
@@ -34,7 +34,7 @@ const Heading = headingLevel === 2 ? 'h2' : 'h3';
       <ul class="flex flex-wrap gap-2">
         {post.categories.slice(0, 2).map((c) => (
           <li>
-            <a href={`/blog/category/${c.slug}/`} class="tag">
+            <a href={`/blogs/news/tagged/${c.slug}`} class="tag">
               {c.title}
             </a>
           </li>
@@ -42,7 +42,7 @@ const Heading = headingLevel === 2 ? 'h2' : 'h3';
       </ul>
     )}
     <Heading class:list={['mt-4 font-semibold', featured ? 'text-3xl sm:text-4xl' : 'text-xl sm:text-2xl']}>
-      <a href={`/blog/${post.slug}/`} class="post-card-link">
+      <a href={`/blogs/news/${post.slug}`} class="post-card-link">
         {post.title}
       </a>
     </Heading>

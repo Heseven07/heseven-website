@@ -1,7 +1,7 @@
 import { test, expect } from '@playwright/test';
 import AxeBuilder from '@axe-core/playwright';
 
-const pages = ['/', '/services/', '/services/store-development/', '/contact/', '/blog/'];
+const pages = ['/', '/services', '/services/store-development', '/contact', '/blogs/news'];
 
 for (const path of pages) {
   test(`${path} renders with SEO essentials`, async ({ page }) => {
@@ -25,6 +25,6 @@ for (const path of pages) {
 }
 
 test('unknown route serves 404 page', async ({ page }) => {
-  const res = await page.goto('/this-does-not-exist/');
+  const res = await page.goto('/this-does-not-exist');
   expect(res?.status()).toBe(404);
 });
