@@ -1,0 +1,167 @@
+---
+/**
+ * Compact blog topic filter: one scrollable row (All posts + top topics) and an
+ * "All topics" dropdown with search. Works without JS (<details>); JS adds search,
+ * Esc / outside-click to close, and focuses the search box on open.
+ */
+import type { Category } from '../../lib/sanity';
+
+interface Props {
+  categories: (Category & { count: number })[];
+  /** Slug of the topic being viewed, if any. */
+  active?: string;
+  /** How many topics to show inline. */
+  top?: number;
+}
+const { categories, active, top = 8 } = Astro.props;
+const activeCat = categories.find((c) => c.slug === active);
+// Keep the active topic visible: pin it first if it isn't already in the top list.
+const inline = [
+  ...(activeCat && !categories.slice(0, top).includes(activeCat) ? [activeCat] : []),
+  ...categories.slice(0, top),
+];
+---
+
+<nav aria-label="Blog topics" class="topic-bar mt-10" data-topic-filter>
+  <ul class="topic-row">
+    <li>
+      <a
+        href="/blogs/news"
+        class:list={['chip-link', !active && 'is-active']}
+        aria-current={!active ? 'page' : undefined}
+      >
+        All posts
+      </a>
+    </li>
+    {inline.map((c) => (
+      <li>
+        <a
+          href={`/blogs/news/tagged/${c.slug}`}
+          class:list={['chip-link', c.slug === active && 'is-active']}
+          aria-current={c.slug === active ? 'page' : undefined}
+        >
+          {c.title} <span class="chip-count">{c.count}</span>
+        </a>
+      </li>
+    ))}
+  </ul>
+
+  {categories.length > top && (
+    <details class="topic-more">
+      <summary class="chip-link topic-more-btn">
+        <svg
+          viewBox="0 0 24 24"
+          width="15"
+          height="15"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          aria-hidden="true"
+        >
+          <path d="M4 6h16M7 12h10M10 18h4" stroke-linecap="round" />
+        </svg>
+        All topics <span class="chip-count">{categories.length}</span>
+        <svg
+          class="topic-caret"
+          viewBox="0 0 24 24"
+          width="14"
+          height="14"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2.2"
+          aria-hidden="true"
+        >
+          <path d="m6 9 6 6 6-6" stroke-linecap="round" stroke-linejoin="round" />
+        </svg>
+      </summary>
+      <div class="topic-panel">
+        <label class="sr-only" for="topic-search">
+          Search topics
+        </label>
+        <div class="topic-search">
+          <svg
+            viewBox="0 0 24 24"
+            width="16"
+            height="16"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            aria-hidden="true"
+          >
+            <path d="M11 18a7 7 0 1 0 0-14 7 7 0 0 0 0 14Zm5-2 4 4" stroke-linecap="round" />
+          </svg>
+          <input
+            id="topic-search"
+            type="search"
+            placeholder={`Search ${categories.length} topics…`}
+            autocomplete="off"
+            data-topic-search
+          />
+        </div>
+        <ul class="topic-list" data-topic-list data-lenis-prevent>
+          {categories.map((c) => (
+            <li data-topic={c.title.toLowerCase()}>
+              <a
+                href={`/blogs/news/tagged/${c.slug}`}
+                class:list={['topic-item', c.slug === active && 'is-active']}
+                aria-current={c.slug === active ? 'page' : undefined}
+              >
+                <span>{c.title}</span>
+                <span class="chip-count">{c.count}</span>
+              </a>
+            </li>
+          ))}
+        </ul>
+        <p class="topic-empty" data-topic-empty hidden>
+          No topics match.
+        </p>
+      </div>
+    </details>
+  )}
+</nav>
+
+<script>
+  function initTopicFilter() {
+    document.querySelectorAll<HTMLElement>('[data-topic-filter]').forEach((nav) => {
+      const details = nav.querySelector<HTMLDetailsElement>('details');
+      const input = nav.querySelector<HTMLInputElement>('[data-topic-search]');
+      const items = [...nav.querySelectorAll<HTMLLIElement>('[data-topic]')];
+      const empty = nav.querySelector<HTMLElement>('[data-topic-empty]');
+      if (!details || !input || nav.dataset.ready) return;
+      nav.dataset.ready = 'true';
+
+      input.addEventListener('input', () => {
+        const q = input.value.trim().toLowerCase();
+        let shown = 0;
+        for (const li of items) {
+          const match = !q || li.dataset.topic!.includes(q);
+          li.hidden = !match;
+          if (match) shown++;
+        }
+        if (empty) empty.hidden = shown > 0;
+      });
+      details.addEventListener('toggle', () => {
+        if (details.open) input.focus({ preventScroll: true });
+      });
+      // Enter in the search box opens the first visible match.
+      input.addEventListener('keydown', (e) => {
+        if (e.key !== 'Enter') return;
+        const first = items.find((li) => !li.hidden)?.querySelector('a');
+        if (first) {
+          e.preventDefault();
+          first.click();
+        }
+      });
+      document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && details.open) {
+          details.open = false;
+          details.querySelector('summary')?.focus();
+        }
+      });
+      document.addEventListener('click', (e) => {
+        if (details.open && !details.contains(e.target as Node)) details.open = false;
+      });
+    });
+  }
+  document.addEventListener('astro:page-load', initTopicFilter);
+</script>

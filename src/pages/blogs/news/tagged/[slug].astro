@@ -2,6 +2,7 @@
 import BaseLayout from '../../../../layouts/BaseLayout.astro';
 import PageHero from '../../../../components/layout/PageHero.astro';
 import PostCard from '../../../../components/blog/PostCard.astro';
+import TopicFilter from '../../../../components/blog/TopicFilter.astro';
 import PreloadSanityImage from '../../../../components/blog/PreloadSanityImage.astro';
 import Cta from '../../../../components/sections/Cta.astro';
 import { getAllPosts, getAllCategories } from '../../../../lib/sanity';
@@ -37,26 +38,7 @@ const { category, categories, posts } = Astro.props;
     />
   )}
   <PageHero eyebrow="Blog category" title={category.title} lead={category.description}>
-    <nav aria-label="Blog categories" class="mt-10">
-      <ul class="flex flex-wrap gap-2.5">
-        <li>
-          <a href="/blogs/news" class="chip-link">
-            All posts
-          </a>
-        </li>
-        {categories.map((c) => (
-          <li>
-            <a
-              href={`/blogs/news/tagged/${c.slug}`}
-              class:list={['chip-link', c.slug === category.slug && 'is-active']}
-              aria-current={c.slug === category.slug ? 'page' : undefined}
-            >
-              {c.title} <span class="text-muted">{c.count}</span>
-            </a>
-          </li>
-        ))}
-      </ul>
-    </nav>
+    <TopicFilter categories={categories} active={category.slug} />
   </PageHero>
   <section class="container-x pb-24 md:pb-32" aria-label="Posts">
     <ul class="grid gap-x-6 gap-y-14 sm:grid-cols-2 lg:grid-cols-3">

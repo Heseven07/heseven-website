@@ -2,6 +2,7 @@
 import BaseLayout from '../../../layouts/BaseLayout.astro';
 import PageHero from '../../../components/layout/PageHero.astro';
 import PostCard from '../../../components/blog/PostCard.astro';
+import TopicFilter from '../../../components/blog/TopicFilter.astro';
 import PreloadSanityImage from '../../../components/blog/PreloadSanityImage.astro';
 import Cta from '../../../components/sections/Cta.astro';
 import JsonLd from '../../../components/seo/JsonLd.astro';
@@ -45,24 +46,7 @@ const schema = {
     title="Insights for growing Shopify brands."
     lead="Practical lessons from 1000+ stores: conversion, speed, SEO and everything in between."
   >
-    {categories.length > 0 && (
-      <nav aria-label="Blog categories" class="mt-10">
-        <ul class="flex flex-wrap gap-2.5">
-          <li>
-            <a href="/blogs/news" class="chip-link is-active" aria-current="page">
-              All posts
-            </a>
-          </li>
-          {categories.map((c) => (
-            <li>
-              <a href={`/blogs/news/tagged/${c.slug}`} class="chip-link">
-                {c.title} <span class="text-muted">{c.count}</span>
-              </a>
-            </li>
-          ))}
-        </ul>
-      </nav>
-    )}
+    {categories.length > 0 && <TopicFilter categories={categories} />}
   </PageHero>
 
   <section class="container-x pb-24 md:pb-32" aria-label="Posts">
