@@ -12,12 +12,12 @@ import aquadoc from '../assets/work/aquadoc.jpg';
 import waldo from '../assets/work/waldo-watch.jpg';
 
 export const nav = [
-  { label: 'Services', href: '/services' },
+  { label: 'Services', href: '/pages/services' },
   { label: 'Work', href: '/#work' },
   { label: 'Process', href: '/#process' },
-  { label: 'About', href: '/#about' },
+  { label: 'About', href: '/pages/about' },
   { label: 'Blog', href: '/blogs/news' },
-  { label: 'Contact', href: '/contact' },
+  { label: 'Contact', href: '/pages/contact-us' },
 ];
 
 export const hero = {
@@ -27,7 +27,7 @@ export const hero = {
   titleAfter: 'growth partner',
   lead: 'We design, build and grow high-converting Shopify stores — from first wireframe to ongoing optimisation.',
   tags: ['UI/UX Design', 'Development', 'Ongoing Support'],
-  primary: { label: 'Get your quote', href: '/contact' },
+  primary: { label: 'Get your quote', href: '/pages/contact-us' },
   secondary: { label: 'See our work', href: '/#work' },
   stats: [
     { value: '1000+', label: 'E-commerce brands served' },
@@ -54,44 +54,52 @@ export const about = {
   body: 'Since 2018 we have helped founders and growing brands launch, migrate and scale on Shopify. Strategy, design, development and support live under one roof — so nothing gets lost in hand-offs.',
 };
 
+/** `slug` = page handle → URL /pages/<slug> (matches heseven.com's Shopify handles). */
 export type Service = { slug: string; title: string; summary: string; icon: string };
 export const services: Service[] = [
   {
-    slug: 'store-development',
+    slug: 'shopify-website-development-services',
     title: 'Store Development',
     summary: 'Custom Shopify and Shopify Plus themes built for speed, conversion and easy editing.',
     icon: icons.code,
   },
   {
-    slug: 'platform-migration',
+    slug: 'ecommerce-platform-migration-service',
     title: 'Platform Migration',
     summary: 'Move from WooCommerce, Magento or BigCommerce with zero data loss and SEO intact.',
     icon: icons.migrate,
   },
   {
-    slug: 'conversion-optimisation',
+    slug: 'conversion-rate-optimisation',
     title: 'Conversion Optimisation',
     summary: 'Research-led UX changes and A/B tests that turn more visitors into customers.',
     icon: icons.trend,
   },
   {
-    slug: 'speed-optimisation',
+    slug: 'speed-optimization',
     title: 'Speed Optimisation',
     summary: 'Core Web Vitals fixes, app audits and image pipelines for a faster storefront.',
     icon: icons.bolt,
   },
   {
-    slug: 'shopify-seo',
+    slug: 'shopify-seo-services',
     title: 'Shopify SEO',
     summary: 'Technical SEO, structured data and content that compounds organic revenue.',
     icon: icons.search,
   },
   {
-    slug: 'store-maintenance',
+    slug: 'shopify-maintenance-service',
     title: 'Store Maintenance',
     summary: 'A dedicated team on retainer for updates, fixes and continuous improvements.',
     icon: icons.clock,
   },
+];
+
+/** Other service pages linked from heseven.com's footer (same Shopify handles → /pages/<slug>). */
+export const moreServicePages = [
+  { title: 'Shopify Plus Development', slug: 'shopify-plus-development-agency' },
+  { title: 'Virtual Assistant for Shopify', slug: 'virtual-assistant-for-shopify' },
+  { title: 'White-label Shopify Development', slug: 'white-label-shopify-development' },
 ];
 
 export const results = {

@@ -1,0 +1,845 @@
+[
+  {
+    "_id": "page-shopify-website-development-services",
+    "_type": "landingPage",
+    "title": "Shopify Website Development Services",
+    "slug": {
+      "_type": "slug",
+      "current": "shopify-website-development-services"
+    },
+    "sections": [
+      {
+        "_type": "sectionHero",
+        "_key": "k1",
+        "eyebrow": "Service",
+        "heading": "Shopify Website Development Services",
+        "lead": "Create a powerful Shopify store with USA-focused website development services that improve customer experience and accelerate online growth.",
+        "primaryCta": {
+          "_type": "cta",
+          "label": "Get a quote",
+          "href": "/pages/contact-us"
+        },
+        "secondaryCta": {
+          "_type": "cta",
+          "label": "See our work",
+          "href": "/#work"
+        }
+      },
+      {
+        "_type": "sectionSteps",
+        "_key": "k2",
+        "eyebrow": "How we work",
+        "heading": "From kickoff to launch in 4–8 weeks.",
+        "steps": [
+          {
+            "_key": "k3",
+            "title": "Kickoff",
+            "body": "Goals, audience, KPIs and a clear scope — agreed in one focused session."
+          },
+          {
+            "_key": "k4",
+            "title": "Discovery & wireframes",
+            "body": "User journeys and low-fidelity layouts to validate structure early."
+          },
+          {
+            "_key": "k5",
+            "title": "Design",
+            "body": "High-fidelity, on-brand designs for every key template and breakpoint."
+          },
+          {
+            "_key": "k6",
+            "title": "Development",
+            "body": "Clean, fast Shopify code with QA on real devices at every step."
+          },
+          {
+            "_key": "k7",
+            "title": "Launch & support",
+            "body": "A smooth go-live, then ongoing optimisation and support."
+          }
+        ]
+      },
+      {
+        "_type": "sectionCta",
+        "_key": "k8",
+        "eyebrow": "Let's work together",
+        "heading": "Ready to transform your Shopify store?",
+        "body": "Tell us where you are and where you want to be. We reply within one business day.",
+        "cta": {
+          "_type": "cta",
+          "label": "Get in touch",
+          "href": "/pages/contact-us"
+        }
+      }
+    ],
+    "seo": {
+      "_type": "seo",
+      "title": "Top Shopify Website Development Services to Grow in the USA",
+      "description": "Create a powerful Shopify store with USA-focused website development services that improve customer experience and accelerate online growth."
+    },
+    "legacy": {
+      "shopifyId": "shopify-page-shopify-website-development-services",
+      "url": "https://www.heseven.com/pages/shopify-website-development-services",
+      "template": "shopify-website-development-service"
+    }
+  },
+  {
+    "_id": "page-ecommerce-platform-migration-service",
+    "_type": "landingPage",
+    "title": "eCommerce Platform Migration Service",
+    "slug": {
+      "_type": "slug",
+      "current": "ecommerce-platform-migration-service"
+    },
+    "sections": [
+      {
+        "_type": "sectionHero",
+        "_key": "k9",
+        "eyebrow": "Service",
+        "heading": "eCommerce Platform Migration Service",
+        "lead": "Move from WooCommerce, Magento or BigCommerce with zero data loss and SEO intact.",
+        "primaryCta": {
+          "_type": "cta",
+          "label": "Get a quote",
+          "href": "/pages/contact-us"
+        },
+        "secondaryCta": {
+          "_type": "cta",
+          "label": "See our work",
+          "href": "/#work"
+        }
+      },
+      {
+        "_type": "sectionSteps",
+        "_key": "ka",
+        "eyebrow": "How we work",
+        "heading": "From kickoff to launch in 4–8 weeks.",
+        "steps": [
+          {
+            "_key": "kb",
+            "title": "Kickoff",
+            "body": "Goals, audience, KPIs and a clear scope — agreed in one focused session."
+          },
+          {
+            "_key": "kc",
+            "title": "Discovery & wireframes",
+            "body": "User journeys and low-fidelity layouts to validate structure early."
+          },
+          {
+            "_key": "kd",
+            "title": "Design",
+            "body": "High-fidelity, on-brand designs for every key template and breakpoint."
+          },
+          {
+            "_key": "ke",
+            "title": "Development",
+            "body": "Clean, fast Shopify code with QA on real devices at every step."
+          },
+          {
+            "_key": "kf",
+            "title": "Launch & support",
+            "body": "A smooth go-live, then ongoing optimisation and support."
+          }
+        ]
+      },
+      {
+        "_type": "sectionCta",
+        "_key": "kg",
+        "eyebrow": "Let's work together",
+        "heading": "Ready to transform your Shopify store?",
+        "body": "Tell us where you are and where you want to be. We reply within one business day.",
+        "cta": {
+          "_type": "cta",
+          "label": "Get in touch",
+          "href": "/pages/contact-us"
+        }
+      }
+    ],
+    "seo": {
+      "_type": "seo",
+      "description": "Move from WooCommerce, Magento or BigCommerce with zero data loss and SEO intact."
+    },
+    "legacy": {
+      "shopifyId": "shopify-page-ecommerce-platform-migration-service",
+      "url": "https://www.heseven.com/pages/ecommerce-platform-migration-service"
+    }
+  },
+  {
+    "_id": "page-conversion-rate-optimisation",
+    "_type": "landingPage",
+    "title": "Conversion Rate Optimisation",
+    "slug": {
+      "_type": "slug",
+      "current": "conversion-rate-optimisation"
+    },
+    "sections": [
+      {
+        "_type": "sectionHero",
+        "_key": "kh",
+        "eyebrow": "Service",
+        "heading": "Conversion Rate Optimisation",
+        "lead": "Research-led UX changes and A/B tests that turn more visitors into customers.",
+        "primaryCta": {
+          "_type": "cta",
+          "label": "Get a quote",
+          "href": "/pages/contact-us"
+        },
+        "secondaryCta": {
+          "_type": "cta",
+          "label": "See our work",
+          "href": "/#work"
+        }
+      },
+      {
+        "_type": "sectionSteps",
+        "_key": "ki",
+        "eyebrow": "How we work",
+        "heading": "From kickoff to launch in 4–8 weeks.",
+        "steps": [
+          {
+            "_key": "kj",
+            "title": "Kickoff",
+            "body": "Goals, audience, KPIs and a clear scope — agreed in one focused session."
+          },
+          {
+            "_key": "kk",
+            "title": "Discovery & wireframes",
+            "body": "User journeys and low-fidelity layouts to validate structure early."
+          },
+          {
+            "_key": "kl",
+            "title": "Design",
+            "body": "High-fidelity, on-brand designs for every key template and breakpoint."
+          },
+          {
+            "_key": "km",
+            "title": "Development",
+            "body": "Clean, fast Shopify code with QA on real devices at every step."
+          },
+          {
+            "_key": "kn",
+            "title": "Launch & support",
+            "body": "A smooth go-live, then ongoing optimisation and support."
+          }
+        ]
+      },
+      {
+        "_type": "sectionCta",
+        "_key": "ko",
+        "eyebrow": "Let's work together",
+        "heading": "Ready to transform your Shopify store?",
+        "body": "Tell us where you are and where you want to be. We reply within one business day.",
+        "cta": {
+          "_type": "cta",
+          "label": "Get in touch",
+          "href": "/pages/contact-us"
+        }
+      }
+    ],
+    "seo": {
+      "_type": "seo",
+      "description": "Research-led UX changes and A/B tests that turn more visitors into customers."
+    }
+  },
+  {
+    "_id": "page-speed-optimization",
+    "_type": "landingPage",
+    "title": "Speed Optimization",
+    "slug": {
+      "_type": "slug",
+      "current": "speed-optimization"
+    },
+    "sections": [
+      {
+        "_type": "sectionHero",
+        "_key": "kp",
+        "eyebrow": "Service",
+        "heading": "Speed Optimization",
+        "lead": "Core Web Vitals fixes, app audits and image pipelines for a faster storefront.",
+        "primaryCta": {
+          "_type": "cta",
+          "label": "Get a quote",
+          "href": "/pages/contact-us"
+        },
+        "secondaryCta": {
+          "_type": "cta",
+          "label": "See our work",
+          "href": "/#work"
+        }
+      },
+      {
+        "_type": "sectionSteps",
+        "_key": "kq",
+        "eyebrow": "How we work",
+        "heading": "From kickoff to launch in 4–8 weeks.",
+        "steps": [
+          {
+            "_key": "kr",
+            "title": "Kickoff",
+            "body": "Goals, audience, KPIs and a clear scope — agreed in one focused session."
+          },
+          {
+            "_key": "ks",
+            "title": "Discovery & wireframes",
+            "body": "User journeys and low-fidelity layouts to validate structure early."
+          },
+          {
+            "_key": "kt",
+            "title": "Design",
+            "body": "High-fidelity, on-brand designs for every key template and breakpoint."
+          },
+          {
+            "_key": "ku",
+            "title": "Development",
+            "body": "Clean, fast Shopify code with QA on real devices at every step."
+          },
+          {
+            "_key": "kv",
+            "title": "Launch & support",
+            "body": "A smooth go-live, then ongoing optimisation and support."
+          }
+        ]
+      },
+      {
+        "_type": "sectionCta",
+        "_key": "kw",
+        "eyebrow": "Let's work together",
+        "heading": "Ready to transform your Shopify store?",
+        "body": "Tell us where you are and where you want to be. We reply within one business day.",
+        "cta": {
+          "_type": "cta",
+          "label": "Get in touch",
+          "href": "/pages/contact-us"
+        }
+      }
+    ],
+    "seo": {
+      "_type": "seo",
+      "description": "Core Web Vitals fixes, app audits and image pipelines for a faster storefront."
+    },
+    "legacy": {
+      "shopifyId": "shopify-page-speed-optimization",
+      "url": "https://www.heseven.com/pages/speed-optimization",
+      "template": "speed-optimization"
+    }
+  },
+  {
+    "_id": "page-shopify-seo-services",
+    "_type": "landingPage",
+    "title": "Shopify SEO Services",
+    "slug": {
+      "_type": "slug",
+      "current": "shopify-seo-services"
+    },
+    "sections": [
+      {
+        "_type": "sectionHero",
+        "_key": "kx",
+        "eyebrow": "Service",
+        "heading": "Shopify SEO Services",
+        "lead": "Technical SEO, structured data and content that compounds organic revenue.",
+        "primaryCta": {
+          "_type": "cta",
+          "label": "Get a quote",
+          "href": "/pages/contact-us"
+        },
+        "secondaryCta": {
+          "_type": "cta",
+          "label": "See our work",
+          "href": "/#work"
+        }
+      },
+      {
+        "_type": "sectionSteps",
+        "_key": "ky",
+        "eyebrow": "How we work",
+        "heading": "From kickoff to launch in 4–8 weeks.",
+        "steps": [
+          {
+            "_key": "kz",
+            "title": "Kickoff",
+            "body": "Goals, audience, KPIs and a clear scope — agreed in one focused session."
+          },
+          {
+            "_key": "k10",
+            "title": "Discovery & wireframes",
+            "body": "User journeys and low-fidelity layouts to validate structure early."
+          },
+          {
+            "_key": "k11",
+            "title": "Design",
+            "body": "High-fidelity, on-brand designs for every key template and breakpoint."
+          },
+          {
+            "_key": "k12",
+            "title": "Development",
+            "body": "Clean, fast Shopify code with QA on real devices at every step."
+          },
+          {
+            "_key": "k13",
+            "title": "Launch & support",
+            "body": "A smooth go-live, then ongoing optimisation and support."
+          }
+        ]
+      },
+      {
+        "_type": "sectionCta",
+        "_key": "k14",
+        "eyebrow": "Let's work together",
+        "heading": "Ready to transform your Shopify store?",
+        "body": "Tell us where you are and where you want to be. We reply within one business day.",
+        "cta": {
+          "_type": "cta",
+          "label": "Get in touch",
+          "href": "/pages/contact-us"
+        }
+      }
+    ],
+    "seo": {
+      "_type": "seo",
+      "description": "Technical SEO, structured data and content that compounds organic revenue."
+    }
+  },
+  {
+    "_id": "page-shopify-maintenance-service",
+    "_type": "landingPage",
+    "title": "Shopify Maintenance Service",
+    "slug": {
+      "_type": "slug",
+      "current": "shopify-maintenance-service"
+    },
+    "sections": [
+      {
+        "_type": "sectionHero",
+        "_key": "k15",
+        "eyebrow": "Service",
+        "heading": "Shopify Maintenance Service",
+        "lead": "Ensure smooth performance with our Shopify Maintenance Service—regular updates, security, and optimization keep your store functional, secure, and ready for growth.",
+        "primaryCta": {
+          "_type": "cta",
+          "label": "Get a quote",
+          "href": "/pages/contact-us"
+        },
+        "secondaryCta": {
+          "_type": "cta",
+          "label": "See our work",
+          "href": "/#work"
+        }
+      },
+      {
+        "_type": "sectionSteps",
+        "_key": "k16",
+        "eyebrow": "How we work",
+        "heading": "From kickoff to launch in 4–8 weeks.",
+        "steps": [
+          {
+            "_key": "k17",
+            "title": "Kickoff",
+            "body": "Goals, audience, KPIs and a clear scope — agreed in one focused session."
+          },
+          {
+            "_key": "k18",
+            "title": "Discovery & wireframes",
+            "body": "User journeys and low-fidelity layouts to validate structure early."
+          },
+          {
+            "_key": "k19",
+            "title": "Design",
+            "body": "High-fidelity, on-brand designs for every key template and breakpoint."
+          },
+          {
+            "_key": "k1a",
+            "title": "Development",
+            "body": "Clean, fast Shopify code with QA on real devices at every step."
+          },
+          {
+            "_key": "k1b",
+            "title": "Launch & support",
+            "body": "A smooth go-live, then ongoing optimisation and support."
+          }
+        ]
+      },
+      {
+        "_type": "sectionCta",
+        "_key": "k1c",
+        "eyebrow": "Let's work together",
+        "heading": "Ready to transform your Shopify store?",
+        "body": "Tell us where you are and where you want to be. We reply within one business day.",
+        "cta": {
+          "_type": "cta",
+          "label": "Get in touch",
+          "href": "/pages/contact-us"
+        }
+      }
+    ],
+    "seo": {
+      "_type": "seo",
+      "description": "Ensure smooth performance with our Shopify Maintenance Service—regular updates, security, and optimization keep your store functional, secure, and ready for growth."
+    },
+    "legacy": {
+      "shopifyId": "shopify-page-shopify-maintenance-service",
+      "url": "https://www.heseven.com/pages/shopify-maintenance-service",
+      "template": "shopify-maintenance"
+    }
+  },
+  {
+    "_id": "page-shopify-plus-development-agency",
+    "_type": "landingPage",
+    "title": "Shopify Plus Development Agency",
+    "slug": {
+      "_type": "slug",
+      "current": "shopify-plus-development-agency"
+    },
+    "sections": [
+      {
+        "_type": "sectionHero",
+        "_key": "k1d",
+        "eyebrow": "Service",
+        "heading": "Shopify Plus Development Agency",
+        "lead": "Heseven, a leading Shopify Plus Development Agency, builds custom Shopify stores with seamless UX and high conversions using scalable, flexible eCommerce solutions.",
+        "primaryCta": {
+          "_type": "cta",
+          "label": "Get a quote",
+          "href": "/pages/contact-us"
+        },
+        "secondaryCta": {
+          "_type": "cta",
+          "label": "See our work",
+          "href": "/#work"
+        }
+      },
+      {
+        "_type": "sectionSteps",
+        "_key": "k1e",
+        "eyebrow": "How we work",
+        "heading": "From kickoff to launch in 4–8 weeks.",
+        "steps": [
+          {
+            "_key": "k1f",
+            "title": "Kickoff",
+            "body": "Goals, audience, KPIs and a clear scope — agreed in one focused session."
+          },
+          {
+            "_key": "k1g",
+            "title": "Discovery & wireframes",
+            "body": "User journeys and low-fidelity layouts to validate structure early."
+          },
+          {
+            "_key": "k1h",
+            "title": "Design",
+            "body": "High-fidelity, on-brand designs for every key template and breakpoint."
+          },
+          {
+            "_key": "k1i",
+            "title": "Development",
+            "body": "Clean, fast Shopify code with QA on real devices at every step."
+          },
+          {
+            "_key": "k1j",
+            "title": "Launch & support",
+            "body": "A smooth go-live, then ongoing optimisation and support."
+          }
+        ]
+      },
+      {
+        "_type": "sectionCta",
+        "_key": "k1k",
+        "eyebrow": "Let's work together",
+        "heading": "Ready to transform your Shopify store?",
+        "body": "Tell us where you are and where you want to be. We reply within one business day.",
+        "cta": {
+          "_type": "cta",
+          "label": "Get in touch",
+          "href": "/pages/contact-us"
+        }
+      }
+    ],
+    "seo": {
+      "_type": "seo",
+      "description": "Heseven, a leading Shopify Plus Development Agency, builds custom Shopify stores with seamless UX and high conversions using scalable, flexible eCommerce solutions."
+    },
+    "legacy": {
+      "shopifyId": "shopify-page-shopify-plus-development-agency",
+      "url": "https://www.heseven.com/pages/shopify-plus-development-agency",
+      "template": "shopify-plus-development"
+    }
+  },
+  {
+    "_id": "page-virtual-assistant-for-shopify",
+    "_type": "landingPage",
+    "title": "Virtual Assistant for Shopify",
+    "slug": {
+      "_type": "slug",
+      "current": "virtual-assistant-for-shopify"
+    },
+    "sections": [
+      {
+        "_type": "sectionHero",
+        "_key": "k1l",
+        "eyebrow": "Service",
+        "heading": "Virtual Assistant for Shopify",
+        "lead": "Scale your Shopify store with a Virtual Assistant for Shopify—manage products, customer support & marketing while you focus on growing your eCommerce business.",
+        "primaryCta": {
+          "_type": "cta",
+          "label": "Get a quote",
+          "href": "/pages/contact-us"
+        },
+        "secondaryCta": {
+          "_type": "cta",
+          "label": "See our work",
+          "href": "/#work"
+        }
+      },
+      {
+        "_type": "sectionSteps",
+        "_key": "k1m",
+        "eyebrow": "How we work",
+        "heading": "From kickoff to launch in 4–8 weeks.",
+        "steps": [
+          {
+            "_key": "k1n",
+            "title": "Kickoff",
+            "body": "Goals, audience, KPIs and a clear scope — agreed in one focused session."
+          },
+          {
+            "_key": "k1o",
+            "title": "Discovery & wireframes",
+            "body": "User journeys and low-fidelity layouts to validate structure early."
+          },
+          {
+            "_key": "k1p",
+            "title": "Design",
+            "body": "High-fidelity, on-brand designs for every key template and breakpoint."
+          },
+          {
+            "_key": "k1q",
+            "title": "Development",
+            "body": "Clean, fast Shopify code with QA on real devices at every step."
+          },
+          {
+            "_key": "k1r",
+            "title": "Launch & support",
+            "body": "A smooth go-live, then ongoing optimisation and support."
+          }
+        ]
+      },
+      {
+        "_type": "sectionCta",
+        "_key": "k1s",
+        "eyebrow": "Let's work together",
+        "heading": "Ready to transform your Shopify store?",
+        "body": "Tell us where you are and where you want to be. We reply within one business day.",
+        "cta": {
+          "_type": "cta",
+          "label": "Get in touch",
+          "href": "/pages/contact-us"
+        }
+      }
+    ],
+    "seo": {
+      "_type": "seo",
+      "description": "Scale your Shopify store with a Virtual Assistant for Shopify—manage products, customer support & marketing while you focus on growing your eCommerce business."
+    },
+    "legacy": {
+      "shopifyId": "shopify-page-virtual-assistant-for-shopify",
+      "url": "https://www.heseven.com/pages/virtual-assistant-for-shopify",
+      "template": "virtual-assistant-for-sho"
+    }
+  },
+  {
+    "_id": "page-white-label-shopify-development",
+    "_type": "landingPage",
+    "title": "White-label Shopify development",
+    "slug": {
+      "_type": "slug",
+      "current": "white-label-shopify-development"
+    },
+    "sections": [
+      {
+        "_type": "sectionHero",
+        "_key": "k1t",
+        "eyebrow": "Service",
+        "heading": "White-label Shopify development",
+        "lead": "White-label Shopify development is the best way for a digital agency to scale its business and improve services without hiring an internal team.",
+        "primaryCta": {
+          "_type": "cta",
+          "label": "Get a quote",
+          "href": "/pages/contact-us"
+        },
+        "secondaryCta": {
+          "_type": "cta",
+          "label": "See our work",
+          "href": "/#work"
+        }
+      },
+      {
+        "_type": "sectionSteps",
+        "_key": "k1u",
+        "eyebrow": "How we work",
+        "heading": "From kickoff to launch in 4–8 weeks.",
+        "steps": [
+          {
+            "_key": "k1v",
+            "title": "Kickoff",
+            "body": "Goals, audience, KPIs and a clear scope — agreed in one focused session."
+          },
+          {
+            "_key": "k1w",
+            "title": "Discovery & wireframes",
+            "body": "User journeys and low-fidelity layouts to validate structure early."
+          },
+          {
+            "_key": "k1x",
+            "title": "Design",
+            "body": "High-fidelity, on-brand designs for every key template and breakpoint."
+          },
+          {
+            "_key": "k1y",
+            "title": "Development",
+            "body": "Clean, fast Shopify code with QA on real devices at every step."
+          },
+          {
+            "_key": "k1z",
+            "title": "Launch & support",
+            "body": "A smooth go-live, then ongoing optimisation and support."
+          }
+        ]
+      },
+      {
+        "_type": "sectionCta",
+        "_key": "k20",
+        "eyebrow": "Let's work together",
+        "heading": "Ready to transform your Shopify store?",
+        "body": "Tell us where you are and where you want to be. We reply within one business day.",
+        "cta": {
+          "_type": "cta",
+          "label": "Get in touch",
+          "href": "/pages/contact-us"
+        }
+      }
+    ],
+    "seo": {
+      "_type": "seo",
+      "description": "White-label Shopify development is the best way for a digital agency to scale its business and improve services without hiring an internal team."
+    },
+    "legacy": {
+      "shopifyId": "shopify-page-white-label-shopify-development",
+      "url": "https://www.heseven.com/pages/white-label-shopify-development",
+      "template": "white-label-shopify-devel"
+    }
+  },
+  {
+    "_id": "page-about",
+    "_type": "landingPage",
+    "title": "About",
+    "slug": {
+      "_type": "slug",
+      "current": "about"
+    },
+    "sections": [
+      {
+        "_type": "sectionHero",
+        "_key": "k21",
+        "eyebrow": "About Heseven",
+        "heading": "A Shopify agency that treats your store like a product, not a project.",
+        "lead": "Since 2018 we have helped founders and growing brands launch, migrate and scale on Shopify. Strategy, design, development and support live under one roof — so nothing gets lost in hand-offs.",
+        "primaryCta": {
+          "_type": "cta",
+          "label": "Get a quote",
+          "href": "/pages/contact-us"
+        },
+        "secondaryCta": {
+          "_type": "cta",
+          "label": "See our work",
+          "href": "/#work"
+        }
+      },
+      {
+        "_type": "sectionStats",
+        "_key": "k22",
+        "items": [
+          {
+            "_key": "k23",
+            "value": "1000+",
+            "label": "E-commerce brands served"
+          },
+          {
+            "_key": "k24",
+            "value": "2018",
+            "label": "Shopify Partner since"
+          },
+          {
+            "_key": "k25",
+            "value": "4",
+            "label": "Global time zones"
+          },
+          {
+            "_key": "k26",
+            "value": "5.0",
+            "label": "Average client rating"
+          }
+        ]
+      },
+      {
+        "_type": "sectionFeatures",
+        "_key": "k27",
+        "eyebrow": "Why Heseven",
+        "heading": "Senior people, small-team focus, global reach.",
+        "columns": 3,
+        "items": [
+          {
+            "_key": "k28",
+            "icon": "globe",
+            "title": "Global expertise",
+            "body": "Brands across the UK, US, Europe, Australia and India."
+          },
+          {
+            "_key": "k29",
+            "icon": "sliders",
+            "title": "Tailored solutions",
+            "body": "No templates-in-disguise. Built around your products and customers."
+          },
+          {
+            "_key": "k2a",
+            "icon": "sparkles",
+            "title": "Creative team",
+            "body": "Designers and developers who sweat the details together."
+          },
+          {
+            "_key": "k2b",
+            "icon": "layers",
+            "title": "End-to-end service",
+            "body": "Strategy, design, build, SEO and support under one roof."
+          },
+          {
+            "_key": "k2c",
+            "icon": "heart",
+            "title": "100% satisfaction",
+            "body": "We are not done until you are proud to share your store."
+          }
+        ]
+      },
+      {
+        "_type": "sectionCta",
+        "_key": "k2d",
+        "eyebrow": "Let's work together",
+        "heading": "Ready to transform your Shopify store?",
+        "body": "Tell us where you are and where you want to be. We reply within one business day.",
+        "cta": {
+          "_type": "cta",
+          "label": "Get in touch",
+          "href": "/pages/contact-us"
+        }
+      }
+    ],
+    "seo": {
+      "_type": "seo",
+      "title": "About Heseven - Shopify design and development agency - Shopify expert",
+      "description": "Heseven is a Shopify Plus Partner agency in London designing, building and growing e-commerce brands since 2018."
+    },
+    "legacy": {
+      "shopifyId": "shopify-page-about",
+      "url": "https://www.heseven.com/pages/about",
+      "template": "about"
+    }
+  }
+]

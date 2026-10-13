@@ -1,0 +1,23 @@
+---
+import Arrow from '../ui/Arrow.astro';
+import type { Cta } from '../../lib/sanity';
+
+interface Props {
+  cta?: Cta;
+  variant?: 'primary' | 'ghost';
+  class?: string;
+}
+const { cta, variant = 'primary', class: className = '' } = Astro.props;
+const external = cta ? /^https?:\/\//.test(cta.href) : false;
+---
+
+{cta?.label && cta?.href && (
+  <a
+    href={cta.href}
+    class:list={['btn btn-lg', variant === 'primary' ? 'btn-primary' : 'btn-ghost', className]}
+    {...(external ? { target: '_blank', rel: 'noopener' } : {})}
+    data-magnetic={variant === 'primary' ? '' : undefined}
+  >
+    {cta.label} {variant === 'primary' && <Arrow />}
+  </a>
+)}

@@ -1,0 +1,35 @@
+---
+/** Renders a Portable Text body (text as HTML, images via <SanityImage>). Used by blog posts and landing pages. */
+import SanityImage from './SanityImage.astro';
+import { toSegments } from '../../lib/portable-text';
+import type { PortableBlock } from '../../lib/sanity';
+
+interface Props {
+  blocks: PortableBlock[];
+  class?: string;
+  /** `sizes` for inline images. */
+  imageSizes?: string;
+}
+const { blocks, class: className = '', imageSizes = '(min-width: 1024px) 66vw, 100vw' } = Astro.props;
+const segments = toSegments(blocks);
+---
+
+<div class:list={['prose min-w-0', className]}>
+  {segments.map((seg) =>
+    seg.type === 'html' ? (
+      <Fragment set:html={seg.html} />
+    ) : (
+      <figure>
+        <SanityImage
+          image={seg.block as never}
+          width={1280}
+          sizes={imageSizes}
+          class="w-full rounded-2xl border border-line"
+        />
+        {(seg.block as { caption?: string }).caption && (
+          <figcaption>{(seg.block as { caption?: string }).caption}</figcaption>
+        )}
+      </figure>
+    ),
+  )}
+</div>

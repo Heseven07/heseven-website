@@ -14,6 +14,7 @@ export default defineConfig({
         S.list()
           .title('Content')
           .items([
+            S.documentTypeListItem('landingPage').title('Landing pages'),
             S.documentTypeListItem('post').title('Blog posts'),
             S.divider(),
             S.documentTypeListItem('category').title('Categories'),

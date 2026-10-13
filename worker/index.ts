@@ -5,7 +5,7 @@
  * POST /api/contact
  *   Spam: honeypot field, minimum fill time, same-origin check, Cloudflare Turnstile (if configured).
  *   Delivery: Resend (https://resend.com) → CONTACT_TO, with reply-to set to the visitor.
- *   Accepts JSON (JS form) or urlencoded (no-JS fallback → 303 redirect to /thanks/).
+ *   Accepts JSON (JS form) or urlencoded (no-JS fallback → 303 redirect to /pages/thank-you).
  *
  * Secrets (wrangler secret put …): RESEND_API_KEY, TURNSTILE_SECRET_KEY
  * Vars (wrangler.jsonc):           CONTACT_TO, CONTACT_FROM
@@ -109,7 +109,10 @@ async function handleContact(request: Request, env: Env): Promise<Response> {
   const done = (status: number, body: Record<string, unknown>) =>
     wantsJson
       ? json(status, body)
-      : Response.redirect(new URL(status < 300 ? '/thanks' : '/contact?error=1', request.url).href, 303);
+      : Response.redirect(
+          new URL(status < 300 ? '/pages/thank-you' : '/pages/contact-us?error=1', request.url).href,
+          303,
+        );
 
   // Same-origin only (blocks other sites posting into the form).
   const origin = request.headers.get('origin');

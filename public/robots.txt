@@ -1,5 +1,5 @@
 User-agent: *
 Allow: /
-Disallow: /thanks
+Disallow: /pages/thank-you
 
 Sitemap: https://heseven.com/sitemap-index.xml

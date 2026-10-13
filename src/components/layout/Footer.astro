@@ -1,7 +1,7 @@
 ---
 import Logo from '../ui/Logo.astro';
 import { SITE } from '../../config/site';
-import { nav, services } from '../../data/home';
+import { nav, services, moreServicePages } from '../../data/home';
 
 const year = new Date().getFullYear();
 const trackingEnabled = Boolean(import.meta.env.PUBLIC_GA4_ID || import.meta.env.PUBLIC_META_PIXEL_ID);
@@ -48,9 +48,9 @@ const trackingEnabled = Boolean(import.meta.env.PUBLIC_GA4_ID || import.meta.env
         <nav aria-label="Services" class="md:col-span-3">
           <h2 class="footer-title">Services</h2>
           <ul class="footer-list">
-            {services.map((s) => (
+            {[...services, ...moreServicePages].map((s) => (
               <li>
-                <a href={`/services/${s.slug}`}>{s.title}</a>
+                <a href={`/pages/${s.slug}`}>{s.title}</a>
               </li>
             ))}
           </ul>

@@ -8,7 +8,7 @@ import { services } from '../../data/home';
 <section id="services" class="container-x scroll-mt-24 py-24 md:py-32" aria-labelledby="services-title">
   <div class="flex flex-col justify-between gap-8 md:flex-row md:items-end">
     <SectionHeading id="services-title" eyebrow="Services" title="Everything your store needs to grow." />
-    <a href="/services" class="btn btn-ghost shrink-0 self-start md:self-auto" data-reveal>
+    <a href="/pages/services" class="btn btn-ghost shrink-0 self-start md:self-auto" data-reveal>
       All services <Arrow />
     </a>
   </div>
@@ -16,7 +16,7 @@ import { services } from '../../data/home';
     {services.map((s, i) => (
       <li data-reveal style={`--reveal-delay:${(i % 3) * 80}`}>
         <a
-          href={`/services/${s.slug}`}
+          href={`/pages/${s.slug}`}
           class="card card-spotlight group flex h-full flex-col p-8"
           data-spotlight
         >

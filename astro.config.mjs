@@ -2,6 +2,7 @@
 import { defineConfig, fontProviders } from 'astro/config';
 import sitemap from '@astrojs/sitemap';
 import tailwindcss from '@tailwindcss/vite';
+import pruneShadowedRedirects from './scripts/prune-redirects.mjs';
 
 // https://astro.build/config
 export default defineConfig({
@@ -22,8 +23,10 @@ export default defineConfig({
     defaultStrategy: 'hover',
   },
   integrations: [
+    // Drops /pages/<handle> fallback redirects for pages that exist in this build.
+    pruneShadowedRedirects(),
     sitemap({
-      filter: (page) => !/\/(thanks|styleguide)\/?$/.test(page),
+      filter: (page) => !/\/(thank-you|styleguide)\/?$/.test(page),
     }),
   ],
   // Self-hosted, latin-only, ONE weight per family (both preloaded) — keeps LCP font-swap off the critical path.

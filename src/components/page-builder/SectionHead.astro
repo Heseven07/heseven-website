@@ -1,0 +1,23 @@
+---
+/** Eyebrow + h2 for page-builder sections (h2 so the page keeps one h1). */
+interface Props {
+  id: string;
+  eyebrow?: string;
+  heading?: string;
+  lead?: string;
+  center?: boolean;
+}
+const { id, eyebrow, heading, lead, center = false } = Astro.props;
+---
+
+{(eyebrow || heading) && (
+  <div class:list={['max-w-3xl', center && 'mx-auto text-center']} data-reveal>
+    {eyebrow && <p class="eyebrow">{eyebrow}</p>}
+    {heading && (
+      <h2 id={id} class="mt-4 text-4xl font-bold sm:text-5xl">
+        {heading}
+      </h2>
+    )}
+    {lead && <p class="mt-5 text-lg text-muted">{lead}</p>}
+  </div>
+)}
