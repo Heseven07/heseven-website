@@ -1,59 +1,61 @@
-# 301s from old Shopify URLs that don't exist on the new site → closest real page.
-# Blog URLs (/blogs/news, /blogs/news/<post>, /blogs/news/tagged/<tag>, /blogs/news.atom)
-# are IDENTICAL on the new site, so they need no redirect.
-# Source of truth for the old URL list: heseven.com/sitemap.xml (pages + products), Oct 2026.
-# Cloudflare format: <from> <to> <status>
+# Redirects (Cloudflare format: <from> <to> <status>)
+#
+# The site uses heseven.com's Shopify URL structure: pages live at /pages/<handle>, the blog at /blogs/news.
+# Lines for /pages/<handle> below are FALLBACKS: at build time scripts/prune-redirects.mjs removes any
+# line whose page actually exists, so publishing a page in Sanity replaces its redirect automatically
+# (and unpublishing it brings the redirect back — the URL never 404s).
 
-# Contact / lead pages
-/pages/contact-us                                        /contact                        301
-/pages/get-in-touch                                      /contact                        301
-/pages/new-lead                                          /contact                        301
-/pages/ready-to-grow                                     /contact                        301
-/pages/landing-page                                      /contact                        301
-/pages/thank-you                                         /                               301
+# Short URLs used during development → Shopify-style URLs
+/contact                                                 /pages/contact-us                              301
+/about                                                   /pages/about                                   301
+/thanks                                                  /pages/thank-you                               301
+/services                                                /pages/services                                301
+/services/store-development                              /pages/shopify-website-development-services   301
+/services/platform-migration                             /pages/ecommerce-platform-migration-service   301
+/services/conversion-optimisation                        /pages/conversion-rate-optimisation           301
+/services/speed-optimisation                             /pages/speed-optimization                     301
+/services/shopify-seo                                    /pages/shopify-seo-services                   301
+/services/store-maintenance                              /pages/shopify-maintenance-service            301
+/blog                                                    /blogs/news                                    301
 
-# Company (TODO: point /pages/about at /about once the About page exists)
-/pages/about                                             /                               301
-/pages/faqs                                              /                               301
-/pages/our-work                                          /                               301
+# Fallbacks for Shopify pages until they're built in Sanity (pruned automatically once they exist)
+/pages/about                                             /                                              301
+/pages/faqs                                              /                                              301
+/pages/our-work                                          /                                              301
+/pages/get-in-touch                                      /pages/contact-us                              301
+/pages/new-lead                                          /pages/contact-us                              301
+/pages/ready-to-grow                                     /pages/contact-us                              301
+/pages/landing-page                                      /pages/contact-us                              301
+/pages/shopify-plus-development-agency                   /pages/shopify-website-development-services   301
+/pages/shopify-theme-development-services                /pages/shopify-website-development-services   301
+/pages/shopify-store-design-services                     /pages/shopify-website-development-services   301
+/pages/top-rated-shopify-store-design-services-uk        /pages/shopify-website-development-services   301
+/pages/b2b                                               /pages/shopify-website-development-services   301
+/pages/b2b-ecommerce-development-services                /pages/shopify-website-development-services   301
+/pages/b2b-theme-development-services                    /pages/shopify-website-development-services   301
+/pages/top-b2b-ecommerce-development-services-in-the-uk  /pages/shopify-website-development-services   301
+/pages/premium-b2b-ecommerce-theme-development-usa       /pages/shopify-website-development-services   301
+/pages/cosmetics-ecommerce-websites                      /pages/shopify-website-development-services   301
+/pages/health-and-wellness-ecommerce                     /pages/shopify-website-development-services   301
+/pages/clothing-ecommerce-website                        /pages/shopify-website-development-services   301
+/pages/furniture-ecommerce-website                       /pages/shopify-website-development-services   301
+/pages/ecommerce-fmcg-industry                           /pages/shopify-website-development-services   301
+/pages/ecommerce-store-for-timeless-collection           /pages/shopify-website-development-services   301
+/pages/move-to-shopify-plus-elevate-your-e-commerce-game /pages/ecommerce-platform-migration-service   301
+/pages/speed                                             /pages/speed-optimization                     301
+/pages/retainer                                          /pages/shopify-maintenance-service            301
+/pages/virtual-assistant-for-shopify                     /pages/services                                301
+/pages/white-label-shopify-development                   /pages/services                                301
 
-# Services
-/pages/shopify-plus-development-agency                   /services/store-development     301
-/pages/shopify-website-development-services              /services/store-development     301
-/pages/shopify-theme-development-services                /services/store-development     301
-/pages/shopify-store-design-services                     /services/store-development     301
-/pages/top-rated-shopify-store-design-services-uk        /services/store-development     301
-/pages/b2b                                               /services/store-development     301
-/pages/b2b-ecommerce-development-services                /services/store-development     301
-/pages/b2b-theme-development-services                    /services/store-development     301
-/pages/top-b2b-ecommerce-development-services-in-the-uk  /services/store-development     301
-/pages/premium-b2b-ecommerce-theme-development-usa       /services/store-development     301
-/pages/move-to-shopify-plus-elevate-your-e-commerce-game /services/platform-migration    301
-/pages/ecommerce-platform-migration-service              /services/platform-migration    301
-/pages/speed                                             /services/speed-optimisation    301
-/pages/speed-optimization                                /services/speed-optimisation    301
-/pages/shopify-maintenance-service                       /services/store-maintenance     301
-/pages/retainer                                          /services/store-maintenance     301
-/pages/virtual-assistant-for-shopify                     /services                       301
-/pages/white-label-shopify-development                   /services                       301
-
-# Industry landing pages
-/pages/cosmetics-ecommerce-websites                      /services/store-development     301
-/pages/health-and-wellness-ecommerce                     /services/store-development     301
-/pages/clothing-ecommerce-website                        /services/store-development     301
-/pages/furniture-ecommerce-website                       /services/store-development     301
-/pages/ecommerce-fmcg-industry                           /services/store-development     301
-/pages/ecommerce-store-for-timeless-collection           /services/store-development     301
-
-# Shopify utility pages
-/pages/usd                                               /                               301
-/pages/gbp                                               /                               301
-/pages/partner-links                                     /                               301
-/pages/html-sitemap*                                     /                               301
+# Shopify utility pages (never rebuilt)
+/pages/usd                                               /                                              301
+/pages/gbp                                               /                                              301
+/pages/partner-links                                     /                                              301
+/pages/html-sitemap*                                     /                                              301
 
 # Shopify store-only routes
-/collections/*                                           /                               301
-/products/*                                              /contact                        301
-/cart                                                    /                               301
-/account/*                                               /                               301
-/search                                                  /                               301
+/collections/*                                           /                                              301
+/products/*                                              /pages/contact-us                              301
+/cart                                                    /                                              301
+/account/*                                               /                                              301
+/search                                                  /                                              301

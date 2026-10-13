@@ -73,6 +73,17 @@ npm run dev      # local Studio at http://localhost:3333
 npm run deploy   # publish Studio to heseven.sanity.studio
 ```
 
+## Pages (Shopify URL structure)
+
+Every page lives at **`/pages/<handle>`**, matching heseven.com's Shopify URLs (contact is `/pages/contact-us`,
+about is `/pages/about`). Landing/service pages are built in **Sanity → Landing pages** with the page builder
+(`studio/schemaTypes/sections/`, rendered by `src/components/page-builder/`). Code pages in `src/pages/pages/`
+(`contact-us`, `services`, `thank-you`) take precedence over Sanity pages with the same slug.
+
+`public/_redirects` keeps fallbacks for old Shopify handles; `scripts/prune-redirects.mjs` drops any fallback whose
+page exists in the build, so publishing a page with the old handle replaces its redirect automatically.
+Inventory and migration checklist: `docs/landing-pages.md`.
+
 ## Contact form
 
 `/contact/` is a 4-step quote form (`src/components/contact/QuoteForm.astro`, logic in `src/scripts/quote-form.ts`).

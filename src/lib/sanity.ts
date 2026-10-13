@@ -123,3 +123,47 @@ export async function getAllCategories(): Promise<(Category & { count: number })
 
 export const formatDate = (iso: string) =>
   new Date(iso).toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric' });
+
+// ---------- Landing pages (/pages/<slug>) ----------
+export interface Cta {
+  label: string;
+  href: string;
+}
+export interface PageSection {
+  _type: string;
+  _key: string;
+  eyebrow?: string;
+  heading?: string;
+  [key: string]: unknown;
+}
+export interface LandingPage {
+  _id: string;
+  _updatedAt: string;
+  title: string;
+  slug: string;
+  sections: PageSection[];
+  seo?: Post['seo'];
+  legacy?: { shopifyId: string; url: string; template?: string };
+}
+
+const sectionFields = `
+  ...,
+  image{ ${imageFields} },
+  body[]{ ..., _type == "image" => { ${imageFields} } },
+  items[]{ ..., image{ ${imageFields} } }
+`;
+
+let pageCache: Promise<LandingPage[]> | null = null;
+
+/** All published landing pages. Fetched once per build. */
+export function getAllLandingPages(): Promise<LandingPage[]> {
+  pageCache ??= sanity.fetch<LandingPage[]>(
+    `*[_type == "landingPage" && defined(slug.current)] | order(title asc){
+      _id, _updatedAt, title, "slug": slug.current,
+      "sections": coalesce(sections[]{ ${sectionFields} }, []),
+      seo{ title, description, noindex, ogImage{ ${imageFields} } },
+      legacy{ shopifyId, url, template }
+    }`,
+  );
+  return pageCache;
+}

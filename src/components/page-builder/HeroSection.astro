@@ -1,0 +1,50 @@
+---
+import SanityImage from '../blog/SanityImage.astro';
+import CtaButton from './CtaButton.astro';
+import type { PageSection, Cta, SanityImage as Img } from '../../lib/sanity';
+
+interface Props {
+  section: PageSection;
+  /** Fallback heading (page title) if the section has none. */
+  title: string;
+}
+const { section, title } = Astro.props;
+const s = section as PageSection & { lead?: string; primaryCta?: Cta; secondaryCta?: Cta; image?: Img };
+---
+
+<section class="relative isolate z-10" aria-labelledby={`h-${s._key}`}>
+  <div class="hero-bg" aria-hidden="true">
+    <div class="hero-glow"></div>
+    <div class="hero-grid"></div>
+  </div>
+  <div
+    class:list={[
+      'container-x pt-36 pb-16 md:pt-44 md:pb-24',
+      s.image && 'grid items-center gap-12 lg:grid-cols-2',
+    ]}
+  >
+    <div>
+      {s.eyebrow && <p class="eyebrow">{s.eyebrow}</p>}
+      <h1 id={`h-${s._key}`} class="mt-5 max-w-4xl text-5xl leading-[1.02] font-bold sm:text-7xl">
+        {s.heading || title}
+      </h1>
+      {s.lead && <p class="mt-6 max-w-2xl text-lg text-muted sm:text-xl">{s.lead}</p>}
+      {(s.primaryCta || s.secondaryCta) && (
+        <div class="mt-10 flex flex-wrap gap-3">
+          <CtaButton cta={s.primaryCta} />
+          <CtaButton cta={s.secondaryCta} variant="ghost" />
+        </div>
+      )}
+    </div>
+    {s.image && (
+      <SanityImage
+        image={s.image}
+        width={1200}
+        sizes="(min-width: 1024px) 50vw, 100vw"
+        loading="eager"
+        fetchpriority="high"
+        class="w-full rounded-[2rem] border border-line"
+      />
+    )}
+  </div>
+</section>

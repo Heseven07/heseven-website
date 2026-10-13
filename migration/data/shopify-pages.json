@@ -1,0 +1,569 @@
+{
+  "data": {
+    "pages": {
+      "nodes": [
+        {
+          "handle": "usd",
+          "title": "Payment",
+          "templateSuffix": "usd",
+          "isPublished": true,
+          "body": "",
+          "bodySummary": "",
+          "updatedAt": "2021-12-10T08:36:59Z",
+          "seoTitle": null,
+          "seoDesc": null
+        },
+        {
+          "handle": "gbp",
+          "title": "Payment",
+          "templateSuffix": "gbp",
+          "isPublished": true,
+          "body": "",
+          "bodySummary": "",
+          "updatedAt": "2021-12-10T08:36:34Z",
+          "seoTitle": null,
+          "seoDesc": null
+        },
+        {
+          "handle": "about",
+          "title": "About",
+          "templateSuffix": "about",
+          "isPublished": true,
+          "body": "<p>With nearly a decade of experience in creating online shops within the E-commerce market, Heseven has created a reputation among designers and product creators for being the best thing to happen to merchants since online sales itself. Heseven helps merchants from around the world set up and develop beautifully designed webpages on Shopify. Our clients see the value of what we do, and how it lifts and showcases their unique and amazing talents. We optimize our client’s Shopify pages with a custom-tailored theme that’s in line with the values of their brand, and the products they sell. Bringing brand recognition for their consumer base, while helping them stand apart from the crowd on the Shopify platform.</p>\n<p>Since 2016, our mission has been to find creative solutions for specialized designers, creators, and fashion brands, making the most out of online platforms. Our main focus has always been to bring passion and talents together in pursuit of increasing our client’s bottom line. We believe in our strategic long-term growth tactics so much so that we don’t nickel and dime our clients by charging hourly. Rather, we create a partnership between our agency and your brand that proves its worth. We’re straightforward in our strategies because our years of experience have helped specialized designers discover new ways to increase sustainability in their industry and become leaders in their field.</p>\n<p>We hope to hear from you soon.</p>",
+          "bodySummary": "With nearly a decade of experience in creating online shops within the E-commerce market, Heseven has created a reputation among designers and prod...",
+          "updatedAt": "2024-05-26T14:06:12Z",
+          "seoTitle": { "value": "About Heseven - Shopify design and development agency - Shopify expert" },
+          "seoDesc": null
+        },
+        {
+          "handle": "contact-us",
+          "title": "Contact Us",
+          "templateSuffix": "contact",
+          "isPublished": true,
+          "body": "",
+          "bodySummary": "",
+          "updatedAt": "2024-05-26T14:04:52Z",
+          "seoTitle": { "value": "Contact us for our Shopify design and development service quote" },
+          "seoDesc": {
+            "value": "Connect with us effortlessly through our Contact Us page. Whether you have inquiries about our services, partnership opportunities, or need assistance, our team is here to help. Reach out today to start a conversation and explore how we can collaborate to achieve your goals."
+          }
+        },
+        {
+          "handle": "citizenm",
+          "title": "CitizenM",
+          "templateSuffix": "citizenm",
+          "isPublished": false,
+          "body": "<meta charset=\"utf-8\"><meta charset=\"utf-8\">\n<div class=\"flex flex-grow flex-col max-w-full\">\n<div data-message-author-role=\"assistant\" data-message-id=\"6f9185e0-457f-433e-8c95-ef93c7c5f10c\" dir=\"auto\" class=\"min-h-[20px] text-message flex flex-col items-start whitespace-pre-wrap break-words [.text-message+&amp;]:mt-5 juice:w-full juice:items-end overflow-x-auto gap-2\">\n<div class=\"flex w-full flex-col gap-1 juice:empty:hidden juice:first:pt-[3px]\">\n<div class=\"markdown prose w-full break-words dark:prose-invert dark\">\n<p><strong>Background:</strong> CitizenM, a leading global chain of lifestyle hotels, partnered with SEKO Logistics to optimise their hotel supply procurement process across their extensive network of locations. With a commitment to delivering exceptional guest experiences, citizenM aimed to streamline the sourcing and purchasing of hotel supplies, including linens, amenities, and furnishings, for their properties worldwide. SEKO Logistics, a trusted logistics provider, sought a reliable partner to develop a tailored B2B e-commerce platform to meet citizenM's unique needs.</p>\n<p><strong>Challenge:</strong> The challenge presented by SEKO Logistics was to develop a B2B e-commerce platform specifically for citizenM's hotel supply procurement. The platform needed to offer a comprehensive range of hotel supply products while providing a seamless ordering experience for hotel managers and staff. Additionally, the platform required integration with SEKO Logistics' systems to facilitate inventory management and order processing on behalf of citizenM.</p>\n<p><strong>Solution:</strong> In collaboration with SEKO Logistics and citizenM's team, we designed and implemented a custom B2B e-commerce platform tailored to the hotel supply procurement needs of citizenM. The platform featured an intuitive interface that allowed hotel managers to easily browse, search, and order products tailored to their property's needs. We developed a robust product catalog showcasing a wide range of hotel supply items, including linens, amenities, toiletries, and furnishings.</p>\n<p>To ensure seamless integration with SEKO Logistics' systems, we implemented API connections that enabled real-time inventory updates and order processing. The platform also included features such as bulk ordering, recurring orders, and customizable purchase approvals to accommodate the unique purchasing workflows of each hotel location.</p>\n<p><strong>Results:</strong> The implementation of the B2B hotel supply platform has revolutionized citizenM's procurement process, resulting in significant improvements in efficiency and cost savings. Hotel managers now have access to a curated selection of high-quality products, allowing them to easily replenish supplies and maintain the brand's standards of excellence.</p>\n<p>By centralising procurement through the platform, citizenM has gained better visibility and control over their supply chain, leading to reduced administrative overhead and improved inventory management. The platform's user-friendly interface and intuitive ordering process have received positive feedback from hotel staff, further enhancing their overall experience.</p>\n<p>Overall, our collaboration with SEKO Logistics and citizenM has demonstrated the value of customised B2B solutions in optimising hotel supply procurement and supporting operational excellence across their global network of properties. Through innovative technology and strategic partnership, we have empowered citizenM to deliver exceptional guest experiences while driving efficiency and cost savings.</p>\n</div>\n</div>\n</div>\n</div>",
+          "bodySummary": "Background: CitizenM, a leading global chain of lifestyle hotels, partnered with SEKO Logistics to optimise their hotel supply procurement process ...",
+          "updatedAt": "2024-07-01T12:27:20Z",
+          "seoTitle": null,
+          "seoDesc": null
+        },
+        {
+          "handle": "blacksand-distribution",
+          "title": "Blacksand Distribution",
+          "templateSuffix": "citizenm",
+          "isPublished": false,
+          "body": "<meta charset=\"utf-8\">\n<p data-mce-fragment=\"1\"><strong data-mce-fragment=\"1\">Background:</strong> Blacksand Distribution is a leading international distribution company specialising in the sale of food and beverage products in bulk by container to various countries. With a robust network and a commitment to quality, Blacksand Distribution ensures that businesses around the globe receive top-tier products efficiently and reliably. The company approached us to enhance their digital infrastructure, streamline operations, and improve their B2B sales processes.</p>\n<p data-mce-fragment=\"1\"><strong data-mce-fragment=\"1\">Challenge:</strong> Blacksand Distribution faced several challenges in their existing operations:</p>\n<ol data-mce-fragment=\"1\">\n<li data-mce-fragment=\"1\">\n<strong data-mce-fragment=\"1\">Inefficient Order Management:</strong> The traditional methods of order processing were time-consuming and prone to errors.</li>\n<li data-mce-fragment=\"1\">\n<strong data-mce-fragment=\"1\">Limited Digital Presence:</strong> Their online platform was outdated, limiting their reach and customer engagement.</li>\n<li data-mce-fragment=\"1\">\n<strong data-mce-fragment=\"1\">Complex Logistics:</strong> Managing international shipments and maintaining real-time inventory updates was challenging.</li>\n<li data-mce-fragment=\"1\">\n<strong data-mce-fragment=\"1\">Customer Experience:</strong> The company wanted to provide a seamless and user-friendly experience for their clients.</li>\n</ol>\n<p data-mce-fragment=\"1\"><strong data-mce-fragment=\"1\">Solution:</strong> To address these challenges, we developed a comprehensive digital transformation strategy for Blacksand Distribution. Our solution included the following key components:</p>\n<ol data-mce-fragment=\"1\">\n<li data-mce-fragment=\"1\">\n<p data-mce-fragment=\"1\"><strong data-mce-fragment=\"1\">Custom B2B E-commerce Platform:</strong></p>\n<ul data-mce-fragment=\"1\">\n<li data-mce-fragment=\"1\">Developed a user-friendly, responsive website tailored to the needs of bulk buyers.</li>\n<li data-mce-fragment=\"1\">Integrated an advanced product catalog showcasing their extensive range of food and beverage products.</li>\n<li data-mce-fragment=\"1\">Implemented a secure, easy-to-navigate ordering system allowing customers to place bulk orders effortlessly.</li>\n</ul>\n</li>\n<li data-mce-fragment=\"1\">\n<p data-mce-fragment=\"1\"><strong data-mce-fragment=\"1\">Order Management System:</strong></p>\n<ul data-mce-fragment=\"1\">\n<li data-mce-fragment=\"1\">Automated the order processing workflow to reduce manual intervention and errors.</li>\n<li data-mce-fragment=\"1\">Integrated real-time inventory management to provide accurate stock information.</li>\n<li data-mce-fragment=\"1\">Enabled tracking of orders from placement to delivery, enhancing transparency.</li>\n</ul>\n</li>\n<li data-mce-fragment=\"1\">\n<p data-mce-fragment=\"1\"><strong data-mce-fragment=\"1\">Logistics and Shipping Integration:</strong></p>\n<ul data-mce-fragment=\"1\">\n<li data-mce-fragment=\"1\">Implemented API connections with major logistics providers to streamline international shipping.</li>\n<li data-mce-fragment=\"1\">Provided real-time shipment tracking and updates to customers.</li>\n<li data-mce-fragment=\"1\">Ensured compliance with international shipping regulations and documentation.</li>\n</ul>\n</li>\n<li data-mce-fragment=\"1\">\n<p data-mce-fragment=\"1\"><strong data-mce-fragment=\"1\">Enhanced Customer Experience:</strong></p>\n<ul data-mce-fragment=\"1\">\n<li data-mce-fragment=\"1\">Designed a customer portal where clients could view order history, track shipments, and manage accounts.</li>\n<li data-mce-fragment=\"1\">Offered personalised product recommendations based on previous orders and preferences.</li>\n<li data-mce-fragment=\"1\">Provided multiple communication channels for customer support, including chat, email, and phone.</li>\n</ul>\n</li>\n</ol>\n<p data-mce-fragment=\"1\"><strong data-mce-fragment=\"1\">Results:</strong> The digital transformation of Blacksand Distribution yielded significant positive outcomes:</p>\n<ol data-mce-fragment=\"1\">\n<li data-mce-fragment=\"1\">\n<p data-mce-fragment=\"1\"><strong data-mce-fragment=\"1\">Increased Efficiency:</strong></p>\n<ul data-mce-fragment=\"1\">\n<li data-mce-fragment=\"1\">Automated processes reduced order processing time by 40%.</li>\n<li data-mce-fragment=\"1\">Real-time inventory management minimized stockouts and overstock situations.</li>\n</ul>\n</li>\n<li data-mce-fragment=\"1\">\n<p data-mce-fragment=\"1\"><strong data-mce-fragment=\"1\">Expanded Reach:</strong></p>\n<ul data-mce-fragment=\"1\">\n<li data-mce-fragment=\"1\">The new e-commerce platform attracted a broader audience, increasing international sales by 30%.</li>\n<li data-mce-fragment=\"1\">Improved SEO and digital marketing strategies enhanced their online visibility.</li>\n</ul>\n</li>\n<li data-mce-fragment=\"1\">\n<p data-mce-fragment=\"1\"><strong data-mce-fragment=\"1\">Enhanced Customer Satisfaction:</strong></p>\n<ul data-mce-fragment=\"1\">\n<li data-mce-fragment=\"1\">The user-friendly interface and seamless ordering process received positive feedback from clients.</li>\n<li data-mce-fragment=\"1\">Real-time tracking and updates improved customer trust and loyalty.</li>\n</ul>\n</li>\n<li data-mce-fragment=\"1\">\n<p data-mce-fragment=\"1\"><strong data-mce-fragment=\"1\">Streamlined Logistics:</strong></p>\n<ul data-mce-fragment=\"1\">\n<li data-mce-fragment=\"1\">Integrated logistics solutions reduced shipping delays and costs.</li>\n<li data-mce-fragment=\"1\">Compliance with international regulations ensured smooth cross-border transactions.</li>\n</ul>\n</li>\n</ol>\n<p data-mce-fragment=\"1\"><strong data-mce-fragment=\"1\">Conclusion:</strong> The partnership with Blacksand Distribution successfully transformed their digital presence and operational efficiency. By implementing a robust B2B e-commerce platform, automating order management, and enhancing logistics integration, we helped Blacksand Distribution achieve significant growth and customer satisfaction. This case study underscores the importance of digital transformation in the distribution industry, enabling businesses to thrive in a competitive global market.</p>",
+          "bodySummary": "Background: Blacksand Distribution is a leading international distribution company specialising in the sale of food and beverage products in bulk b...",
+          "updatedAt": "2024-07-01T12:27:04Z",
+          "seoTitle": null,
+          "seoDesc": null
+        },
+        {
+          "handle": "faqs",
+          "title": "FAQs",
+          "templateSuffix": "faq",
+          "isPublished": true,
+          "body": "",
+          "bodySummary": "",
+          "updatedAt": "2024-05-26T14:17:06Z",
+          "seoTitle": { "value": "FAQs about our Shopify design and development service" },
+          "seoDesc": {
+            "value": "Explore our FAQs page for answers to commonly asked questions about our services. Get insights into our processes, policies, and offerings to make informed decisions. Find clarity and solutions to your queries as you navigate through our platform."
+          }
+        },
+        {
+          "handle": "b2b",
+          "title": "B2B",
+          "templateSuffix": "b2b",
+          "isPublished": true,
+          "body": "",
+          "bodySummary": "",
+          "updatedAt": "2024-05-26T14:17:13Z",
+          "seoTitle": { "value": "B2b Shopify store setup" },
+          "seoDesc": {
+            "value": "Looking to set up a B2B Shopify store? Discover tailored solutions for creating a seamless, efficient, and scalable online wholesale platform. Our expert team ensures a customized, user-friendly experience designed to meet the unique needs of your business. Start optimizing your B2B sales with a professional Shopify st"
+          }
+        },
+        {
+          "handle": "move-to-shopify-plus-elevate-your-e-commerce-game",
+          "title": "Move to Shopify Plus: Elevate Your E-commerce Game",
+          "templateSuffix": "",
+          "isPublished": true,
+          "body": "<p><strong>Why Upgrade to Shopify Plus?</strong><br data-mce-fragment=\"1\">Unlock Advanced Features and Unmatched Performance<br data-mce-fragment=\"1\"><br data-mce-fragment=\"1\">Are you ready to take your online store to the next level? Shopify Plus offers powerful tools and features designed to supercharge your e-commerce business.</p>\n<p><em><strong>Here’s why you should consider making the move:</strong></em><br data-mce-fragment=\"1\"><br data-mce-fragment=\"1\"><strong>1. Scalability for Growth</strong><br data-mce-fragment=\"1\"><br data-mce-fragment=\"1\">High-Volume Sales: Handle thousands of transactions per minute seamlessly.<br data-mce-fragment=\"1\">Global Reach: Expand your business to multiple countries with ease.</p>\n<p><strong>2. Advanced Customisation</strong><br data-mce-fragment=\"1\"><br data-mce-fragment=\"1\">Customisable Checkout: Tailor the checkout experience to boost conversion rates.<br data-mce-fragment=\"1\">Exclusive APIs: Leverage advanced APIs for deeper integrations and automations.</p>\n<p><strong>3. Enhanced Performance</strong><br data-mce-fragment=\"1\"><br data-mce-fragment=\"1\">Speed and Reliability: Benefit from a robust infrastructure that ensures fast loading times and minimal downtime.<br data-mce-fragment=\"1\">Unlimited Bandwidth: Never worry about hitting traffic limits or performance bottlenecks.</p>\n<p><strong>4. Dedicated Support</strong><br data-mce-fragment=\"1\"><br data-mce-fragment=\"1\">Priority Support: Access 24/7 priority support from Shopify experts.<br data-mce-fragment=\"1\">Launch Manager: Get a dedicated launch manager to ensure a smooth transition and setup.</p>\n<p><strong>5. Powerful Marketing Tools</strong><br data-mce-fragment=\"1\"><br data-mce-fragment=\"1\">Shopify Flow: Automate your e-commerce operations with powerful workflows.<br data-mce-fragment=\"1\">Launchpad: Plan and automate product launches, sales, and marketing campaigns effortlessly.</p>\n<p><strong>Our Services for Shopify Plus Migration</strong></p>\n<p>We’re here to make your transition to Shopify Plus as seamless and beneficial as possible.</p>\n<p><strong><em>Here’s how we can help:</em></strong><br data-mce-fragment=\"1\"><br data-mce-fragment=\"1\"><strong>1. Comprehensive Migration</strong><br data-mce-fragment=\"1\"><br data-mce-fragment=\"1\">Data Transfer: Securely migrate all your products, customers, and order data.<br data-mce-fragment=\"1\">SEO Preservation: Ensure your SEO rankings and settings are preserved during the migration.</p>\n<p><strong>2. Custom Development</strong><br data-mce-fragment=\"1\"><br data-mce-fragment=\"1\">Theme Development: Create a unique, responsive theme tailored to your brand.<br data-mce-fragment=\"1\">App Integration: Integrate existing or custom apps to extend your store’s functionality.</p>\n<p><strong>3. Optimisation and Support</strong><br data-mce-fragment=\"1\"><br data-mce-fragment=\"1\">Performance Optimisation: Fine-tune your store for maximum speed and efficiency.<br data-mce-fragment=\"1\">Ongoing Support: Provide continuous support and maintenance to keep your store running smoothly.<br data-mce-fragment=\"1\"><br data-mce-fragment=\"1\"><strong>Ready to Make the Move?</strong><br data-mce-fragment=\"1\">Contact us today to discuss your Shopify Plus migration and how we can help you unlock the full potential of your e-commerce business.<br data-mce-fragment=\"1\"><br data-mce-fragment=\"1\">Get in Touch: info@heseven.com</p>",
+          "bodySummary": "Why Upgrade to Shopify Plus?Unlock Advanced Features and Unmatched PerformanceAre you ready to take your online store to the next level? Shopify Pl...",
+          "updatedAt": "2024-05-26T15:21:42Z",
+          "seoTitle": null,
+          "seoDesc": null
+        },
+        {
+          "handle": "ecommerce-platform-migration-service",
+          "title": "eCommerce Platform Migration Service",
+          "templateSuffix": "",
+          "isPublished": true,
+          "body": "<meta charset=\"utf-8\">\n<p data-mce-fragment=\"1\">Introduction: Embark on a hassle-free journey to a better eCommerce platform with our expert migration service. Say goodbye to outdated systems and hello to enhanced functionality, improved performance, and increased scalability for your online store.</p>\n<p data-mce-fragment=\"1\"><strong>Key Features:</strong></p>\n<ol data-mce-fragment=\"1\">\n<li data-mce-fragment=\"1\">\n<strong>Tailored Migration Strategy:</strong> Our team conducts a thorough analysis of your current platform and business requirements to devise a customized migration plan that meets your unique needs.</li>\n<li data-mce-fragment=\"1\">\n<strong>Data Migration Excellence:</strong> We handle the technical aspects of data migration with precision, ensuring that all your critical data, including customer information, product details, and order history, is seamlessly transferred to the new platform.</li>\n<li data-mce-fragment=\"1\">\n<strong>Customization and Brand Alignment:</strong> We focus on aligning the new platform with your brand identity and business objectives, creating a visually appealing and user-friendly online store that enhances your brand presence and delights your customers.</li>\n<li data-mce-fragment=\"1\">\n<strong>Open Communication and Support:</strong> Throughout the migration process, we prioritize open communication and transparency, keeping you informed at every stage and addressing any concerns or questions you may have.</li>\n<li data-mce-fragment=\"1\">\n<strong>Minimal Downtime and Disruption:</strong> Our goal is to minimize downtime and disruptions to your business operations during the migration process, ensuring a smooth transition and uninterrupted service for your customers.</li>\n<li data-mce-fragment=\"1\">\n<strong>Ongoing Maintenance and Support:</strong> Beyond migration, we offer ongoing maintenance and support services to ensure that your new eCommerce platform continues to perform optimally and evolve with your business needs.</li>\n</ol>\n<p data-mce-fragment=\"1\"><strong>Why Choose Us:</strong></p>\n<ul data-mce-fragment=\"1\">\n<li data-mce-fragment=\"1\">\n<strong>Experienced Team:</strong> Our team consists of experienced developers, designers, and eCommerce experts who have successfully completed numerous platform migration projects.</li>\n<li data-mce-fragment=\"1\">\n<strong>Proven Track Record:</strong> We have a proven track record of delivering seamless migration solutions that exceed client expectations and drive tangible results.</li>\n<li data-mce-fragment=\"1\">\n<strong>Customer-Centric Approach:</strong> We prioritize your satisfaction and success, working closely with you to understand your goals and deliver tailored solutions that meet your needs.</li>\n<li data-mce-fragment=\"1\">\n<strong>Trusted Partner:</strong> With our reliable and trustworthy service, you can trust us to handle your platform migration with care and professionalism, allowing you to focus on growing your business.</li>\n</ul>\n<p data-mce-fragment=\"1\"><strong>Make the Move Today:</strong> Don't let outdated technology hold your business back. Partner with us for a seamless eCommerce platform migration that unlocks new opportunities for growth and success. <a href=\"https://www.heseven.com/pages/contact-us\">Contact us</a> today to get started!</p>",
+          "bodySummary": "Introduction: Embark on a hassle-free journey to a better eCommerce platform with our expert migration service. Say goodbye to outdated systems and...",
+          "updatedAt": "2024-05-26T15:28:23Z",
+          "seoTitle": null,
+          "seoDesc": null
+        },
+        {
+          "handle": "html-sitemap",
+          "title": "html sitemap",
+          "templateSuffix": null,
+          "isPublished": true,
+          "body": "<div class=\"seoant-html-sitemap-row\">\n<h3>Products</h3>\n<ul>\n<li><a href=\"https://www.heseven.com/products/shopify-store-design-and-development-service-in-united-kingdom\">Shopify store design and devel...</a></li>\n<li><a href=\"https://www.heseven.com/products/best-shopify-store-design-and-development-service-in-united-kingdom-shopify-partner-and-expert\">Best Shopify store design and ...</a></li>\n<li><a href=\"https://www.heseven.com/products/best-shopify-expert-agency-in-united-kingdom-certified-shopify-partner-and-expert\">Best Shopify expert agency in ...</a></li>\n<li><a href=\"https://www.heseven.com/products/how-much-does-it-cost-to-hire-an-expert-on-shopify\">How much does it cost to hire ...</a></li>\n<li><a href=\"https://www.heseven.com/products/how-much-does-it-cost-to-hire-an-shopify-expert-in-uk\">How much does it cost to hire ...</a></li>\n<li><a href=\"https://www.heseven.com/products/how-much-does-it-cost-to-hire-an-shopify-expert-in-usa\">How much does it cost to hire ...</a></li>\n<li><a href=\"https://www.heseven.com/products/is-hiring-shopify-experts-worth-it\">Is hiring Shopify Experts wort...</a></li>\n<li><a href=\"https://www.heseven.com/products/how-much-does-it-cost-to-hire-an-shopify-expert-in-canada\">How much does it cost to hire ...</a></li>\n<li><a href=\"https://www.heseven.com/products/best-shopify-store-design-and-development-service-in-united-states-shopify-partner-and-expert-in-us\">Best Shopify store design and ...</a></li>\n</ul>\n<li><a href=\"https://www.heseven.com/pages/html-sitemap-products\">All Products</a></li>\n</div><div class=\"seoant-html-sitemap-row\">\n<h3>Collections</h3>\n<ul><li><a href=\"https://www.heseven.com/collections/shopify-store-design-and-development\">Shopify store Design and devel...</a></li></ul>\n</div><div class=\"seoant-html-sitemap-row\">\n<h3>Blogs</h3>\n<ul><li><a href=\"https://www.heseven.com/blogs/news\">News</a></li></ul>\n</div><div class=\"seoant-html-sitemap-row\">\n<h3>Blog Posts</h3>\n<ul>\n<li><a href=\"https://www.heseven.com/blogs/news/unlocking-e-commerce-success-the-power-of-shopify\">Unlocking E-Commerce Success: ...</a></li>\n<li><a href=\"https://www.heseven.com/blogs/news/salesforce-commerce-cloud-vs-shopify\">Salesforce Commerce Cloud vs S...</a></li>\n<li><a href=\"https://www.heseven.com/blogs/news/shopify-plus-vs-user-salesforce-commerce-cloud\">Shopify Plus vs User Salesforc...</a></li>\n<li><a href=\"https://www.heseven.com/blogs/news/how-to-improve-your-conversion-rate\">How to Improve Your Conversion...</a></li>\n<li><a href=\"https://www.heseven.com/blogs/news/how-to-optimise-page-loading-speed-a-comprehensive-guide\">How to Optimise Page Loading S...</a></li>\n</ul>\n</div><div class=\"seoant-html-sitemap-row\">\n<h3>Pages</h3>\n<ul>\n<li><a href=\"https://www.heseven.com/pages/usd\">Payment</a></li>\n<li><a href=\"https://www.heseven.com/pages/gbp\">Payment</a></li>\n<li><a href=\"https://www.heseven.com/pages/about\">About</a></li>\n<li><a href=\"https://www.heseven.com/pages/contact-us\">Contact Us</a></li>\n<li><a href=\"https://www.heseven.com/pages/citizenm\">CitizenM</a></li>\n<li><a href=\"https://www.heseven.com/pages/blacksand-distribution\">Blacksand Distribution</a></li>\n<li><a href=\"https://www.heseven.com/pages/faqs\">FAQs</a></li>\n<li><a href=\"https://www.heseven.com/pages/b2b\">B2B</a></li>\n<li><a href=\"https://www.heseven.com/pages/move-to-shopify-plus-elevate-your-e-commerce-game\">Move to Shopify Plus: Elevate ...</a></li>\n</ul>\n<li><a href=\"https://www.heseven.com/pages/html-sitemap-pages\">All Pages</a></li>\n</div>\n                            <style>\n                            .seoant-html-sitemap-row {\n                                margin-bottom: 2.1rem;\n                              }\n                              \n                              .seoant-html-sitemap-row a {\n                                color: inherit;\n                              }\n                              \n                              .seoant-html-sitemap-row > h3 {\n                                margin-bottom: 12px;\n                              }\n                              \n                              .seoant-html-sitemap-row > ul {\n                                margin-left: 0;\n                                margin-bottom: 4px;\n                                columns: 3;\n                                -webkit-columns: 3;\n                              }\n                              \n                              .seoant-html-sitemap-row > ul > li {\n                                margin-bottom: 4px;\n                                max-width: 250px;\n                                white-space: nowrap;\n                                overflow: hidden;\n                                text-overflow: ellipsis;\n                                list-style: inside;\n                              }\n                              \n                              .rte .seoant-html-sitemap-row > ul > li > a, .rte .seoant-html-sitemap-row > li > a {\n                                border-bottom: unset;\n                              }\n                              \n                              @media only screen and (max-width: 600px) {\n                                .seoant-html-sitemap-row > ul {\n                                  columns: 2;\n                                  -webkit-columns: 2;\n                                }\n                                \n                                .seoant-html-sitemap-row > ul > li {\n                                  font-size: 16px;\n                                }\n                              }\n                              \n                              @media only screen and (max-width: 360px) {\n                                  .seoant-html-sitemap-row > ul {\n                                    columns: 1;\n                                    -webkit-columns: 1;\n                                  }\n                              }\n                              .powered-by-seoant {\n                                text-align:right;\n                                margin-right: 22rem;\n                              }\n\n                              @media only screen and (max-width: 900px) {\n                                .powered-by-seoant {\n                                    text-align:right;\n                                    margin-right: 7rem;\n                                }\n                            }\n                              </style>\n                    <div class=\"seoant-html-sitemap-row powered-by-seoant\"><span style=\"color: #A4A4A4;\">Powered by <a href=\"https://www.seoant.com\" target=\"_blank\">SEOAnt</a></span></div>",
+          "bodySummary": "Products Shopify store design and devel... Best Shopify store design and ... Best Shopify expert agency in ... How much does it cost to hire ... Ho...",
+          "updatedAt": "2024-06-07T05:52:39Z",
+          "seoTitle": null,
+          "seoDesc": {
+            "value": "html sitemap productshtml sitemap collectionshtml sitemap blogshtml sitemap articleshtml sitemap pages"
+          }
+        },
+        {
+          "handle": "partner-links",
+          "title": "Partner links",
+          "templateSuffix": "",
+          "isPublished": true,
+          "body": "<div class=\"seoant-partner-link-row\">\n<h3>Partner links</h3>\n<ul>\n<li><a target=\"_blank\" href=\"https://shopidream.com\">쇼피파이드림</a></li>\n<li><a target=\"_blank\" href=\"https://shopedithchloe.com\">Edith Chloe Self-Care Shop</a></li>\n<li><a target=\"_blank\" href=\"https://utrano.com\">UTrano.com</a></li>\n<li><a target=\"_blank\" href=\"https://flowerdeliverysf.com\">San Francisco Flower Delivery</a></li>\n<li><a target=\"_blank\" href=\"https://trybelabs.us\">Trybe Labs</a></li>\n<li><a target=\"_blank\" href=\"https://www.houseofcomfort.in\">House of Comfort </a></li>\n</ul>\n</div><div class=\"seoant-partner-link-row powered-by-seoant\"><span style=\"color: #A4A4A4;\">Powered by <a href=\"https://www.seoant.com\" target=\"_blank\">SEOAnt</a></span></div>",
+          "bodySummary": "Partner links 쇼피파이드림 Edith Chloe Self-Care Shop UTrano.com San Francisco Flower Delivery Trybe Labs House of Comfort Powered by SEOAnt",
+          "updatedAt": "2026-01-20T09:34:45Z",
+          "seoTitle": null,
+          "seoDesc": { "value": "Partner links" }
+        },
+        {
+          "handle": "html-sitemap-products",
+          "title": "html sitemap products",
+          "templateSuffix": null,
+          "isPublished": true,
+          "body": "<div class=\"seoant-html-sitemap-row\">\n<h3>Products</h3>\n<ul>\n<li><a href=\"https://www.heseven.com/products/shopify-store-design-and-development-service-in-united-kingdom\">Shopify store design and devel...</a></li>\n<li><a href=\"https://www.heseven.com/products/best-shopify-store-design-and-development-service-in-united-kingdom-shopify-partner-and-expert\">Best Shopify store design and ...</a></li>\n<li><a href=\"https://www.heseven.com/products/best-shopify-expert-agency-in-united-kingdom-certified-shopify-partner-and-expert\">Best Shopify expert agency in ...</a></li>\n<li><a href=\"https://www.heseven.com/products/how-much-does-it-cost-to-hire-an-expert-on-shopify\">How much does it cost to hire ...</a></li>\n<li><a href=\"https://www.heseven.com/products/how-much-does-it-cost-to-hire-an-shopify-expert-in-uk\">How much does it cost to hire ...</a></li>\n<li><a href=\"https://www.heseven.com/products/how-much-does-it-cost-to-hire-an-shopify-expert-in-usa\">How much does it cost to hire ...</a></li>\n<li><a href=\"https://www.heseven.com/products/is-hiring-shopify-experts-worth-it\">Is hiring Shopify Experts wort...</a></li>\n<li><a href=\"https://www.heseven.com/products/how-much-does-it-cost-to-hire-an-shopify-expert-in-canada\">How much does it cost to hire ...</a></li>\n<li><a href=\"https://www.heseven.com/products/best-shopify-store-design-and-development-service-in-united-states-shopify-partner-and-expert-in-us\">Best Shopify store design and ...</a></li>\n<li><a href=\"https://www.heseven.com/products/best-shopify-store-design-and-development-service-in-canada-shopify-partner-and-expert-in-canada\">Shopify store design and devel...</a></li>\n<li><a href=\"https://www.heseven.com/products/hire-best-shopify-expert-agency-in-london\">Hire best Shopify expert agenc...</a></li>\n<li><a href=\"https://www.heseven.com/products/hire-best-shopify-plus-expert-agency-in-london\">Hire best Shopify Plus expert ...</a></li>\n<li><a href=\"https://www.heseven.com/products/hire-best-shopify-plus-expert-agency-in-uk\">Hire best Shopify Plus expert ...</a></li>\n<li><a href=\"https://www.heseven.com/products/hire-best-shopify-plus-expert-agency-in-united-kingdom\">Hire best Shopify Plus expert ...</a></li>\n<li><a href=\"https://www.heseven.com/products/hire-best-shopify-plus-expert-agency-in-usa\">Hire best Shopify Plus expert ...</a></li>\n<li><a href=\"https://www.heseven.com/products/hire-best-shopify-plus-expert-agency-in-united-states\">Hire best Shopify Plus expert ...</a></li>\n<li><a href=\"https://www.heseven.com/products/hire-best-shopify-plus-expert-agency-in-canada\">Hire best Shopify Plus expert ...</a></li>\n<li><a href=\"https://www.heseven.com/products/hire-best-shopify-plus-expert-agency-in-australia\">Hire best Shopify Plus expert ...</a></li>\n<li><a href=\"https://www.heseven.com/products/setup-b2b-shopify-store\">Setup B2B Shopify store</a></li>\n<li><a href=\"https://www.heseven.com/products/build-your-b2b-shopify-store\">Build your B2B Shopify store</a></li>\n<li><a href=\"https://www.heseven.com/products/migrate-your-b2b-store-to-shopify\">Migrate your B2B store to Shop...</a></li>\n<li><a href=\"https://www.heseven.com/products/hire-shopify-designer-developer-in-uk\">Hire Shopify designer &amp; develo...</a></li>\n<li><a href=\"https://www.heseven.com/products/hire-shopify-developer\">Hire Shopify developer</a></li>\n</ul>\n</div>\n                            <style>\n                            .seoant-html-sitemap-row {\n                                margin-bottom: 2.1rem;\n                              }\n                              \n                              .seoant-html-sitemap-row a {\n                                color: inherit;\n                              }\n                              \n                              .seoant-html-sitemap-row > h3 {\n                                margin-bottom: 12px;\n                              }\n                              \n                              .seoant-html-sitemap-row > ul {\n                                margin-left: 0;\n                                margin-bottom: 4px;\n                                columns: 3;\n                                -webkit-columns: 3;\n                              }\n                              \n                              .seoant-html-sitemap-row > ul > li {\n                                margin-bottom: 4px;\n                                max-width: 250px;\n                                white-space: nowrap;\n                                overflow: hidden;\n                                text-overflow: ellipsis;\n                                list-style: inside;\n                              }\n                              \n                              .rte .seoant-html-sitemap-row > ul > li > a, .rte .seoant-html-sitemap-row > li > a {\n                                border-bottom: unset;\n                              }\n                              \n                              @media only screen and (max-width: 600px) {\n                                .seoant-html-sitemap-row > ul {\n                                  columns: 2;\n                                  -webkit-columns: 2;\n                                }\n                                \n                                .seoant-html-sitemap-row > ul > li {\n                                  font-size: 16px;\n                                }\n                              }\n                              \n                              @media only screen and (max-width: 360px) {\n                                  .seoant-html-sitemap-row > ul {\n                                    columns: 1;\n                                    -webkit-columns: 1;\n                                  }\n                              }\n                              .powered-by-seoant {\n                                text-align:right;\n                                margin-right: 22rem;\n                              }\n\n                              @media only screen and (max-width: 900px) {\n                                .powered-by-seoant {\n                                    text-align:right;\n                                    margin-right: 7rem;\n                                }\n                            }\n                              </style>\n                    <div class=\"seoant-html-sitemap-row powered-by-seoant\"><span style=\"color: #A4A4A4;\">Powered by <a href=\"https://www.seoant.com\" target=\"_blank\">SEOAnt</a></span></div>",
+          "bodySummary": "Products Shopify store design and devel... Best Shopify store design and ... Best Shopify expert agency in ... How much does it cost to hire ... Ho...",
+          "updatedAt": "2024-06-07T05:52:34Z",
+          "seoTitle": null,
+          "seoDesc": {
+            "value": "Shopify store design and development service in United Kingdom Best Shopify store design and development service in United Kingdom - Shopify partner and expert Is hiring Shopify Experts worth it?"
+          }
+        },
+        {
+          "handle": "html-sitemap-collections",
+          "title": "html sitemap collections",
+          "templateSuffix": null,
+          "isPublished": true,
+          "body": "<div class=\"seoant-html-sitemap-row\">\n<h3>Collections</h3>\n<ul><li><a href=\"https://www.heseven.com/collections/shopify-store-design-and-development\">Shopify store Design and devel...</a></li></ul>\n</div>\n                            <style>\n                            .seoant-html-sitemap-row {\n                                margin-bottom: 2.1rem;\n                              }\n                              \n                              .seoant-html-sitemap-row a {\n                                color: inherit;\n                              }\n                              \n                              .seoant-html-sitemap-row > h3 {\n                                margin-bottom: 12px;\n                              }\n                              \n                              .seoant-html-sitemap-row > ul {\n                                margin-left: 0;\n                                margin-bottom: 4px;\n                                columns: 3;\n                                -webkit-columns: 3;\n                              }\n                              \n                              .seoant-html-sitemap-row > ul > li {\n                                margin-bottom: 4px;\n                                max-width: 250px;\n                                white-space: nowrap;\n                                overflow: hidden;\n                                text-overflow: ellipsis;\n                                list-style: inside;\n                              }\n                              \n                              .rte .seoant-html-sitemap-row > ul > li > a, .rte .seoant-html-sitemap-row > li > a {\n                                border-bottom: unset;\n                              }\n                              \n                              @media only screen and (max-width: 600px) {\n                                .seoant-html-sitemap-row > ul {\n                                  columns: 2;\n                                  -webkit-columns: 2;\n                                }\n                                \n                                .seoant-html-sitemap-row > ul > li {\n                                  font-size: 16px;\n                                }\n                              }\n                              \n                              @media only screen and (max-width: 360px) {\n                                  .seoant-html-sitemap-row > ul {\n                                    columns: 1;\n                                    -webkit-columns: 1;\n                                  }\n                              }\n                              .powered-by-seoant {\n                                text-align:right;\n                                margin-right: 22rem;\n                              }\n\n                              @media only screen and (max-width: 900px) {\n                                .powered-by-seoant {\n                                    text-align:right;\n                                    margin-right: 7rem;\n                                }\n                            }\n                              </style>\n                    <div class=\"seoant-html-sitemap-row powered-by-seoant\"><span style=\"color: #A4A4A4;\">Powered by <a href=\"https://www.seoant.com\" target=\"_blank\">SEOAnt</a></span></div>",
+          "bodySummary": "Collections Shopify store Design and devel... .seoant-html-sitemap-row { margin-bottom: 2.1rem; } .seoant-html-sitemap-row a { color: inherit; } .s...",
+          "updatedAt": "2024-06-07T05:52:35Z",
+          "seoTitle": null,
+          "seoDesc": { "value": "Shopify store Design and development" }
+        },
+        {
+          "handle": "html-sitemap-blogs",
+          "title": "html sitemap blogs",
+          "templateSuffix": null,
+          "isPublished": true,
+          "body": "<div class=\"seoant-html-sitemap-row\">\n<h3>Blogs</h3>\n<ul><li><a href=\"https://www.heseven.com/blogs/news\">News</a></li></ul>\n</div>\n                            <style>\n                            .seoant-html-sitemap-row {\n                                margin-bottom: 2.1rem;\n                              }\n                              \n                              .seoant-html-sitemap-row a {\n                                color: inherit;\n                              }\n                              \n                              .seoant-html-sitemap-row > h3 {\n                                margin-bottom: 12px;\n                              }\n                              \n                              .seoant-html-sitemap-row > ul {\n                                margin-left: 0;\n                                margin-bottom: 4px;\n                                columns: 3;\n                                -webkit-columns: 3;\n                              }\n                              \n                              .seoant-html-sitemap-row > ul > li {\n                                margin-bottom: 4px;\n                                max-width: 250px;\n                                white-space: nowrap;\n                                overflow: hidden;\n                                text-overflow: ellipsis;\n                                list-style: inside;\n                              }\n                              \n                              .rte .seoant-html-sitemap-row > ul > li > a, .rte .seoant-html-sitemap-row > li > a {\n                                border-bottom: unset;\n                              }\n                              \n                              @media only screen and (max-width: 600px) {\n                                .seoant-html-sitemap-row > ul {\n                                  columns: 2;\n                                  -webkit-columns: 2;\n                                }\n                                \n                                .seoant-html-sitemap-row > ul > li {\n                                  font-size: 16px;\n                                }\n                              }\n                              \n                              @media only screen and (max-width: 360px) {\n                                  .seoant-html-sitemap-row > ul {\n                                    columns: 1;\n                                    -webkit-columns: 1;\n                                  }\n                              }\n                              .powered-by-seoant {\n                                text-align:right;\n                                margin-right: 22rem;\n                              }\n\n                              @media only screen and (max-width: 900px) {\n                                .powered-by-seoant {\n                                    text-align:right;\n                                    margin-right: 7rem;\n                                }\n                            }\n                              </style>\n                    <div class=\"seoant-html-sitemap-row powered-by-seoant\"><span style=\"color: #A4A4A4;\">Powered by <a href=\"https://www.seoant.com\" target=\"_blank\">SEOAnt</a></span></div>",
+          "bodySummary": "Blogs News .seoant-html-sitemap-row { margin-bottom: 2.1rem; } .seoant-html-sitemap-row a { color: inherit; } .seoant-html-sitemap-row > h3 { margi...",
+          "updatedAt": "2024-06-07T05:52:36Z",
+          "seoTitle": null,
+          "seoDesc": { "value": "News" }
+        },
+        {
+          "handle": "html-sitemap-articles",
+          "title": "html sitemap articles",
+          "templateSuffix": null,
+          "isPublished": true,
+          "body": "<div class=\"seoant-html-sitemap-row\">\n<h3>Blog Posts</h3>\n<ul>\n<li><a href=\"https://www.heseven.com/blogs/news/unlocking-e-commerce-success-the-power-of-shopify\">Unlocking E-Commerce Success: ...</a></li>\n<li><a href=\"https://www.heseven.com/blogs/news/salesforce-commerce-cloud-vs-shopify\">Salesforce Commerce Cloud vs S...</a></li>\n<li><a href=\"https://www.heseven.com/blogs/news/shopify-plus-vs-user-salesforce-commerce-cloud\">Shopify Plus vs User Salesforc...</a></li>\n<li><a href=\"https://www.heseven.com/blogs/news/how-to-improve-your-conversion-rate\">How to Improve Your Conversion...</a></li>\n<li><a href=\"https://www.heseven.com/blogs/news/how-to-optimise-page-loading-speed-a-comprehensive-guide\">How to Optimise Page Loading S...</a></li>\n</ul>\n</div>\n                            <style>\n                            .seoant-html-sitemap-row {\n                                margin-bottom: 2.1rem;\n                              }\n                              \n                              .seoant-html-sitemap-row a {\n                                color: inherit;\n                              }\n                              \n                              .seoant-html-sitemap-row > h3 {\n                                margin-bottom: 12px;\n                              }\n                              \n                              .seoant-html-sitemap-row > ul {\n                                margin-left: 0;\n                                margin-bottom: 4px;\n                                columns: 3;\n                                -webkit-columns: 3;\n                              }\n                              \n                              .seoant-html-sitemap-row > ul > li {\n                                margin-bottom: 4px;\n                                max-width: 250px;\n                                white-space: nowrap;\n                                overflow: hidden;\n                                text-overflow: ellipsis;\n                                list-style: inside;\n                              }\n                              \n                              .rte .seoant-html-sitemap-row > ul > li > a, .rte .seoant-html-sitemap-row > li > a {\n                                border-bottom: unset;\n                              }\n                              \n                              @media only screen and (max-width: 600px) {\n                                .seoant-html-sitemap-row > ul {\n                                  columns: 2;\n                                  -webkit-columns: 2;\n                                }\n                                \n                                .seoant-html-sitemap-row > ul > li {\n                                  font-size: 16px;\n                                }\n                              }\n                              \n                              @media only screen and (max-width: 360px) {\n                                  .seoant-html-sitemap-row > ul {\n                                    columns: 1;\n                                    -webkit-columns: 1;\n                                  }\n                              }\n                              .powered-by-seoant {\n                                text-align:right;\n                                margin-right: 22rem;\n                              }\n\n                              @media only screen and (max-width: 900px) {\n                                .powered-by-seoant {\n                                    text-align:right;\n                                    margin-right: 7rem;\n                                }\n                            }\n                              </style>\n                    <div class=\"seoant-html-sitemap-row powered-by-seoant\"><span style=\"color: #A4A4A4;\">Powered by <a href=\"https://www.seoant.com\" target=\"_blank\">SEOAnt</a></span></div>",
+          "bodySummary": "Blog Posts Unlocking E-Commerce Success: ... Salesforce Commerce Cloud vs S... Shopify Plus vs User Salesforc... How to Improve Your Conversion... ...",
+          "updatedAt": "2024-06-07T05:52:37Z",
+          "seoTitle": null,
+          "seoDesc": {
+            "value": "Unlocking E-Commerce Success: The Power of Shopify Salesforce Commerce Cloud vs Shopify Shopify Plus vs User Salesforce Commerce Cloud How to Improve Your Conversion Rate"
+          }
+        },
+        {
+          "handle": "html-sitemap-pages",
+          "title": "html sitemap pages",
+          "templateSuffix": null,
+          "isPublished": true,
+          "body": "<div class=\"seoant-html-sitemap-row\">\n<h3>Pages</h3>\n<ul>\n<li><a href=\"https://www.heseven.com/pages/usd\">Payment</a></li>\n<li><a href=\"https://www.heseven.com/pages/gbp\">Payment</a></li>\n<li><a href=\"https://www.heseven.com/pages/about\">About</a></li>\n<li><a href=\"https://www.heseven.com/pages/contact-us\">Contact Us</a></li>\n<li><a href=\"https://www.heseven.com/pages/citizenm\">CitizenM</a></li>\n<li><a href=\"https://www.heseven.com/pages/blacksand-distribution\">Blacksand Distribution</a></li>\n<li><a href=\"https://www.heseven.com/pages/faqs\">FAQs</a></li>\n<li><a href=\"https://www.heseven.com/pages/b2b\">B2B</a></li>\n<li><a href=\"https://www.heseven.com/pages/move-to-shopify-plus-elevate-your-e-commerce-game\">Move to Shopify Plus: Elevate ...</a></li>\n<li><a href=\"https://www.heseven.com/pages/ecommerce-platform-migration-service\">eCommerce Platform Migration S...</a></li>\n<li><a href=\"https://www.heseven.com/pages/html-sitemap\">html sitemap</a></li>\n<li><a href=\"https://www.heseven.com/pages/partner-links\">Partner links</a></li>\n<li><a href=\"https://www.heseven.com/pages/html-sitemap-products\">html sitemap products</a></li>\n<li><a href=\"https://www.heseven.com/pages/html-sitemap-collections\">html sitemap collections</a></li>\n<li><a href=\"https://www.heseven.com/pages/html-sitemap-blogs\">html sitemap blogs</a></li>\n<li><a href=\"https://www.heseven.com/pages/html-sitemap-articles\">html sitemap articles</a></li>\n</ul>\n</div>\n                            <style>\n                            .seoant-html-sitemap-row {\n                                margin-bottom: 2.1rem;\n                              }\n                              \n                              .seoant-html-sitemap-row a {\n                                color: inherit;\n                              }\n                              \n                              .seoant-html-sitemap-row > h3 {\n                                margin-bottom: 12px;\n                              }\n                              \n                              .seoant-html-sitemap-row > ul {\n                                margin-left: 0;\n                                margin-bottom: 4px;\n                                columns: 3;\n                                -webkit-columns: 3;\n                              }\n                              \n                              .seoant-html-sitemap-row > ul > li {\n                                margin-bottom: 4px;\n                                max-width: 250px;\n                                white-space: nowrap;\n                                overflow: hidden;\n                                text-overflow: ellipsis;\n                                list-style: inside;\n                              }\n                              \n                              .rte .seoant-html-sitemap-row > ul > li > a, .rte .seoant-html-sitemap-row > li > a {\n                                border-bottom: unset;\n                              }\n                              \n                              @media only screen and (max-width: 600px) {\n                                .seoant-html-sitemap-row > ul {\n                                  columns: 2;\n                                  -webkit-columns: 2;\n                                }\n                                \n                                .seoant-html-sitemap-row > ul > li {\n                                  font-size: 16px;\n                                }\n                              }\n                              \n                              @media only screen and (max-width: 360px) {\n                                  .seoant-html-sitemap-row > ul {\n                                    columns: 1;\n                                    -webkit-columns: 1;\n                                  }\n                              }\n                              .powered-by-seoant {\n                                text-align:right;\n                                margin-right: 22rem;\n                              }\n\n                              @media only screen and (max-width: 900px) {\n                                .powered-by-seoant {\n                                    text-align:right;\n                                    margin-right: 7rem;\n                                }\n                            }\n                              </style>\n                    <div class=\"seoant-html-sitemap-row powered-by-seoant\"><span style=\"color: #A4A4A4;\">Powered by <a href=\"https://www.seoant.com\" target=\"_blank\">SEOAnt</a></span></div>",
+          "bodySummary": "Pages Payment Payment About Contact Us CitizenM Blacksand Distribution FAQs B2B Move to Shopify Plus: Elevate ... eCommerce Platform Migration S......",
+          "updatedAt": "2024-06-07T05:52:38Z",
+          "seoTitle": null,
+          "seoDesc": {
+            "value": "Payment Payment About Contact Us CitizenM Blacksand Distribution FAQs B2B Move to Shopify Plus: Elevate Your E-commerce Game eCommerce Platform Migration Service html sitemap Partner links"
+          }
+        },
+        {
+          "handle": "lead",
+          "title": "Hire Shopify Expert",
+          "templateSuffix": "homepage2",
+          "isPublished": false,
+          "body": "",
+          "bodySummary": "",
+          "updatedAt": "2025-09-03T08:51:36Z",
+          "seoTitle": null,
+          "seoDesc": null
+        },
+        {
+          "handle": "thank-you",
+          "title": "Thank You",
+          "templateSuffix": "thank-you",
+          "isPublished": true,
+          "body": "",
+          "bodySummary": "",
+          "updatedAt": "2025-01-06T14:39:11Z",
+          "seoTitle": null,
+          "seoDesc": null
+        },
+        {
+          "handle": "shopify-plus-development-agency",
+          "title": "Shopify Plus Development Agency",
+          "templateSuffix": "shopify-plus-development",
+          "isPublished": true,
+          "body": "",
+          "bodySummary": "",
+          "updatedAt": "2025-09-15T06:34:14Z",
+          "seoTitle": null,
+          "seoDesc": {
+            "value": "Heseven, a leading Shopify Plus Development Agency, builds custom Shopify stores with seamless UX and high conversions using scalable, flexible eCommerce solutions."
+          }
+        },
+        {
+          "handle": "virtual-assistant-for-shopify",
+          "title": "Virtual Assistant for Shopify",
+          "templateSuffix": "virtual-assistant-for-sho",
+          "isPublished": true,
+          "body": "",
+          "bodySummary": "",
+          "updatedAt": "2025-09-15T06:44:23Z",
+          "seoTitle": null,
+          "seoDesc": {
+            "value": "Scale your Shopify store with a Virtual Assistant for Shopify—manage products, customer support & marketing while you focus on growing your eCommerce business."
+          }
+        },
+        {
+          "handle": "white-label-shopify-development",
+          "title": "White-label Shopify development",
+          "templateSuffix": "white-label-shopify-devel",
+          "isPublished": true,
+          "body": "",
+          "bodySummary": "",
+          "updatedAt": "2025-07-01T07:45:13Z",
+          "seoTitle": null,
+          "seoDesc": {
+            "value": "White-label Shopify development is the best way for a digital agency to scale its business and improve services without hiring an internal team. "
+          }
+        },
+        {
+          "handle": "shopify-maintenance-service",
+          "title": "Shopify Maintenance Service",
+          "templateSuffix": "shopify-maintenance",
+          "isPublished": true,
+          "body": "",
+          "bodySummary": "",
+          "updatedAt": "2025-09-15T06:39:44Z",
+          "seoTitle": null,
+          "seoDesc": {
+            "value": "Ensure smooth performance with our Shopify Maintenance Service—regular updates, security, and optimization keep your store functional, secure, and ready for growth.\n"
+          }
+        },
+        {
+          "handle": "get-in-touch",
+          "title": "Get in touch",
+          "templateSuffix": "get-in-touch",
+          "isPublished": true,
+          "body": "",
+          "bodySummary": "",
+          "updatedAt": "2025-08-31T07:38:24Z",
+          "seoTitle": { "value": "Get in touch | Shopify partner & expert agency" },
+          "seoDesc": {
+            "value": "Heseven is a global Shopify & Shopify Plus agency helping brands build, optimise, and scale high-performing e‑commerce stores. From custom development and design to strategic consultancy and ongoing support, we deliver future-ready digital growth."
+          }
+        },
+        {
+          "handle": "speed",
+          "title": "Speed",
+          "templateSuffix": "page",
+          "isPublished": true,
+          "body": "",
+          "bodySummary": "",
+          "updatedAt": "2025-06-21T12:17:47Z",
+          "seoTitle": null,
+          "seoDesc": null
+        },
+        {
+          "handle": "retainer",
+          "title": "Retainer",
+          "templateSuffix": "retainer-2",
+          "isPublished": true,
+          "body": "",
+          "bodySummary": "",
+          "updatedAt": "2025-08-31T07:40:02Z",
+          "seoTitle": { "value": "Retainer | Top Shopify agency" },
+          "seoDesc": {
+            "value": "Heseven is one of top Shopify & Shopify Plus agency globally helping brands build, optimise, and scale high-performing e‑commerce stores. From custom development and design to strategic consultancy and ongoing support, we deliver future-ready digital growth."
+          }
+        },
+        {
+          "handle": "landing-page",
+          "title": "Landing Page",
+          "templateSuffix": "landing-page",
+          "isPublished": true,
+          "body": "",
+          "bodySummary": "",
+          "updatedAt": "2025-08-31T07:35:55Z",
+          "seoTitle": null,
+          "seoDesc": null
+        },
+        {
+          "handle": "ready-to-grow",
+          "title": "ready to grow",
+          "templateSuffix": "ready-to-grow",
+          "isPublished": true,
+          "body": "",
+          "bodySummary": "",
+          "updatedAt": "2025-09-15T11:05:53Z",
+          "seoTitle": null,
+          "seoDesc": null
+        },
+        {
+          "handle": "new-lead",
+          "title": "New Lead",
+          "templateSuffix": "new-lead",
+          "isPublished": true,
+          "body": "",
+          "bodySummary": "",
+          "updatedAt": "2025-11-03T04:35:28Z",
+          "seoTitle": null,
+          "seoDesc": null
+        },
+        {
+          "handle": "shopify-website-development-services",
+          "title": "Shopify Website Development Services",
+          "templateSuffix": "shopify-website-development-service",
+          "isPublished": true,
+          "body": "",
+          "bodySummary": "",
+          "updatedAt": "2026-05-05T07:31:00Z",
+          "seoTitle": { "value": "Top Shopify Website Development Services to Grow in the USA" },
+          "seoDesc": {
+            "value": "Create a powerful Shopify store with USA-focused website development services that improve customer experience and accelerate online growth."
+          }
+        },
+        {
+          "handle": "shopify-theme-development-services",
+          "title": "Shopify Theme Development Services",
+          "templateSuffix": "shopify-theme-development",
+          "isPublished": true,
+          "body": "",
+          "bodySummary": "",
+          "updatedAt": "2026-05-05T07:56:47Z",
+          "seoTitle": { "value": "Shopify Theme Development Services in USA for 2026 Growth" },
+          "seoDesc": {
+            "value": "Professional Shopify Theme Development Services in USA for 2026. Custom, high-performance themes designed to boost sales, conversions, and eCommerce growth.\n"
+          }
+        },
+        {
+          "handle": "b2b-ecommerce-development-services",
+          "title": "B2B eCommerce Development Services",
+          "templateSuffix": "b2b-ecommerce-development",
+          "isPublished": true,
+          "body": "",
+          "bodySummary": "",
+          "updatedAt": "2026-01-12T10:45:48Z",
+          "seoTitle": null,
+          "seoDesc": null
+        },
+        {
+          "handle": "b2b-theme-development-services",
+          "title": "B2B theme development services",
+          "templateSuffix": "b2b-theme-development",
+          "isPublished": true,
+          "body": "",
+          "bodySummary": "",
+          "updatedAt": "2026-01-12T10:46:27Z",
+          "seoTitle": null,
+          "seoDesc": null
+        },
+        {
+          "handle": "shopify-store-design-services",
+          "title": "Shopify Industries",
+          "templateSuffix": "shopify-industries",
+          "isPublished": true,
+          "body": "",
+          "bodySummary": "",
+          "updatedAt": "2026-01-19T05:13:32Z",
+          "seoTitle": null,
+          "seoDesc": null
+        },
+        {
+          "handle": "data-sharing-opt-out",
+          "title": "Your privacy choices",
+          "templateSuffix": null,
+          "isPublished": false,
+          "body": "\n      <meta charset=\"utf-8\">\n      <p>\n        As described in our Privacy Policy, we collect personal information from your interactions with us and our website, including through cookies and similar technologies.\n        We may also share this personal information with third parties, including advertising partners. We do this in order to show you ads on other websites that are more relevant\n        to your interests and for other reasons outlined in our privacy policy.\n      </p>\n      <p>\n        Sharing of personal information for targeted advertising based on your interaction on different websites may be considered \"sales\", \"sharing,\" or \"targeted advertising\"\n        under certain U.S. state privacy laws. Depending on where you live, you may have the right to opt out of these activities. If you would like to exercise this opt-out right,\n        please follow the instructions below.\n      </p>\n      <p>\n        If you visit our website with the Global Privacy Control opt-out preference signal enabled, depending on where you are, we will treat this as a request to opt-out of activity\n        that may be considered a “sale” or “sharing” of personal information or other uses that may be considered targeted advertising for the device and browser you used to visit our\n        website.\n      </p>\n\n      <div id=\"pc--opt-out-form-container\" style=\"display: none;\">\n        <p id=\"optout\" class=\"pc--opt-out-initial\">\n          If you would like to opt out of activity that may be considered a \"sale\" or \"share,\" or \"targeted advertising\", please submit your email.\n        </p>\n        <form action=\"/dns_opt_out\" class=\"pc--opt-out-form\" method=\"POST\" id=\"pc--opt-out-form\" accept-charset=\"UTF-8\">\n\n            <input type=\"hidden\" id=\"pc_return_to\" name=\"return_to\" value=\"\">\n\n            <div class=\"pc--opt-out-form-field_wrapper\">\n              <div class=\"field\">\n                <input id=\"pc--opt-out-email_input\" class=\"field__input\" type=\"email\" name=\"opt_out_email\" value=\"\" required aria-required=\"true\" autocorrect=\"off\" autocapitalize=\"off\" autocomplete=\"email\" placeholder=\"Email\">\n\n                <label class=\"field__label\" for=\"pc--opt-out-email_input\">\n                    Email\n                </label>\n\n                <div id=\"hcaptcha\" class=\"h-captcha\" data-sitekey=\"b2f59229-c8ff-461c-8062-5d9a4408eb20\" data-callback=\"submitOptOutForm\" data-size=\"invisible\"></div>\n\n                <button class=\"field__button pc--opt-out-form-button\" type=\"submit\" name=\"pc--commit\" id=\"pc--opt-out-button\" aria-label=\"Opt out of sale of data\">\n                  \n  <svg viewbox=\"0 0 14 10\" fill=\"none\" aria-hidden=\"true\" focusable=\"false\" class=\"icon icon-arrow\" xmlns=\"http://www.w3.org/2000/svg\">\n      <path fill-rule=\"evenodd\" clip-rule=\"evenodd\" d=\"M8.537.808a.5.5 0 01.817-.162l4 4a.5.5 0 010 .708l-4 4a.5.5 0 11-.708-.708L11.793 5.5H1a.5.5 0 010-1h10.793L8.646 1.354a.5.5 0 01-.109-.546z\" fill=\"currentColor\">\n    </path>\n  </svg>\n\n                </button>\n              </div>\n            </div>\n\n            <h3 class=\"pc--opt-out-form-message pc--opt-out-form-message--success form__message\" style=\"display: none;\" id=\"pc--opt-out-success\" tabindex=\"-1\" autofocus=\"\">\n                \n  <svg aria-hidden=\"true\" focusable=\"false\" class=\"icon icon-success\" viewbox=\"0 0 13 13\">\n      <path d=\"M6.5 12.35C9.73087 12.35 12.35 9.73086 12.35 6.5C12.35 3.26913 9.73087 0.65 6.5 0.65C3.26913 0.65 0.65 3.26913 0.65 6.5C0.65 9.73086 3.26913 12.35 6.5 12.35Z\" fill=\"#428445\" stroke=\"white\" stroke-width=\"0.7\"></path>\n      <path d=\"M5.53271 8.66357L9.25213 4.68197\" stroke=\"white\"></path>\n      <path d=\"M4.10645 6.7688L6.13766 8.62553\" stroke=\"white\">\n      </path>\n  </svg>\n\n                <span>Opted-out successfully</span>\n            </h3>\n\n            <small class=\"pc--opt-out-form-message form__message\" style=\"display: none;\" id=\"pc--opt-out-error\">\n                \n  <svg aria-hidden=\"true\" focusable=\"false\" class=\"icon icon-error\" viewbox=\"0 0 13 13\">\n    <circle cx=\"6.5\" cy=\"6.50049\" r=\"5.5\" stroke=\"white\" stroke-width=\"2\"></circle>\n    <circle cx=\"6.5\" cy=\"6.5\" r=\"5.5\" fill=\"#EB001B\" stroke=\"#EB001B\" stroke-width=\"0.7\"></circle>\n    <path d=\"M5.87413 3.52832L5.97439 7.57216H7.02713L7.12739 3.52832H5.87413ZM6.50076 9.66091C6.88091 9.66091 7.18169 9.37267 7.18169 9.00504C7.18169 8.63742 6.88091 8.34917 6.50076 8.34917C6.12061 8.34917 5.81982 8.63742 5.81982 9.00504C5.81982 9.37267 6.12061 9.66091 6.50076 9.66091Z\" fill=\"white\"></path>\n    <path d=\"M5.87413 3.17832H5.51535L5.52424 3.537L5.6245 7.58083L5.63296 7.92216H5.97439H7.02713H7.36856L7.37702 7.58083L7.47728 3.537L7.48617 3.17832H7.12739H5.87413ZM6.50076 10.0109C7.06121 10.0109 7.5317 9.57872 7.5317 9.00504C7.5317 8.43137 7.06121 7.99918 6.50076 7.99918C5.94031 7.99918 5.46982 8.43137 5.46982 9.00504C5.46982 9.57872 5.94031 10.0109 6.50076 10.0109Z\" fill=\"white\" stroke=\"#EB001B\" stroke-width=\"0.7\"></path>\n  </svg>\n\n                A problem occurred, try submitting your email again\n            </small>\n        </form>\n      </div>\n\n      <p id=\"pc--opt-out-not-applicable\" style=\"display: none;\">\n        <strong>To opt out of the “sale” or “sharing” of your personal information collected using cookies and other device-based identifiers as described above, you must be browsing from one of the applicable US states referred to above.</strong>\n      </p>\n\n      \n  <style>\n  .pc--opt-out-initial {\n    margin-bottom: 4rem;\n  }\n\n  .pc--opt-out-form {\n    position: relative;\n    display: flex;\n    flex-direction: column;\n    justify-content: center;\n    align-items: center;\n    width: 100%;\n  }\n\n  @media screen and (min-width: 750px) {\n    .pc--opt-out-form {\n      align-items: flex-start;\n      max-width: 36rem;\n    }\n  }\n\n  .pc--opt-out-form-field_wrapper {\n    width: 100%;\n  }\n\n  .pc--opt-out-form-field_wrapper .field__input {\n    padding-right: 5rem;\n  }\n\n  .pc--opt-out-form-field_wrapper .field {\n    z-index: 0;\n  }\n\n  .pc--opt-out-form-message--success {\n    margin-top: 2rem;\n  }\n\n  .pc--opt-out-form-message {\n    position: relative;\n    flex-direction: row;\n    justify-content: center;\n    align-items: center;\n    width: 100%;\n    margin-bottom: 0;\n  }\n\n  @media screen and (min-width: 750px) {\n    .pc--opt-out-form-message {\n      justify-content: flex-start;\n    }\n  }\n\n  .pc--opt-out-form-button {\n    z-index: 2;\n    top: 0;\n    right: var(--inputs-border-width);\n    width: 4.4rem;\n    height: 100%;\n    margin: 0;\n  }\n\n  .pc--opt-out-form-button:focus-visible {\n    box-shadow: 0 0 0 0.3rem rgb(var(--color-background)), 0 0 0 0.4rem rgba(var(--color-foreground));\n    background-color: rgb(var(--color-background));\n  }\n\n  .pc--opt-out-form-button:focus {\n    box-shadow: 0 0 0 0.3rem rgb(var(--color-background)), 0 0 0 0.4rem rgba(var(--color-foreground));\n    background-color: rgb(var(--color-background));\n  }\n\n  .pc--opt-out-form-button:not(:focus-visible):not(.focused) {\n    box-shadow: inherit;\n    background-color: inherit;\n  }\n\n  .pc--opt-out-form-button .icon {\n    width: 1.5rem;\n  }\n  </style>\n\n      \n  <script>\n  function getUrlParam(paramName) {\n    var queryString = window.location.search.slice(1);\n    var paramsArray = queryString.split('&');\n    var paramValue = null;\n    for (var i = 0; i < paramsArray.length; i++) {\n      var param = paramsArray[i];\n      var keyValuePair = param.split('=');\n      var key = keyValuePair[0];\n      if (key === paramName) {\n        paramValue = decodeURIComponent(keyValuePair[1]);\n        break;\n      }\n    }\n    return paramValue;\n  }\n\n  function submitOptOutForm() {\n    document.getElementById('pc--opt-out-form').submit();\n  }\n\n  function showSuccessMessage() {\n    var successMessageh3 = document.getElementById('pc--opt-out-success');\n    var successMessageEle = successMessageh3.getElementsByTagName('span')[0];\n    var successMessage = '<span>Opted-out successfully</span>';\n\n    successMessageEle.innerHTML = successMessage;\n    successMessageh3.style.display = 'flex';\n  }\n\n  function showErrorMessage() {\n    document.getElementById('pc--opt-out-error').style.display = 'flex';\n  }\n\n  function showNotApplicableMessage() {\n    document.getElementById('pc--opt-out-not-applicable').style.display = 'block';\n  }\n\n  function setupForm() {\n    var formContainer = document.getElementById('pc--opt-out-form-container');\n    formContainer.style.display = 'block';\n\n    var pcReturnTo = document.getElementById(\"pc_return_to\");\n    pcReturnTo.setAttribute(\"value\", window.location.pathname);\n  }\n\n  function loadFeatureCallback(error) {\n    if (error) {\n      throw error;\n    }\n\n    canOptOut().then((showForm) => {\n      if (showForm) {\n        setupForm();\n        if (getUrlParam('success') === 'true') {\n          showSuccessMessage();\n        } else if (getUrlParam('success') === 'false') {\n          showErrorMessage();\n        }\n      } else {\n        showNotApplicableMessage();\n      }\n    })\n  }\n\n  function canOptOut() {\n    // First, check if the user is in the admin preview mode\n    if (isAdminPreviewMode()) {\n      return getSaleofDataRegions().then((regions) => {\n        return regions.includes(window.Shopify.country);\n      });\n    }\n\n    // No admin preview mode\n    var customerPrivacyApi = window.Shopify.customerPrivacy;\n\n    if (customerPrivacyApi.unstable) {\n      return Promise.resolve(customerPrivacyApi.unstable.saleOfDataRegion());\n    }\n\n    return Promise.resolve(customerPrivacyApi.getRegulation() === 'CCPA');\n  }\n\n  function ccpaOptOutLoader() {\n    window.Shopify.loadFeatures(\n      [\n        {\n          name: 'consent-tracking-api',\n          version: '0.1',\n        },\n      ],\n      loadFeatureCallback,\n    );\n  }\n\n  ccpaOptOutLoader();\n\n  function optOutOnLoad() {\n    var optOutSubmitButton = document.getElementById('pc--opt-out-button');\n    var optOutForm = document.getElementById('pc--opt-out-form');\n\n    optOutSubmitButton.addEventListener('click', function (e) {\n      e.preventDefault();\n\n      if (!optOutForm.reportValidity()) {\n        return;\n      }\n\n      if (document.getElementById('hcaptcha')) {\n        hcaptcha.execute();\n      } else {\n        submitOptOutForm();\n      }\n    });\n  }\n\n  var liquidAccessToken = () => {\n    var shopifyFeatures = document.documentElement.querySelector('#shopify-features');\n    if (!shopifyFeatures) {\n      // eslint-disable-next-line no-console\n      console.warn('Could not find liquid access token');\n      return undefined;\n    };\n\n    var featuresAccessToken = JSON.parse(shopifyFeatures.textContent || '').accessToken;\n    if (!featuresAccessToken) {\n      // eslint-disable-next-line no-console\n      console.warn('Could not find liquid access token');\n      return undefined;\n    };\n\n    return featuresAccessToken;\n  }\n\n  async function getSaleofDataRegions() {\n    var fetchParams = {\n      headers: {\n        // eslint-disable-next-line @typescript-eslint/naming-convention\n        'content-type': 'application/json',\n        // eslint-disable-next-line @typescript-eslint/naming-convention\n        'x-shopify-storefront-access-token': liquidAccessToken(),\n      },\n      body: JSON.stringify({\n        query: `\n          query bannerQuery {\n            consentManagement {\n              saleOfDataRegions\n            }\n          }`,\n      }),\n      method: 'POST',\n    };\n\n    return fetch('/api/unstable/graphql.json?fast_storefront_renderer=1', fetchParams)\n      .then((response) => {\n        if (!response.ok) {\n          return response.text().then(text => { throw new Error(text) })\n        }\n        else {\n          return response.json();\n        }\n      })\n      .then((respJson) => {\n        if (respJson.errors) {\n          throw new Error(respJson.errors.map(e => e.message).join(', '));\n        }\n        else if (!respJson || !respJson.data || !respJson.data.consentManagement || !respJson.data.consentManagement.saleOfDataRegions) {\n          throw new Error('Invalid or empty response from the server');\n        }\n        else { return respJson.data.consentManagement.saleOfDataRegions }\n      })\n      .catch((error) => {\n        // eslint-disable-next-line no-console\n        console.error('Error fetching sale of data regions: ', error);\n        return [];\n      });\n    }\n\n  function isAdminPreviewMode() {\n    // Check if the user is in the admin preview, if so, the admin\n    // preview bar will be present and cookie _ab=1 will be set\n    var abCookie = document.cookie.split(';').filter((cookie) => cookie.trim().startsWith('_ab='))[0];\n    return abCookie ? abCookie.split('=')[1] === '1' : false;\n  }\n\n  </script>\n  <script src=\"https://js.hcaptcha.com/1/api.js?onload=optOutOnLoad\" defer></script>\n\n    ",
+          "bodySummary": "As described in our Privacy Policy, we collect personal information from your interactions with us and our website, including through cookies and s...",
+          "updatedAt": "2026-02-26T11:23:14Z",
+          "seoTitle": null,
+          "seoDesc": null
+        },
+        {
+          "handle": "top-b2b-ecommerce-development-services-in-the-uk",
+          "title": "B2B eCommerce Development Services",
+          "templateSuffix": "b2b-ecommerce-development-3",
+          "isPublished": true,
+          "body": "",
+          "bodySummary": "",
+          "updatedAt": "2026-04-17T07:19:57Z",
+          "seoTitle": { "value": "Top B2B eCommerce Development Services in the UK" },
+          "seoDesc": {
+            "value": "Top B2B eCommerce development services in the UK offering scalable, secure, and custom solutions to streamline operations, boost sales, and enhance business growth.\n"
+          }
+        },
+        {
+          "handle": "ecommerce-store-for-timeless-collection",
+          "title": "eCommerce Store for Timeless Collection",
+          "templateSuffix": "ecommerce-timeless-collec",
+          "isPublished": true,
+          "body": "",
+          "bodySummary": "",
+          "updatedAt": "2026-05-04T08:03:02Z",
+          "seoTitle": { "value": "Custom eCommerce Store for Timeless Collection by Shopify Experts" },
+          "seoDesc": {
+            "value": "Launch a custom eCommerce Store for Timeless Collection by Shopify experts with responsive design, secure checkout, and seamless shopping experience.\n"
+          }
+        },
+        {
+          "handle": "ecommerce-fmcg-industry",
+          "title": "Ecommerce FMCG Industry",
+          "templateSuffix": "ecommerce-fmcg-industry",
+          "isPublished": true,
+          "body": "",
+          "bodySummary": "",
+          "updatedAt": "2026-05-04T09:09:43Z",
+          "seoTitle": { "value": "Grow Faster with Trusted Ecommerce FMCG Industry Solutions" },
+          "seoDesc": {
+            "value": "Grow faster with trusted Ecommerce FMCG Industry solutions. Build scalable online stores with seamless design, better user experience, and higher sales."
+          }
+        },
+        {
+          "handle": "cosmetics-ecommerce-websites",
+          "title": "Cosmetics Ecommerce Websites",
+          "templateSuffix": "cosmetics-ecommerce-web",
+          "isPublished": true,
+          "body": "",
+          "bodySummary": "",
+          "updatedAt": "2026-05-04T10:53:06Z",
+          "seoTitle": { "value": "Grow Your Beauty Business with Cosmetics Ecommerce Websites" },
+          "seoDesc": {
+            "value": "Grow your beauty business with Cosmetics Ecommerce Websites featuring custom design, secure checkout, mobile optimisation, and seamless shopping."
+          }
+        },
+        {
+          "handle": "health-and-wellness-ecommerce",
+          "title": "Health and Wellness eCommerce",
+          "templateSuffix": "health-wellness-ecommerce",
+          "isPublished": true,
+          "body": "",
+          "bodySummary": "",
+          "updatedAt": "2026-05-05T10:32:06Z",
+          "seoTitle": { "value": "Professional Health and Wellness eCommerce Solutions UK" },
+          "seoDesc": {
+            "value": "Take your health and wellness brand further with professional eCommerce websites built for performance, growth, and customer loyalty."
+          }
+        },
+        {
+          "handle": "clothing-ecommerce-website",
+          "title": "Clothing Ecommerce Website",
+          "templateSuffix": "clothing-ecommerce-web",
+          "isPublished": true,
+          "body": "",
+          "bodySummary": "",
+          "updatedAt": "2026-05-05T10:45:19Z",
+          "seoTitle": { "value": "Clothing Ecommerce Website USA for Growing Fashion Stores" },
+          "seoDesc": {
+            "value": "Grow your fashion brand with clothing ecommerce website solutions in the USA, designed to boost sales, enhance shopping experiences, and scale faster."
+          }
+        },
+        {
+          "handle": "furniture-ecommerce-website",
+          "title": "Furniture Ecommerce Website",
+          "templateSuffix": "furniture-ecommerce-web",
+          "isPublished": true,
+          "body": "",
+          "bodySummary": "",
+          "updatedAt": "2026-05-05T07:19:01Z",
+          "seoTitle": { "value": "Sell More Online with Professional Furniture Ecommerce Websites" },
+          "seoDesc": {
+            "value": "Sell more furniture online with professional ecommerce websites designed for seamless shopping, better conversions, and long-term business growth.\n"
+          }
+        },
+        {
+          "handle": "top-rated-shopify-store-design-services-uk",
+          "title": "Shopify Store Design Services",
+          "templateSuffix": "shopify-store-design",
+          "isPublished": true,
+          "body": "",
+          "bodySummary": "",
+          "updatedAt": "2026-05-05T08:23:06Z",
+          "seoTitle": { "value": "Top-Rated Shopify Store Design Services UK for Retail Growth" },
+          "seoDesc": {
+            "value": "Launch a professional Shopify store with UK design services tailored to attract shoppers, strengthen trust, and maximise revenue."
+          }
+        },
+        {
+          "handle": "premium-b2b-ecommerce-theme-development-usa",
+          "title": "B2B theme development Services",
+          "templateSuffix": "b2b-theme-development",
+          "isPublished": true,
+          "body": "",
+          "bodySummary": "",
+          "updatedAt": "2026-05-05T10:40:23Z",
+          "seoTitle": { "value": "Premium B2B Ecommerce Theme Development USA" },
+          "seoDesc": {
+            "value": "Accelerate your ecommerce growth with premium B2B theme development services in the USA, built to increase conversions and customer loyalty."
+          }
+        },
+        {
+          "handle": "our-work",
+          "title": "Our Work",
+          "templateSuffix": "our-work",
+          "isPublished": true,
+          "body": "",
+          "bodySummary": "",
+          "updatedAt": "2026-09-03T09:12:11Z",
+          "seoTitle": null,
+          "seoDesc": null
+        },
+        {
+          "handle": "speed-optimization",
+          "title": "Speed Optimization",
+          "templateSuffix": "speed-optimization",
+          "isPublished": true,
+          "body": "",
+          "bodySummary": "",
+          "updatedAt": "2026-09-07T10:11:49Z",
+          "seoTitle": null,
+          "seoDesc": null
+        }
+      ]
+    }
+  },
+  "extensions": {
+    "cost": {
+      "requestedQueryCost": 29,
+      "actualQueryCost": 15,
+      "throttleStatus": { "maximumAvailable": 2000.0, "currentlyAvailable": 1985, "restoreRate": 100.0 }
+    }
+  }
+}
