@@ -51,6 +51,8 @@ export default defineConfig({
       options: {
         variants: [
           { weight: 400, style: 'normal', src: ['@fontsource/roboto/files/roboto-latin-400-normal.woff2'] },
+          // 700 is NOT preloaded (only 400 is) — used for the footer wordmark and bold text.
+          { weight: 700, style: 'normal', src: ['@fontsource/roboto/files/roboto-latin-700-normal.woff2'] },
         ],
       },
     },

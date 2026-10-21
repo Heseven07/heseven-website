@@ -1,115 +1,160 @@
 ---
-import Logo from '../ui/Logo.astro';
+/**
+ * Footer — same design and links as heseven.com: rounded dark panel with the green light-beam
+ * background image, Contact / Information / Services columns, big "heseven" wordmark, Follow Us pills.
+ * On mobile, Information and Services collapse into accordions (open on desktop).
+ */
+import { Image } from 'astro:assets';
+import footerBg from '../../assets/brand/footer-bg.png';
 import { SITE } from '../../config/site';
-import { nav, services, moreServicePages } from '../../data/home';
+import { footerLinks } from '../../data/home';
 
 const year = new Date().getFullYear();
 const trackingEnabled = Boolean(import.meta.env.PUBLIC_GA4_ID || import.meta.env.PUBLIC_META_PIXEL_ID);
+const social = [
+  { label: 'Facebook', href: SITE.social.facebook },
+  { label: 'Instagram', href: SITE.social.instagram },
+  { label: 'LinkedIn', href: SITE.social.linkedin },
+];
+const columns = [
+  { id: 'information', title: 'Information', links: footerLinks.information },
+  { id: 'services', title: 'Services', links: footerLinks.services },
+];
 ---
 
-<!--
-  Glass footer: an animated rainbow "aurora" (pre-blurred, transform-only motion) sits behind a
-  frosted panel; text sits on the panel. Aurora only animates while the footer is on screen
-  ([data-inview] → .is-inview, see scripts/motion.ts) and never for reduced-motion users.
--->
-<footer class="site-footer relative isolate overflow-hidden pt-24 pb-8 md:pt-32" data-inview>
-  <div class="aurora" aria-hidden="true">
-    <span class="aurora-ring"></span>
-    <span class="aurora-blob aurora-blob--1"></span>
-    <span class="aurora-blob aurora-blob--2"></span>
-    <span class="aurora-blob aurora-blob--3"></span>
-    <span class="aurora-blob aurora-blob--4"></span>
-    <span class="aurora-blob aurora-blob--5"></span>
-  </div>
+<footer class="container-x pt-16 pb-6 md:pt-24">
+  <div class="ft-panel">
+    <Image
+      src={footerBg}
+      alt=""
+      widths={[800, 1400, 2000]}
+      sizes="(min-width: 1440px) 1376px, 100vw"
+      loading="lazy"
+      class="ft-bg"
+    />
 
-  <div class="container-x">
-    <div class="glass-panel" data-spotlight>
-      <div class="grid gap-12 md:grid-cols-12">
-        <div class="md:col-span-5">
-          <Logo />
-          <p class="mt-5 max-w-sm text-fg/75">
-            Shopify Plus Partner agency designing, building and growing e-commerce brands since{' '}
-            {SITE.foundingYear}.
-          </p>
-          <a
-            href={`mailto:${SITE.email}`}
-            class="mt-6 inline-block font-display text-2xl font-semibold hover:text-lime"
-          >
-            {SITE.email}
-          </a>
-          <address class="mt-6 text-sm leading-relaxed text-fg/70 not-italic">
-            {SITE.legalName}
-            <br />
-            {SITE.address.streetAddress}, {SITE.address.addressLocality}
-            <br />
-            {SITE.address.addressRegion}, {SITE.address.postalCode}, United Kingdom
+    <div class="relative px-6 pt-14 sm:px-10 md:px-12 md:pt-20">
+      <div class="grid gap-x-10 md:grid-cols-3">
+        <!-- Contact -->
+        <div>
+          <h2 class="ft-heading">Contact Us</h2>
+          <address class="mt-8 flex flex-col gap-6 not-italic">
+            <p class="flex gap-3 leading-relaxed">
+              <svg class="ft-icon" viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M12 2a7 7 0 0 0-7 7c0 5.25 7 13 7 13s7-7.75 7-13a7 7 0 0 0-7-7Zm0 9.5A2.5 2.5 0 1 1 12 6.5a2.5 2.5 0 0 1 0 5Z"></path>
+              </svg>
+              <span>
+                {SITE.address.streetAddress}, {SITE.address.addressLocality}, {SITE.address.addressRegion},
+                <br />
+                {SITE.address.postalCode}, United Kingdom
+              </span>
+            </p>
+            <p class="flex gap-3">
+              <svg class="ft-icon" viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M3 5h18v14H3V5Zm2 2v.5l7 4.5 7-4.5V7H5Zm14 2.85-7 4.5-7-4.5V17h14V9.85Z"></path>
+              </svg>
+              <a href={`mailto:${SITE.email}`} class="ft-link text-fg">
+                {SITE.email}
+              </a>
+            </p>
           </address>
+          <!-- Follow Us (mobile position) -->
+          <div class="mt-10 md:hidden">
+            <p class="text-sm">Follow Us:</p>
+            <ul class="mt-4 flex flex-wrap gap-2.5">
+              {social.map((s) => (
+                <li>
+                  <a href={s.href} target="_blank" rel="noopener" class="ft-pill">
+                    {s.label}
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </div>
         </div>
-        <nav aria-label="Services" class="md:col-span-3">
-          <h2 class="footer-title">Services</h2>
-          <ul class="footer-list">
-            {[...services, ...moreServicePages].map((s) => (
-              <li>
-                <a href={`/pages/${s.slug}`}>{s.title}</a>
-              </li>
-            ))}
-          </ul>
-        </nav>
-        <nav aria-label="Company" class="md:col-span-2">
-          <h2 class="footer-title">Company</h2>
-          <ul class="footer-list">
-            {nav.map((n) => (
-              <li>
-                <a href={n.href}>{n.label}</a>
-              </li>
-            ))}
-          </ul>
-        </nav>
-        <div class="md:col-span-2">
-          <h2 class="footer-title">Follow</h2>
-          <ul class="footer-list">
-            <li>
-              <a href={SITE.social.linkedin} rel="noopener" target="_blank">
-                LinkedIn
-              </a>
-            </li>
-            <li>
-              <a href={SITE.social.instagram} rel="noopener" target="_blank">
-                Instagram
-              </a>
-            </li>
-            <li>
-              <a href={SITE.social.facebook} rel="noopener" target="_blank">
-                Facebook
-              </a>
-            </li>
-          </ul>
-        </div>
+
+        <!-- Information + Services: accordions on mobile, open columns on desktop -->
+        {columns.map((col) => (
+          <details class="ft-col" open data-ft-acc>
+            <summary class="ft-summary">
+              <h2 class="ft-heading">{col.title}</h2>
+              <span class="ft-plus" aria-hidden="true" />
+            </summary>
+            <nav aria-label={col.title}>
+              <ul class="flex flex-col gap-5 pb-8 md:mt-8 md:pb-0">
+                {col.links.map((l) => (
+                  <li>
+                    <a href={l.href} class="ft-link">
+                      {l.label}
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            </nav>
+          </details>
+        ))}
       </div>
-      <div class="mt-14 flex flex-col gap-4 border-t border-white/10 pt-8 text-sm text-fg/70 sm:flex-row sm:items-center sm:justify-between">
-        <p>
-          © {year} {SITE.legalName}. All rights reserved.
+
+      <div class="mt-12 flex flex-col gap-10 pb-10 md:mt-16 md:flex-row md:items-end md:justify-between">
+        <p class="ft-wordmark" aria-hidden="true">
+          heseven
         </p>
-        <ul class="flex flex-wrap gap-6">
-          <li>
-            <a href="/privacy" class="transition-colors hover:text-lime">
-              Privacy
-            </a>
-          </li>
-          <li>
-            <a href="/terms" class="transition-colors hover:text-lime">
-              Terms
-            </a>
-          </li>
-          {trackingEnabled && (
-            <li>
-              <button type="button" data-consent-open class="transition-colors hover:text-lime">
-                Cookie settings
-              </button>
-            </li>
-          )}
-        </ul>
+        <!-- Follow Us (desktop position) -->
+        <div class="hidden shrink-0 md:block md:pb-6">
+          <p class="text-right text-sm">Follow Us:</p>
+          <ul class="mt-4 flex gap-2.5">
+            {social.map((s) => (
+              <li>
+                <a href={s.href} target="_blank" rel="noopener" class="ft-pill">
+                  {s.label}
+                </a>
+              </li>
+            ))}
+          </ul>
+        </div>
       </div>
+    </div>
+
+    <div class="relative flex flex-col items-center gap-3 border-t border-white/10 px-6 py-6 text-sm sm:px-10 md:flex-row md:justify-between md:px-12">
+      <p>
+        © {year}, {SITE.legalName}.
+      </p>
+      <ul class="flex flex-wrap gap-5 text-fg/70">
+        <li>
+          <a href="/privacy" class="ft-link">
+            Privacy
+          </a>
+        </li>
+        <li>
+          <a href="/terms" class="ft-link">
+            Terms
+          </a>
+        </li>
+        {trackingEnabled && (
+          <li>
+            <button type="button" data-consent-open class="ft-link">
+              Cookie settings
+            </button>
+          </li>
+        )}
+      </ul>
     </div>
   </div>
 </footer>
+
+<script>
+  // Mobile: start Information/Services collapsed. Desktop: always open (summary clicks ignored).
+  const desktop = matchMedia('(min-width: 768px)');
+  function initFooterAccordions() {
+    document.querySelectorAll<HTMLDetailsElement>('[data-ft-acc]').forEach((d) => {
+      d.open = desktop.matches;
+      if (d.dataset.ready) return;
+      d.dataset.ready = 'true';
+      d.querySelector('summary')?.addEventListener('click', (e) => {
+        if (desktop.matches) e.preventDefault();
+      });
+    });
+  }
+  desktop.addEventListener('change', initFooterAccordions);
+  document.addEventListener('astro:page-load', initFooterAccordions);
+</script>

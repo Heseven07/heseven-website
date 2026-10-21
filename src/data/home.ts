@@ -48,6 +48,32 @@ export const clients = [
   'ModMyCar',
 ];
 
+/** Footer links — same as heseven.com's footer. */
+export const footerLinks = {
+  information: [
+    { label: 'Why Shopify?', href: '/blogs/news/unlocking-e-commerce-success-the-power-of-shopify' },
+    { label: 'Improve Conversion Rate', href: '/blogs/news/how-to-improve-your-conversion-rate' },
+    { label: 'Optimise Page Loading Speed', href: '/blogs/news/how-to-optimise-page-loading-speed' },
+    {
+      label: 'Shopify Plus vs Salesforce',
+      href: '/blogs/news/shopify-plus-vs-user-salesforce-commerce-cloud',
+    },
+  ],
+  services: [
+    { label: 'Shopify Plus Development', href: '/pages/shopify-plus-development-agency' },
+    { label: 'Shopify Maintenance Service', href: '/pages/shopify-maintenance-service' },
+    { label: 'Virtual Assistant for Shopify', href: '/pages/virtual-assistant-for-shopify' },
+    { label: 'White-label Shopify development', href: '/pages/white-label-shopify-development' },
+  ],
+};
+
+/** Shopify Plus Partner band shown under the hero (copy from heseven.com). */
+export const partner = {
+  text: 'Heseven is a leading Shopify Partner agency with a global reputation since 2018. We focus on providing outstanding, tailored Shopify solutions. Our dedicated, skilled, and innovative team is committed to enhancing your brand.',
+  profileUrl: 'https://www.shopify.com/partners/directory/partner/heseven',
+  profileLabel: 'Shopify Partner Profile',
+};
+
 export const about = {
   eyebrow: 'About Heseven',
   title: 'A Shopify agency that treats your store like a product, not a project.',
