@@ -37,17 +37,6 @@ export const hero = {
   ],
 };
 
-export const clients = [
-  'Powerlete',
-  'Vroom! Classics',
-  'Caorunn Gin',
-  'Ornella Gorza',
-  'AquaDoc',
-  'Waldo Watches',
-  'Grenla',
-  'ModMyCar',
-];
-
 /** Footer links — same as heseven.com's footer. */
 export const footerLinks = {
   information: [

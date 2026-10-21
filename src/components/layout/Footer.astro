@@ -33,47 +33,9 @@ const columns = [
       class="ft-bg"
     />
 
-    <div class="relative px-6 pt-14 sm:px-10 md:px-12 md:pt-20">
-      <div class="grid gap-x-10 md:grid-cols-3">
-        <!-- Contact -->
-        <div>
-          <h2 class="ft-heading">Contact Us</h2>
-          <address class="mt-8 flex flex-col gap-6 not-italic">
-            <p class="flex gap-3 leading-relaxed">
-              <svg class="ft-icon" viewBox="0 0 24 24" aria-hidden="true">
-                <path d="M12 2a7 7 0 0 0-7 7c0 5.25 7 13 7 13s7-7.75 7-13a7 7 0 0 0-7-7Zm0 9.5A2.5 2.5 0 1 1 12 6.5a2.5 2.5 0 0 1 0 5Z"></path>
-              </svg>
-              <span>
-                {SITE.address.streetAddress}, {SITE.address.addressLocality}, {SITE.address.addressRegion},
-                <br />
-                {SITE.address.postalCode}, United Kingdom
-              </span>
-            </p>
-            <p class="flex gap-3">
-              <svg class="ft-icon" viewBox="0 0 24 24" aria-hidden="true">
-                <path d="M3 5h18v14H3V5Zm2 2v.5l7 4.5 7-4.5V7H5Zm14 2.85-7 4.5-7-4.5V17h14V9.85Z"></path>
-              </svg>
-              <a href={`mailto:${SITE.email}`} class="ft-link text-fg">
-                {SITE.email}
-              </a>
-            </p>
-          </address>
-          <!-- Follow Us (mobile position) -->
-          <div class="mt-10 md:hidden">
-            <p class="text-sm">Follow Us:</p>
-            <ul class="mt-4 flex flex-wrap gap-2.5">
-              {social.map((s) => (
-                <li>
-                  <a href={s.href} target="_blank" rel="noopener" class="ft-pill">
-                    {s.label}
-                  </a>
-                </li>
-              ))}
-            </ul>
-          </div>
-        </div>
-
-        <!-- Information + Services: accordions on mobile, open columns on desktop -->
+    <div class="relative px-6 pt-6 sm:px-10 md:px-12 md:pt-20">
+      <!-- 1. Information + Services: accordions on mobile, open columns on desktop -->
+      <div class="grid gap-x-10 md:grid-cols-2 lg:w-2/3">
         {columns.map((col) => (
           <details class="ft-col" open data-ft-acc>
             <summary class="ft-summary">
@@ -95,14 +57,38 @@ const columns = [
         ))}
       </div>
 
-      <div class="mt-12 flex flex-col gap-10 pb-10 md:mt-16 md:flex-row md:items-end md:justify-between">
-        <p class="ft-wordmark" aria-hidden="true">
-          heseven
-        </p>
-        <!-- Follow Us (desktop position) -->
-        <div class="hidden shrink-0 md:block md:pb-6">
-          <p class="text-right text-sm">Follow Us:</p>
-          <ul class="mt-4 flex gap-2.5">
+      <!-- 2. Wordmark -->
+      <p class="ft-wordmark mt-12 md:mt-16" aria-hidden="true">
+        heseven
+      </p>
+
+      <!-- 3. Address (left) + social links (right) -->
+      <div class="mt-10 flex flex-col gap-10 pb-10 md:mt-12 md:flex-row md:items-end md:justify-between md:pb-12">
+        <div>
+          <h2 class="text-sm">Contact Us:</h2>
+          <address class="mt-4 flex flex-col gap-4 not-italic">
+            <p class="flex gap-3 leading-relaxed">
+              <svg class="ft-icon" viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M12 2a7 7 0 0 0-7 7c0 5.25 7 13 7 13s7-7.75 7-13a7 7 0 0 0-7-7Zm0 9.5A2.5 2.5 0 1 1 12 6.5a2.5 2.5 0 0 1 0 5Z"></path>
+              </svg>
+              <span>
+                {SITE.address.streetAddress}, {SITE.address.addressLocality}, {SITE.address.addressRegion},{' '}
+                {SITE.address.postalCode}, United Kingdom
+              </span>
+            </p>
+            <p class="flex gap-3">
+              <svg class="ft-icon" viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M3 5h18v14H3V5Zm2 2v.5l7 4.5 7-4.5V7H5Zm14 2.85-7 4.5-7-4.5V17h14V9.85Z"></path>
+              </svg>
+              <a href={`mailto:${SITE.email}`} class="ft-link text-fg">
+                {SITE.email}
+              </a>
+            </p>
+          </address>
+        </div>
+        <div class="shrink-0">
+          <h2 class="text-sm md:text-right">Follow Us:</h2>
+          <ul class="mt-4 flex flex-wrap gap-2.5">
             {social.map((s) => (
               <li>
                 <a href={s.href} target="_blank" rel="noopener" class="ft-pill">

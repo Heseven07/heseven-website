@@ -226,6 +226,22 @@
     @apply flex shrink-0 items-center gap-16 pr-16 font-display text-2xl font-semibold whitespace-nowrap text-fg/60 md:text-3xl;
     animation: marquee 40s linear infinite;
   }
+  .logo-track {
+    @apply gap-14 pr-14 md:gap-20 md:pr-20;
+  }
+  .logo-track li {
+    @apply flex items-center;
+    height: 64px;
+  }
+  .client-logo {
+    height: calc(var(--logo-h) * 0.8);
+    width: auto;
+  }
+  @media (min-width: 768px) {
+    .client-logo {
+      height: var(--logo-h);
+    }
+  }
   .marquee:hover .marquee-track {
     animation-play-state: paused;
   }
@@ -889,9 +905,6 @@
   /* Information / Services: accordion on mobile, plain columns from md up */
   .ft-col {
     @apply border-b border-white/10 md:border-0;
-  }
-  .ft-col:first-of-type {
-    @apply mt-10 border-t md:mt-0 md:border-t-0;
   }
   .ft-summary {
     @apply flex cursor-pointer list-none items-center justify-between py-7 md:cursor-default md:py-0;
