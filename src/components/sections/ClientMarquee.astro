@@ -1,20 +1,38 @@
 ---
-import { clients } from '../../data/home';
-// Rendered twice for a seamless loop; the copy is hidden from assistive tech.
+/**
+ * "Trusted by" logo marquee. Logos are sized by visual area (not a fixed height) so square badges and
+ * long wordmarks look equally weighted. Rendered twice for a seamless loop; the copy is hidden from
+ * assistive tech.
+ */
+import { Image } from 'astro:assets';
+import { clientLogos } from '../../data/clients';
+
+const AREA = 6200; // target logo area in CSS px² at desktop size
+const sized = clientLogos.map((c) => {
+  const ratio = c.logo.width / c.logo.height;
+  const h = Math.round(Math.min(64, Math.max(26, Math.sqrt(AREA / ratio))));
+  return { ...c, h };
+});
 ---
 
 <section class="border-y border-line py-10" aria-label="Brands we have worked with">
-  <p class="container-x mb-6 text-center text-sm text-muted">Trusted by 1000+ e-commerce brands</p>
+  <p class="container-x mb-8 text-center text-sm text-muted">Trusted by 1000+ e-commerce brands</p>
   <div class="marquee">
-    <ul class="marquee-track">
-      {clients.map((c) => (
-        <li>{c}</li>
-      ))}
-    </ul>
-    <ul class="marquee-track" aria-hidden="true">
-      {clients.map((c) => (
-        <li>{c}</li>
-      ))}
-    </ul>
+    {[false, true].map((copy) => (
+      <ul class="marquee-track logo-track" aria-hidden={copy ? 'true' : undefined}>
+        {sized.map((c) => (
+          <li style={`--logo-h:${c.h}px`}>
+            <Image
+              src={c.logo}
+              alt={copy ? '' : c.name}
+              height={c.h * 2}
+              densities={[0.5, 1]}
+              loading="lazy"
+              class="client-logo"
+            />
+          </li>
+        ))}
+      </ul>
+    ))}
   </div>
 </section>

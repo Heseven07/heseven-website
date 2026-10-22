@@ -841,5 +841,109 @@
       "url": "https://www.heseven.com/pages/about",
       "template": "about"
     }
+  },
+  {
+    "_id": "service-shopify-web-design",
+    "_type": "servicePage",
+    "title": "Shopify Web Design",
+    "slug": {
+      "_type": "slug",
+      "current": "shopify-web-design"
+    },
+    "sections": [
+      {
+        "_type": "sectionHero",
+        "_key": "k2e",
+        "eyebrow": "Shopify web design",
+        "heading": "Shopify web design that sells.",
+        "lead": "Conversion-focused, on-brand Shopify and Shopify Plus stores — designed around your products and customers, built to be fast and easy to edit.",
+        "primaryCta": {
+          "_type": "cta",
+          "label": "Get a quote",
+          "href": "/pages/contact-us"
+        },
+        "secondaryCta": {
+          "_type": "cta",
+          "label": "See our work",
+          "href": "/#work"
+        }
+      },
+      {
+        "_type": "sectionFeatures",
+        "_key": "k2f",
+        "eyebrow": "What you get",
+        "heading": "Design that looks premium and performs.",
+        "items": [
+          {
+            "_key": "k2g",
+            "icon": "sparkles",
+            "title": "Custom, on-brand design",
+            "body": "Every key template designed for your brand — no themes in disguise."
+          },
+          {
+            "_key": "k2h",
+            "icon": "layers",
+            "title": "Conversion-led UX",
+            "body": "Product, collection and cart journeys shaped by research and data."
+          },
+          {
+            "_key": "k2i",
+            "icon": "heart",
+            "title": "Easy to edit",
+            "body": "Built on Shopify sections so your team can update pages without a developer."
+          }
+        ]
+      },
+      {
+        "_type": "sectionSteps",
+        "_key": "k2j",
+        "eyebrow": "How we work",
+        "heading": "From kickoff to launch in 4–8 weeks.",
+        "steps": [
+          {
+            "_key": "k2k",
+            "title": "Kickoff",
+            "body": "Goals, audience, KPIs and a clear scope — agreed in one focused session."
+          },
+          {
+            "_key": "k2l",
+            "title": "Discovery & wireframes",
+            "body": "User journeys and low-fidelity layouts to validate structure early."
+          },
+          {
+            "_key": "k2m",
+            "title": "Design",
+            "body": "High-fidelity, on-brand designs for every key template and breakpoint."
+          },
+          {
+            "_key": "k2n",
+            "title": "Development",
+            "body": "Clean, fast Shopify code with QA on real devices at every step."
+          },
+          {
+            "_key": "k2o",
+            "title": "Launch & support",
+            "body": "A smooth go-live, then ongoing optimisation and support."
+          }
+        ]
+      },
+      {
+        "_type": "sectionCta",
+        "_key": "k2p",
+        "eyebrow": "Let's work together",
+        "heading": "Ready to transform your Shopify store?",
+        "body": "Tell us where you are and where you want to be. We reply within one business day.",
+        "cta": {
+          "_type": "cta",
+          "label": "Get in touch",
+          "href": "/pages/contact-us"
+        }
+      }
+    ],
+    "seo": {
+      "_type": "seo",
+      "title": "Shopify Web Design Agency",
+      "description": "Custom Shopify and Shopify Plus web design from a certified Shopify Plus Partner. On-brand, conversion-focused and fast."
+    }
   }
 ]

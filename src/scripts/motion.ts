@@ -6,6 +6,7 @@ import Lenis from 'lenis';
 import { initCounters } from './counters';
 import { initProcess } from './process';
 import { initInteractions } from './interactions';
+import { initGridComets } from './grid-comet';
 
 const reduceMotion = matchMedia('(prefers-reduced-motion: reduce)').matches;
 let lenis: Lenis | null = null;
@@ -51,9 +52,21 @@ document.addEventListener('astro:page-load', () => {
   initCounters(reduceMotion);
   initProcess(reduceMotion);
   initInteractions(reduceMotion);
+  initGridComets();
 });
 
 // Lenis must jump (not glide) to the top of a freshly swapped page.
 document.addEventListener('astro:after-swap', () => {
   lenis?.scrollTo(0, { immediate: true, force: true });
 });
+
+// Cursor smoke: fetched only on the first real mouse move (never during page load), and only for
+// a fine pointer with motion allowed.
+if (!reduceMotion && matchMedia('(hover: hover) and (pointer: fine)').matches) {
+  const loadSmoke = (e: PointerEvent) => {
+    if (e.pointerType !== 'mouse') return;
+    removeEventListener('pointermove', loadSmoke);
+    void import('./cursor-smoke').then((m) => m.startSmoke(e));
+  };
+  addEventListener('pointermove', loadSmoke, { passive: true });
+}

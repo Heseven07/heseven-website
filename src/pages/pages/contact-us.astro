@@ -2,7 +2,6 @@
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import ContactHero from '../../components/contact/ContactHero.astro';
 import NextSteps from '../../components/contact/NextSteps.astro';
-import ContactDetails from '../../components/contact/ContactDetails.astro';
 import ClientMarquee from '../../components/sections/ClientMarquee.astro';
 import Testimonials from '../../components/sections/Testimonials.astro';
 import Faq from '../../components/sections/Faq.astro';
@@ -28,6 +27,5 @@ const schema = {
   <Testimonials />
   <Faq />
   <GlobalClocks />
-  <ContactDetails />
   <JsonLd data={schema} />
 </BaseLayout>

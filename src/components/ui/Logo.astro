@@ -3,7 +3,7 @@
  * Heseven logo: the brand mark + "Shopify Plus Partner" badge, as on heseven.com.
  * Sources live in brand-source/ (original PNGs from heseven.com); Astro serves tiny resized WebP/AVIF.
  */
-import { Image } from 'astro:assets';
+import { Image, getImage } from 'astro:assets';
 import mark from '../../assets/brand/heseven-mark-white.png';
 import partner from '../../assets/brand/shopify-plus-partner-white.png';
 
@@ -13,17 +13,22 @@ interface Props {
   badge?: boolean;
 }
 const { class: className = '', badge = true } = Astro.props;
+// The mark doubles as a mask, so the glint only shows inside the logo's shape.
+const markMask = await getImage({ src: mark, height: 80, format: 'webp' });
 ---
 
 <a href="/" class:list={['logo group inline-flex items-center', className]} aria-label="Heseven — home">
-  <Image
-    src={mark}
-    alt=""
-    height={40}
-    densities={[1, 2]}
-    loading="eager"
-    class="logo-mark h-9 w-auto md:h-10"
-  />
+  <span class="logo-flip relative inline-flex">
+    <Image
+      src={mark}
+      alt=""
+      height={40}
+      densities={[1, 2]}
+      loading="eager"
+      class="logo-mark h-9 w-auto md:h-10"
+    />
+    <span class="logo-glint" style={`--logo-mask: url(${markMask.src})`} aria-hidden="true"></span>
+  </span>
   {badge && (
     <>
       <span class="mx-3.5 hidden h-8 w-px bg-white/25 sm:block" aria-hidden="true" />

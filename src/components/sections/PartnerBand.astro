@@ -1,0 +1,37 @@
+---
+/** Shopify Plus Partner band (as on heseven.com): badge left, short intro + partner-profile link right. */
+import { Image } from 'astro:assets';
+import Arrow from '../ui/Arrow.astro';
+import badge from '../../assets/brand/shopify-plus-partner-white.png';
+import { partner } from '../../data/home';
+---
+
+<section class="partner-band border-y border-line" aria-labelledby="partner-title">
+  <h2 id="partner-title" class="sr-only">
+    Shopify Plus Partner
+  </h2>
+  <div class="container-x grid items-center gap-10 py-16 md:grid-cols-2 md:gap-16 md:py-20">
+    <div data-reveal>
+      <Image
+        src={badge}
+        alt="Shopify Plus Partner"
+        height={150}
+        densities={[1, 2]}
+        class="h-24 w-auto sm:h-28 lg:h-36"
+      />
+    </div>
+    <div data-reveal style="--reveal-delay:100">
+      <p class="max-w-xl text-lg leading-relaxed text-fg/90">{partner.text}</p>
+      <a
+        href={partner.profileUrl}
+        target="_blank"
+        rel="noopener"
+        class="btn btn-primary group mt-8"
+        data-magnetic
+      >
+        {partner.profileLabel}
+        <Arrow />
+      </a>
+    </div>
+  </div>
+</section>

@@ -6,7 +6,10 @@ import OrganizationSchema from '../components/seo/OrganizationSchema.astro';
 import Analytics from '../components/layout/Analytics.astro';
 import Header from '../components/layout/Header.astro';
 import Footer from '../components/layout/Footer.astro';
+import ContactFab from '../components/layout/ContactFab.astro';
 import '../styles/global.css';
+// Non-critical styles, loaded without blocking the first paint (see styles/deferred.css).
+import deferredCss from '../styles/deferred.css?url';
 
 export type Props = SEOProps;
 ---
@@ -27,6 +30,30 @@ export type Props = SEOProps;
     <link rel="sitemap" href="/sitemap-index.xml" />
     <Font cssVariable="--font-syne" preload={[{ weight: 700 }]} />
     <Font cssVariable="--font-roboto" preload={[{ weight: 400 }]} />
+    <!-- Non-critical CSS is requested only after load + first paint (or the first interaction), so it never competes
+         with fonts/HTML for bandwidth or adds a style recalc before LCP. It's appended to <html> itself,
+         outside <head>/<body>, so view-transition swaps never remove it. -->
+    <script is:inline define:vars={{ deferredCss }}>
+      const loadDeferredCss = () => {
+        if (document.querySelector('link[data-deferred-css]')) return;
+        const l = document.createElement('link');
+        l.rel = 'stylesheet';
+        l.href = deferredCss;
+        l.dataset.deferredCss = '';
+        document.documentElement.append(l);
+      };
+      // A beat after load: on fast devices `load` can fire before the first paint, and anything fetched
+      // before LCP is counted as an LCP dependency. Real users trigger it sooner via the listeners below.
+      const afterPaint = () => setTimeout(loadDeferredCss, 1000);
+      if (document.readyState === 'complete') afterPaint();
+      else addEventListener('load', afterPaint, { once: true });
+      ['pointerover', 'keydown', 'touchstart', 'scroll'].forEach((t) =>
+        addEventListener(t, loadDeferredCss, { once: true, passive: true }),
+      );
+    </script>
+    <noscript>
+      <link rel="stylesheet" href={deferredCss} />
+    </noscript>
     <SEO {...Astro.props} />
     <OrganizationSchema />
     <ClientRouter fallback="swap" />
@@ -41,6 +68,7 @@ export type Props = SEOProps;
       <slot />
     </main>
     <Footer />
+    <ContactFab />
     <Analytics />
     <script>
       import '../scripts/motion';

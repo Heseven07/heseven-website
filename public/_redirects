@@ -9,7 +9,7 @@
 /contact                                                 /pages/contact-us                              301
 /about                                                   /pages/about                                   301
 /thanks                                                  /pages/thank-you                               301
-/services                                                /pages/services                                301
+/pages/services                                          /services                                      301
 /services/store-development                              /pages/shopify-website-development-services   301
 /services/platform-migration                             /pages/ecommerce-platform-migration-service   301
 /services/conversion-optimisation                        /pages/conversion-rate-optimisation           301
@@ -18,10 +18,14 @@
 /services/store-maintenance                              /pages/shopify-maintenance-service            301
 /blog                                                    /blogs/news                                    301
 
+# Fallbacks for /services/<handle> until built in Sanity → Service pages (pruned automatically)
+/services/shopify-web-design                             /pages/shopify-website-development-services   301
+
 # Fallbacks for Shopify pages until they're built in Sanity (pruned automatically once they exist)
 /pages/about                                             /                                              301
 /pages/faqs                                              /                                              301
 /pages/our-work                                          /                                              301
+/pages/case-studies                                      /#work                                         302
 /pages/get-in-touch                                      /pages/contact-us                              301
 /pages/new-lead                                          /pages/contact-us                              301
 /pages/ready-to-grow                                     /pages/contact-us                              301
@@ -44,8 +48,8 @@
 /pages/move-to-shopify-plus-elevate-your-e-commerce-game /pages/ecommerce-platform-migration-service   301
 /pages/speed                                             /pages/speed-optimization                     301
 /pages/retainer                                          /pages/shopify-maintenance-service            301
-/pages/virtual-assistant-for-shopify                     /pages/services                                301
-/pages/white-label-shopify-development                   /pages/services                                301
+/pages/virtual-assistant-for-shopify                     /services                                      301
+/pages/white-label-shopify-development                   /services                                      301
 
 # Shopify utility pages (never rebuilt)
 /pages/usd                                               /                                              301

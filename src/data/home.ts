@@ -12,8 +12,9 @@ import aquadoc from '../assets/work/aquadoc.jpg';
 import waldo from '../assets/work/waldo-watch.jpg';
 
 export const nav = [
-  { label: 'Services', href: '/pages/services' },
+  { label: 'Services', href: '/services' },
   { label: 'Work', href: '/#work' },
+  { label: 'Case Studies', href: '/pages/case-studies' },
   { label: 'Process', href: '/#process' },
   { label: 'About', href: '/pages/about' },
   { label: 'Blog', href: '/blogs/news' },
@@ -37,16 +38,35 @@ export const hero = {
   ],
 };
 
-export const clients = [
-  'Powerlete',
-  'Vroom! Classics',
-  'Caorunn Gin',
-  'Ornella Gorza',
-  'AquaDoc',
-  'Waldo Watches',
-  'Grenla',
-  'ModMyCar',
-];
+/** Footer links — same as heseven.com's footer. */
+export const footerLinks = {
+  buildMigrate: [
+    { label: 'All services', href: '/services' },
+    { label: 'Shopify web design', href: '/services/shopify-web-design' },
+  ],
+  information: [
+    { label: 'Why Shopify?', href: '/blogs/news/unlocking-e-commerce-success-the-power-of-shopify' },
+    { label: 'Improve Conversion Rate', href: '/blogs/news/how-to-improve-your-conversion-rate' },
+    { label: 'Optimise Page Loading Speed', href: '/blogs/news/how-to-optimise-page-loading-speed' },
+    {
+      label: 'Shopify Plus vs Salesforce',
+      href: '/blogs/news/shopify-plus-vs-user-salesforce-commerce-cloud',
+    },
+  ],
+  services: [
+    { label: 'Shopify Plus Development', href: '/pages/shopify-plus-development-agency' },
+    { label: 'Shopify Maintenance Service', href: '/pages/shopify-maintenance-service' },
+    { label: 'Virtual Assistant for Shopify', href: '/pages/virtual-assistant-for-shopify' },
+    { label: 'White-label Shopify development', href: '/pages/white-label-shopify-development' },
+  ],
+};
+
+/** Shopify Plus Partner band shown under the hero (copy from heseven.com). */
+export const partner = {
+  text: 'Heseven is a leading Shopify Partner agency with a global reputation since 2018. We focus on providing outstanding, tailored Shopify solutions. Our dedicated, skilled, and innovative team is committed to enhancing your brand.',
+  profileUrl: 'https://www.shopify.com/partners/directory/partner/heseven',
+  profileLabel: 'Shopify Partner Profile',
+};
 
 export const about = {
   eyebrow: 'About Heseven',

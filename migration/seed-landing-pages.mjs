@@ -1,4 +1,5 @@
-// Seeds starter landing pages (/pages/<handle>) in Sanity for every page the site links to.
+// Seeds starter landing pages (/pages/<handle>) and service pages (/services/<handle>) in Sanity
+// for every page the site links to.
 // Content: Shopify's own title + SEO description where the page exists on Shopify, otherwise the
 // site's service copy; plus the site's process steps and a CTA. Full content migration comes later.
 //   node seed-landing-pages.mjs --dataset migration-test|production [--dry-run]
@@ -180,6 +181,48 @@ docs.push({
       'Heseven is a Shopify Plus Partner agency in London designing, building and growing e-commerce brands since 2018.',
   },
   ...legacyOf('about'),
+});
+
+// Service pages (/services/<handle>) — Studio → Service pages
+docs.push({
+  _id: 'service-shopify-web-design',
+  _type: 'servicePage',
+  title: 'Shopify Web Design',
+  slug: { _type: 'slug', current: 'shopify-web-design' },
+  sections: [
+    hero(
+      'Shopify web design that sells.',
+      'Conversion-focused, on-brand Shopify and Shopify Plus stores — designed around your products and customers, built to be fast and easy to edit.',
+      'Shopify web design',
+    ),
+    {
+      _type: 'sectionFeatures',
+      _key: key(),
+      eyebrow: 'What you get',
+      heading: 'Design that looks premium and performs.',
+      items: [
+        [
+          'sparkles',
+          'Custom, on-brand design',
+          'Every key template designed for your brand — no themes in disguise.',
+        ],
+        ['layers', 'Conversion-led UX', 'Product, collection and cart journeys shaped by research and data.'],
+        [
+          'heart',
+          'Easy to edit',
+          'Built on Shopify sections so your team can update pages without a developer.',
+        ],
+      ].map(([icon, title, body]) => ({ _key: key(), icon, title, body })),
+    },
+    steps(),
+    cta(),
+  ],
+  seo: {
+    _type: 'seo',
+    title: 'Shopify Web Design Agency',
+    description:
+      'Custom Shopify and Shopify Plus web design from a certified Shopify Plus Partner. On-brand, conversion-focused and fast.',
+  },
 });
 
 fs.writeFileSync(`data/seed-pages-${DATASET}.json`, JSON.stringify(docs, null, 2));

@@ -1,0 +1,660 @@
+/*
+ * Deferred styles — everything that isn't needed for the first paint: the contact orb, cursor smoke,
+ * the inside of the Services mega menu, the logo glint/flip, the About grid + comets, the Work 3D roll
+ * and the globe card. global.css is inlined into every page (render-blocking); this file is loaded
+ * without blocking render (see BaseLayout), which keeps the inlined CSS — and LCP — small.
+ * Base states that must hold before this loads (e.g. the mega menu being hidden) stay in global.css.
+ */
+@reference "./global.css";
+
+/* This sheet's <link> sits before the inlined global CSS in <head>, and cascade-layer order is set by the
+   first sheet that names a layer. Declare Tailwind's full order up front so `components` never ends up
+   below `base` (which would reset headings etc.). */
+@layer properties, theme, base, components, utilities;
+
+@layer components {
+  /* Floating "Get in touch" button with a Siri-style orb (ContactFab.astro) */
+  .contact-fab {
+    position: fixed;
+    right: 1rem;
+    bottom: 1rem;
+    z-index: 45;
+    display: flex;
+    border-radius: 50%;
+    animation:
+      fab-in 0.8s var(--ease-out-expo) 1.2s both,
+      fab-nudge 8s ease-in-out 3s infinite;
+  }
+  .contact-fab:hover {
+    animation-play-state: paused; /* hold still while the pointer is on it */
+  }
+  .contact-fab:hover .siri-orb,
+  .contact-fab:focus-visible .siri-orb {
+    scale: 1.08;
+  }
+  @media (min-width: 40rem) {
+    .contact-fab {
+      right: 1.5rem;
+      bottom: 1.5rem;
+    }
+  }
+  /* Hop + wiggle once every 8s (starts ~4.4s into the cycle, lasts ~1.2s) */
+  @keyframes fab-nudge {
+    0%,
+    55%,
+    100% {
+      transform: none;
+    }
+    58% {
+      transform: translateY(-10px) rotate(-6deg);
+    }
+    61% {
+      transform: translateY(-10px) rotate(6deg);
+    }
+    64% {
+      transform: translateY(-6px) rotate(-4deg);
+    }
+    67% {
+      transform: translateY(0) rotate(2deg);
+    }
+    70% {
+      transform: none;
+    }
+  }
+  /* Ripples radiating off the orb */
+  .fab-ping {
+    position: absolute;
+    inset: 0;
+    border-radius: 50%;
+    border: 2px solid rgb(139 108 255 / 0.7);
+    box-shadow: 0 0 12px rgb(94 234 212 / 0.5);
+    opacity: 0;
+    animation: fab-ping 2.4s ease-out infinite;
+  }
+  .fab-ping--late {
+    border-color: rgb(181 243 107 / 0.7);
+    animation-delay: 1.2s;
+  }
+  @keyframes fab-ping {
+    from {
+      scale: 1;
+      opacity: 0.9;
+    }
+    to {
+      scale: 2.1;
+      opacity: 0;
+    }
+  }
+  /* Speech bubble that pops up with each nudge (desktop) */
+  .fab-bubble {
+    @apply pointer-events-none absolute right-0 bottom-full mb-[17px] hidden rounded-2xl rounded-br-sm bg-lime px-4 py-2 text-sm font-semibold whitespace-nowrap text-ink sm:block;
+    box-shadow: 0 0.75rem 2rem -0.5rem rgb(181 243 107 / 0.45);
+    transform-origin: 100% 100%;
+    opacity: 0;
+    scale: 0.6;
+    animation: fab-bubble 8s var(--ease-out-expo) 3s infinite;
+  }
+  /* Pops in with the nudge, stays ~2.5s so it can be read, then fades out softly over ~0.8s */
+  @keyframes fab-bubble {
+    0%,
+    55% {
+      opacity: 0;
+      scale: 0.6;
+    }
+    59% {
+      opacity: 1;
+      scale: 1;
+    }
+    90% {
+      opacity: 1;
+      scale: 1;
+      animation-timing-function: ease-in-out;
+    }
+    100% {
+      opacity: 0;
+      scale: 0.96;
+    }
+  }
+  .siri-orb {
+    position: relative;
+    display: block;
+    width: 3.5rem;
+    transition: scale 0.4s var(--ease-out-expo);
+    aspect-ratio: 1;
+    flex: none;
+    overflow: hidden;
+    border-radius: 50%;
+    isolation: isolate;
+    background: #07060c;
+    box-shadow:
+      inset 0 0 0 1px rgb(255 255 255 / 0.14),
+      0 0 1.25rem rgb(139 108 255 / 0.55),
+      0 0 2rem rgb(94 234 212 / 0.25);
+  }
+  /* Glass highlight on top */
+  .siri-orb::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    z-index: 3;
+    border-radius: 50%;
+    background: radial-gradient(circle at 32% 26%, rgb(255 255 255 / 0.55), transparent 32%);
+  }
+  .siri-orb > span {
+    position: absolute;
+    border-radius: 50%;
+  }
+  .siri-swirl {
+    inset: -30%;
+    background: conic-gradient(from 0deg, #8b6cff, #5eead4, #b5f36b, #f472b6, #8b6cff);
+    mask-image: radial-gradient(circle, #000 25%, transparent 62%);
+    animation: siri-spin 5s linear infinite;
+  }
+  .siri-blobs {
+    inset: -10%;
+    background:
+      radial-gradient(circle at 72% 30%, rgb(244 114 182 / 0.9), transparent 38%),
+      radial-gradient(circle at 28% 72%, rgb(94 234 212 / 0.9), transparent 38%),
+      radial-gradient(circle at 70% 75%, rgb(139 108 255 / 0.9), transparent 40%);
+    mix-blend-mode: screen;
+    animation: siri-spin 3.2s linear infinite reverse;
+  }
+  .siri-core {
+    inset: 30%;
+    z-index: 2;
+    background: radial-gradient(circle, rgb(255 255 255 / 0.95), rgb(255 255 255 / 0) 70%);
+    animation: siri-pulse 2.4s ease-in-out infinite;
+  }
+  @keyframes siri-spin {
+    to {
+      rotate: 1turn;
+    }
+  }
+  @keyframes siri-pulse {
+    0%,
+    100% {
+      scale: 0.75;
+      opacity: 0.55;
+    }
+    50% {
+      scale: 1.15;
+      opacity: 0.95;
+    }
+  }
+  @keyframes fab-in {
+    from {
+      opacity: 0;
+      translate: 0 1rem;
+    }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .contact-fab,
+    .siri-orb > span,
+    .fab-ping,
+    .fab-bubble {
+      animation: none;
+    }
+  }
+
+  /* Cursor smoke canvas (scripts/cursor-smoke.ts): over everything, never catches clicks */
+  .cursor-smoke {
+    position: fixed;
+    inset: 0;
+    z-index: 60;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+  }
+  .mega-panel {
+    @apply relative overflow-hidden rounded-[1.75rem] border border-white/10 p-8 text-fg xl:p-10;
+    /* Fully opaque: translucency let page headings show through */
+    background: linear-gradient(180deg, #181522, #0d0c13);
+    box-shadow:
+      0 2.5rem 5rem -1.5rem rgb(0 0 0 / 0.8),
+      inset 0 1px 0 rgb(255 255 255 / 0.06);
+  }
+  /* Soft violet glow in the top-left corner */
+  .mega-panel::before {
+    content: '';
+    position: absolute;
+    inset: -40% auto auto -10%;
+    width: 50%;
+    aspect-ratio: 1;
+    border-radius: 50%;
+    background: radial-gradient(closest-side, rgb(139 108 255 / 0.18), transparent);
+    pointer-events: none;
+  }
+  .mega-head {
+    @apply border-b border-white/10 pb-4;
+  }
+  .mega-tag {
+    @apply rounded-full border border-white/15 px-2.5 py-0.5 text-[0.7rem] text-fg/70;
+  }
+  .mega-link {
+    @apply -mx-3 block rounded-xl px-3 py-2.5 transition-colors hover:bg-white/5 focus-visible:bg-white/5;
+  }
+  .mega-title {
+    @apply flex items-center gap-2 text-[0.95rem] font-medium text-fg transition-colors;
+  }
+  .mega-title svg {
+    opacity: 0;
+    translate: -0.35rem 0;
+    transition:
+      opacity 0.25s,
+      translate 0.35s var(--ease-out-expo);
+  }
+  .mega-link:is(:hover, :focus-visible) .mega-title {
+    @apply text-lime;
+  }
+  .mega-link:is(:hover, :focus-visible) .mega-title svg {
+    opacity: 1;
+    translate: 0 0;
+  }
+  .mega-desc {
+    @apply mt-0.5 block text-sm text-muted;
+  }
+  .mega-more {
+    @apply mt-auto inline-flex items-center gap-2 pt-4 text-sm text-muted transition-colors hover:text-fg;
+  }
+  .mega-count {
+    @apply grid h-5 min-w-5 place-items-center rounded-full bg-white/10 px-1.5 text-[0.7rem] text-fg;
+  }
+  .mega-pill {
+    @apply inline-flex items-center gap-1.5 rounded-full border border-white/12 px-4 py-2 text-sm text-fg/85 transition-colors hover:border-lime/60 hover:text-fg;
+  }
+  .mega-pill--all {
+    @apply border-transparent text-fg hover:text-lime;
+  }
+  .mega-cta {
+    @apply relative block w-full overflow-hidden rounded-2xl border border-white/10 p-5 lg:w-80;
+    background:
+      radial-gradient(120% 120% at 100% 0%, rgb(181 243 107 / 0.16), transparent 55%),
+      radial-gradient(120% 120% at 0% 100%, rgb(139 108 255 / 0.22), transparent 60%), var(--color-ink-3);
+    transition: border-color 0.3s;
+  }
+  .mega-cta:hover {
+    border-color: rgb(181 243 107 / 0.5);
+  }
+  /* Mobile menu: Services accordion */
+  .m-mega-summary {
+    @apply cursor-pointer list-none;
+  }
+  .m-mega-summary::-webkit-details-marker {
+    display: none;
+  }
+  .m-mega .ft-plus {
+    display: block;
+  }
+  .m-mega[open] .ft-plus::after {
+    transform: translateY(-50%) rotate(0deg);
+  }
+  /* Header logo glint: a prismatic sliver crosses the mark every few seconds, masked to its shape */
+  .logo-glint {
+    position: absolute;
+    inset: 0;
+    overflow: hidden;
+    pointer-events: none;
+    -webkit-mask: var(--logo-mask) center / contain no-repeat;
+    mask: var(--logo-mask) center / contain no-repeat;
+  }
+  .logo-glint::before {
+    content: '';
+    position: absolute;
+    inset: -20% auto -20% 0;
+    width: 90%;
+    background: linear-gradient(
+      105deg,
+      transparent 12%,
+      rgb(181 243 107 / 0.7) 28%,
+      rgb(181 243 107) 38%,
+      #fff 45%,
+      #fff 55%,
+      rgb(139 108 255) 62%,
+      rgb(139 108 255 / 0.7) 72%,
+      transparent 88%
+    );
+    translate: -110% 0;
+    animation: logo-glint 7s ease-in-out 2s infinite;
+  }
+  /* 7s cycle: a slow ~2s pass, then the logo rests */
+  @keyframes logo-glint {
+    0% {
+      translate: -110% 0;
+    }
+    30%,
+    100% {
+      translate: 130% 0;
+    }
+  }
+  /* Coin-style flip: every 7s, 0.5s after the glint has passed, the mark spins a full turn on its
+     vertical axis and lands exactly where it started. */
+  .logo-flip {
+    animation: logo-flip 7s ease-in-out 2s infinite;
+  }
+  /* Glint runs 0–2.1s of the 7s cycle; the flip starts 0.5s later (2.6s = 37%) and lasts ~1.3s */
+  @keyframes logo-flip {
+    0%,
+    37% {
+      transform: perspective(400px) rotateY(0deg);
+    }
+    55%,
+    100% {
+      transform: perspective(400px) rotateY(360deg);
+    }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .logo-glint::before,
+    .logo-flip {
+      animation: none;
+    }
+  }
+  /* About — full-width grid with a neon comet running along its lines (About.astro drives the comet).
+     Grid lines start at the top-left corner so the comet's row/column maths line up with them. */
+  .about-grid {
+    --cell: 48px;
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    overflow: hidden;
+    pointer-events: none;
+    background:
+      repeating-linear-gradient(to right, rgb(255 255 255 / 0.06) 0 1px, transparent 1px var(--cell)),
+      repeating-linear-gradient(to bottom, rgb(255 255 255 / 0.06) 0 1px, transparent 1px var(--cell));
+    mask-image: linear-gradient(to bottom, transparent, #000 15%, #000 85%, transparent);
+  }
+  /* Neon comet (scripts/grid-comet.ts): glowing head on the right end, colour trail fading out behind it */
+  .grid-comet {
+    --c: var(--color-lime);
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 9rem;
+    height: 2px;
+    border-radius: 2px;
+    background: linear-gradient(to right, transparent, var(--c));
+    opacity: 0;
+    will-change: transform;
+  }
+  .grid-comet::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    right: -3px;
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    translate: 0 -50%;
+    background: #fff;
+    box-shadow:
+      0 0 6px 2px var(--c),
+      0 0 18px 6px color-mix(in oklab, var(--c) 55%, transparent);
+  }
+
+  /* Work — horizontal 3D roll (see Work.astro + scripts/work-roll.ts) */
+  .work-pin {
+    padding-block: 6rem;
+  }
+  .work-sticky {
+    display: flex;
+    flex-direction: column;
+    gap: 2.5rem;
+  }
+  /* Desktop with JS: extra height = sideways scroll distance; the inner frame sticks to the viewport */
+  .work-pin.is-pinned {
+    height: calc(100svh + var(--work-dist, 0px));
+    padding-block: 0;
+  }
+  .work-pin.is-pinned .work-sticky {
+    position: sticky;
+    top: 0;
+    height: 100svh;
+    justify-content: center;
+    padding-top: 4.5rem; /* clear the fixed header */
+  }
+  .work-track {
+    display: flex;
+    gap: 1.5rem;
+    overflow-x: auto;
+    overscroll-behavior-x: contain;
+    scroll-snap-type: x mandatory;
+    scrollbar-width: none;
+    /* Line the first card up with the page container; vertical room for the 3D roll */
+    padding: 1.5rem max(1.25rem, calc((100% - 90rem) / 2 + 2rem));
+    scroll-padding-inline: max(1.25rem, calc((100% - 90rem) / 2 + 2rem));
+  }
+  .work-track::-webkit-scrollbar {
+    display: none;
+  }
+  .work-pin.is-pinned .work-track {
+    overflow-x: hidden;
+    scroll-snap-type: none;
+  }
+  .work-item {
+    flex: 0 0 82vw;
+    scroll-snap-align: start;
+  }
+  @media (min-width: 768px) {
+    .work-item {
+      flex-basis: clamp(18rem, 29vw, 27rem);
+    }
+  }
+  .work-card {
+    position: relative;
+    isolation: isolate;
+    overflow: hidden;
+    border-radius: 1.75rem;
+    border: 1px solid rgb(255 255 255 / 0.1);
+    background: linear-gradient(165deg, var(--color-ink-3), var(--color-ink) 75%);
+    box-shadow: 0 2rem 4rem -2rem rgb(0 0 0 / 0.9);
+    transition:
+      border-color 0.4s,
+      box-shadow 0.6s var(--ease-out-expo);
+  }
+  .work-card:hover {
+    border-color: rgb(255 255 255 / 0.22);
+    box-shadow: 0 2rem 4rem -2rem color-mix(in oklab, var(--accent) 55%, transparent);
+  }
+  /* Accent glow in the card corner, alternating violet / lime */
+  .work-card::before {
+    content: '';
+    position: absolute;
+    inset: auto -30% -45% auto;
+    z-index: -1;
+    width: 80%;
+    aspect-ratio: 1;
+    border-radius: 50%;
+    background: radial-gradient(closest-side, var(--accent), transparent);
+    opacity: 0.2;
+  }
+  .work-card--violet {
+    --accent: var(--color-violet);
+  }
+  .work-card--lime {
+    --accent: var(--color-lime);
+  }
+  /* Browser-window frame around the screenshot; tilts toward the mouse (interactions.ts) */
+  .work-media {
+    --rx: 0deg;
+    --ry: 0deg;
+    position: relative;
+    overflow: hidden;
+    border-radius: 1.1rem;
+    border: 1px solid rgb(255 255 255 / 0.1);
+    background: var(--color-ink-2);
+    transform: perspective(900px) rotateX(var(--rx)) rotateY(var(--ry));
+    transition: transform 0.6s var(--ease-out-expo);
+  }
+  .work-card:hover .work-media {
+    transition-duration: 0.15s;
+  }
+  .work-bar {
+    display: flex;
+    align-items: center;
+    gap: 0.35rem;
+    padding: 0.5rem 0.75rem;
+    border-bottom: 1px solid rgb(255 255 255 / 0.08);
+    background: rgb(255 255 255 / 0.04);
+  }
+  .work-dot {
+    width: 0.5rem;
+    aspect-ratio: 1;
+    border-radius: 50%;
+    background: rgb(255 255 255 / 0.18);
+  }
+  .work-url {
+    @apply ml-2 truncate rounded-full bg-white/5 px-3 py-0.5 text-[0.7rem] text-fg/60;
+  }
+  .work-img {
+    transition: transform 1.2s var(--ease-out-expo);
+  }
+  .work-card:hover .work-img {
+    transform: scale(1.05);
+  }
+  .work-glare {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    opacity: 0;
+    background: radial-gradient(
+      circle at var(--mx, 50%) var(--my, 50%),
+      rgb(255 255 255 / 0.22),
+      transparent 45%
+    );
+    mix-blend-mode: overlay;
+    transition: opacity 0.4s;
+  }
+  .work-card:hover .work-glare {
+    opacity: 1;
+  }
+  .work-chip {
+    @apply absolute top-3 left-3 rounded-full border border-white/15 bg-ink/70 px-3 py-1 text-xs text-fg;
+  }
+  .work-progress {
+    @apply relative block h-px w-32 overflow-hidden bg-white/15;
+  }
+  .work-progress-bar {
+    @apply absolute inset-0 origin-left bg-lime;
+    transform: scaleX(0);
+  }
+  /* The 3D roll: each card turns on a drum as it crosses the track — entering on the right it faces
+     left, flat in the middle, turning away on the left. Driven by its position in the scroller. */
+  @supports (animation-timeline: view()) {
+    @media (prefers-reduced-motion: no-preference) {
+      .work-card {
+        animation: work-roll linear both;
+        animation-timeline: view(inline);
+      }
+    }
+  }
+  @keyframes work-roll {
+    0% {
+      transform: perspective(1200px) rotateY(40deg) scale(0.84);
+      opacity: 0.35;
+    }
+    50% {
+      transform: perspective(1200px) rotateY(0deg) scale(1);
+      opacity: 1;
+    }
+    100% {
+      transform: perspective(1200px) rotateY(-40deg) scale(0.84);
+      opacity: 0.35;
+    }
+  }
+
+  /* Global Service Excellence card + rotating Earth */
+  .globe-card {
+    @apply relative isolate overflow-hidden rounded-[2rem] border border-white/10 bg-black;
+    /* Below the fold: skip layout/paint (and the lazy globe image) until it's near the viewport. */
+    content-visibility: auto;
+    contain-intrinsic-size: auto 640px;
+    /* Faint static star field */
+    background-image:
+      radial-gradient(1px 1px at 12% 22%, rgb(255 255 255 / 0.5), transparent),
+      radial-gradient(1px 1px at 38% 78%, rgb(255 255 255 / 0.35), transparent),
+      radial-gradient(1px 1px at 55% 12%, rgb(255 255 255 / 0.4), transparent),
+      radial-gradient(1px 1px at 68% 58%, rgb(255 255 255 / 0.3), transparent),
+      radial-gradient(1.5px 1.5px at 84% 8%, rgb(255 255 255 / 0.45), transparent),
+      radial-gradient(1px 1px at 92% 40%, rgb(255 255 255 / 0.3), transparent),
+      radial-gradient(1px 1px at 26% 52%, rgb(255 255 255 / 0.25), transparent);
+  }
+  .globe-stage {
+    @apply pointer-events-none relative h-[17rem] sm:h-[22rem] lg:absolute lg:inset-y-0 lg:right-0 lg:h-auto lg:w-1/2;
+  }
+  .globe {
+    --size: clamp(26rem, 90vw, 34rem);
+    position: absolute;
+    top: 2rem;
+    left: 50%;
+    width: var(--size);
+    aspect-ratio: 1;
+    margin-left: calc(var(--size) / -2);
+    border-radius: 50%;
+    overflow: hidden;
+    rotate: -16deg; /* axial tilt */
+    background: #020a24;
+    box-shadow:
+      0 0 3rem 0.5rem rgb(64 150 255 / 0.35),
+      0 0 0 1px rgb(120 190 255 / 0.25);
+  }
+  @media (min-width: 64rem) {
+    .globe {
+      --size: clamp(34rem, 46vw, 46rem);
+      top: 12%;
+      left: auto;
+      right: -38%; /* small laptops: keep clear of the copy */
+      margin-left: 0;
+    }
+  }
+  @media (min-width: 80rem) {
+    .globe {
+      right: -18%;
+    }
+  }
+  /* Two copies of the 2:1 map side by side; sliding by one copy (-50%) loops seamlessly. */
+  .globe-map {
+    position: absolute;
+    inset-block: 0;
+    left: 0;
+    display: flex;
+    width: 400%;
+    will-change: transform;
+  }
+  .globe-map > picture {
+    flex: 0 0 50%;
+  }
+  .globe-map img {
+    display: block;
+    width: 100%;
+    height: 100%;
+  }
+  /* Sphere shading: lit limb top-left, night falling off to the edges, blue atmosphere rim */
+  .globe::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    background: radial-gradient(
+      circle at 35% 30%,
+      transparent 35%,
+      rgb(0 4 20 / 0.55) 68%,
+      rgb(0 2 12 / 0.92) 100%
+    );
+    box-shadow:
+      inset 0.75rem 0.5rem 2rem rgb(110 180 255 / 0.35),
+      inset -2.5rem -1.5rem 4rem rgb(0 0 0 / 0.7);
+  }
+  @media (prefers-reduced-motion: no-preference) {
+    .globe-map {
+      animation: globe-spin 120s linear infinite paused;
+    }
+    .globe.is-spinning .globe-map {
+      animation-play-state: running;
+    }
+  }
+  /* Earth turns west → east, so the surface drifts left to right */
+  @keyframes globe-spin {
+    from {
+      transform: translateX(-50%);
+    }
+  }
+}

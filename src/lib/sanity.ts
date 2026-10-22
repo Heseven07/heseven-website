@@ -153,17 +153,27 @@ const sectionFields = `
   items[]{ ..., image{ ${imageFields} } }
 `;
 
-let pageCache: Promise<LandingPage[]> | null = null;
+const pageCache = new Map<string, Promise<LandingPage[]>>();
 
-/** All published landing pages. Fetched once per build. */
-export function getAllLandingPages(): Promise<LandingPage[]> {
-  pageCache ??= sanity.fetch<LandingPage[]>(
-    `*[_type == "landingPage" && defined(slug.current)] | order(title asc){
-      _id, _updatedAt, title, "slug": slug.current,
-      "sections": coalesce(sections[]{ ${sectionFields} }, []),
-      seo{ title, description, noindex, ogImage{ ${imageFields} } },
-      legacy{ shopifyId, url, template }
-    }`,
-  );
-  return pageCache;
+/** All published page-builder documents of one type. Fetched once per build. */
+function getBuilderPages(type: 'landingPage' | 'servicePage'): Promise<LandingPage[]> {
+  if (!pageCache.has(type))
+    pageCache.set(
+      type,
+      sanity.fetch<LandingPage[]>(
+        `*[_type == $type && defined(slug.current)] | order(title asc){
+          _id, _updatedAt, title, "slug": slug.current,
+          "sections": coalesce(sections[]{ ${sectionFields} }, []),
+          seo{ title, description, noindex, ogImage{ ${imageFields} } },
+          legacy{ shopifyId, url, template }
+        }`,
+        { type },
+      ),
+    );
+  return pageCache.get(type)!;
 }
+
+/** Landing pages at /pages/<slug>. */
+export const getAllLandingPages = () => getBuilderPages('landingPage');
+/** Service pages at /services/<slug>. */
+export const getAllServicePages = () => getBuilderPages('servicePage');
