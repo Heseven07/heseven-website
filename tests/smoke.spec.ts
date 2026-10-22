@@ -3,7 +3,7 @@ import AxeBuilder from '@axe-core/playwright';
 
 const pages = [
   '/',
-  '/pages/services',
+  '/services',
   '/pages/shopify-website-development-services',
   '/pages/contact-us',
   '/pages/about',

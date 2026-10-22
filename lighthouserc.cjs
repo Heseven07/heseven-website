@@ -21,7 +21,7 @@ module.exports = {
       // Add every indexable page template here as it's built (404 is noindex by design, so excluded).
       url: [
         'http://localhost/',
-        'http://localhost/pages/services',
+        'http://localhost/services',
         'http://localhost/pages/shopify-website-development-services',
         'http://localhost/pages/contact-us',
         'http://localhost/pages/about',

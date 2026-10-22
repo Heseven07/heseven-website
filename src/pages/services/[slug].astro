@@ -1,0 +1,17 @@
+---
+/**
+ * Service pages from Sanity (Studio → Service pages) at /services/<slug>.
+ * Same page builder as /pages; the overview lives in ./index.astro.
+ */
+import BuilderPage from '../../components/page-builder/BuilderPage.astro';
+import { getAllServicePages, type LandingPage } from '../../lib/sanity';
+
+export async function getStaticPaths() {
+  const pages = await getAllServicePages();
+  return pages.map((page) => ({ params: { slug: page.slug }, props: { page } }));
+}
+
+const { page } = Astro.props as { page: LandingPage };
+---
+
+<BuilderPage page={page} base="services" parent={{ name: 'Services', path: '/services' }} />

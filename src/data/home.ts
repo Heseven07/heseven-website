@@ -12,8 +12,9 @@ import aquadoc from '../assets/work/aquadoc.jpg';
 import waldo from '../assets/work/waldo-watch.jpg';
 
 export const nav = [
-  { label: 'Services', href: '/pages/services' },
+  { label: 'Services', href: '/services' },
   { label: 'Work', href: '/#work' },
+  { label: 'Case Studies', href: '/pages/case-studies' },
   { label: 'Process', href: '/#process' },
   { label: 'About', href: '/pages/about' },
   { label: 'Blog', href: '/blogs/news' },
@@ -39,6 +40,10 @@ export const hero = {
 
 /** Footer links — same as heseven.com's footer. */
 export const footerLinks = {
+  buildMigrate: [
+    { label: 'All services', href: '/services' },
+    { label: 'Shopify web design', href: '/services/shopify-web-design' },
+  ],
   information: [
     { label: 'Why Shopify?', href: '/blogs/news/unlocking-e-commerce-success-the-power-of-shopify' },
     { label: 'Improve Conversion Rate', href: '/blogs/news/how-to-improve-your-conversion-rate' },

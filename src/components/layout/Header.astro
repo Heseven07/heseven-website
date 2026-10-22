@@ -1,22 +1,115 @@
 ---
+/**
+ * Site header. "Services" opens a mega menu: on hover / keyboard focus on desktop (CSS, with JS only for
+ * Escape and closing after a click), and as an accordion inside the mobile menu.
+ */
 import Logo from '../ui/Logo.astro';
 import Arrow from '../ui/Arrow.astro';
 import { nav } from '../../data/home';
+import { megaGroups, megaIndustries } from '../../data/megaMenu';
+
+const isMega = (href: string) => href === '/services';
 ---
 
 <header class="site-header" transition:persist="site-header">
   <span class="scroll-progress" aria-hidden="true"></span>
-  <div class="container-x flex h-16 items-center justify-between gap-6 md:h-20">
+  <div class="container-x relative flex h-16 items-center justify-between gap-6 md:h-20">
     <Logo />
-    <nav aria-label="Main" class="hidden md:block">
-      <ul class="flex items-center gap-8 text-sm text-muted">
-        {nav.map((item) => (
-          <li>
-            <a href={item.href} class="nav-link">
-              {item.label}
-            </a>
-          </li>
-        ))}
+    <nav aria-label="Main" class="hidden self-stretch lg:block">
+      <ul class="flex h-full items-center gap-8 text-sm whitespace-nowrap text-muted">
+        {nav.map((item) =>
+          isMega(item.href) ? (
+            <li class="has-mega flex h-full items-center" data-mega>
+              <a
+                href={item.href}
+                class="nav-link mega-trigger"
+                aria-haspopup="true"
+                aria-expanded="false"
+                aria-controls="mega-services"
+              >
+                {item.label}
+                <svg class="mega-chevron" viewBox="0 0 12 12" width="10" height="10" aria-hidden="true">
+                  <path d="m2.5 4.5 3.5 3.5 3.5-3.5" fill="none" stroke="currentColor" stroke-width="1.6" />
+                </svg>
+              </a>
+              <div id="mega-services" class="mega">
+                <div class="mega-panel">
+                  <div class="grid grid-cols-2 gap-x-8 gap-y-10 lg:grid-cols-4">
+                    {megaGroups.map((g) => (
+                      <div class="flex flex-col">
+                        <div class="mega-head">
+                          <p class="text-xs font-semibold tracking-[0.18em] text-fg uppercase">{g.title}</p>
+                          <ul class="mt-3 flex flex-wrap gap-1.5" aria-label={`${g.title} tags`}>
+                            {g.tags.map((t) => (
+                              <li class="mega-tag">{t}</li>
+                            ))}
+                          </ul>
+                        </div>
+                        <ul class="mt-3 flex flex-col">
+                          {g.items.map((it) => (
+                            <li>
+                              <a href={it.href} class="mega-link">
+                                <span class="mega-title">
+                                  {it.label}
+                                  <Arrow />
+                                </span>
+                                <span class="mega-desc">{it.desc}</span>
+                              </a>
+                            </li>
+                          ))}
+                        </ul>
+                        <a href={g.more.href} class="mega-more">
+                          {g.more.label}
+                          <span class="mega-count">{g.more.count}</span>
+                        </a>
+                      </div>
+                    ))}
+                  </div>
+
+                  <div class="mt-8 grid items-end gap-8 border-t border-white/10 pt-7 lg:grid-cols-[1fr_auto]">
+                    <div>
+                      <p class="eyebrow">Shopify industries</p>
+                      <ul class="mt-4 flex flex-wrap gap-2">
+                        {megaIndustries.map((ind) => (
+                          <li>
+                            <a href={ind.href} class="mega-pill">
+                              {ind.label}
+                            </a>
+                          </li>
+                        ))}
+                        <li>
+                          <a href="/services" class="mega-pill mega-pill--all">
+                            All industries <Arrow />
+                          </a>
+                        </li>
+                      </ul>
+                    </div>
+                    <a href="/pages/contact-us" class="mega-cta group">
+                      <span class="text-xs font-semibold tracking-[0.18em] text-lime uppercase">
+                        Free store audit
+                      </span>
+                      <span class="mt-2 block font-display text-lg leading-snug font-bold text-fg">
+                        Not sure where to start?
+                      </span>
+                      <span class="mt-1 block text-sm text-muted">
+                        We'll show you your three biggest wins.
+                      </span>
+                      <span class="btn btn-primary btn-sm mt-4">
+                        Book a free audit <Arrow />
+                      </span>
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </li>
+          ) : (
+            <li>
+              <a href={item.href} class="nav-link">
+                {item.label}
+              </a>
+            </li>
+          ),
+        )}
       </ul>
     </nav>
     <div class="flex items-center gap-3">
@@ -25,7 +118,7 @@ import { nav } from '../../data/home';
       </a>
       <button
         type="button"
-        class="menu-toggle md:hidden"
+        class="menu-toggle lg:hidden"
         aria-expanded="false"
         aria-controls="mobile-menu"
         aria-label="Open menu"
@@ -35,16 +128,58 @@ import { nav } from '../../data/home';
       </button>
     </div>
   </div>
-  <div id="mobile-menu" class="mobile-menu md:hidden" hidden>
+  <div id="mobile-menu" class="mobile-menu lg:hidden" hidden>
     <nav aria-label="Mobile" class="container-x py-6">
       <ul class="flex flex-col gap-1">
-        {nav.map((item) => (
-          <li>
-            <a href={item.href} class="block py-3 font-display text-3xl font-semibold">
-              {item.label}
-            </a>
-          </li>
-        ))}
+        {nav.map((item) =>
+          isMega(item.href) ? (
+            <li>
+              <details class="m-mega">
+                <summary class="m-mega-summary flex items-center justify-between py-3 font-display text-3xl font-semibold">
+                  {item.label}
+                  <span class="ft-plus" aria-hidden="true" />
+                </summary>
+                <div class="flex flex-col gap-7 pt-2 pb-6">
+                  {megaGroups.map((g) => (
+                    <div>
+                      <p class="eyebrow">{g.title}</p>
+                      <ul class="mt-2 flex flex-col">
+                        {g.items.map((it) => (
+                          <li>
+                            <a href={it.href} class="block py-2 text-lg">
+                              {it.label}
+                            </a>
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                  ))}
+                  <div>
+                    <p class="eyebrow">Shopify industries</p>
+                    <ul class="mt-3 flex flex-wrap gap-2">
+                      {megaIndustries.map((ind) => (
+                        <li>
+                          <a href={ind.href} class="mega-pill">
+                            {ind.label}
+                          </a>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                  <a href="/services" class="btn btn-ghost w-full">
+                    All services <Arrow />
+                  </a>
+                </div>
+              </details>
+            </li>
+          ) : (
+            <li>
+              <a href={item.href} class="block py-3 font-display text-3xl font-semibold">
+                {item.label}
+              </a>
+            </li>
+          ),
+        )}
       </ul>
       <a href="/pages/contact-us" class="btn btn-primary mt-6 w-full">
         Start a project <Arrow />
@@ -71,7 +206,42 @@ import { nav } from '../../data/home';
     menu.addEventListener('click', (e) => {
       if ((e.target as Element).closest('a')) setOpen(false);
     });
-    document.addEventListener('keydown', (e) => e.key === 'Escape' && setOpen(false));
+
+    // Mega menu: CSS opens it on :hover / :focus-within. JS keeps aria-expanded in sync, closes it on
+    // Escape, and hides it after a link click until the pointer leaves (the header persists across pages).
+    const mega = header.querySelector<HTMLElement>('[data-mega]');
+    const trigger = mega?.querySelector<HTMLAnchorElement>('.mega-trigger');
+    const sync = () =>
+      trigger?.setAttribute('aria-expanded', String(Boolean(mega?.matches(':hover, :focus-within'))));
+    const closeMega = () => {
+      mega?.classList.add('is-closing');
+      (document.activeElement as HTMLElement | null)?.blur();
+      sync();
+    };
+    mega?.addEventListener('pointerenter', sync);
+    mega?.addEventListener('focusin', sync);
+    mega?.addEventListener('focusout', () =>
+      requestAnimationFrame(() => {
+        if (!mega.matches(':focus-within')) mega.classList.remove('is-closing');
+        sync();
+      }),
+    );
+    mega?.addEventListener('pointerleave', () => {
+      mega.classList.remove('is-closing');
+      sync();
+    });
+    mega?.querySelector('.mega')?.addEventListener('click', (e) => {
+      if ((e.target as Element).closest('a')) closeMega();
+    });
+
+    document.addEventListener('keydown', (e) => {
+      if (e.key !== 'Escape') return;
+      setOpen(false);
+      if (mega?.matches(':hover, :focus-within')) {
+        closeMega();
+        mega.classList.add('is-closing');
+      }
+    });
     document.addEventListener('astro:after-swap', () => setOpen(false));
 
     // Solid background once the page is scrolled (rAF-throttled, passive).

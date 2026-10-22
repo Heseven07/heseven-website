@@ -1,14 +1,26 @@
 ---
+/**
+ * About — copy over a full-width grid. One neon comet at a time runs along the grid lines: a row, then
+ * a column, then the next row… until every line has been covered, changing colour each run.
+ * The comet is driven by scripts/grid-comet.ts (shared with the hero grid).
+ */
 import { about } from '../../data/home';
 ---
 
-<section id="about" class="container-x scroll-mt-24 py-24 md:py-36" aria-labelledby="about-title">
-  <div class="grid gap-10 md:grid-cols-12">
-    <p class="eyebrow md:col-span-3" data-reveal>
-      {about.eyebrow}
-    </p>
-    <div class="md:col-span-9">
-      <h2 id="about-title" class="text-3xl leading-tight font-semibold sm:text-5xl" data-reveal>
+<section
+  id="about"
+  class="relative isolate scroll-mt-24 overflow-hidden py-24 md:py-36"
+  aria-labelledby="about-title"
+>
+  <div class="about-grid" aria-hidden="true" data-grid-comet data-cell="48">
+    <span class="grid-comet"></span>
+  </div>
+  <div class="container-x">
+    <div class="max-w-5xl">
+      <p class="eyebrow" data-reveal>
+        {about.eyebrow}
+      </p>
+      <h2 id="about-title" class="mt-6 text-3xl leading-tight font-semibold sm:text-5xl" data-reveal>
         {about.title}
       </h2>
       <p class="mt-8 max-w-2xl text-lg text-muted" data-reveal style="--reveal-delay:100">

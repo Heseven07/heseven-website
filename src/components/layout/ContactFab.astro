@@ -1,0 +1,28 @@
+---
+/**
+ * Floating contact orb (bottom-right), Siri-style: brand colours swirling inside a
+ * glass sphere with a breathing core. Links straight to the contact page; hidden on the contact and
+ * thank-you pages. Calls for attention: ripples off the orb, and every 8s a hop + wiggle with a speech
+ * bubble. CSS-only animation (transform / opacity — no filters), still for reduced motion.
+ */
+
+const path = Astro.url.pathname.replace(/\/$/, '');
+const hidden = ['/pages/contact-us', '/pages/thank-you'].includes(path);
+---
+
+{!hidden && (
+  <a href="/pages/contact-us" class="contact-fab group" aria-label="Get in touch — contact us">
+    <span class="fab-bubble" aria-hidden="true">
+      Got a project? Let's talk! 👋
+    </span>
+    <span class="relative flex" aria-hidden="true">
+      <span class="fab-ping" />
+      <span class="fab-ping fab-ping--late" />
+      <span class="siri-orb">
+        <span class="siri-swirl" />
+        <span class="siri-blobs" />
+        <span class="siri-core" />
+      </span>
+    </span>
+  </a>
+)}
