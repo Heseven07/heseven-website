@@ -14,10 +14,10 @@ const VELOCITY_DISSIPATION = 2; // momentum (lower = keeps flowing longer)
 const PRESSURE = 0.1;
 const PRESSURE_ITERATIONS = 20;
 const CURL = 3; // swirl
-const SPLAT_RADIUS = 0.2;
+const SPLAT_RADIUS = 0.08; // thin strokes
 const SPLAT_FORCE = 6000;
-const INTENSITY = 0.2; // ink per movement
-const CLICK_SPLASH = 10; // ink multiplier for the click burst
+const INTENSITY = 0.12; // ink per movement (light, so text underneath stays readable)
+const CLICK_SPLASH = 6; // ink multiplier for the click burst
 const COLOR_SPEED = 1; // hue sweep speed (one violet → lime → violet cycle ≈ 6s)
 const IDLE_MS = 6000;
 
@@ -153,7 +153,8 @@ void main() {
   // Compress brightness only (not each channel), so dense ink keeps its hue instead of washing to white.
   float m = max(c.r, max(c.g, c.b));
   c *= (1.0 - exp(-m * 2.2)) / max(m, 0.0001);
-  o = vec4(c, max(c.r, max(c.g, c.b)));
+  // Cap the ink's opacity so buttons and links underneath always read through it.
+  o = vec4(c, max(c.r, max(c.g, c.b))) * 0.55;
 }`,
   };
 

@@ -60,7 +60,7 @@ document.addEventListener('astro:after-swap', () => {
   lenis?.scrollTo(0, { immediate: true, force: true });
 });
 
-// Cursor smoke: fetched only on the first real mouse move (never during page load), and only for
+// Cursor splash: fetched only on the first real mouse move (never during page load), and only for
 // a fine pointer with motion allowed.
 if (!reduceMotion && matchMedia('(hover: hover) and (pointer: fine)').matches) {
   const loadSmoke = (e: PointerEvent) => {
