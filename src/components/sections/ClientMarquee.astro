@@ -28,7 +28,7 @@ const sized = clientLogos.map((c) => {
               height={c.h * 2}
               densities={[0.5, 1]}
               loading="lazy"
-              class="client-logo"
+              class:list={['client-logo', c.tone === 'gray' && 'client-logo--gray']}
             />
           </li>
         ))}

@@ -196,8 +196,10 @@
     }
   }
 
-  /* Cursor smoke canvas (scripts/cursor-smoke.ts): over everything, never catches clicks */
+  /* Cursor splash canvas (scripts/cursor-smoke.ts): over everything, never catches clicks; screen-blended
+     so the ink only brightens what's under it and never hides button/link text */
   .cursor-smoke {
+    mix-blend-mode: screen;
     position: fixed;
     inset: 0;
     z-index: 60;

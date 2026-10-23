@@ -284,6 +284,13 @@
   .client-logo {
     height: calc(var(--logo-h) * 0.8);
     width: auto;
+    /* Monochrome white on the dark site, so dark/black logos stay visible */
+    filter: brightness(0) invert(1);
+    opacity: 0.9;
+  }
+  .client-logo--gray {
+    filter: grayscale(1) brightness(1.3);
+    opacity: 0.75;
   }
   @media (min-width: 768px) {
     .client-logo {
