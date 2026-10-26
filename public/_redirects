@@ -51,6 +51,9 @@
 /pages/virtual-assistant-for-shopify                     /services                                      301
 /pages/white-label-shopify-development                   /services                                      301
 
+# Old blog handles still linked from post bodies (the posts themselves are unchanged)
+/blogs/news/why-you-need-the-best-shopify-plus-development-agency /blogs/news/best-shopify-plus-development-agency 301
+
 # Shopify utility pages (never rebuilt)
 /pages/usd                                               /                                              301
 /pages/gbp                                               /                                              301

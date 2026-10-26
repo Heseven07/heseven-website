@@ -1,0 +1,70 @@
+---
+/** Link hub — grouped links to related services and guides (internal linking for SEO). */
+import SectionHead from './SectionHead.astro';
+import type { Cta } from '../../lib/sanity';
+
+interface Group {
+  _key?: string;
+  title: string;
+  links?: Cta[];
+}
+interface Props {
+  id: string;
+  eyebrow?: string;
+  heading?: string;
+  groups?: Group[];
+}
+const { id, eyebrow, heading, groups = [] } = Astro.props;
+---
+
+<section class="container-x py-20 md:py-28" aria-labelledby={heading ? id : undefined}>
+  <SectionHead id={id} eyebrow={eyebrow} heading={heading} />
+  <div class="mt-12 grid gap-10 md:grid-cols-2 lg:grid-cols-3" data-reveal>
+    {groups.map((g) => (
+      <nav aria-label={g.title}>
+        <p class="hub-title">{g.title}</p>
+        <ul class="mt-4">
+          {(g.links ?? []).map((l) => (
+            <li>
+              <a href={l.href} class="hub-link">
+                <span>{l.label}</span>
+                <span class="hub-arrow" aria-hidden="true">
+                  →
+                </span>
+              </a>
+            </li>
+          ))}
+        </ul>
+      </nav>
+    ))}
+  </div>
+</section>
+
+<style>
+  .hub-title {
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--color-lime);
+  }
+  .hub-link {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    padding: 0.85rem 0;
+    border-bottom: 1px solid var(--color-line);
+    transition: color 0.2s;
+  }
+  .hub-link:hover {
+    color: var(--color-lime);
+  }
+  .hub-arrow {
+    flex: none;
+    transition: transform 0.3s var(--ease-out-expo);
+  }
+  .hub-link:hover .hub-arrow {
+    transform: translateX(4px);
+  }
+</style>

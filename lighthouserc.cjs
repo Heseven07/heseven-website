@@ -22,6 +22,7 @@ module.exports = {
       url: [
         'http://localhost/',
         'http://localhost/services',
+        'http://localhost/services/shopify-web-design',
         'http://localhost/pages/shopify-website-development-services',
         'http://localhost/pages/contact-us',
         'http://localhost/pages/about',

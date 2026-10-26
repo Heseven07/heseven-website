@@ -1,5 +1,5 @@
-// Services mega menu (header). Items whose page doesn't exist yet point at /services as a placeholder —
-// swap in /services/<handle> once the page is built in Sanity → Service pages.
+// Services mega menu (header). Services migrated from Shopify keep their /pages/<handle> URL (Studio →
+// Landing pages); the rest are service pages at /services/<handle> (Studio → Service pages).
 export interface MegaItem {
   label: string;
   desc: string;
@@ -37,6 +37,11 @@ export const megaGroups: MegaGroup[] = [
         desc: 'Move to Shopify, rankings intact.',
         href: '/pages/ecommerce-platform-migration-service',
       },
+      {
+        label: 'Custom App Development',
+        desc: 'Private apps, Functions and integrations.',
+        href: '/services/shopify-app-development',
+      },
     ],
     more: { label: 'All build services', href: '/services', count: 8 },
   },
@@ -49,9 +54,17 @@ export const megaGroups: MegaGroup[] = [
         desc: 'Technical and content SEO.',
         href: '/pages/shopify-seo-services',
       },
-      { label: 'Ecommerce AI SEO', desc: 'Get cited by ChatGPT and Perplexity.', href: '/services' },
-      { label: 'Content & Blogging', desc: 'Articles that rank and sell.', href: '/services' },
-      { label: 'Paid Ads', desc: 'Ads that pay for themselves.', href: '/services' },
+      {
+        label: 'Ecommerce AI SEO',
+        desc: 'Get cited by ChatGPT and Perplexity.',
+        href: '/services/ecommerce-ai-seo',
+      },
+      {
+        label: 'Content & Blogging',
+        desc: 'Articles that rank and sell.',
+        href: '/services/ecommerce-content-marketing',
+      },
+      { label: 'Paid Ads', desc: 'Ads that pay for themselves.', href: '/services/shopify-paid-ads' },
     ],
     more: { label: 'All growth services', href: '/services', count: 5 },
   },
@@ -69,8 +82,16 @@ export const megaGroups: MegaGroup[] = [
         desc: 'Core Web Vitals in the green.',
         href: '/pages/speed-optimization',
       },
-      { label: 'UX & Store Audit', desc: 'What to fix, and in what order.', href: '/services' },
-      { label: 'Email & Klaviyo', desc: 'Flows that earn the inbox.', href: '/services' },
+      {
+        label: 'UX & Store Audit',
+        desc: 'What to fix, and in what order.',
+        href: '/services/shopify-store-audit',
+      },
+      {
+        label: 'Email & Klaviyo',
+        desc: 'Flows that earn the inbox.',
+        href: '/services/klaviyo-email-marketing',
+      },
     ],
     more: { label: 'All optimisation services', href: '/services', count: 4 },
   },
@@ -93,7 +114,11 @@ export const megaGroups: MegaGroup[] = [
         desc: "Your agency's Shopify team.",
         href: '/pages/white-label-shopify-development',
       },
-      { label: 'Growth Partnership', desc: 'A retained team, one roadmap.', href: '/services' },
+      {
+        label: 'Growth Partnership',
+        desc: 'A retained team, one roadmap.',
+        href: '/services/shopify-growth-partnership',
+      },
     ],
     more: { label: 'All support services', href: '/services', count: 6 },
   },

@@ -60,13 +60,13 @@ document.addEventListener('astro:after-swap', () => {
   lenis?.scrollTo(0, { immediate: true, force: true });
 });
 
-// Cursor splash: fetched only on the first real mouse move (never during page load), and only for
-// a fine pointer with motion allowed.
-if (!reduceMotion && matchMedia('(hover: hover) and (pointer: fine)').matches) {
-  const loadSmoke = (e: PointerEvent) => {
+// Target cursor: fetched only on the first real mouse move (never during page load), and only for
+// a fine pointer. (It's a functional cursor, so it also runs with reduced motion, just without spin.)
+if (matchMedia('(hover: hover) and (pointer: fine)').matches) {
+  const loadCursor = (e: PointerEvent) => {
     if (e.pointerType !== 'mouse') return;
-    removeEventListener('pointermove', loadSmoke);
-    void import('./cursor-smoke').then((m) => m.startSmoke(e));
+    removeEventListener('pointermove', loadCursor);
+    void import('./cursor-target').then((m) => m.startTargetCursor(e));
   };
-  addEventListener('pointermove', loadSmoke, { passive: true });
+  addEventListener('pointermove', loadCursor, { passive: true });
 }

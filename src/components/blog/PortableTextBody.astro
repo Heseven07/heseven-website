@@ -9,9 +9,16 @@ interface Props {
   class?: string;
   /** `sizes` for inline images. */
   imageSizes?: string;
+  /** Heading level the body's top headings render at: 2 for a post, 3 under a section's own h2. */
+  headingLevel?: number;
 }
-const { blocks, class: className = '', imageSizes = '(min-width: 1024px) 66vw, 100vw' } = Astro.props;
-const segments = toSegments(blocks);
+const {
+  blocks,
+  class: className = '',
+  imageSizes = '(min-width: 1024px) 66vw, 100vw',
+  headingLevel = 2,
+} = Astro.props;
+const segments = toSegments(blocks, headingLevel);
 ---
 
 <div class:list={['prose min-w-0', className]}>

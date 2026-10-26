@@ -1,0 +1,97 @@
+---
+/** "What usually goes wrong" — numbered warning cards, each ending with how we avoid it. */
+import SectionHead from './SectionHead.astro';
+
+interface Pitfall {
+  _key?: string;
+  title: string;
+  body?: string;
+  fix?: string;
+}
+interface Props {
+  id: string;
+  eyebrow?: string;
+  heading?: string;
+  lead?: string;
+  items?: Pitfall[];
+}
+const { id, eyebrow, heading, lead, items = [] } = Astro.props;
+---
+
+<section class="bg-ink-2 py-20 md:py-28" aria-labelledby={heading ? id : undefined}>
+  <div class="container-x">
+    <SectionHead id={id} eyebrow={eyebrow} heading={heading} lead={lead} />
+    <ol class="mt-12 grid gap-4 md:grid-cols-2 lg:grid-cols-3">
+      {items.map((p, i) => (
+        <li class="pit card" data-reveal style={`--reveal-delay:${(i % 3) * 80}`}>
+          <span class="pit-head">
+            <span class="pit-num">{String(i + 1).padStart(2, '0')}</span>
+            <span class="pit-warn" aria-hidden="true">
+              !
+            </span>
+          </span>
+          <h3 class="mt-6 text-xl font-semibold">{p.title}</h3>
+          {p.body && <p class="mt-3 text-muted">{p.body}</p>}
+          {p.fix && (
+            <p class="pit-fix">
+              <span class="pit-fix-label">How we avoid it</span>
+              {p.fix}
+            </p>
+          )}
+        </li>
+      ))}
+    </ol>
+  </div>
+</section>
+
+<style>
+  .pit {
+    display: flex;
+    flex-direction: column;
+    padding: 1.75rem;
+  }
+  .pit:hover {
+    border-color: rgb(251 191 36 / 0.35);
+  }
+  .pit-head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .pit-num {
+    font-family: var(--font-display);
+    font-size: 0.875rem;
+    letter-spacing: 0.1em;
+    color: var(--color-muted);
+  }
+  .pit-warn {
+    display: grid;
+    place-items: center;
+    width: 2rem;
+    height: 2rem;
+    border-radius: 0.6rem;
+    border: 1px solid rgb(251 191 36 / 0.4);
+    background: rgb(251 191 36 / 0.1);
+    color: #fbbf24;
+    font-weight: 700;
+  }
+  /* Pushed to the card's foot so fixes line up across a row. */
+  .pit-fix {
+    margin-top: auto;
+    padding-top: 1.25rem;
+    border-top: 1px solid var(--color-line);
+    font-size: 0.925rem;
+  }
+  .pit h3 + p {
+    margin-bottom: 1.5rem;
+  }
+  .pit-fix-label {
+    display: block;
+    margin-bottom: 0.35rem;
+    font-size: 0.7rem;
+    font-weight: 600;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--color-lime);
+  }
+</style>

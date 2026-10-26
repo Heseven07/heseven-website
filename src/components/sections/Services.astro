@@ -1,8 +1,24 @@
 ---
+/**
+ * Services bento grid. Every card carries a small animated mini-UI for its service (store being built,
+ * data packets migrating, A/B bars, speed gauge, ranking climb, uptime pulse).
+ * Layout lives here (inlined, no shift). The motion lives in deferred.css — it arrives after first paint
+ * and only runs while a card is on screen (`.is-inview`, toggled in motion.ts) — so the homepage keeps its 100.
+ */
 import SectionHeading from '../ui/SectionHeading.astro';
 import Arrow from '../ui/Arrow.astro';
-import Icon from '../ui/Icon.astro';
 import { services } from '../../data/home';
+
+// Bento placement by position: one hero card, two wide, three narrow, one full-width banner.
+const span = [
+  'md:col-span-2 lg:col-span-3 lg:row-span-2 sv-card--big',
+  'lg:col-span-3',
+  'lg:col-span-3',
+  'lg:col-span-2',
+  'lg:col-span-2',
+  'lg:col-span-2',
+  'lg:col-span-6 sv-card--wide',
+];
 ---
 
 <section id="services" class="container-x scroll-mt-24 py-24 md:py-32" aria-labelledby="services-title">
@@ -12,24 +28,769 @@ import { services } from '../../data/home';
       All services <Arrow />
     </a>
   </div>
-  <ul class="mt-14 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+  <ul class="mt-14 grid gap-4 md:grid-cols-2 lg:grid-cols-6">
     {services.map((s, i) => (
-      <li data-reveal style={`--reveal-delay:${(i % 3) * 80}`}>
+      <li class:list={['flex', span[i]]} data-reveal style={`--reveal-delay:${(i % 3) * 80}`}>
         <a
-          href={`/pages/${s.slug}`}
-          class="card card-spotlight group flex h-full flex-col p-8"
+          href={s.href ?? `/pages/${s.slug}`}
+          class="sv-card card card-spotlight group"
           data-spotlight
+          data-inview
         >
-          <span class="icon-badge">
-            <Icon d={s.icon} />
+          <span class="sv-top">
+            <span class="sv-num">{String(i + 1).padStart(2, '0')}</span>
+            <span class="sv-go" aria-hidden="true">
+              <svg
+                viewBox="0 0 24 24"
+                width="16"
+                height="16"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+              >
+                <path d="M7 17 17 7M9 7h8v8" stroke-linecap="round" stroke-linejoin="round" />
+              </svg>
+            </span>
           </span>
-          <h3 class="mt-8 text-2xl font-semibold">{s.title}</h3>
-          <p class="mt-3 text-muted">{s.summary}</p>
-          <span class="mt-auto inline-flex items-center gap-2 pt-8 text-sm font-medium text-lime">
-            Learn more <Arrow />
+
+          <span class:list={['sv-viz', `sv-viz--${s.viz}`]} aria-hidden="true">
+            {s.viz === 'build' && (
+              <>
+                <span class="sv-browser">
+                  <span class="sv-bar">
+                    <i />
+                    <i />
+                    <i />
+                    <span class="sv-url" />
+                  </span>
+                  <span class="sv-page">
+                    <span class="sv-hero">
+                      <span class="sv-ln sv-ln--w70" />
+                      <span class="sv-ln sv-ln--w45" />
+                      <span class="sv-btn" />
+                    </span>
+                    <span class="sv-tiles">
+                      <span />
+                      <span />
+                      <span />
+                    </span>
+                  </span>
+                </span>
+                <span class="sv-chip sv-code">{'{% section "hero" %}'}</span>
+                <span class="sv-chip sv-os">Online Store 2.0 ✓</span>
+              </>
+            )}
+            {s.viz === 'migrate' && (
+              <span class="sv-mig">
+                <span class="sv-node">Woo</span>
+                <span class="sv-path">
+                  <i />
+                  <i />
+                  <i />
+                </span>
+                <span class="sv-node sv-node--to">S</span>
+                <span class="sv-chip sv-mig-ok">301s mapped ✓</span>
+              </span>
+            )}
+            {s.viz === 'cro' && (
+              <span class="sv-ab">
+                <span class="sv-ab-row">
+                  <b>A</b>
+                  <span class="sv-track">
+                    <span class="sv-fill sv-fill--a" />
+                  </span>
+                </span>
+                <span class="sv-ab-row">
+                  <b>B</b>
+                  <span class="sv-track">
+                    <span class="sv-fill sv-fill--b" />
+                  </span>
+                  <span class="sv-check">✓</span>
+                </span>
+                <span class="sv-chip sv-win">Winner: B</span>
+              </span>
+            )}
+            {s.viz === 'speed' && (
+              <span class="sv-gauge">
+                <svg viewBox="0 0 120 70" width="160" height="94">
+                  <defs>
+                    <linearGradient id="sv-g" x1="0" x2="1">
+                      <stop offset="0" stop-color="#ff6b6b" />
+                      <stop offset="0.5" stop-color="#fbbf24" />
+                      <stop offset="1" stop-color="#b5f36b" />
+                    </linearGradient>
+                  </defs>
+                  <path
+                    d="M10 62a50 50 0 0 1 100 0"
+                    fill="none"
+                    stroke="rgb(255 255 255 / 0.08)"
+                    stroke-width="9"
+                    stroke-linecap="round"
+                  />
+                  <path
+                    d="M10 62a50 50 0 0 1 100 0"
+                    fill="none"
+                    stroke="url(#sv-g)"
+                    stroke-width="9"
+                    stroke-linecap="round"
+                    stroke-dasharray="2 4.5"
+                  />
+                </svg>
+                <span class="sv-needle" />
+                <span class="sv-chip sv-lcp">LCP · Good</span>
+              </span>
+            )}
+            {s.viz === 'seo' && (
+              <span class="sv-serp">
+                <span class="sv-search">
+                  <span class="sv-ln sv-ln--w45" />
+                  <span class="sv-caret" />
+                </span>
+                <span class="sv-results">
+                  <span class="sv-res sv-res--1" />
+                  <span class="sv-res sv-res--2" />
+                  <span class="sv-res sv-res--you">
+                    <i>#1</i>
+                  </span>
+                </span>
+              </span>
+            )}
+            {s.viz === 'care' && (
+              <span class="sv-care">
+                <span class="sv-pulse">
+                  <svg viewBox="0 0 200 40" width="400" height="40" preserveAspectRatio="none">
+                    <path
+                      d="M0 20h30l6-12 8 26 6-14h80l6-12 8 26 6-14h50"
+                      fill="none"
+                      stroke="#b5f36b"
+                      stroke-width="2"
+                      stroke-linejoin="round"
+                    />
+                  </svg>
+                </span>
+                <span class="sv-ticket">
+                  <span class="sv-ln sv-ln--w70" />
+                  <span class="sv-tick">✓</span>
+                </span>
+                <span class="sv-ticket">
+                  <span class="sv-ln sv-ln--w45" />
+                  <span class="sv-tick sv-tick--2">✓</span>
+                </span>
+              </span>
+            )}
+            {s.viz === 'app' && (
+              <span class="sv-app">
+                <span class="sv-node">Shopify</span>
+                <span class="sv-path">
+                  <i />
+                  <i />
+                </span>
+                <span class="sv-app-win">
+                  <span class="sv-bar">
+                    <i />
+                    <i />
+                    <i />
+                  </span>
+                  <span class="sv-app-row">
+                    <span class="sv-ln sv-ln--w70" />
+                    <span class="sv-toggle" />
+                  </span>
+                  <span class="sv-app-row">
+                    <span class="sv-ln sv-ln--w45" />
+                    <span class="sv-toggle sv-toggle--2" />
+                  </span>
+                </span>
+                <span class="sv-path sv-path--back">
+                  <i />
+                  <i />
+                </span>
+                <span class="sv-node">ERP</span>
+                <span class="sv-chip sv-fn">Shopify Functions</span>
+                <span class="sv-chip sv-installed">Installed ✓</span>
+              </span>
+            )}
+          </span>
+
+          <span class="sv-text">
+            <span class="sv-tag">{s.tag}</span>
+            <h3 class="sv-title">{s.title}</h3>
+            <span class="mt-3 block text-muted">{s.summary}</span>
           </span>
         </a>
       </li>
     ))}
   </ul>
 </section>
+
+<style>
+  .sv-card {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    padding: 1.5rem;
+    overflow: hidden;
+    background:
+      radial-gradient(120% 80% at 0% 0%, rgb(181 243 107 / 0.06), transparent 60%), rgb(29 26 40 / 0.4);
+  }
+  @media (min-width: 768px) {
+    .sv-card {
+      padding: 2rem;
+    }
+  }
+  .sv-top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .sv-num {
+    font-family: var(--font-display);
+    font-size: 0.875rem;
+    color: var(--color-muted);
+    letter-spacing: 0.1em;
+  }
+  .sv-go {
+    display: grid;
+    place-items: center;
+    width: 2.5rem;
+    height: 2.5rem;
+    border-radius: 999px;
+    border: 1px solid var(--color-line);
+    color: var(--color-fg);
+    transition:
+      transform 0.5s var(--ease-out-expo),
+      background-color 0.3s,
+      color 0.3s;
+  }
+  .sv-card:hover .sv-go,
+  .sv-card:focus-visible .sv-go {
+    background: var(--color-lime);
+    color: var(--color-ink);
+    transform: rotate(45deg);
+  }
+
+  /* ── Illustration frame ── */
+  .sv-viz {
+    position: relative;
+    display: grid;
+    place-items: center;
+    height: 9.5rem;
+    margin: 1.5rem 0;
+    border-radius: 1.25rem;
+    border: 1px solid var(--color-line);
+    background:
+      linear-gradient(rgb(255 255 255 / 0.03) 1px, transparent 1px) 0 0 / 100% 1.25rem,
+      rgb(11 10 16 / 0.6);
+    overflow: hidden;
+  }
+  .sv-card--big .sv-viz {
+    height: 15rem;
+  }
+  @media (min-width: 1024px) {
+    .sv-card--big .sv-viz {
+      flex: 1;
+      height: auto;
+      min-height: 17rem;
+    }
+  }
+  .sv-viz i {
+    display: block;
+  }
+  .sv-ln {
+    display: block;
+    height: 0.4rem;
+    border-radius: 999px;
+    background: rgb(255 255 255 / 0.12);
+  }
+  .sv-ln--w70 {
+    width: 70%;
+  }
+  .sv-ln--w45 {
+    width: 45%;
+  }
+  .sv-chip {
+    position: absolute;
+    padding: 0.3rem 0.65rem;
+    border-radius: 999px;
+    border: 1px solid rgb(181 243 107 / 0.35);
+    background: rgb(181 243 107 / 0.1);
+    color: var(--color-lime);
+    font-size: 0.7rem;
+    font-weight: 500;
+    white-space: nowrap;
+  }
+
+  /* Build: a store page assembling */
+  .sv-browser {
+    width: min(80%, 22rem);
+    border-radius: 0.9rem;
+    border: 1px solid var(--color-line);
+    background: var(--color-ink-2);
+    overflow: hidden;
+  }
+  .sv-bar {
+    display: flex;
+    align-items: center;
+    gap: 0.3rem;
+    padding: 0.55rem 0.7rem;
+    border-bottom: 1px solid var(--color-line);
+  }
+  .sv-bar i {
+    width: 0.4rem;
+    height: 0.4rem;
+    border-radius: 50%;
+    background: rgb(255 255 255 / 0.18);
+  }
+  .sv-url {
+    margin-left: 0.5rem;
+    width: 45%;
+    height: 0.45rem;
+    border-radius: 999px;
+    background: rgb(255 255 255 / 0.08);
+  }
+  .sv-page {
+    display: grid;
+    gap: 0.75rem;
+    padding: 0.9rem;
+  }
+  .sv-hero {
+    display: grid;
+    gap: 0.4rem;
+    padding: 0.8rem;
+    border-radius: 0.6rem;
+    background: linear-gradient(120deg, rgb(139 108 255 / 0.25), rgb(181 243 107 / 0.08));
+  }
+  .sv-btn {
+    position: relative;
+    display: block;
+    width: 4.5rem;
+    height: 1.1rem;
+    margin-top: 0.3rem;
+    border-radius: 999px;
+    background: var(--color-lime);
+  }
+  .sv-btn::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    border: 1px solid var(--color-lime);
+    opacity: 0;
+  }
+  .sv-tiles {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0.5rem;
+  }
+  .sv-tiles span {
+    aspect-ratio: 1;
+    border-radius: 0.5rem;
+    background: rgb(255 255 255 / 0.07);
+    border: 1px solid var(--color-line);
+  }
+  .sv-card--big .sv-browser {
+    width: min(78%, 30rem);
+  }
+  .sv-card--big .sv-page {
+    gap: 1rem;
+    padding: 1.1rem;
+  }
+  .sv-os {
+    left: 6%;
+    top: 10%;
+    display: none;
+  }
+  @media (min-width: 768px) {
+    .sv-os {
+      display: block;
+    }
+  }
+  .sv-code {
+    right: 6%;
+    bottom: 12%;
+    font-family: ui-monospace, monospace;
+    border-color: rgb(139 108 255 / 0.45);
+    background: rgb(139 108 255 / 0.15);
+    color: #cfc4ff;
+  }
+
+  /* Migrate: packets travel old → Shopify */
+  .sv-mig {
+    position: relative;
+    display: flex;
+    align-items: center;
+    width: 82%;
+    gap: 0.6rem;
+  }
+  .sv-node {
+    display: grid;
+    flex: none;
+    place-items: center;
+    width: 3rem;
+    height: 3rem;
+    border-radius: 0.9rem;
+    border: 1px solid var(--color-line);
+    background: var(--color-ink-2);
+    font-size: 0.7rem;
+    font-weight: 600;
+    color: var(--color-muted);
+  }
+  .sv-node--to {
+    border-color: rgb(181 243 107 / 0.5);
+    color: var(--color-lime);
+    font-family: var(--font-display);
+    font-size: 1.1rem;
+    box-shadow: 0 0 24px rgb(181 243 107 / 0.2);
+  }
+  .sv-path {
+    position: relative;
+    flex: 1;
+    height: 2px;
+    container-type: inline-size;
+    background: repeating-linear-gradient(90deg, rgb(255 255 255 / 0.2) 0 6px, transparent 6px 12px);
+  }
+  .sv-path i {
+    position: absolute;
+    top: -3px;
+    left: 0;
+    width: 8px;
+    height: 8px;
+    border-radius: 2px;
+    background: var(--color-lime);
+    box-shadow: 0 0 10px var(--color-lime);
+    opacity: 0;
+  }
+  .sv-mig-ok {
+    left: 50%;
+    top: calc(100% + 1rem);
+    translate: -50% 0;
+  }
+
+  /* CRO: A/B bars */
+  .sv-ab {
+    position: relative;
+    display: grid;
+    gap: 0.7rem;
+    width: 78%;
+  }
+  .sv-ab-row {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+  }
+  .sv-ab-row b {
+    width: 1rem;
+    font-size: 0.75rem;
+    color: var(--color-muted);
+  }
+  .sv-track {
+    flex: 1;
+    height: 0.7rem;
+    border-radius: 999px;
+    background: rgb(255 255 255 / 0.06);
+    overflow: hidden;
+  }
+  .sv-fill {
+    display: block;
+    height: 100%;
+    border-radius: inherit;
+    transform-origin: left;
+  }
+  .sv-fill--a {
+    background: rgb(255 255 255 / 0.25);
+    transform: scaleX(0.55);
+  }
+  .sv-fill--b {
+    background: linear-gradient(90deg, var(--color-violet), var(--color-lime));
+    transform: scaleX(0.88);
+  }
+  .sv-check {
+    display: grid;
+    place-items: center;
+    width: 1.3rem;
+    height: 1.3rem;
+    border-radius: 50%;
+    background: var(--color-lime);
+    color: var(--color-ink);
+    font-size: 0.7rem;
+    font-weight: 700;
+  }
+  .sv-win {
+    right: 0;
+    top: -2.2rem;
+  }
+
+  /* Speed: gauge */
+  .sv-gauge {
+    position: relative;
+    display: grid;
+    place-items: center;
+  }
+  .sv-needle {
+    position: absolute;
+    left: 50%;
+    bottom: 10px;
+    width: 3px;
+    height: 52px;
+    margin-left: -1.5px;
+    border-radius: 3px;
+    background: var(--color-fg);
+    transform-origin: 50% 100%;
+    transform: rotate(62deg);
+  }
+  .sv-needle::after {
+    content: '';
+    position: absolute;
+    left: 50%;
+    bottom: -6px;
+    width: 12px;
+    height: 12px;
+    margin-left: -6px;
+    border-radius: 50%;
+    background: var(--color-fg);
+  }
+  .sv-lcp {
+    left: 50%;
+    bottom: -1.9rem;
+    translate: -50% 0;
+  }
+
+  /* SEO: search + ranking climb */
+  .sv-serp {
+    display: grid;
+    gap: 0.6rem;
+    width: 78%;
+  }
+  .sv-search {
+    display: flex;
+    align-items: center;
+    gap: 0.3rem;
+    padding: 0.5rem 0.75rem;
+    border-radius: 999px;
+    border: 1px solid var(--color-line);
+    background: var(--color-ink-2);
+  }
+  .sv-caret {
+    width: 2px;
+    height: 0.8rem;
+    background: var(--color-lime);
+  }
+  .sv-results {
+    position: relative;
+    height: 4.6rem;
+  }
+  .sv-res {
+    position: absolute;
+    left: 0;
+    right: 0;
+    height: 1.3rem;
+    border-radius: 0.4rem;
+    background: rgb(255 255 255 / 0.07);
+  }
+  .sv-res--1 {
+    top: 0;
+  }
+  .sv-res--2 {
+    top: 1.65rem;
+  }
+  .sv-res--you {
+    top: 3.3rem;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    padding-right: 0.5rem;
+    border: 1px solid rgb(181 243 107 / 0.45);
+    background: rgb(181 243 107 / 0.12);
+  }
+  .sv-res--you i {
+    font-style: normal;
+    font-size: 0.65rem;
+    font-weight: 700;
+    color: var(--color-lime);
+  }
+
+  /* Care: uptime pulse + tickets */
+  .sv-care {
+    display: grid;
+    gap: 0.6rem;
+    width: 80%;
+  }
+  .sv-pulse {
+    display: block;
+    height: 40px;
+    overflow: hidden;
+  }
+  .sv-pulse svg {
+    display: block;
+    width: 200%;
+  }
+  .sv-ticket {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0.5rem 0.7rem;
+    border-radius: 0.6rem;
+    border: 1px solid var(--color-line);
+    background: var(--color-ink-2);
+  }
+  .sv-tick {
+    display: grid;
+    place-items: center;
+    width: 1.1rem;
+    height: 1.1rem;
+    border-radius: 50%;
+    background: var(--color-lime);
+    color: var(--color-ink);
+    font-size: 0.6rem;
+    font-weight: 700;
+  }
+
+  /* ── Text ── */
+  .sv-text {
+    display: block;
+    margin-top: auto;
+  }
+  .sv-tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.45rem;
+    padding: 0.3rem 0.8rem;
+    border-radius: 999px;
+    border: 1px solid var(--color-line);
+    font-size: 0.8rem;
+    color: var(--color-fg);
+  }
+  .sv-tag::before {
+    content: '';
+    width: 0.4rem;
+    height: 0.4rem;
+    border-radius: 50%;
+    background: var(--color-lime);
+    box-shadow: 0 0 8px var(--color-lime);
+  }
+  .sv-title {
+    margin-top: 1rem;
+    font-family: var(--font-display);
+    font-size: 1.5rem;
+    font-weight: 700;
+    line-height: 1.15;
+  }
+  @media (min-width: 1024px) {
+    .sv-card--big .sv-title {
+      font-size: 2.5rem;
+    }
+  }
+
+  /* Apps: Shopify ↔ your app ↔ ERP */
+  .sv-app {
+    position: relative;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    width: 90%;
+    max-width: 34rem;
+  }
+  .sv-app .sv-node {
+    width: 3.4rem;
+    font-size: 0.65rem;
+  }
+  .sv-app .sv-path {
+    min-width: 1.25rem;
+  }
+  .sv-app-win {
+    flex: none;
+    width: 8.5rem;
+    border-radius: 0.8rem;
+    border: 1px solid rgb(181 243 107 / 0.45);
+    background: var(--color-ink-2);
+    box-shadow: 0 0 30px rgb(181 243 107 / 0.15);
+    overflow: hidden;
+  }
+  .sv-app-win .sv-bar {
+    padding: 0.45rem 0.6rem;
+  }
+  .sv-app-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.5rem;
+    padding: 0.5rem 0.6rem;
+  }
+  .sv-app-row + .sv-app-row {
+    border-top: 1px solid var(--color-line);
+  }
+  .sv-toggle {
+    position: relative;
+    flex: none;
+    width: 1.6rem;
+    height: 0.9rem;
+    border-radius: 999px;
+    background: rgb(181 243 107 / 0.25);
+  }
+  .sv-toggle::after {
+    content: '';
+    position: absolute;
+    top: 0.1rem;
+    left: 0.1rem;
+    width: 0.7rem;
+    height: 0.7rem;
+    border-radius: 50%;
+    background: var(--color-lime);
+    transform: translateX(0.7rem);
+  }
+  .sv-fn {
+    left: 50%;
+    top: -2.2rem;
+    translate: -50% 0;
+    border-color: rgb(139 108 255 / 0.45);
+    background: rgb(139 108 255 / 0.15);
+    color: #cfc4ff;
+  }
+  .sv-installed {
+    left: 50%;
+    bottom: -2.2rem;
+    translate: -50% 0;
+  }
+  /* Phones: tighten so Shopify, the app and ERP all fit. */
+  @media (max-width: 639px) {
+    .sv-app {
+      gap: 0.35rem;
+      width: 94%;
+    }
+    .sv-app .sv-node {
+      width: 2.7rem;
+      height: 2.7rem;
+      font-size: 0.6rem;
+    }
+    .sv-app-win {
+      width: 7rem;
+    }
+  }
+
+  /* Full-width banner card (lg): text left, illustration right. */
+  @media (min-width: 1024px) {
+    .sv-card--wide .sv-card {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(0, 1.3fr);
+      grid-template-rows: auto 1fr;
+      column-gap: 3rem;
+    }
+    .sv-card--wide .sv-top {
+      grid-column: 1;
+    }
+    .sv-card--wide .sv-text {
+      grid-column: 1;
+      grid-row: 2;
+      align-self: end;
+    }
+    .sv-card--wide .sv-viz {
+      grid-column: 2;
+      grid-row: 1 / span 2;
+      height: 13rem;
+      margin: 0;
+    }
+    .sv-card--wide .sv-title {
+      font-size: 2rem;
+    }
+  }
+</style>

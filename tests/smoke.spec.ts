@@ -4,6 +4,7 @@ import AxeBuilder from '@axe-core/playwright';
 const pages = [
   '/',
   '/services',
+  '/services/shopify-web-design',
   '/pages/shopify-website-development-services',
   '/pages/contact-us',
   '/pages/about',

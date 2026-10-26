@@ -1,0 +1,4625 @@
+[
+  {
+    "_id": "service-shopify-web-design",
+    "_type": "servicePage",
+    "title": "Shopify Web Design",
+    "slug": {
+      "_type": "slug",
+      "current": "shopify-web-design"
+    },
+    "sections": [
+      {
+        "_type": "sectionHero",
+        "_key": "k1",
+        "eyebrow": "Shopify web design",
+        "heading": "Shopify web design that sells.",
+        "lead": "Conversion-led, on-brand Shopify and Shopify Plus stores — designed around your products and customers, built to load fast and easy for your team to edit.",
+        "primaryCta": {
+          "_type": "cta",
+          "label": "Get a quote",
+          "href": "#quote"
+        },
+        "secondaryCta": {
+          "_type": "cta",
+          "label": "See our work",
+          "href": "/#work"
+        }
+      },
+      {
+        "_type": "sectionStats",
+        "_key": "k2",
+        "items": [
+          {
+            "_type": "stat",
+            "_key": "k3",
+            "value": "1000+",
+            "label": "E-commerce brands served"
+          },
+          {
+            "_type": "stat",
+            "_key": "k4",
+            "value": "2018",
+            "label": "Shopify Partner since"
+          },
+          {
+            "_type": "stat",
+            "_key": "k5",
+            "value": "4",
+            "label": "Global time zones"
+          },
+          {
+            "_type": "stat",
+            "_key": "k6",
+            "value": "5.0",
+            "label": "Average client rating"
+          }
+        ]
+      },
+      {
+        "_type": "sectionFeatures",
+        "_key": "k7",
+        "eyebrow": "What's included",
+        "heading": "Design that looks premium and performs.",
+        "columns": 3,
+        "items": [
+          {
+            "_type": "feature",
+            "_key": "k8",
+            "icon": "sparkles",
+            "title": "Custom, on-brand design",
+            "body": "Every key template designed for your brand — no themes in disguise."
+          },
+          {
+            "_type": "feature",
+            "_key": "k9",
+            "icon": "target",
+            "title": "Conversion-led UX",
+            "body": "Product, collection and cart journeys shaped by research and real customer data."
+          },
+          {
+            "_type": "feature",
+            "_key": "ka",
+            "icon": "bolt",
+            "title": "Fast by design",
+            "body": "Lightweight layouts, optimised imagery and minimal apps, so Core Web Vitals stay green."
+          },
+          {
+            "_type": "feature",
+            "_key": "kb",
+            "icon": "users",
+            "title": "Accessible to everyone",
+            "body": "Colour contrast, focus states and semantics built to WCAG 2.2 AA from the first wireframe."
+          },
+          {
+            "_type": "feature",
+            "_key": "kc",
+            "icon": "sliders",
+            "title": "Easy to edit",
+            "body": "Built on Shopify sections and blocks so your team can launch pages without a developer."
+          },
+          {
+            "_type": "feature",
+            "_key": "kd",
+            "icon": "layers",
+            "title": "Design system included",
+            "body": "Reusable components, type scale and colour tokens documented for future work."
+          }
+        ]
+      },
+      {
+        "_type": "sectionRichText",
+        "_key": "ke",
+        "eyebrow": "Our approach",
+        "heading": "Good-looking is the minimum. Selling is the job.",
+        "body": [
+          {
+            "_type": "block",
+            "_key": "kg",
+            "style": "h3",
+            "markDefs": [],
+            "children": [
+              {
+                "_type": "span",
+                "_key": "kf",
+                "text": "Research before pixels",
+                "marks": []
+              }
+            ]
+          },
+          {
+            "_type": "block",
+            "_key": "ki",
+            "style": "normal",
+            "markDefs": [],
+            "children": [
+              {
+                "_type": "span",
+                "_key": "kh",
+                "text": "We start with your analytics, customer reviews and competitors to find where shoppers hesitate. Every design decision traces back to a goal — higher add-to-cart, larger baskets or more repeat orders.",
+                "marks": []
+              }
+            ]
+          },
+          {
+            "_type": "block",
+            "_key": "kk",
+            "style": "h3",
+            "markDefs": [],
+            "children": [
+              {
+                "_type": "span",
+                "_key": "kj",
+                "text": "Mobile first, always",
+                "marks": []
+              }
+            ]
+          },
+          {
+            "_type": "block",
+            "_key": "km",
+            "style": "normal",
+            "markDefs": [],
+            "children": [
+              {
+                "_type": "span",
+                "_key": "kl",
+                "text": "Most Shopify traffic is mobile, so every template is designed for a thumb first and scaled up to desktop. Navigation, filters and the buy box get the most attention because that is where revenue is won or lost.",
+                "marks": []
+              }
+            ]
+          },
+          {
+            "_type": "block",
+            "_key": "ko",
+            "style": "h3",
+            "markDefs": [],
+            "children": [
+              {
+                "_type": "span",
+                "_key": "kn",
+                "text": "Designed to be built",
+                "marks": []
+              }
+            ]
+          },
+          {
+            "_type": "block",
+            "_key": "kw",
+            "style": "normal",
+            "markDefs": [
+              {
+                "_type": "link",
+                "_key": "kq",
+                "href": "/pages/shopify-website-development-services"
+              },
+              {
+                "_type": "link",
+                "_key": "kt",
+                "href": "/services/shopify-store-audit"
+              }
+            ],
+            "children": [
+              {
+                "_type": "span",
+                "_key": "kp",
+                "text": "Our designers work alongside our ",
+                "marks": []
+              },
+              {
+                "_type": "span",
+                "_key": "kr",
+                "text": "Shopify developers",
+                "marks": ["kq"]
+              },
+              {
+                "_type": "span",
+                "_key": "ks",
+                "text": ", so what you approve is exactly what goes live — fast, accessible and on Online Store 2.0. Already live and want to know what to fix first? Start with a ",
+                "marks": []
+              },
+              {
+                "_type": "span",
+                "_key": "ku",
+                "text": "UX & store audit",
+                "marks": ["kt"]
+              },
+              {
+                "_type": "span",
+                "_key": "kv",
+                "text": ".",
+                "marks": []
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "_type": "sectionSteps",
+        "_key": "kx",
+        "eyebrow": "How we work",
+        "heading": "How we deliver Shopify Web Design.",
+        "steps": [
+          {
+            "_type": "step",
+            "_key": "ky",
+            "title": "Discovery",
+            "body": "Goals, audience, competitors and KPIs agreed in one focused workshop."
+          },
+          {
+            "_type": "step",
+            "_key": "kz",
+            "title": "Wireframes",
+            "body": "Low-fidelity layouts for the homepage, collection, product and cart to validate structure early."
+          },
+          {
+            "_type": "step",
+            "_key": "k10",
+            "title": "Visual design",
+            "body": "High-fidelity, on-brand designs for every key template on mobile and desktop."
+          },
+          {
+            "_type": "step",
+            "_key": "k11",
+            "title": "Prototype & review",
+            "body": "A clickable prototype you can test with real customers before a line of code is written."
+          },
+          {
+            "_type": "step",
+            "_key": "k12",
+            "title": "Handover to build",
+            "body": "Annotated files and a design system our developers build pixel-perfect."
+          }
+        ]
+      },
+      {
+        "_type": "sectionFit",
+        "_key": "k13",
+        "eyebrow": "Is this right for you?",
+        "heading": "An honest answer before you get in touch.",
+        "goodTitle": "A good fit if",
+        "good": [
+          "Your store looks dated next to competitors, or no longer matches your brand",
+          "Traffic is healthy but too few visitors add to cart",
+          "You are launching a new brand or range and want it right first time",
+          "Your team struggles to update pages without a developer"
+        ],
+        "notTitle": "Probably not yet if",
+        "notYet": [
+          "The store converts well and only needs a few small tweaks",
+          "You have not validated the product yet — start lean and redesign later",
+          "You need a new logo and brand identity first"
+        ]
+      },
+      {
+        "_type": "sectionPitfalls",
+        "_key": "k14",
+        "eyebrow": "Before you commit",
+        "heading": "What usually goes wrong.",
+        "lead": "Most problems are cheap to prevent and expensive to find later. This is what we watch for.",
+        "items": [
+          {
+            "_type": "pitfall",
+            "_key": "k15",
+            "title": "Designing on desktop first",
+            "body": "Most Shopify traffic is mobile, yet designs are often approved on a big screen and squeezed down later.",
+            "fix": "Every template is designed for a phone first, then scaled up."
+          },
+          {
+            "_type": "pitfall",
+            "_key": "k16",
+            "title": "Beautiful but slow",
+            "body": "Autoplay video, oversized images and stacks of apps can wipe out the gains of a new design.",
+            "fix": "Performance budgets are set at wireframe stage and checked before launch."
+          },
+          {
+            "_type": "pitfall",
+            "_key": "k17",
+            "title": "Redesigning away what already worked",
+            "body": "A fresh look can quietly remove the trust signals and content that were driving sales and rankings.",
+            "fix": "We audit the current store first, so the redesign keeps what earns money."
+          },
+          {
+            "_type": "pitfall",
+            "_key": "k18",
+            "title": "A design your team cannot edit",
+            "body": "Hard-coded layouts mean every banner change becomes a developer ticket.",
+            "fix": "Everything is built from Shopify sections and blocks your team controls."
+          },
+          {
+            "_type": "pitfall",
+            "_key": "k19",
+            "title": "Forgetting accessibility",
+            "body": "Low contrast and missing focus states lock out customers and create legal risk.",
+            "fix": "Designs are checked against WCAG 2.2 AA before handover."
+          },
+          {
+            "_type": "pitfall",
+            "_key": "k1a",
+            "title": "No plan for launch day",
+            "body": "Redirects, tracking and app settings get missed when a new theme goes live.",
+            "fix": "A launch checklist covers redirects, analytics and checkout testing."
+          }
+        ]
+      },
+      {
+        "_type": "sectionCompare",
+        "_key": "k1b",
+        "eyebrow": "Compare",
+        "heading": "Off-the-shelf theme or custom design?",
+        "lead": "A premium theme is a sensible start. A custom design pays off when your brand and range need more.",
+        "leftLabel": "Off-the-shelf theme",
+        "rightLabel": "Custom design with Heseven",
+        "rows": [
+          {
+            "_type": "compareRow",
+            "_key": "k1c",
+            "label": "Look and feel",
+            "left": "Shared with thousands of other stores",
+            "right": "Built around your brand and products"
+          },
+          {
+            "_type": "compareRow",
+            "_key": "k1d",
+            "label": "Conversion",
+            "left": "Generic layouts",
+            "right": "Product, collection and cart journeys shaped by your data"
+          },
+          {
+            "_type": "compareRow",
+            "_key": "k1e",
+            "label": "Speed",
+            "left": "Features you do not use still load",
+            "right": "Only what you need, with a performance budget"
+          },
+          {
+            "_type": "compareRow",
+            "_key": "k1f",
+            "label": "Editing",
+            "left": "Limited to the theme’s sections",
+            "right": "Custom sections designed for your campaigns"
+          },
+          {
+            "_type": "compareRow",
+            "_key": "k1g",
+            "label": "Time to launch",
+            "left": "Days to weeks",
+            "right": "Typically 6–10 weeks for design and build"
+          }
+        ]
+      },
+      {
+        "_type": "sectionPlans",
+        "_key": "k1h",
+        "eyebrow": "Ways to work together",
+        "heading": "Start small, or hand us the whole thing.",
+        "items": [
+          {
+            "_type": "plan",
+            "_key": "k1i",
+            "badge": "Audit",
+            "title": "Design audit",
+            "body": "A review of your current store with a prioritised list of design fixes.",
+            "points": ["UX and conversion review", "Mobile walkthrough", "Prioritised recommendations"]
+          },
+          {
+            "_type": "plan",
+            "_key": "k1j",
+            "badge": "Project",
+            "title": "Store design & build",
+            "body": "Full custom design, built on Shopify and launched by the same team.",
+            "points": ["Discovery and wireframes", "Custom design system", "Build, QA and launch"]
+          },
+          {
+            "_type": "plan",
+            "_key": "k1k",
+            "badge": "Monthly",
+            "title": "Design retainer",
+            "body": "Ongoing design for campaigns, landing pages and new features.",
+            "points": ["Landing pages and banners", "New sections as you grow", "A named designer"]
+          }
+        ],
+        "cta": {
+          "_type": "cta",
+          "label": "Book a free intro call",
+          "href": "#quote"
+        }
+      },
+      {
+        "_type": "sectionTestimonials",
+        "_key": "k1l"
+      },
+      {
+        "_type": "sectionFaq",
+        "_key": "k1m",
+        "eyebrow": "FAQ",
+        "heading": "Shopify Web Design: questions, answered.",
+        "items": [
+          {
+            "_type": "faqItem",
+            "_key": "k1n",
+            "question": "How much does Shopify web design cost?",
+            "answer": "It depends on the number of unique templates and how custom they are. After a short call we send a fixed quote with a clear scope, so there are no surprises."
+          },
+          {
+            "_type": "faqItem",
+            "_key": "k1o",
+            "question": "How long does a Shopify store design take?",
+            "answer": "Most store designs take 3–6 weeks from discovery to approved designs, and a full design-and-build project typically takes 6–10 weeks."
+          },
+          {
+            "_type": "faqItem",
+            "_key": "k1p",
+            "question": "Do you use a Shopify theme or design from scratch?",
+            "answer": "Both. We can design a fully custom theme or adapt a premium theme when budget and timeline matter more — we will recommend what fits your goals."
+          },
+          {
+            "_type": "faqItem",
+            "_key": "k1q",
+            "question": "Will I be able to edit the store myself?",
+            "answer": "Yes. Everything is built with Shopify sections and blocks, and we hand over a short guide so your team can update content without a developer."
+          },
+          {
+            "_type": "faqItem",
+            "_key": "k1r",
+            "question": "Can you redesign my existing Shopify store?",
+            "answer": "Yes. We usually start with an audit of your current store so the redesign fixes real problems and protects what already works, including your SEO."
+          }
+        ]
+      },
+      {
+        "_type": "sectionLinks",
+        "_key": "k1s",
+        "eyebrow": "Keep reading",
+        "heading": "Everything around Shopify Web Design.",
+        "groups": [
+          {
+            "_type": "linkGroup",
+            "_key": "k1t",
+            "title": "Related services",
+            "links": [
+              {
+                "_type": "cta",
+                "_key": "k1u",
+                "label": "Shopify Website Development Services",
+                "href": "/pages/shopify-website-development-services"
+              },
+              {
+                "_type": "cta",
+                "_key": "k1v",
+                "label": "Conversion Rate Optimisation",
+                "href": "/pages/conversion-rate-optimisation"
+              },
+              {
+                "_type": "cta",
+                "_key": "k1w",
+                "label": "UX & Store Audit",
+                "href": "/services/shopify-store-audit"
+              }
+            ]
+          },
+          {
+            "_type": "linkGroup",
+            "_key": "k1x",
+            "title": "Read before you decide",
+            "links": [
+              {
+                "_type": "cta",
+                "_key": "k1y",
+                "label": "Is your Shopify store design holding you back?",
+                "href": "/blogs/news/shopify-store-design-services"
+              },
+              {
+                "_type": "cta",
+                "_key": "k1z",
+                "label": "Why invest in professional Shopify store design",
+                "href": "/blogs/news/why-your-shopify-store-needs-a-professional-design-upgrade-right-now"
+              },
+              {
+                "_type": "cta",
+                "_key": "k20",
+                "label": "Custom vs free Shopify themes",
+                "href": "/blogs/news/shopify-custom-theme-development-explained"
+              }
+            ]
+          },
+          {
+            "_type": "linkGroup",
+            "_key": "k21",
+            "title": "Next steps",
+            "links": [
+              {
+                "_type": "cta",
+                "_key": "k22",
+                "label": "See our work",
+                "href": "/#work"
+              },
+              {
+                "_type": "cta",
+                "_key": "k23",
+                "label": "All services",
+                "href": "/services"
+              },
+              {
+                "_type": "cta",
+                "_key": "k24",
+                "label": "Contact us",
+                "href": "/pages/contact-us"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "_type": "sectionContact",
+        "_key": "k25",
+        "eyebrow": "Let's talk",
+        "heading": "Tell us about your Web Design project.",
+        "body": "A few quick questions and we will come back within one business day — with an honest view on whether this is the right next step.",
+        "points": [
+          "Reply within one business day",
+          "A senior specialist, not a sales team",
+          "No obligation, no hard sell"
+        ]
+      }
+    ],
+    "seo": {
+      "_type": "seo",
+      "title": "Shopify Web Design Agency | Custom Store Design",
+      "description": "Custom Shopify web design from a Shopify Partner since 2018. On-brand, conversion-led store design that is fast, accessible and easy for your team to edit."
+    }
+  },
+  {
+    "_id": "service-ecommerce-ai-seo",
+    "_type": "servicePage",
+    "title": "Ecommerce AI SEO",
+    "slug": {
+      "_type": "slug",
+      "current": "ecommerce-ai-seo"
+    },
+    "sections": [
+      {
+        "_type": "sectionHero",
+        "_key": "k26",
+        "eyebrow": "Ecommerce AI SEO",
+        "heading": "Get recommended by ChatGPT, Perplexity and Google AI.",
+        "lead": "Shoppers now ask AI assistants what to buy. We make your Shopify store easy for those assistants to understand, trust and cite.",
+        "primaryCta": {
+          "_type": "cta",
+          "label": "Get a quote",
+          "href": "#quote"
+        },
+        "secondaryCta": {
+          "_type": "cta",
+          "label": "See our work",
+          "href": "/#work"
+        }
+      },
+      {
+        "_type": "sectionStats",
+        "_key": "k27",
+        "items": [
+          {
+            "_type": "stat",
+            "_key": "k28",
+            "value": "1000+",
+            "label": "E-commerce brands served"
+          },
+          {
+            "_type": "stat",
+            "_key": "k29",
+            "value": "2018",
+            "label": "Shopify Partner since"
+          },
+          {
+            "_type": "stat",
+            "_key": "k2a",
+            "value": "4",
+            "label": "Global time zones"
+          },
+          {
+            "_type": "stat",
+            "_key": "k2b",
+            "value": "5.0",
+            "label": "Average client rating"
+          }
+        ]
+      },
+      {
+        "_type": "sectionFeatures",
+        "_key": "k2c",
+        "eyebrow": "What's included",
+        "heading": "Make your products easy for AI to recommend.",
+        "columns": 3,
+        "items": [
+          {
+            "_type": "feature",
+            "_key": "k2d",
+            "icon": "search",
+            "title": "AI visibility audit",
+            "body": "See how ChatGPT, Perplexity, Gemini and AI Overviews describe your brand and competitors today."
+          },
+          {
+            "_type": "feature",
+            "_key": "k2e",
+            "icon": "code",
+            "title": "Structured data",
+            "body": "Rich Product, Offer, Review and Organization schema so AI can read prices, stock and ratings."
+          },
+          {
+            "_type": "feature",
+            "_key": "k2f",
+            "icon": "layers",
+            "title": "Product feed quality",
+            "body": "Clean titles, attributes and identifiers in your Google Merchant Center and Shopify catalogue."
+          },
+          {
+            "_type": "feature",
+            "_key": "k2g",
+            "icon": "sparkles",
+            "title": "Answer-ready content",
+            "body": "Clear buying guides, comparisons and FAQs written the way people ask questions."
+          },
+          {
+            "_type": "feature",
+            "_key": "k2h",
+            "icon": "globe",
+            "title": "Brand mentions",
+            "body": "Reviews, press and trusted third-party sources that AI models rely on."
+          },
+          {
+            "_type": "feature",
+            "_key": "k2i",
+            "icon": "report",
+            "title": "AI share-of-voice tracking",
+            "body": "Regular checks of key prompts to measure how often your brand is recommended."
+          }
+        ]
+      },
+      {
+        "_type": "sectionRichText",
+        "_key": "k2j",
+        "eyebrow": "Our approach",
+        "heading": "Search is changing. Your store should be ready.",
+        "body": [
+          {
+            "_type": "block",
+            "_key": "k2l",
+            "style": "h3",
+            "markDefs": [],
+            "children": [
+              {
+                "_type": "span",
+                "_key": "k2k",
+                "text": "What is AI SEO?",
+                "marks": []
+              }
+            ]
+          },
+          {
+            "_type": "block",
+            "_key": "k2n",
+            "style": "normal",
+            "markDefs": [],
+            "children": [
+              {
+                "_type": "span",
+                "_key": "k2m",
+                "text": "AI SEO — also called generative engine optimisation (GEO) — is the work of making your brand and products appear in answers from AI assistants such as ChatGPT, Perplexity, Gemini and Google AI Overviews.",
+                "marks": []
+              }
+            ]
+          },
+          {
+            "_type": "block",
+            "_key": "k2p",
+            "style": "h3",
+            "markDefs": [],
+            "children": [
+              {
+                "_type": "span",
+                "_key": "k2o",
+                "text": "Built on strong SEO foundations",
+                "marks": []
+              }
+            ]
+          },
+          {
+            "_type": "block",
+            "_key": "k2u",
+            "style": "normal",
+            "markDefs": [
+              {
+                "_type": "link",
+                "_key": "k2r",
+                "href": "/pages/shopify-seo-services"
+              }
+            ],
+            "children": [
+              {
+                "_type": "span",
+                "_key": "k2q",
+                "text": "AI assistants lean heavily on well-structured, trusted websites. That is why we start with the same foundations as ",
+                "marks": []
+              },
+              {
+                "_type": "span",
+                "_key": "k2s",
+                "text": "Shopify SEO",
+                "marks": ["k2r"]
+              },
+              {
+                "_type": "span",
+                "_key": "k2t",
+                "text": ": clean technical setup, complete structured data and fast pages.",
+                "marks": []
+              }
+            ]
+          },
+          {
+            "_type": "block",
+            "_key": "k2w",
+            "style": "h3",
+            "markDefs": [],
+            "children": [
+              {
+                "_type": "span",
+                "_key": "k2v",
+                "text": "Content that answers real questions",
+                "marks": []
+              }
+            ]
+          },
+          {
+            "_type": "block",
+            "_key": "k31",
+            "style": "normal",
+            "markDefs": [
+              {
+                "_type": "link",
+                "_key": "k2y",
+                "href": "/services/ecommerce-content-marketing"
+              }
+            ],
+            "children": [
+              {
+                "_type": "span",
+                "_key": "k2x",
+                "text": "We publish clear, factual content that answers the questions shoppers ask before buying — sizing, materials, comparisons and use cases — through our ",
+                "marks": []
+              },
+              {
+                "_type": "span",
+                "_key": "k2z",
+                "text": "content & blogging service",
+                "marks": ["k2y"]
+              },
+              {
+                "_type": "span",
+                "_key": "k30",
+                "text": ".",
+                "marks": []
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "_type": "sectionSteps",
+        "_key": "k32",
+        "eyebrow": "How we work",
+        "heading": "How we deliver Ecommerce AI SEO.",
+        "steps": [
+          {
+            "_type": "step",
+            "_key": "k33",
+            "title": "Prompt research",
+            "body": "Find the questions and prompts your customers use when shopping in your category."
+          },
+          {
+            "_type": "step",
+            "_key": "k34",
+            "title": "Visibility audit",
+            "body": "Check how AI assistants answer them today and where competitors are cited."
+          },
+          {
+            "_type": "step",
+            "_key": "k35",
+            "title": "Technical & data fixes",
+            "body": "Structured data, feeds and crawlability improved for AI and search engines."
+          },
+          {
+            "_type": "step",
+            "_key": "k36",
+            "title": "Content & authority",
+            "body": "Answer-ready pages published and brand mentions built on trusted sources."
+          },
+          {
+            "_type": "step",
+            "_key": "k37",
+            "title": "Track & iterate",
+            "body": "Recommendation share measured regularly and the plan refined."
+          }
+        ]
+      },
+      {
+        "_type": "sectionFit",
+        "_key": "k38",
+        "eyebrow": "Is this right for you?",
+        "heading": "An honest answer before you get in touch.",
+        "goodTitle": "A good fit if",
+        "good": [
+          "Customers in your category already ask ChatGPT or Perplexity what to buy",
+          "Competitors are being recommended by AI assistants and you are not",
+          "You have good products and reviews, but thin product data online",
+          "You already invest in SEO and want it to cover AI search too"
+        ],
+        "notTitle": "Probably not yet if",
+        "notYet": [
+          "Your store has basic technical SEO problems that need fixing first",
+          "You have very few reviews or third-party mentions yet",
+          "You need sales next week — AI visibility builds over months"
+        ]
+      },
+      {
+        "_type": "sectionPitfalls",
+        "_key": "k39",
+        "eyebrow": "Before you commit",
+        "heading": "What usually goes wrong.",
+        "lead": "Most problems are cheap to prevent and expensive to find later. This is what we watch for.",
+        "items": [
+          {
+            "_type": "pitfall",
+            "_key": "k3a",
+            "title": "Treating AI SEO as a separate trick",
+            "body": "Chasing prompts without solid SEO foundations rarely lasts.",
+            "fix": "We build on technical SEO, structured data and content together."
+          },
+          {
+            "_type": "pitfall",
+            "_key": "k3b",
+            "title": "Incomplete product data",
+            "body": "Missing prices, stock, materials or sizes make products hard for AI to recommend.",
+            "fix": "Product schema and feed attributes are completed and kept in sync."
+          },
+          {
+            "_type": "pitfall",
+            "_key": "k3c",
+            "title": "Blocking the crawlers that cite you",
+            "body": "A blanket robots.txt block can remove your store from AI answers.",
+            "fix": "We review which crawlers to allow, together with you."
+          },
+          {
+            "_type": "pitfall",
+            "_key": "k3d",
+            "title": "Vague, salesy copy",
+            "body": "AI assistants cite clear, factual answers, not slogans.",
+            "fix": "Key pages get plain-English answers to real buying questions."
+          },
+          {
+            "_type": "pitfall",
+            "_key": "k3e",
+            "title": "Ignoring what others say about you",
+            "body": "AI leans on reviews, press and forums as much as your own site.",
+            "fix": "We build mentions on trusted third-party sources."
+          },
+          {
+            "_type": "pitfall",
+            "_key": "k3f",
+            "title": "No way to measure it",
+            "body": "Without tracking, nobody knows whether anything changed.",
+            "fix": "A fixed set of shopping prompts is checked regularly across assistants."
+          }
+        ]
+      },
+      {
+        "_type": "sectionCompare",
+        "_key": "k3g",
+        "eyebrow": "Compare",
+        "heading": "Traditional SEO and AI SEO, side by side.",
+        "lead": "They share the same foundations, which is why we run them together.",
+        "leftLabel": "Traditional SEO",
+        "rightLabel": "AI SEO (GEO)",
+        "rows": [
+          {
+            "_type": "compareRow",
+            "_key": "k3h",
+            "label": "Goal",
+            "left": "Rank in search results",
+            "right": "Be named and linked in AI answers"
+          },
+          {
+            "_type": "compareRow",
+            "_key": "k3i",
+            "label": "Where it shows",
+            "left": "Google and Bing results pages",
+            "right": "ChatGPT, Perplexity, Gemini, AI Overviews"
+          },
+          {
+            "_type": "compareRow",
+            "_key": "k3j",
+            "label": "What matters most",
+            "left": "Keywords, links and technical health",
+            "right": "Clear facts, structured data and trusted mentions"
+          },
+          {
+            "_type": "compareRow",
+            "_key": "k3k",
+            "label": "Content style",
+            "left": "Pages targeting keywords",
+            "right": "Direct answers to buying questions"
+          },
+          {
+            "_type": "compareRow",
+            "_key": "k3l",
+            "label": "How it is measured",
+            "left": "Rankings and organic traffic",
+            "right": "Citations, share of recommendations, AI referrals"
+          }
+        ]
+      },
+      {
+        "_type": "sectionPlans",
+        "_key": "k3m",
+        "eyebrow": "Ways to work together",
+        "heading": "Start small, or hand us the whole thing.",
+        "items": [
+          {
+            "_type": "plan",
+            "_key": "k3n",
+            "badge": "Audit",
+            "title": "AI visibility audit",
+            "body": "See how AI assistants describe you and your competitors today.",
+            "points": ["Prompt research", "Citation check across assistants", "Prioritised action plan"]
+          },
+          {
+            "_type": "plan",
+            "_key": "k3o",
+            "badge": "Project",
+            "title": "AI-ready store",
+            "body": "Structured data, feeds and key content fixed in one focused project.",
+            "points": ["Product and organisation schema", "Feed clean-up", "Answer-ready key pages"]
+          },
+          {
+            "_type": "plan",
+            "_key": "k3p",
+            "badge": "Monthly",
+            "title": "Ongoing AI SEO",
+            "body": "Content, mentions and tracking month after month, alongside your SEO.",
+            "points": ["New answer content", "Third-party mentions", "Regular visibility reports"]
+          }
+        ],
+        "cta": {
+          "_type": "cta",
+          "label": "Book a free intro call",
+          "href": "#quote"
+        }
+      },
+      {
+        "_type": "sectionTestimonials",
+        "_key": "k3q"
+      },
+      {
+        "_type": "sectionFaq",
+        "_key": "k3r",
+        "eyebrow": "FAQ",
+        "heading": "Ecommerce AI SEO: questions, answered.",
+        "items": [
+          {
+            "_type": "faqItem",
+            "_key": "k3s",
+            "question": "What is the difference between SEO and AI SEO?",
+            "answer": "Traditional SEO aims for rankings in search results. AI SEO aims for your brand to be mentioned and linked in AI-generated answers. They share the same foundations, so we run them together."
+          },
+          {
+            "_type": "faqItem",
+            "_key": "k3t",
+            "question": "Can you guarantee ChatGPT will recommend my store?",
+            "answer": "No one controls AI answers, so no guarantees. We improve the signals AI assistants rely on and track how often you are cited over time."
+          },
+          {
+            "_type": "faqItem",
+            "_key": "k3u",
+            "question": "Does structured data help with AI search?",
+            "answer": "Yes. Complete product, offer and review schema makes it much easier for AI systems and Google to understand your products, prices and reputation."
+          },
+          {
+            "_type": "faqItem",
+            "_key": "k3v",
+            "question": "Should I block AI crawlers on my Shopify store?",
+            "answer": "Usually not if you want to be recommended. We review your robots.txt and decide together which crawlers to allow."
+          },
+          {
+            "_type": "faqItem",
+            "_key": "k3w",
+            "question": "How do you measure AI SEO results?",
+            "answer": "We track a fixed set of shopping prompts across major assistants, plus referral traffic from AI tools in your analytics."
+          }
+        ]
+      },
+      {
+        "_type": "sectionLinks",
+        "_key": "k3x",
+        "eyebrow": "Keep reading",
+        "heading": "Everything around Ecommerce AI SEO.",
+        "groups": [
+          {
+            "_type": "linkGroup",
+            "_key": "k3y",
+            "title": "Related services",
+            "links": [
+              {
+                "_type": "cta",
+                "_key": "k3z",
+                "label": "Shopify SEO Services",
+                "href": "/pages/shopify-seo-services"
+              },
+              {
+                "_type": "cta",
+                "_key": "k40",
+                "label": "Content & Blogging",
+                "href": "/services/ecommerce-content-marketing"
+              },
+              {
+                "_type": "cta",
+                "_key": "k41",
+                "label": "UX & Store Audit",
+                "href": "/services/shopify-store-audit"
+              }
+            ]
+          },
+          {
+            "_type": "linkGroup",
+            "_key": "k42",
+            "title": "Read before you decide",
+            "links": [
+              {
+                "_type": "cta",
+                "_key": "k43",
+                "label": "What’s new in Shopify ecommerce development",
+                "href": "/blogs/news/what-s-new-in-shopify-ecommerce-development-for-2025"
+              },
+              {
+                "_type": "cta",
+                "_key": "k44",
+                "label": "How to optimise page loading speed",
+                "href": "/blogs/news/how-to-optimise-page-loading-speed"
+              },
+              {
+                "_type": "cta",
+                "_key": "k45",
+                "label": "Why upgrade to Online Store 2.0",
+                "href": "/blogs/news/upgrade-to-shopify-online-store-2-0-in-the-uk"
+              }
+            ]
+          },
+          {
+            "_type": "linkGroup",
+            "_key": "k46",
+            "title": "Next steps",
+            "links": [
+              {
+                "_type": "cta",
+                "_key": "k47",
+                "label": "See our work",
+                "href": "/#work"
+              },
+              {
+                "_type": "cta",
+                "_key": "k48",
+                "label": "All services",
+                "href": "/services"
+              },
+              {
+                "_type": "cta",
+                "_key": "k49",
+                "label": "Contact us",
+                "href": "/pages/contact-us"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "_type": "sectionContact",
+        "_key": "k4a",
+        "eyebrow": "Let's talk",
+        "heading": "Tell us about your Ecommerce AI SEO project.",
+        "body": "A few quick questions and we will come back within one business day — with an honest view on whether this is the right next step.",
+        "points": [
+          "Reply within one business day",
+          "A senior specialist, not a sales team",
+          "No obligation, no hard sell"
+        ]
+      }
+    ],
+    "seo": {
+      "_type": "seo",
+      "title": "Ecommerce AI SEO | Get Found in ChatGPT & AI Search",
+      "description": "AI SEO for Shopify brands: structured data, product feeds and content that help ChatGPT, Perplexity, Gemini and Google AI Overviews recommend your products."
+    }
+  },
+  {
+    "_id": "service-ecommerce-content-marketing",
+    "_type": "servicePage",
+    "title": "Content & Blogging",
+    "slug": {
+      "_type": "slug",
+      "current": "ecommerce-content-marketing"
+    },
+    "sections": [
+      {
+        "_type": "sectionHero",
+        "_key": "k4b",
+        "eyebrow": "Content & blogging",
+        "heading": "Articles that rank — and sell.",
+        "lead": "Keyword-led blog posts, buying guides and collection copy that bring the right shoppers to your Shopify store and help them choose.",
+        "primaryCta": {
+          "_type": "cta",
+          "label": "Get a quote",
+          "href": "#quote"
+        },
+        "secondaryCta": {
+          "_type": "cta",
+          "label": "See our work",
+          "href": "/#work"
+        }
+      },
+      {
+        "_type": "sectionStats",
+        "_key": "k4c",
+        "items": [
+          {
+            "_type": "stat",
+            "_key": "k4d",
+            "value": "1000+",
+            "label": "E-commerce brands served"
+          },
+          {
+            "_type": "stat",
+            "_key": "k4e",
+            "value": "2018",
+            "label": "Shopify Partner since"
+          },
+          {
+            "_type": "stat",
+            "_key": "k4f",
+            "value": "4",
+            "label": "Global time zones"
+          },
+          {
+            "_type": "stat",
+            "_key": "k4g",
+            "value": "5.0",
+            "label": "Average client rating"
+          }
+        ]
+      },
+      {
+        "_type": "sectionFeatures",
+        "_key": "k4h",
+        "eyebrow": "What's included",
+        "heading": "Content with a commercial purpose.",
+        "columns": 3,
+        "items": [
+          {
+            "_type": "feature",
+            "_key": "k4i",
+            "icon": "search",
+            "title": "Keyword & topic strategy",
+            "body": "A content plan built on real search demand and mapped to your products."
+          },
+          {
+            "_type": "feature",
+            "_key": "k4j",
+            "icon": "sparkles",
+            "title": "Blog articles",
+            "body": "In-depth, well-researched posts written by specialists in your category."
+          },
+          {
+            "_type": "feature",
+            "_key": "k4k",
+            "icon": "target",
+            "title": "Buying guides & comparisons",
+            "body": "Content that helps shoppers decide — and links straight to the right products."
+          },
+          {
+            "_type": "feature",
+            "_key": "k4l",
+            "icon": "layers",
+            "title": "Collection & product copy",
+            "body": "Unique, helpful copy for the pages that earn the most revenue."
+          },
+          {
+            "_type": "feature",
+            "_key": "k4m",
+            "icon": "heart",
+            "title": "Your brand voice",
+            "body": "A tone of voice guide so every piece sounds like you, not like AI filler."
+          },
+          {
+            "_type": "feature",
+            "_key": "k4n",
+            "icon": "report",
+            "title": "Performance reporting",
+            "body": "Traffic, rankings and assisted revenue tracked for every article."
+          }
+        ]
+      },
+      {
+        "_type": "sectionRichText",
+        "_key": "k4o",
+        "eyebrow": "Our approach",
+        "heading": "Every article earns its place.",
+        "body": [
+          {
+            "_type": "block",
+            "_key": "k4q",
+            "style": "h3",
+            "markDefs": [],
+            "children": [
+              {
+                "_type": "span",
+                "_key": "k4p",
+                "text": "Written for people, optimised for search",
+                "marks": []
+              }
+            ]
+          },
+          {
+            "_type": "block",
+            "_key": "k4s",
+            "style": "normal",
+            "markDefs": [],
+            "children": [
+              {
+                "_type": "span",
+                "_key": "k4r",
+                "text": "Each article starts with a search intent and a customer question. We write the most helpful answer we can, then make sure it is structured for Google and AI assistants with clear headings, FAQs and internal links.",
+                "marks": []
+              }
+            ]
+          },
+          {
+            "_type": "block",
+            "_key": "k4u",
+            "style": "h3",
+            "markDefs": [],
+            "children": [
+              {
+                "_type": "span",
+                "_key": "k4t",
+                "text": "Connected to your products",
+                "marks": []
+              }
+            ]
+          },
+          {
+            "_type": "block",
+            "_key": "k4w",
+            "style": "normal",
+            "markDefs": [],
+            "children": [
+              {
+                "_type": "span",
+                "_key": "k4v",
+                "text": "Good ecommerce content guides readers to the right collection or product. We link articles to commercial pages so content supports revenue, not just traffic.",
+                "marks": []
+              }
+            ]
+          },
+          {
+            "_type": "block",
+            "_key": "k4y",
+            "style": "h3",
+            "markDefs": [],
+            "children": [
+              {
+                "_type": "span",
+                "_key": "k4x",
+                "text": "Part of a bigger SEO plan",
+                "marks": []
+              }
+            ]
+          },
+          {
+            "_type": "block",
+            "_key": "k56",
+            "style": "normal",
+            "markDefs": [
+              {
+                "_type": "link",
+                "_key": "k50",
+                "href": "/pages/shopify-seo-services"
+              },
+              {
+                "_type": "link",
+                "_key": "k53",
+                "href": "/services/ecommerce-ai-seo"
+              }
+            ],
+            "children": [
+              {
+                "_type": "span",
+                "_key": "k4z",
+                "text": "Content works best on a technically sound store. It pairs naturally with our ",
+                "marks": []
+              },
+              {
+                "_type": "span",
+                "_key": "k51",
+                "text": "Shopify SEO services",
+                "marks": ["k50"]
+              },
+              {
+                "_type": "span",
+                "_key": "k52",
+                "text": " and helps you appear in AI answers through ",
+                "marks": []
+              },
+              {
+                "_type": "span",
+                "_key": "k54",
+                "text": "ecommerce AI SEO",
+                "marks": ["k53"]
+              },
+              {
+                "_type": "span",
+                "_key": "k55",
+                "text": ".",
+                "marks": []
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "_type": "sectionSteps",
+        "_key": "k57",
+        "eyebrow": "How we work",
+        "heading": "How we deliver Content & Blogging.",
+        "steps": [
+          {
+            "_type": "step",
+            "_key": "k58",
+            "title": "Content audit",
+            "body": "Review existing posts to update, merge or remove, and find content gaps."
+          },
+          {
+            "_type": "step",
+            "_key": "k59",
+            "title": "Strategy & calendar",
+            "body": "Topics prioritised by search demand and commercial value."
+          },
+          {
+            "_type": "step",
+            "_key": "k5a",
+            "title": "Briefs & writing",
+            "body": "Detailed briefs, then articles written and edited by specialists."
+          },
+          {
+            "_type": "step",
+            "_key": "k5b",
+            "title": "Publish & link",
+            "body": "Formatted in Shopify with images, schema and internal links."
+          },
+          {
+            "_type": "step",
+            "_key": "k5c",
+            "title": "Measure & refresh",
+            "body": "Performance tracked and top articles refreshed to stay ranked."
+          }
+        ]
+      },
+      {
+        "_type": "sectionFit",
+        "_key": "k5d",
+        "eyebrow": "Is this right for you?",
+        "heading": "An honest answer before you get in touch.",
+        "goodTitle": "A good fit if",
+        "good": [
+          "People search for advice in your category before they buy",
+          "Your blog is quiet, or full of posts that bring no traffic",
+          "Collection and product pages have thin or duplicate copy",
+          "You want organic growth that keeps paying back after ads stop"
+        ],
+        "notTitle": "Probably not yet if",
+        "notYet": [
+          "Your store has unresolved technical SEO issues",
+          "You need sales this month — content compounds over months",
+          "Nobody on your side can review content for accuracy"
+        ]
+      },
+      {
+        "_type": "sectionPitfalls",
+        "_key": "k5e",
+        "eyebrow": "Before you commit",
+        "heading": "What usually goes wrong.",
+        "lead": "Most problems are cheap to prevent and expensive to find later. This is what we watch for.",
+        "items": [
+          {
+            "_type": "pitfall",
+            "_key": "k5f",
+            "title": "Writing about what you want to say",
+            "body": "Topics chosen without search data rarely find readers.",
+            "fix": "Every brief starts from real search demand and buyer questions."
+          },
+          {
+            "_type": "pitfall",
+            "_key": "k5g",
+            "title": "Articles that never link to products",
+            "body": "Traffic arrives, reads and leaves without seeing what you sell.",
+            "fix": "Each article links naturally to the right collections and products."
+          },
+          {
+            "_type": "pitfall",
+            "_key": "k5h",
+            "title": "Publishing unedited AI text",
+            "body": "Generic copy damages trust and gives AI assistants nothing to cite.",
+            "fix": "Specialists write and fact-check every piece; AI only supports research."
+          },
+          {
+            "_type": "pitfall",
+            "_key": "k5i",
+            "title": "Two pages fighting for one keyword",
+            "body": "Overlapping posts split rankings between them.",
+            "fix": "A keyword map gives each topic one clear owner page."
+          },
+          {
+            "_type": "pitfall",
+            "_key": "k5j",
+            "title": "Publish and forget",
+            "body": "Old posts slowly lose rankings as facts and competitors change.",
+            "fix": "Top articles are refreshed on a schedule."
+          },
+          {
+            "_type": "pitfall",
+            "_key": "k5k",
+            "title": "Measuring only page views",
+            "body": "Traffic alone hides whether content helps sales.",
+            "fix": "We report on rankings, traffic and assisted revenue."
+          }
+        ]
+      },
+      {
+        "_type": "sectionCompare",
+        "_key": "k5l",
+        "eyebrow": "Compare",
+        "heading": "Content that ranks versus content that just fills a blog.",
+        "leftLabel": "Typical blog content",
+        "rightLabel": "Heseven content",
+        "rows": [
+          {
+            "_type": "compareRow",
+            "_key": "k5m",
+            "label": "Topic choice",
+            "left": "Ideas and trends",
+            "right": "Search demand mapped to your products"
+          },
+          {
+            "_type": "compareRow",
+            "_key": "k5n",
+            "label": "Writing",
+            "left": "Generic, often AI-generated",
+            "right": "Written and fact-checked by specialists"
+          },
+          {
+            "_type": "compareRow",
+            "_key": "k5o",
+            "label": "Links",
+            "left": "Few or none to products",
+            "right": "Linked to the right collections and products"
+          },
+          {
+            "_type": "compareRow",
+            "_key": "k5p",
+            "label": "Structure",
+            "left": "Long paragraphs",
+            "right": "Clear headings, FAQs and answer boxes"
+          },
+          {
+            "_type": "compareRow",
+            "_key": "k5q",
+            "label": "After publishing",
+            "left": "Left alone",
+            "right": "Measured and refreshed"
+          }
+        ]
+      },
+      {
+        "_type": "sectionPlans",
+        "_key": "k5r",
+        "eyebrow": "Ways to work together",
+        "heading": "Start small, or hand us the whole thing.",
+        "items": [
+          {
+            "_type": "plan",
+            "_key": "k5s",
+            "badge": "Audit",
+            "title": "Content audit",
+            "body": "What to keep, merge, update or remove — and where the gaps are.",
+            "points": ["Existing content review", "Keyword gap analysis", "Content roadmap"]
+          },
+          {
+            "_type": "plan",
+            "_key": "k5t",
+            "badge": "Project",
+            "title": "Content sprint",
+            "body": "A focused batch of cornerstone pages and articles.",
+            "points": ["Buying guides and comparisons", "Collection copy", "Internal linking"]
+          },
+          {
+            "_type": "plan",
+            "_key": "k5u",
+            "badge": "Monthly",
+            "title": "Content programme",
+            "body": "A steady flow of articles and refreshes, every month.",
+            "points": ["Monthly briefs and articles", "Refreshes of top posts", "Performance reporting"]
+          }
+        ],
+        "cta": {
+          "_type": "cta",
+          "label": "Book a free intro call",
+          "href": "#quote"
+        }
+      },
+      {
+        "_type": "sectionTestimonials",
+        "_key": "k5v"
+      },
+      {
+        "_type": "sectionFaq",
+        "_key": "k5w",
+        "eyebrow": "FAQ",
+        "heading": "Content & Blogging: questions, answered.",
+        "items": [
+          {
+            "_type": "faqItem",
+            "_key": "k5x",
+            "question": "Does blogging still help Shopify SEO?",
+            "answer": "Yes. Helpful articles capture searches your product pages cannot, build topical authority and give AI assistants content to cite."
+          },
+          {
+            "_type": "faqItem",
+            "_key": "k5y",
+            "question": "How many blog posts should my store publish?",
+            "answer": "Quality beats volume. Most brands see results from 2–6 well-researched pieces a month, plus regular updates to existing content."
+          },
+          {
+            "_type": "faqItem",
+            "_key": "k5z",
+            "question": "Do you use AI to write the content?",
+            "answer": "We use AI tools for research support, but every article is written, fact-checked and edited by a person who knows the topic."
+          },
+          {
+            "_type": "faqItem",
+            "_key": "k60",
+            "question": "Who approves the content?",
+            "answer": "You do. Every brief and article is shared for review before it goes live."
+          },
+          {
+            "_type": "faqItem",
+            "_key": "k61",
+            "question": "Can you write product descriptions too?",
+            "answer": "Yes. We write unique product and collection copy, which is often the fastest content win for a Shopify store."
+          }
+        ]
+      },
+      {
+        "_type": "sectionLinks",
+        "_key": "k62",
+        "eyebrow": "Keep reading",
+        "heading": "Everything around Content & Blogging.",
+        "groups": [
+          {
+            "_type": "linkGroup",
+            "_key": "k63",
+            "title": "Related services",
+            "links": [
+              {
+                "_type": "cta",
+                "_key": "k64",
+                "label": "Shopify SEO Services",
+                "href": "/pages/shopify-seo-services"
+              },
+              {
+                "_type": "cta",
+                "_key": "k65",
+                "label": "Ecommerce AI SEO",
+                "href": "/services/ecommerce-ai-seo"
+              },
+              {
+                "_type": "cta",
+                "_key": "k66",
+                "label": "Email & Klaviyo",
+                "href": "/services/klaviyo-email-marketing"
+              }
+            ]
+          },
+          {
+            "_type": "linkGroup",
+            "_key": "k67",
+            "title": "Read before you decide",
+            "links": [
+              {
+                "_type": "cta",
+                "_key": "k68",
+                "label": "How to build a clothing ecommerce website",
+                "href": "/blogs/news/clothing-ecommerce-website-how-to-build"
+              },
+              {
+                "_type": "cta",
+                "_key": "k69",
+                "label": "Cosmetics ecommerce websites",
+                "href": "/blogs/news/cosmetics-ecommerce-websites"
+              },
+              {
+                "_type": "cta",
+                "_key": "k6a",
+                "label": "Health and wellness ecommerce in 2026",
+                "href": "/blogs/news/health-and-wellness-ecommerce-in-2026"
+              }
+            ]
+          },
+          {
+            "_type": "linkGroup",
+            "_key": "k6b",
+            "title": "Next steps",
+            "links": [
+              {
+                "_type": "cta",
+                "_key": "k6c",
+                "label": "See our work",
+                "href": "/#work"
+              },
+              {
+                "_type": "cta",
+                "_key": "k6d",
+                "label": "All services",
+                "href": "/services"
+              },
+              {
+                "_type": "cta",
+                "_key": "k6e",
+                "label": "Contact us",
+                "href": "/pages/contact-us"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "_type": "sectionContact",
+        "_key": "k6f",
+        "eyebrow": "Let's talk",
+        "heading": "Tell us about your Content & Blogging project.",
+        "body": "A few quick questions and we will come back within one business day — with an honest view on whether this is the right next step.",
+        "points": [
+          "Reply within one business day",
+          "A senior specialist, not a sales team",
+          "No obligation, no hard sell"
+        ]
+      }
+    ],
+    "seo": {
+      "_type": "seo",
+      "title": "Ecommerce Content Marketing & Blogging for Shopify",
+      "description": "Shopify blog and content marketing that ranks and sells: keyword-led articles, buying guides and collection copy written for your customers and search engines."
+    }
+  },
+  {
+    "_id": "service-shopify-paid-ads",
+    "_type": "servicePage",
+    "title": "Paid Ads",
+    "slug": {
+      "_type": "slug",
+      "current": "shopify-paid-ads"
+    },
+    "sections": [
+      {
+        "_type": "sectionHero",
+        "_key": "k6g",
+        "eyebrow": "Paid ads",
+        "heading": "Ads that pay for themselves.",
+        "lead": "Google Shopping, Search, Performance Max and Meta campaigns for Shopify brands — built on accurate tracking and measured on profitable growth.",
+        "primaryCta": {
+          "_type": "cta",
+          "label": "Get a quote",
+          "href": "#quote"
+        },
+        "secondaryCta": {
+          "_type": "cta",
+          "label": "See our work",
+          "href": "/#work"
+        }
+      },
+      {
+        "_type": "sectionStats",
+        "_key": "k6h",
+        "items": [
+          {
+            "_type": "stat",
+            "_key": "k6i",
+            "value": "1000+",
+            "label": "E-commerce brands served"
+          },
+          {
+            "_type": "stat",
+            "_key": "k6j",
+            "value": "2018",
+            "label": "Shopify Partner since"
+          },
+          {
+            "_type": "stat",
+            "_key": "k6k",
+            "value": "4",
+            "label": "Global time zones"
+          },
+          {
+            "_type": "stat",
+            "_key": "k6l",
+            "value": "5.0",
+            "label": "Average client rating"
+          }
+        ]
+      },
+      {
+        "_type": "sectionFeatures",
+        "_key": "k6m",
+        "eyebrow": "What's included",
+        "heading": "Full-funnel paid media, managed.",
+        "columns": 3,
+        "items": [
+          {
+            "_type": "feature",
+            "_key": "k6n",
+            "icon": "search",
+            "title": "Google Search & Shopping",
+            "body": "High-intent campaigns and a clean product feed in Google Merchant Center."
+          },
+          {
+            "_type": "feature",
+            "_key": "k6o",
+            "icon": "trend",
+            "title": "Performance Max",
+            "body": "Structured asset groups and feed segmentation so automation works for you."
+          },
+          {
+            "_type": "feature",
+            "_key": "k6p",
+            "icon": "users",
+            "title": "Meta ads",
+            "body": "Facebook and Instagram prospecting and retargeting with creative that stops the scroll."
+          },
+          {
+            "_type": "feature",
+            "_key": "k6q",
+            "icon": "target",
+            "title": "Tracking & attribution",
+            "body": "GA4, Google Ads and Meta Conversions API set up correctly on Shopify."
+          },
+          {
+            "_type": "feature",
+            "_key": "k6r",
+            "icon": "sparkles",
+            "title": "Creative testing",
+            "body": "A steady rhythm of new ad concepts tested against clear goals."
+          },
+          {
+            "_type": "feature",
+            "_key": "k6s",
+            "icon": "report",
+            "title": "Profit-first reporting",
+            "body": "ROAS, new customer acquisition cost and margin — not just clicks."
+          }
+        ]
+      },
+      {
+        "_type": "sectionRichText",
+        "_key": "k6t",
+        "eyebrow": "Our approach",
+        "heading": "Accurate data first, then scale.",
+        "body": [
+          {
+            "_type": "block",
+            "_key": "k6v",
+            "style": "h3",
+            "markDefs": [],
+            "children": [
+              {
+                "_type": "span",
+                "_key": "k6u",
+                "text": "Tracking you can trust",
+                "marks": []
+              }
+            ]
+          },
+          {
+            "_type": "block",
+            "_key": "k6x",
+            "style": "normal",
+            "markDefs": [],
+            "children": [
+              {
+                "_type": "span",
+                "_key": "k6w",
+                "text": "Most ad accounts optimise on broken data. We audit and fix your Shopify tracking — GA4, Google Ads conversions and Meta's Conversions API — before changing a single campaign.",
+                "marks": []
+              }
+            ]
+          },
+          {
+            "_type": "block",
+            "_key": "k6z",
+            "style": "h3",
+            "markDefs": [],
+            "children": [
+              {
+                "_type": "span",
+                "_key": "k6y",
+                "text": "Feeds and landing pages matter",
+                "marks": []
+              }
+            ]
+          },
+          {
+            "_type": "block",
+            "_key": "k74",
+            "style": "normal",
+            "markDefs": [
+              {
+                "_type": "link",
+                "_key": "k71",
+                "href": "/pages/conversion-rate-optimisation"
+              }
+            ],
+            "children": [
+              {
+                "_type": "span",
+                "_key": "k70",
+                "text": "Shopping ads are only as good as your product feed, and every click lands on your store. We optimise feed titles and attributes and work with our ",
+                "marks": []
+              },
+              {
+                "_type": "span",
+                "_key": "k72",
+                "text": "conversion rate optimisation",
+                "marks": ["k71"]
+              },
+              {
+                "_type": "span",
+                "_key": "k73",
+                "text": " team on the pages your ads send traffic to.",
+                "marks": []
+              }
+            ]
+          },
+          {
+            "_type": "block",
+            "_key": "k76",
+            "style": "h3",
+            "markDefs": [],
+            "children": [
+              {
+                "_type": "span",
+                "_key": "k75",
+                "text": "Growth that compounds",
+                "marks": []
+              }
+            ]
+          },
+          {
+            "_type": "block",
+            "_key": "k7b",
+            "style": "normal",
+            "markDefs": [
+              {
+                "_type": "link",
+                "_key": "k78",
+                "href": "/services/klaviyo-email-marketing"
+              }
+            ],
+            "children": [
+              {
+                "_type": "span",
+                "_key": "k77",
+                "text": "Paid ads bring customers in; ",
+                "marks": []
+              },
+              {
+                "_type": "span",
+                "_key": "k79",
+                "text": "email & Klaviyo",
+                "marks": ["k78"]
+              },
+              {
+                "_type": "span",
+                "_key": "k7a",
+                "text": " brings them back. Together they lower your blended acquisition cost over time.",
+                "marks": []
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "_type": "sectionSteps",
+        "_key": "k7c",
+        "eyebrow": "How we work",
+        "heading": "How we deliver Paid Ads.",
+        "steps": [
+          {
+            "_type": "step",
+            "_key": "k7d",
+            "title": "Account & tracking audit",
+            "body": "Campaign structure, feed and conversion tracking reviewed and fixed."
+          },
+          {
+            "_type": "step",
+            "_key": "k7e",
+            "title": "Strategy",
+            "body": "Budgets, targets and channel mix set around your margins and goals."
+          },
+          {
+            "_type": "step",
+            "_key": "k7f",
+            "title": "Launch",
+            "body": "Restructured campaigns, new creative and feed improvements rolled out."
+          },
+          {
+            "_type": "step",
+            "_key": "k7g",
+            "title": "Optimise weekly",
+            "body": "Bids, audiences, search terms and creative refined every week."
+          },
+          {
+            "_type": "step",
+            "_key": "k7h",
+            "title": "Report monthly",
+            "body": "Clear reporting on revenue, profit and next month’s plan."
+          }
+        ]
+      },
+      {
+        "_type": "sectionFit",
+        "_key": "k7i",
+        "eyebrow": "Is this right for you?",
+        "heading": "An honest answer before you get in touch.",
+        "goodTitle": "A good fit if",
+        "good": [
+          "You have products with healthy margins and want to scale",
+          "Your ads spend is growing but profit is not",
+          "You are unsure whether your tracking is accurate",
+          "You want Google and Meta managed by one team"
+        ],
+        "notTitle": "Probably not yet if",
+        "notYet": [
+          "Your store converts poorly — fix that first or ads will leak money",
+          "Margins are too thin to pay for customer acquisition",
+          "You cannot commit a test budget for a few months"
+        ]
+      },
+      {
+        "_type": "sectionPitfalls",
+        "_key": "k7j",
+        "eyebrow": "Before you commit",
+        "heading": "What usually goes wrong.",
+        "lead": "Most problems are cheap to prevent and expensive to find later. This is what we watch for.",
+        "items": [
+          {
+            "_type": "pitfall",
+            "_key": "k7k",
+            "title": "Optimising on broken tracking",
+            "body": "Duplicate or missing conversions teach the algorithms the wrong lessons.",
+            "fix": "GA4, Google Ads and Meta Conversions API are audited and fixed first."
+          },
+          {
+            "_type": "pitfall",
+            "_key": "k7l",
+            "title": "Chasing ROAS instead of profit",
+            "body": "A high ROAS on repeat customers can hide expensive new-customer growth.",
+            "fix": "We report on margin and new-customer cost, not just ROAS."
+          },
+          {
+            "_type": "pitfall",
+            "_key": "k7m",
+            "title": "A messy product feed",
+            "body": "Poor titles and missing attributes hold Shopping and Performance Max back.",
+            "fix": "Feed titles, attributes and exclusions are optimised."
+          },
+          {
+            "_type": "pitfall",
+            "_key": "k7n",
+            "title": "Running the same creative for months",
+            "body": "Ad fatigue quietly pushes costs up.",
+            "fix": "New creative is tested on a steady rhythm."
+          },
+          {
+            "_type": "pitfall",
+            "_key": "k7o",
+            "title": "Sending traffic to weak pages",
+            "body": "Ads cannot fix a slow or confusing landing page.",
+            "fix": "We work with our CRO team on the pages ads point to."
+          },
+          {
+            "_type": "pitfall",
+            "_key": "k7p",
+            "title": "No plan for returning customers",
+            "body": "Paying again and again to reach your own customers.",
+            "fix": "Email and retention bring them back at a fraction of the cost."
+          }
+        ]
+      },
+      {
+        "_type": "sectionCompare",
+        "_key": "k7q",
+        "eyebrow": "Compare",
+        "heading": "What changes when ads are run for profit.",
+        "leftLabel": "Typical ad management",
+        "rightLabel": "Heseven paid ads",
+        "rows": [
+          {
+            "_type": "compareRow",
+            "_key": "k7r",
+            "label": "Starting point",
+            "left": "Launch campaigns straight away",
+            "right": "Fix tracking and feed first"
+          },
+          {
+            "_type": "compareRow",
+            "_key": "k7s",
+            "label": "Main metric",
+            "left": "ROAS or clicks",
+            "right": "Profit and new-customer cost"
+          },
+          {
+            "_type": "compareRow",
+            "_key": "k7t",
+            "label": "Creative",
+            "left": "Occasional refresh",
+            "right": "Regular testing rhythm"
+          },
+          {
+            "_type": "compareRow",
+            "_key": "k7u",
+            "label": "Landing pages",
+            "left": "Not their job",
+            "right": "Improved with our CRO team"
+          },
+          {
+            "_type": "compareRow",
+            "_key": "k7v",
+            "label": "Reporting",
+            "left": "Platform dashboards",
+            "right": "Plain-English monthly report and plan"
+          }
+        ]
+      },
+      {
+        "_type": "sectionPlans",
+        "_key": "k7w",
+        "eyebrow": "Ways to work together",
+        "heading": "Start small, or hand us the whole thing.",
+        "items": [
+          {
+            "_type": "plan",
+            "_key": "k7x",
+            "badge": "Audit",
+            "title": "Ads & tracking audit",
+            "body": "Account structure, feed and tracking reviewed with clear fixes.",
+            "points": ["Conversion tracking check", "Account structure review", "Feed health check"]
+          },
+          {
+            "_type": "plan",
+            "_key": "k7y",
+            "badge": "Project",
+            "title": "Account rebuild",
+            "body": "Campaigns, feed and tracking rebuilt properly in one go.",
+            "points": ["New campaign structure", "Feed optimisation", "Tracking fixes"]
+          },
+          {
+            "_type": "plan",
+            "_key": "k7z",
+            "badge": "Monthly",
+            "title": "Managed paid media",
+            "body": "Ongoing management of Google and Meta with weekly optimisation.",
+            "points": ["Weekly optimisation", "Creative testing", "Monthly reporting"]
+          }
+        ],
+        "cta": {
+          "_type": "cta",
+          "label": "Book a free intro call",
+          "href": "#quote"
+        }
+      },
+      {
+        "_type": "sectionTestimonials",
+        "_key": "k80"
+      },
+      {
+        "_type": "sectionFaq",
+        "_key": "k81",
+        "eyebrow": "FAQ",
+        "heading": "Paid Ads: questions, answered.",
+        "items": [
+          {
+            "_type": "faqItem",
+            "_key": "k82",
+            "question": "Which ad platforms do you manage?",
+            "answer": "Google Search, Shopping, Performance Max and YouTube, plus Meta (Facebook and Instagram). We recommend the mix that suits your products and budget."
+          },
+          {
+            "_type": "faqItem",
+            "_key": "k83",
+            "question": "What budget do I need for paid ads?",
+            "answer": "It depends on your market and goals. We will recommend a test budget based on your margins and scale it once campaigns prove profitable."
+          },
+          {
+            "_type": "faqItem",
+            "_key": "k84",
+            "question": "How quickly will I see results?",
+            "answer": "Search and Shopping campaigns often show results within weeks. Meta and Performance Max typically need a few weeks of learning before they stabilise."
+          },
+          {
+            "_type": "faqItem",
+            "_key": "k85",
+            "question": "Do you create the ad creative?",
+            "answer": "Yes. We produce static and simple video creative, and brief your team or content creators when needed."
+          },
+          {
+            "_type": "faqItem",
+            "_key": "k86",
+            "question": "Do I keep ownership of my ad accounts?",
+            "answer": "Always. Accounts stay in your name and we work through partner access."
+          }
+        ]
+      },
+      {
+        "_type": "sectionLinks",
+        "_key": "k87",
+        "eyebrow": "Keep reading",
+        "heading": "Everything around Paid Ads.",
+        "groups": [
+          {
+            "_type": "linkGroup",
+            "_key": "k88",
+            "title": "Related services",
+            "links": [
+              {
+                "_type": "cta",
+                "_key": "k89",
+                "label": "Conversion Rate Optimisation",
+                "href": "/pages/conversion-rate-optimisation"
+              },
+              {
+                "_type": "cta",
+                "_key": "k8a",
+                "label": "Email & Klaviyo",
+                "href": "/services/klaviyo-email-marketing"
+              },
+              {
+                "_type": "cta",
+                "_key": "k8b",
+                "label": "Growth Partnership",
+                "href": "/services/shopify-growth-partnership"
+              }
+            ]
+          },
+          {
+            "_type": "linkGroup",
+            "_key": "k8c",
+            "title": "Read before you decide",
+            "links": [
+              {
+                "_type": "cta",
+                "_key": "k8d",
+                "label": "How to improve your conversion rate on Shopify",
+                "href": "/blogs/news/how-to-improve-your-conversion-rate"
+              },
+              {
+                "_type": "cta",
+                "_key": "k8e",
+                "label": "Is your store optimised for conversions?",
+                "href": "/blogs/news/shopify-store-design-services-that-help-you-sell-more-online"
+              },
+              {
+                "_type": "cta",
+                "_key": "k8f",
+                "label": "How to optimise page loading speed",
+                "href": "/blogs/news/how-to-optimise-page-loading-speed"
+              }
+            ]
+          },
+          {
+            "_type": "linkGroup",
+            "_key": "k8g",
+            "title": "Next steps",
+            "links": [
+              {
+                "_type": "cta",
+                "_key": "k8h",
+                "label": "See our work",
+                "href": "/#work"
+              },
+              {
+                "_type": "cta",
+                "_key": "k8i",
+                "label": "All services",
+                "href": "/services"
+              },
+              {
+                "_type": "cta",
+                "_key": "k8j",
+                "label": "Contact us",
+                "href": "/pages/contact-us"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "_type": "sectionContact",
+        "_key": "k8k",
+        "eyebrow": "Let's talk",
+        "heading": "Tell us about your Paid Ads project.",
+        "body": "A few quick questions and we will come back within one business day — with an honest view on whether this is the right next step.",
+        "points": [
+          "Reply within one business day",
+          "A senior specialist, not a sales team",
+          "No obligation, no hard sell"
+        ]
+      }
+    ],
+    "seo": {
+      "_type": "seo",
+      "title": "Paid Ads for Shopify | Google, Meta & Shopping Ads",
+      "description": "Paid ads management for Shopify brands across Google, Shopping, Performance Max and Meta — built on clean tracking and measured on profit, not clicks."
+    }
+  },
+  {
+    "_id": "service-shopify-store-audit",
+    "_type": "servicePage",
+    "title": "UX & Store Audit",
+    "slug": {
+      "_type": "slug",
+      "current": "shopify-store-audit"
+    },
+    "sections": [
+      {
+        "_type": "sectionHero",
+        "_key": "k8l",
+        "eyebrow": "UX & store audit",
+        "heading": "Know exactly what to fix — and in what order.",
+        "lead": "An expert review of your Shopify store’s UX, conversion, SEO, speed and apps, delivered as a clear, prioritised action plan.",
+        "primaryCta": {
+          "_type": "cta",
+          "label": "Get a quote",
+          "href": "#quote"
+        },
+        "secondaryCta": {
+          "_type": "cta",
+          "label": "See our work",
+          "href": "/#work"
+        }
+      },
+      {
+        "_type": "sectionStats",
+        "_key": "k8m",
+        "items": [
+          {
+            "_type": "stat",
+            "_key": "k8n",
+            "value": "1000+",
+            "label": "E-commerce brands served"
+          },
+          {
+            "_type": "stat",
+            "_key": "k8o",
+            "value": "2018",
+            "label": "Shopify Partner since"
+          },
+          {
+            "_type": "stat",
+            "_key": "k8p",
+            "value": "4",
+            "label": "Global time zones"
+          },
+          {
+            "_type": "stat",
+            "_key": "k8q",
+            "value": "5.0",
+            "label": "Average client rating"
+          }
+        ]
+      },
+      {
+        "_type": "sectionFeatures",
+        "_key": "k8r",
+        "eyebrow": "What's included",
+        "heading": "One audit, every angle.",
+        "columns": 3,
+        "items": [
+          {
+            "_type": "feature",
+            "_key": "k8s",
+            "icon": "users",
+            "title": "UX & usability",
+            "body": "Navigation, search, filters and product pages reviewed against ecommerce best practice."
+          },
+          {
+            "_type": "feature",
+            "_key": "k8t",
+            "icon": "target",
+            "title": "Conversion review",
+            "body": "Funnel analysis showing where shoppers drop off and why."
+          },
+          {
+            "_type": "feature",
+            "_key": "k8u",
+            "icon": "search",
+            "title": "SEO health check",
+            "body": "Indexing, duplicates, structured data and on-page SEO assessed."
+          },
+          {
+            "_type": "feature",
+            "_key": "k8v",
+            "icon": "bolt",
+            "title": "Speed & Core Web Vitals",
+            "body": "The scripts, apps and assets slowing your store, ranked by impact."
+          },
+          {
+            "_type": "feature",
+            "_key": "k8w",
+            "icon": "heart",
+            "title": "Accessibility",
+            "body": "Key WCAG issues that block customers and create legal risk."
+          },
+          {
+            "_type": "feature",
+            "_key": "k8x",
+            "icon": "report",
+            "title": "Prioritised roadmap",
+            "body": "Every finding ranked by impact and effort, with a recommended fix."
+          }
+        ]
+      },
+      {
+        "_type": "sectionRichText",
+        "_key": "k8y",
+        "eyebrow": "Our approach",
+        "heading": "An audit you can actually act on.",
+        "body": [
+          {
+            "_type": "block",
+            "_key": "k90",
+            "style": "h3",
+            "markDefs": [],
+            "children": [
+              {
+                "_type": "span",
+                "_key": "k8z",
+                "text": "Evidence, not opinions",
+                "marks": []
+              }
+            ]
+          },
+          {
+            "_type": "block",
+            "_key": "k92",
+            "style": "normal",
+            "markDefs": [],
+            "children": [
+              {
+                "_type": "span",
+                "_key": "k91",
+                "text": "We combine your analytics with expert review and real-device testing, so every recommendation is backed by data and explained in plain English.",
+                "marks": []
+              }
+            ]
+          },
+          {
+            "_type": "block",
+            "_key": "k94",
+            "style": "h3",
+            "markDefs": [],
+            "children": [
+              {
+                "_type": "span",
+                "_key": "k93",
+                "text": "Ranked by impact",
+                "marks": []
+              }
+            ]
+          },
+          {
+            "_type": "block",
+            "_key": "k96",
+            "style": "normal",
+            "markDefs": [],
+            "children": [
+              {
+                "_type": "span",
+                "_key": "k95",
+                "text": "You get a roadmap — quick wins first, bigger projects after — with effort estimates, so your team or ours can start straight away.",
+                "marks": []
+              }
+            ]
+          },
+          {
+            "_type": "block",
+            "_key": "k98",
+            "style": "h3",
+            "markDefs": [],
+            "children": [
+              {
+                "_type": "span",
+                "_key": "k97",
+                "text": "From findings to results",
+                "marks": []
+              }
+            ]
+          },
+          {
+            "_type": "block",
+            "_key": "k9m",
+            "style": "normal",
+            "markDefs": [
+              {
+                "_type": "link",
+                "_key": "k9a",
+                "href": "/pages/conversion-rate-optimisation"
+              },
+              {
+                "_type": "link",
+                "_key": "k9d",
+                "href": "/pages/speed-optimization"
+              },
+              {
+                "_type": "link",
+                "_key": "k9g",
+                "href": "/pages/shopify-seo-services"
+              },
+              {
+                "_type": "link",
+                "_key": "k9j",
+                "href": "/services/shopify-web-design"
+              }
+            ],
+            "children": [
+              {
+                "_type": "span",
+                "_key": "k99",
+                "text": "Act on the audit with ",
+                "marks": []
+              },
+              {
+                "_type": "span",
+                "_key": "k9b",
+                "text": "conversion rate optimisation",
+                "marks": ["k9a"]
+              },
+              {
+                "_type": "span",
+                "_key": "k9c",
+                "text": ", ",
+                "marks": []
+              },
+              {
+                "_type": "span",
+                "_key": "k9e",
+                "text": "speed optimisation",
+                "marks": ["k9d"]
+              },
+              {
+                "_type": "span",
+                "_key": "k9f",
+                "text": " or ",
+                "marks": []
+              },
+              {
+                "_type": "span",
+                "_key": "k9h",
+                "text": "Shopify SEO",
+                "marks": ["k9g"]
+              },
+              {
+                "_type": "span",
+                "_key": "k9i",
+                "text": ". Planning a redesign? The audit becomes the brief for ",
+                "marks": []
+              },
+              {
+                "_type": "span",
+                "_key": "k9k",
+                "text": "Shopify web design",
+                "marks": ["k9j"]
+              },
+              {
+                "_type": "span",
+                "_key": "k9l",
+                "text": ".",
+                "marks": []
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "_type": "sectionSteps",
+        "_key": "k9n",
+        "eyebrow": "How we work",
+        "heading": "How we deliver UX & Store Audit.",
+        "steps": [
+          {
+            "_type": "step",
+            "_key": "k9o",
+            "title": "Kickoff",
+            "body": "Goals, known issues and analytics access agreed."
+          },
+          {
+            "_type": "step",
+            "_key": "k9p",
+            "title": "Data review",
+            "body": "Analytics, funnels and search data analysed."
+          },
+          {
+            "_type": "step",
+            "_key": "k9q",
+            "title": "Expert review",
+            "body": "UX, SEO, speed, accessibility and apps reviewed on real devices."
+          },
+          {
+            "_type": "step",
+            "_key": "k9r",
+            "title": "Roadmap",
+            "body": "Findings prioritised by impact and effort."
+          },
+          {
+            "_type": "step",
+            "_key": "k9s",
+            "title": "Walkthrough",
+            "body": "A live session to explain findings and answer questions."
+          }
+        ]
+      },
+      {
+        "_type": "sectionFit",
+        "_key": "k9t",
+        "eyebrow": "Is this right for you?",
+        "heading": "An honest answer before you get in touch.",
+        "goodTitle": "A good fit if",
+        "good": [
+          "Sales have stalled and you are not sure why",
+          "You are planning a redesign or migration and want a clear brief",
+          "You have inherited a store from another agency",
+          "You want an outside view before investing more"
+        ],
+        "notTitle": "Probably not yet if",
+        "notYet": [
+          "You already know exactly what to fix — go straight to the work",
+          "The store is brand new with little data to analyse",
+          "You need someone to implement today, not a plan"
+        ]
+      },
+      {
+        "_type": "sectionPitfalls",
+        "_key": "k9u",
+        "eyebrow": "Before you commit",
+        "heading": "What usually goes wrong.",
+        "lead": "Most problems are cheap to prevent and expensive to find later. This is what we watch for.",
+        "items": [
+          {
+            "_type": "pitfall",
+            "_key": "k9v",
+            "title": "Audits that only list problems",
+            "body": "Fifty issues without priorities leave you stuck.",
+            "fix": "Every finding is ranked by impact and effort."
+          },
+          {
+            "_type": "pitfall",
+            "_key": "k9w",
+            "title": "Relying on automated scores",
+            "body": "Tools miss context, like why customers actually hesitate.",
+            "fix": "Expert review on real devices backs up every tool."
+          },
+          {
+            "_type": "pitfall",
+            "_key": "k9x",
+            "title": "Ignoring the app stack",
+            "body": "Unused apps cost money and slow the store down.",
+            "fix": "Every app is reviewed for cost, speed and purpose."
+          },
+          {
+            "_type": "pitfall",
+            "_key": "k9y",
+            "title": "Missing the SEO basics",
+            "body": "Duplicate URLs and indexing problems hide good pages from Google.",
+            "fix": "Indexing, schema and on-page SEO are part of every audit."
+          },
+          {
+            "_type": "pitfall",
+            "_key": "k9z",
+            "title": "Findings nobody can act on",
+            "body": "Jargon-heavy reports end up in a drawer.",
+            "fix": "A walkthrough session explains every recommendation."
+          }
+        ]
+      },
+      {
+        "_type": "sectionCompare",
+        "_key": "ka0",
+        "eyebrow": "Compare",
+        "heading": "A free scan versus a proper audit.",
+        "leftLabel": "Automated scan",
+        "rightLabel": "Heseven store audit",
+        "rows": [
+          {
+            "_type": "compareRow",
+            "_key": "ka1",
+            "label": "What it checks",
+            "left": "A handful of technical scores",
+            "right": "UX, conversion, SEO, speed, accessibility and apps"
+          },
+          {
+            "_type": "compareRow",
+            "_key": "ka2",
+            "label": "Context",
+            "left": "None — same advice for every store",
+            "right": "Based on your analytics and customers"
+          },
+          {
+            "_type": "compareRow",
+            "_key": "ka3",
+            "label": "Priorities",
+            "left": "Long unranked list",
+            "right": "Ranked by impact and effort"
+          },
+          {
+            "_type": "compareRow",
+            "_key": "ka4",
+            "label": "Output",
+            "left": "A score",
+            "right": "A roadmap you can act on"
+          },
+          {
+            "_type": "compareRow",
+            "_key": "ka5",
+            "label": "Support",
+            "left": "Self-serve",
+            "right": "Live walkthrough with the team"
+          }
+        ]
+      },
+      {
+        "_type": "sectionPlans",
+        "_key": "ka6",
+        "eyebrow": "Ways to work together",
+        "heading": "Start small, or hand us the whole thing.",
+        "items": [
+          {
+            "_type": "plan",
+            "_key": "ka7",
+            "badge": "Fixed fee",
+            "title": "Store audit",
+            "body": "A complete review with a prioritised roadmap.",
+            "points": ["UX and conversion", "SEO and speed", "Walkthrough session"]
+          },
+          {
+            "_type": "plan",
+            "_key": "ka8",
+            "badge": "Project",
+            "title": "Audit and fix",
+            "body": "The audit, then our team implements the top fixes.",
+            "points": ["Everything in the audit", "Quick wins implemented", "Before-and-after check"]
+          },
+          {
+            "_type": "plan",
+            "_key": "ka9",
+            "badge": "Monthly",
+            "title": "Audit into growth",
+            "body": "Start with the audit and keep improving month by month.",
+            "points": ["Quarterly re-audits", "Monthly improvements", "Progress reporting"]
+          }
+        ],
+        "cta": {
+          "_type": "cta",
+          "label": "Book a free intro call",
+          "href": "#quote"
+        }
+      },
+      {
+        "_type": "sectionTestimonials",
+        "_key": "kaa"
+      },
+      {
+        "_type": "sectionFaq",
+        "_key": "kab",
+        "eyebrow": "FAQ",
+        "heading": "UX & Store Audit: questions, answered.",
+        "items": [
+          {
+            "_type": "faqItem",
+            "_key": "kac",
+            "question": "What does a Shopify store audit include?",
+            "answer": "A review of UX, conversion funnel, SEO, site speed, accessibility, apps and tracking, delivered as a prioritised action plan."
+          },
+          {
+            "_type": "faqItem",
+            "_key": "kad",
+            "question": "How long does a Shopify audit take?",
+            "answer": "Usually around two weeks from kickoff to the walkthrough session."
+          },
+          {
+            "_type": "faqItem",
+            "_key": "kae",
+            "question": "What access do you need?",
+            "answer": "Collaborator access to your Shopify store and read access to analytics and Search Console."
+          },
+          {
+            "_type": "faqItem",
+            "_key": "kaf",
+            "question": "Do I have to use Heseven to implement the fixes?",
+            "answer": "No. The roadmap is yours to use with your own team, a freelancer or us."
+          },
+          {
+            "_type": "faqItem",
+            "_key": "kag",
+            "question": "Is an audit worth it before a redesign?",
+            "answer": "Yes. It shows what to keep, what to fix and what to rethink, so the redesign solves real problems and protects your SEO."
+          }
+        ]
+      },
+      {
+        "_type": "sectionLinks",
+        "_key": "kah",
+        "eyebrow": "Keep reading",
+        "heading": "Everything around UX & Store Audit.",
+        "groups": [
+          {
+            "_type": "linkGroup",
+            "_key": "kai",
+            "title": "Related services",
+            "links": [
+              {
+                "_type": "cta",
+                "_key": "kaj",
+                "label": "Conversion Rate Optimisation",
+                "href": "/pages/conversion-rate-optimisation"
+              },
+              {
+                "_type": "cta",
+                "_key": "kak",
+                "label": "Speed Optimization",
+                "href": "/pages/speed-optimization"
+              },
+              {
+                "_type": "cta",
+                "_key": "kal",
+                "label": "Shopify SEO Services",
+                "href": "/pages/shopify-seo-services"
+              }
+            ]
+          },
+          {
+            "_type": "linkGroup",
+            "_key": "kam",
+            "title": "Read before you decide",
+            "links": [
+              {
+                "_type": "cta",
+                "_key": "kan",
+                "label": "How to improve your conversion rate on Shopify",
+                "href": "/blogs/news/how-to-improve-your-conversion-rate"
+              },
+              {
+                "_type": "cta",
+                "_key": "kao",
+                "label": "How to optimise page loading speed",
+                "href": "/blogs/news/how-to-optimise-page-loading-speed"
+              },
+              {
+                "_type": "cta",
+                "_key": "kap",
+                "label": "Why upgrade to Online Store 2.0",
+                "href": "/blogs/news/upgrade-to-shopify-online-store-2-0-in-the-uk"
+              }
+            ]
+          },
+          {
+            "_type": "linkGroup",
+            "_key": "kaq",
+            "title": "Next steps",
+            "links": [
+              {
+                "_type": "cta",
+                "_key": "kar",
+                "label": "See our work",
+                "href": "/#work"
+              },
+              {
+                "_type": "cta",
+                "_key": "kas",
+                "label": "All services",
+                "href": "/services"
+              },
+              {
+                "_type": "cta",
+                "_key": "kat",
+                "label": "Contact us",
+                "href": "/pages/contact-us"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "_type": "sectionContact",
+        "_key": "kau",
+        "eyebrow": "Let's talk",
+        "heading": "Tell us about your UX & Store Audit project.",
+        "body": "A few quick questions and we will come back within one business day — with an honest view on whether this is the right next step.",
+        "points": [
+          "Reply within one business day",
+          "A senior specialist, not a sales team",
+          "No obligation, no hard sell"
+        ]
+      }
+    ],
+    "seo": {
+      "_type": "seo",
+      "title": "Shopify Store Audit | UX, CRO, SEO & Speed Review",
+      "description": "A Shopify store audit covering UX, conversion, SEO, speed, accessibility and apps — delivered as a prioritised action plan showing what to fix first."
+    }
+  },
+  {
+    "_id": "service-klaviyo-email-marketing",
+    "_type": "servicePage",
+    "title": "Email & Klaviyo",
+    "slug": {
+      "_type": "slug",
+      "current": "klaviyo-email-marketing"
+    },
+    "sections": [
+      {
+        "_type": "sectionHero",
+        "_key": "kav",
+        "eyebrow": "Email & Klaviyo",
+        "heading": "Email flows that earn their place in the inbox.",
+        "lead": "Klaviyo flows, campaigns and sign-up forms for Shopify brands — designed to grow repeat purchases and customer lifetime value.",
+        "primaryCta": {
+          "_type": "cta",
+          "label": "Get a quote",
+          "href": "#quote"
+        },
+        "secondaryCta": {
+          "_type": "cta",
+          "label": "See our work",
+          "href": "/#work"
+        }
+      },
+      {
+        "_type": "sectionStats",
+        "_key": "kaw",
+        "items": [
+          {
+            "_type": "stat",
+            "_key": "kax",
+            "value": "1000+",
+            "label": "E-commerce brands served"
+          },
+          {
+            "_type": "stat",
+            "_key": "kay",
+            "value": "2018",
+            "label": "Shopify Partner since"
+          },
+          {
+            "_type": "stat",
+            "_key": "kaz",
+            "value": "4",
+            "label": "Global time zones"
+          },
+          {
+            "_type": "stat",
+            "_key": "kb0",
+            "value": "5.0",
+            "label": "Average client rating"
+          }
+        ]
+      },
+      {
+        "_type": "sectionFeatures",
+        "_key": "kb1",
+        "eyebrow": "What's included",
+        "heading": "Retention marketing, done properly.",
+        "columns": 3,
+        "items": [
+          {
+            "_type": "feature",
+            "_key": "kb2",
+            "icon": "sliders",
+            "title": "Automated flows",
+            "body": "Welcome, abandoned cart, browse abandonment, post-purchase and win-back flows."
+          },
+          {
+            "_type": "feature",
+            "_key": "kb3",
+            "icon": "users",
+            "title": "Segmentation",
+            "body": "Audiences built on purchase behaviour, engagement and predicted value."
+          },
+          {
+            "_type": "feature",
+            "_key": "kb4",
+            "icon": "sparkles",
+            "title": "Campaign design",
+            "body": "On-brand, mobile-first emails with copy that sounds like you."
+          },
+          {
+            "_type": "feature",
+            "_key": "kb5",
+            "icon": "target",
+            "title": "Sign-up forms",
+            "body": "Pop-ups and embedded forms that grow your list without hurting UX."
+          },
+          {
+            "_type": "feature",
+            "_key": "kb6",
+            "icon": "report",
+            "title": "Deliverability",
+            "body": "Authentication, list hygiene and sending strategy to stay out of spam."
+          },
+          {
+            "_type": "feature",
+            "_key": "kb7",
+            "icon": "trend",
+            "title": "SMS",
+            "body": "Klaviyo SMS added where it suits your customers and margins."
+          }
+        ]
+      },
+      {
+        "_type": "sectionRichText",
+        "_key": "kb8",
+        "eyebrow": "Our approach",
+        "heading": "Your most profitable channel, working harder.",
+        "body": [
+          {
+            "_type": "block",
+            "_key": "kba",
+            "style": "h3",
+            "markDefs": [],
+            "children": [
+              {
+                "_type": "span",
+                "_key": "kb9",
+                "text": "Flows first",
+                "marks": []
+              }
+            ]
+          },
+          {
+            "_type": "block",
+            "_key": "kbc",
+            "style": "normal",
+            "markDefs": [],
+            "children": [
+              {
+                "_type": "span",
+                "_key": "kbb",
+                "text": "Automated flows run around the clock and usually drive a large share of email revenue. We build and test the core flows before scaling up campaigns.",
+                "marks": []
+              }
+            ]
+          },
+          {
+            "_type": "block",
+            "_key": "kbe",
+            "style": "h3",
+            "markDefs": [],
+            "children": [
+              {
+                "_type": "span",
+                "_key": "kbd",
+                "text": "Relevant, not relentless",
+                "marks": []
+              }
+            ]
+          },
+          {
+            "_type": "block",
+            "_key": "kbg",
+            "style": "normal",
+            "markDefs": [],
+            "children": [
+              {
+                "_type": "span",
+                "_key": "kbf",
+                "text": "Segmentation means customers get emails that match what they bought and how engaged they are — which protects deliverability and keeps unsubscribe rates down.",
+                "marks": []
+              }
+            ]
+          },
+          {
+            "_type": "block",
+            "_key": "kbi",
+            "style": "h3",
+            "markDefs": [],
+            "children": [
+              {
+                "_type": "span",
+                "_key": "kbh",
+                "text": "Connected to your growth",
+                "marks": []
+              }
+            ]
+          },
+          {
+            "_type": "block",
+            "_key": "kbt",
+            "style": "normal",
+            "markDefs": [
+              {
+                "_type": "link",
+                "_key": "kbk",
+                "href": "/services/shopify-paid-ads"
+              },
+              {
+                "_type": "link",
+                "_key": "kbn",
+                "href": "/services/ecommerce-content-marketing"
+              },
+              {
+                "_type": "link",
+                "_key": "kbq",
+                "href": "/services/shopify-growth-partnership"
+              }
+            ],
+            "children": [
+              {
+                "_type": "span",
+                "_key": "kbj",
+                "text": "Email turns the customers you win through ",
+                "marks": []
+              },
+              {
+                "_type": "span",
+                "_key": "kbl",
+                "text": "paid ads",
+                "marks": ["kbk"]
+              },
+              {
+                "_type": "span",
+                "_key": "kbm",
+                "text": " and ",
+                "marks": []
+              },
+              {
+                "_type": "span",
+                "_key": "kbo",
+                "text": "content",
+                "marks": ["kbn"]
+              },
+              {
+                "_type": "span",
+                "_key": "kbp",
+                "text": " into repeat buyers. Want it all run by one team? See our ",
+                "marks": []
+              },
+              {
+                "_type": "span",
+                "_key": "kbr",
+                "text": "growth partnership",
+                "marks": ["kbq"]
+              },
+              {
+                "_type": "span",
+                "_key": "kbs",
+                "text": ".",
+                "marks": []
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "_type": "sectionSteps",
+        "_key": "kbu",
+        "eyebrow": "How we work",
+        "heading": "How we deliver Email & Klaviyo.",
+        "steps": [
+          {
+            "_type": "step",
+            "_key": "kbv",
+            "title": "Account audit",
+            "body": "Flows, segments, deliverability and Shopify integration reviewed."
+          },
+          {
+            "_type": "step",
+            "_key": "kbw",
+            "title": "Strategy",
+            "body": "Flow map and campaign calendar built around your customer journey."
+          },
+          {
+            "_type": "step",
+            "_key": "kbx",
+            "title": "Build flows",
+            "body": "Core automations designed, written and launched."
+          },
+          {
+            "_type": "step",
+            "_key": "kby",
+            "title": "Campaigns",
+            "body": "Regular segmented campaigns planned, designed and sent."
+          },
+          {
+            "_type": "step",
+            "_key": "kbz",
+            "title": "Test & report",
+            "body": "Subject lines, content and timing tested, with monthly revenue reporting."
+          }
+        ]
+      },
+      {
+        "_type": "sectionFit",
+        "_key": "kc0",
+        "eyebrow": "Is this right for you?",
+        "heading": "An honest answer before you get in touch.",
+        "goodTitle": "A good fit if",
+        "good": [
+          "You have a growing list but email drives little revenue",
+          "Your flows were set up years ago and never revisited",
+          "You rely on discounts to get people to buy again",
+          "You are moving to Klaviyo from another platform"
+        ],
+        "notTitle": "Probably not yet if",
+        "notYet": [
+          "You have almost no customers or subscribers yet",
+          "You cannot commit to sending regular campaigns",
+          "You only need a single newsletter template"
+        ]
+      },
+      {
+        "_type": "sectionPitfalls",
+        "_key": "kc1",
+        "eyebrow": "Before you commit",
+        "heading": "What usually goes wrong.",
+        "lead": "Most problems are cheap to prevent and expensive to find later. This is what we watch for.",
+        "items": [
+          {
+            "_type": "pitfall",
+            "_key": "kc2",
+            "title": "Campaigns before flows",
+            "body": "Weekly newsletters get all the attention while automated flows sit broken.",
+            "fix": "Core flows are built and tested first."
+          },
+          {
+            "_type": "pitfall",
+            "_key": "kc3",
+            "title": "One message for everyone",
+            "body": "Sending the same email to every subscriber hurts engagement and deliverability.",
+            "fix": "Segments are built on behaviour and purchase history."
+          },
+          {
+            "_type": "pitfall",
+            "_key": "kc4",
+            "title": "Discounting by default",
+            "body": "Training customers to wait for a code erodes margin.",
+            "fix": "Flows lead with value, with discounts used deliberately."
+          },
+          {
+            "_type": "pitfall",
+            "_key": "kc5",
+            "title": "Ignoring deliverability",
+            "body": "Without authentication and list hygiene, emails land in spam.",
+            "fix": "Authentication, sunsetting and sending strategy are set up properly."
+          },
+          {
+            "_type": "pitfall",
+            "_key": "kc6",
+            "title": "Pop-ups that annoy",
+            "body": "Aggressive sign-up forms grow the list but hurt the store experience.",
+            "fix": "Forms are timed and targeted to stay helpful."
+          }
+        ]
+      },
+      {
+        "_type": "sectionCompare",
+        "_key": "kc7",
+        "eyebrow": "Compare",
+        "heading": "Newsletter-only email versus flow-led retention.",
+        "leftLabel": "Newsletter-only",
+        "rightLabel": "Flow-led retention",
+        "rows": [
+          {
+            "_type": "compareRow",
+            "_key": "kc8",
+            "label": "Revenue source",
+            "left": "Mostly one-off campaigns",
+            "right": "Automated flows plus campaigns"
+          },
+          {
+            "_type": "compareRow",
+            "_key": "kc9",
+            "label": "Targeting",
+            "left": "Whole list",
+            "right": "Segments by behaviour and value"
+          },
+          {
+            "_type": "compareRow",
+            "_key": "kca",
+            "label": "Discounts",
+            "left": "Frequent",
+            "right": "Used deliberately"
+          },
+          {
+            "_type": "compareRow",
+            "_key": "kcb",
+            "label": "Deliverability",
+            "left": "Left to chance",
+            "right": "Monitored and protected"
+          },
+          {
+            "_type": "compareRow",
+            "_key": "kcc",
+            "label": "Reporting",
+            "left": "Opens and clicks",
+            "right": "Revenue and repeat purchase rate"
+          }
+        ]
+      },
+      {
+        "_type": "sectionPlans",
+        "_key": "kcd",
+        "eyebrow": "Ways to work together",
+        "heading": "Start small, or hand us the whole thing.",
+        "items": [
+          {
+            "_type": "plan",
+            "_key": "kce",
+            "badge": "Audit",
+            "title": "Klaviyo audit",
+            "body": "Your flows, segments and deliverability reviewed.",
+            "points": ["Flow gap analysis", "Deliverability check", "Prioritised fixes"]
+          },
+          {
+            "_type": "plan",
+            "_key": "kcf",
+            "badge": "Project",
+            "title": "Flow build",
+            "body": "The core automations designed, written and launched.",
+            "points": ["Welcome and abandonment flows", "Post-purchase and win-back", "Sign-up forms"]
+          },
+          {
+            "_type": "plan",
+            "_key": "kcg",
+            "badge": "Monthly",
+            "title": "Managed email & SMS",
+            "body": "Campaigns, testing and reporting every month.",
+            "points": ["Campaign calendar", "A/B testing", "Monthly revenue report"]
+          }
+        ],
+        "cta": {
+          "_type": "cta",
+          "label": "Book a free intro call",
+          "href": "#quote"
+        }
+      },
+      {
+        "_type": "sectionTestimonials",
+        "_key": "kch"
+      },
+      {
+        "_type": "sectionFaq",
+        "_key": "kci",
+        "eyebrow": "FAQ",
+        "heading": "Email & Klaviyo: questions, answered.",
+        "items": [
+          {
+            "_type": "faqItem",
+            "_key": "kcj",
+            "question": "Why use Klaviyo for a Shopify store?",
+            "answer": "Klaviyo integrates deeply with Shopify, so you can segment and automate on real purchase data such as products bought, order value and predicted next order date."
+          },
+          {
+            "_type": "faqItem",
+            "_key": "kck",
+            "question": "Which email flows should every Shopify store have?",
+            "answer": "At minimum: welcome series, abandoned cart, browse abandonment, post-purchase and win-back. These form the foundation of retention revenue."
+          },
+          {
+            "_type": "faqItem",
+            "_key": "kcl",
+            "question": "Can you migrate us from Mailchimp or another platform?",
+            "answer": "Yes. We move your lists, consent data and templates, and rebuild your automations in Klaviyo."
+          },
+          {
+            "_type": "faqItem",
+            "_key": "kcm",
+            "question": "How often should we send campaigns?",
+            "answer": "It depends on your audience and product range. We test frequency by segment so engaged customers hear from you more often than less engaged ones."
+          },
+          {
+            "_type": "faqItem",
+            "_key": "kcn",
+            "question": "Do you also manage SMS?",
+            "answer": "Yes, through Klaviyo SMS, with consent handled correctly for each market."
+          }
+        ]
+      },
+      {
+        "_type": "sectionLinks",
+        "_key": "kco",
+        "eyebrow": "Keep reading",
+        "heading": "Everything around Email & Klaviyo.",
+        "groups": [
+          {
+            "_type": "linkGroup",
+            "_key": "kcp",
+            "title": "Related services",
+            "links": [
+              {
+                "_type": "cta",
+                "_key": "kcq",
+                "label": "Paid Ads",
+                "href": "/services/shopify-paid-ads"
+              },
+              {
+                "_type": "cta",
+                "_key": "kcr",
+                "label": "Content & Blogging",
+                "href": "/services/ecommerce-content-marketing"
+              },
+              {
+                "_type": "cta",
+                "_key": "kcs",
+                "label": "Conversion Rate Optimisation",
+                "href": "/pages/conversion-rate-optimisation"
+              }
+            ]
+          },
+          {
+            "_type": "linkGroup",
+            "_key": "kct",
+            "title": "Read before you decide",
+            "links": [
+              {
+                "_type": "cta",
+                "_key": "kcu",
+                "label": "How to improve your conversion rate on Shopify",
+                "href": "/blogs/news/how-to-improve-your-conversion-rate"
+              },
+              {
+                "_type": "cta",
+                "_key": "kcv",
+                "label": "Shopify support and maintenance services",
+                "href": "/blogs/news/shopify-support-and-maintenance-services-for-growth"
+              },
+              {
+                "_type": "cta",
+                "_key": "kcw",
+                "label": "Why growing brands need a Shopify Plus agency",
+                "href": "/blogs/news/shopify-plus-ecommerce-agency-scale-your-brand"
+              }
+            ]
+          },
+          {
+            "_type": "linkGroup",
+            "_key": "kcx",
+            "title": "Next steps",
+            "links": [
+              {
+                "_type": "cta",
+                "_key": "kcy",
+                "label": "See our work",
+                "href": "/#work"
+              },
+              {
+                "_type": "cta",
+                "_key": "kcz",
+                "label": "All services",
+                "href": "/services"
+              },
+              {
+                "_type": "cta",
+                "_key": "kd0",
+                "label": "Contact us",
+                "href": "/pages/contact-us"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "_type": "sectionContact",
+        "_key": "kd1",
+        "eyebrow": "Let's talk",
+        "heading": "Tell us about your Email & Klaviyo project.",
+        "body": "A few quick questions and we will come back within one business day — with an honest view on whether this is the right next step.",
+        "points": [
+          "Reply within one business day",
+          "A senior specialist, not a sales team",
+          "No obligation, no hard sell"
+        ]
+      }
+    ],
+    "seo": {
+      "_type": "seo",
+      "title": "Klaviyo Email Marketing for Shopify | Flows & Campaigns",
+      "description": "Klaviyo email and SMS marketing for Shopify brands: automated flows, segmented campaigns, sign-up forms and deliverability, measured on revenue and retention."
+    }
+  },
+  {
+    "_id": "service-shopify-growth-partnership",
+    "_type": "servicePage",
+    "title": "Growth Partnership",
+    "slug": {
+      "_type": "slug",
+      "current": "shopify-growth-partnership"
+    },
+    "sections": [
+      {
+        "_type": "sectionHero",
+        "_key": "kd2",
+        "eyebrow": "Growth partnership",
+        "heading": "A retained team. One roadmap. Real growth.",
+        "lead": "Strategy, development, design, CRO, SEO and email from one Shopify team — working together each month towards the numbers that matter to you.",
+        "primaryCta": {
+          "_type": "cta",
+          "label": "Get a quote",
+          "href": "#quote"
+        },
+        "secondaryCta": {
+          "_type": "cta",
+          "label": "See our work",
+          "href": "/#work"
+        }
+      },
+      {
+        "_type": "sectionStats",
+        "_key": "kd3",
+        "items": [
+          {
+            "_type": "stat",
+            "_key": "kd4",
+            "value": "1000+",
+            "label": "E-commerce brands served"
+          },
+          {
+            "_type": "stat",
+            "_key": "kd5",
+            "value": "2018",
+            "label": "Shopify Partner since"
+          },
+          {
+            "_type": "stat",
+            "_key": "kd6",
+            "value": "4",
+            "label": "Global time zones"
+          },
+          {
+            "_type": "stat",
+            "_key": "kd7",
+            "value": "5.0",
+            "label": "Average client rating"
+          }
+        ]
+      },
+      {
+        "_type": "sectionFeatures",
+        "_key": "kd8",
+        "eyebrow": "What's included",
+        "heading": "Everything under one roof.",
+        "columns": 3,
+        "items": [
+          {
+            "_type": "feature",
+            "_key": "kd9",
+            "icon": "target",
+            "title": "Growth strategy",
+            "body": "Quarterly goals and a prioritised roadmap tied to revenue and margin."
+          },
+          {
+            "_type": "feature",
+            "_key": "kda",
+            "icon": "code",
+            "title": "Development & design",
+            "body": "New features, landing pages and improvements shipped every month."
+          },
+          {
+            "_type": "feature",
+            "_key": "kdb",
+            "icon": "trend",
+            "title": "CRO",
+            "body": "Ongoing research and A/B tests to lift conversion rate and order value."
+          },
+          {
+            "_type": "feature",
+            "_key": "kdc",
+            "icon": "search",
+            "title": "SEO & content",
+            "body": "Technical SEO, content and AI search visibility working in the background."
+          },
+          {
+            "_type": "feature",
+            "_key": "kdd",
+            "icon": "sliders",
+            "title": "Email & retention",
+            "body": "Klaviyo flows and campaigns that grow repeat purchases."
+          },
+          {
+            "_type": "feature",
+            "_key": "kde",
+            "icon": "report",
+            "title": "One monthly report",
+            "body": "A single view of what we did, what changed and what is next."
+          }
+        ]
+      },
+      {
+        "_type": "sectionRichText",
+        "_key": "kdf",
+        "eyebrow": "Our approach",
+        "heading": "Stop managing five agencies.",
+        "body": [
+          {
+            "_type": "block",
+            "_key": "kdh",
+            "style": "h3",
+            "markDefs": [],
+            "children": [
+              {
+                "_type": "span",
+                "_key": "kdg",
+                "text": "One team, joined-up thinking",
+                "marks": []
+              }
+            ]
+          },
+          {
+            "_type": "block",
+            "_key": "kdj",
+            "style": "normal",
+            "markDefs": [],
+            "children": [
+              {
+                "_type": "span",
+                "_key": "kdi",
+                "text": "When development, CRO, SEO and email sit with different suppliers, opportunities fall between the gaps. A single team sees the whole picture and acts on it.",
+                "marks": []
+              }
+            ]
+          },
+          {
+            "_type": "block",
+            "_key": "kdl",
+            "style": "h3",
+            "markDefs": [],
+            "children": [
+              {
+                "_type": "span",
+                "_key": "kdk",
+                "text": "Priorities, not busywork",
+                "marks": []
+              }
+            ]
+          },
+          {
+            "_type": "block",
+            "_key": "kdn",
+            "style": "normal",
+            "markDefs": [],
+            "children": [
+              {
+                "_type": "span",
+                "_key": "kdm",
+                "text": "Every month starts with the roadmap: what will move revenue most, given your goals and budget. Work is planned, shipped and measured in that order.",
+                "marks": []
+              }
+            ]
+          },
+          {
+            "_type": "block",
+            "_key": "kdp",
+            "style": "h3",
+            "markDefs": [],
+            "children": [
+              {
+                "_type": "span",
+                "_key": "kdo",
+                "text": "Built from proven services",
+                "marks": []
+              }
+            ]
+          },
+          {
+            "_type": "block",
+            "_key": "ke3",
+            "style": "normal",
+            "markDefs": [
+              {
+                "_type": "link",
+                "_key": "kdr",
+                "href": "/pages/conversion-rate-optimisation"
+              },
+              {
+                "_type": "link",
+                "_key": "kdu",
+                "href": "/pages/shopify-seo-services"
+              },
+              {
+                "_type": "link",
+                "_key": "kdx",
+                "href": "/services/klaviyo-email-marketing"
+              },
+              {
+                "_type": "link",
+                "_key": "ke0",
+                "href": "/pages/shopify-maintenance-service"
+              }
+            ],
+            "children": [
+              {
+                "_type": "span",
+                "_key": "kdq",
+                "text": "Your partnership draws on our ",
+                "marks": []
+              },
+              {
+                "_type": "span",
+                "_key": "kds",
+                "text": "CRO",
+                "marks": ["kdr"]
+              },
+              {
+                "_type": "span",
+                "_key": "kdt",
+                "text": ", ",
+                "marks": []
+              },
+              {
+                "_type": "span",
+                "_key": "kdv",
+                "text": "Shopify SEO",
+                "marks": ["kdu"]
+              },
+              {
+                "_type": "span",
+                "_key": "kdw",
+                "text": ", ",
+                "marks": []
+              },
+              {
+                "_type": "span",
+                "_key": "kdy",
+                "text": "email & Klaviyo",
+                "marks": ["kdx"]
+              },
+              {
+                "_type": "span",
+                "_key": "kdz",
+                "text": " and ",
+                "marks": []
+              },
+              {
+                "_type": "span",
+                "_key": "ke1",
+                "text": "Shopify maintenance",
+                "marks": ["ke0"]
+              },
+              {
+                "_type": "span",
+                "_key": "ke2",
+                "text": " teams — scaled to the size of your ambition.",
+                "marks": []
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "_type": "sectionSteps",
+        "_key": "ke4",
+        "eyebrow": "How we work",
+        "heading": "How we deliver Growth Partnership.",
+        "steps": [
+          {
+            "_type": "step",
+            "_key": "ke5",
+            "title": "Growth audit",
+            "body": "Store, data, channels and team reviewed to find the biggest levers."
+          },
+          {
+            "_type": "step",
+            "_key": "ke6",
+            "title": "Roadmap",
+            "body": "A 90-day plan with clear goals and owners."
+          },
+          {
+            "_type": "step",
+            "_key": "ke7",
+            "title": "Monthly sprints",
+            "body": "Development, CRO, SEO and email work shipped in planned sprints."
+          },
+          {
+            "_type": "step",
+            "_key": "ke8",
+            "title": "Measure",
+            "body": "Results tracked against goals in one shared dashboard."
+          },
+          {
+            "_type": "step",
+            "_key": "ke9",
+            "title": "Quarterly review",
+            "body": "Strategy refreshed based on what worked."
+          }
+        ]
+      },
+      {
+        "_type": "sectionFit",
+        "_key": "kea",
+        "eyebrow": "Is this right for you?",
+        "heading": "An honest answer before you get in touch.",
+        "goodTitle": "A good fit if",
+        "good": [
+          "You are an established brand ready for steady month-on-month growth",
+          "You are tired of coordinating several freelancers and agencies",
+          "You have no in-house ecommerce team, or a small one that needs support",
+          "You want one roadmap and one report"
+        ],
+        "notTitle": "Probably not yet if",
+        "notYet": [
+          "You need a single one-off project — a fixed scope suits better",
+          "The store is not live yet",
+          "You want to manage every task yourself"
+        ]
+      },
+      {
+        "_type": "sectionPitfalls",
+        "_key": "keb",
+        "eyebrow": "Before you commit",
+        "heading": "What usually goes wrong.",
+        "lead": "Most problems are cheap to prevent and expensive to find later. This is what we watch for.",
+        "items": [
+          {
+            "_type": "pitfall",
+            "_key": "kec",
+            "title": "Too many suppliers",
+            "body": "Development, SEO, ads and email agencies rarely talk to each other.",
+            "fix": "One team works from one shared roadmap."
+          },
+          {
+            "_type": "pitfall",
+            "_key": "ked",
+            "title": "Busywork instead of priorities",
+            "body": "Retainers drift into small tasks that do not move revenue.",
+            "fix": "Each month starts with the roadmap and the biggest levers."
+          },
+          {
+            "_type": "pitfall",
+            "_key": "kee",
+            "title": "No clear goals",
+            "body": "Without targets, nobody knows whether the work is working.",
+            "fix": "Quarterly goals tied to revenue and margin."
+          },
+          {
+            "_type": "pitfall",
+            "_key": "kef",
+            "title": "Reports nobody reads",
+            "body": "Pages of charts hide what actually changed.",
+            "fix": "One short monthly report: what we did, what changed, what is next."
+          },
+          {
+            "_type": "pitfall",
+            "_key": "keg",
+            "title": "Losing knowledge when people change",
+            "body": "Every new freelancer starts from scratch.",
+            "fix": "A stable team and documented store."
+          }
+        ]
+      },
+      {
+        "_type": "sectionCompare",
+        "_key": "keh",
+        "eyebrow": "Compare",
+        "heading": "Several agencies, or one growth team?",
+        "leftLabel": "Several agencies",
+        "rightLabel": "Heseven growth partnership",
+        "rows": [
+          {
+            "_type": "compareRow",
+            "_key": "kei",
+            "label": "Strategy",
+            "left": "Each supplier has its own",
+            "right": "One shared roadmap"
+          },
+          {
+            "_type": "compareRow",
+            "_key": "kej",
+            "label": "Coordination",
+            "left": "Your job",
+            "right": "Ours"
+          },
+          {
+            "_type": "compareRow",
+            "_key": "kek",
+            "label": "Priorities",
+            "left": "Whatever each scope says",
+            "right": "Whatever moves revenue most"
+          },
+          {
+            "_type": "compareRow",
+            "_key": "kel",
+            "label": "Reporting",
+            "left": "Several reports in different formats",
+            "right": "One monthly report"
+          },
+          {
+            "_type": "compareRow",
+            "_key": "kem",
+            "label": "Knowledge of your store",
+            "left": "Spread thin",
+            "right": "One team that knows it end to end"
+          }
+        ]
+      },
+      {
+        "_type": "sectionPlans",
+        "_key": "ken",
+        "eyebrow": "Ways to work together",
+        "heading": "Start small, or hand us the whole thing.",
+        "items": [
+          {
+            "_type": "plan",
+            "_key": "keo",
+            "badge": "Fixed fee",
+            "title": "Growth audit",
+            "body": "Find the biggest levers across store, data and channels.",
+            "points": ["Store and data review", "Channel review", "90-day roadmap"]
+          },
+          {
+            "_type": "plan",
+            "_key": "kep",
+            "badge": "Monthly",
+            "title": "Growth partnership",
+            "body": "A retained team shipping development, CRO, SEO and email each month.",
+            "points": ["Monthly sprints", "Shared dashboard", "Quarterly strategy review"]
+          },
+          {
+            "_type": "plan",
+            "_key": "keq",
+            "badge": "Advisory",
+            "title": "Senior advice",
+            "body": "Strategy and reviews for brands with their own in-house team.",
+            "points": ["Monthly strategy call", "Roadmap reviews", "On-call advice"]
+          }
+        ],
+        "cta": {
+          "_type": "cta",
+          "label": "Book a free intro call",
+          "href": "#quote"
+        }
+      },
+      {
+        "_type": "sectionTestimonials",
+        "_key": "ker"
+      },
+      {
+        "_type": "sectionFaq",
+        "_key": "kes",
+        "eyebrow": "FAQ",
+        "heading": "Growth Partnership: questions, answered.",
+        "items": [
+          {
+            "_type": "faqItem",
+            "_key": "ket",
+            "question": "What is a Shopify growth partnership?",
+            "answer": "A monthly retainer where one team handles strategy, development, CRO, SEO and email for your store, working from a shared roadmap."
+          },
+          {
+            "_type": "faqItem",
+            "_key": "keu",
+            "question": "Who is it for?",
+            "answer": "Established Shopify brands that want consistent growth without hiring a full in-house team or coordinating several agencies."
+          },
+          {
+            "_type": "faqItem",
+            "_key": "kev",
+            "question": "How is it priced?",
+            "answer": "A fixed monthly fee based on the services and capacity you need, agreed after the growth audit."
+          },
+          {
+            "_type": "faqItem",
+            "_key": "kew",
+            "question": "Can we include our in-house team?",
+            "answer": "Yes. We often work alongside in-house marketers and developers, filling the gaps in skills or capacity."
+          },
+          {
+            "_type": "faqItem",
+            "_key": "kex",
+            "question": "How do you report on progress?",
+            "answer": "A monthly report and call covering work completed, results against goals and the plan for next month."
+          }
+        ]
+      },
+      {
+        "_type": "sectionLinks",
+        "_key": "key",
+        "eyebrow": "Keep reading",
+        "heading": "Everything around Growth Partnership.",
+        "groups": [
+          {
+            "_type": "linkGroup",
+            "_key": "kez",
+            "title": "Related services",
+            "links": [
+              {
+                "_type": "cta",
+                "_key": "kf0",
+                "label": "Conversion Rate Optimisation",
+                "href": "/pages/conversion-rate-optimisation"
+              },
+              {
+                "_type": "cta",
+                "_key": "kf1",
+                "label": "Shopify SEO Services",
+                "href": "/pages/shopify-seo-services"
+              },
+              {
+                "_type": "cta",
+                "_key": "kf2",
+                "label": "Email & Klaviyo",
+                "href": "/services/klaviyo-email-marketing"
+              }
+            ]
+          },
+          {
+            "_type": "linkGroup",
+            "_key": "kf3",
+            "title": "Read before you decide",
+            "links": [
+              {
+                "_type": "cta",
+                "_key": "kf4",
+                "label": "Is a Shopify website development agency the upgrade you need?",
+                "href": "/blogs/news/best-shopify-website-development-agency-for-growth"
+              },
+              {
+                "_type": "cta",
+                "_key": "kf5",
+                "label": "Why growing brands need a Shopify Plus agency",
+                "href": "/blogs/news/shopify-plus-ecommerce-agency-scale-your-brand"
+              },
+              {
+                "_type": "cta",
+                "_key": "kf6",
+                "label": "How to improve your conversion rate on Shopify",
+                "href": "/blogs/news/how-to-improve-your-conversion-rate"
+              }
+            ]
+          },
+          {
+            "_type": "linkGroup",
+            "_key": "kf7",
+            "title": "Next steps",
+            "links": [
+              {
+                "_type": "cta",
+                "_key": "kf8",
+                "label": "See our work",
+                "href": "/#work"
+              },
+              {
+                "_type": "cta",
+                "_key": "kf9",
+                "label": "All services",
+                "href": "/services"
+              },
+              {
+                "_type": "cta",
+                "_key": "kfa",
+                "label": "Contact us",
+                "href": "/pages/contact-us"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "_type": "sectionContact",
+        "_key": "kfb",
+        "eyebrow": "Let's talk",
+        "heading": "Tell us about your Growth Partnership project.",
+        "body": "A few quick questions and we will come back within one business day — with an honest view on whether this is the right next step.",
+        "points": [
+          "Reply within one business day",
+          "A senior specialist, not a sales team",
+          "No obligation, no hard sell"
+        ]
+      }
+    ],
+    "seo": {
+      "_type": "seo",
+      "title": "Shopify Growth Partnership | Retained Ecommerce Team",
+      "description": "A retained Shopify growth team — strategy, development, CRO, SEO and email — working from one roadmap with clear monthly goals and reporting."
+    }
+  },
+  {
+    "_id": "service-shopify-app-development",
+    "_type": "servicePage",
+    "title": "Custom App Development",
+    "slug": {
+      "_type": "slug",
+      "current": "shopify-app-development"
+    },
+    "sections": [
+      {
+        "_type": "sectionHero",
+        "_key": "kfc",
+        "eyebrow": "Custom app development",
+        "heading": "Shopify apps built for how your business actually works.",
+        "lead": "Private apps, Shopify Functions, checkout extensions and integrations — for the jobs no app on the App Store does quite right.",
+        "primaryCta": {
+          "_type": "cta",
+          "label": "Get a quote",
+          "href": "#quote"
+        },
+        "secondaryCta": {
+          "_type": "cta",
+          "label": "See our work",
+          "href": "/#work"
+        }
+      },
+      {
+        "_type": "sectionStats",
+        "_key": "kfd",
+        "items": [
+          {
+            "_type": "stat",
+            "_key": "kfe",
+            "value": "1000+",
+            "label": "E-commerce brands served"
+          },
+          {
+            "_type": "stat",
+            "_key": "kff",
+            "value": "2018",
+            "label": "Shopify Partner since"
+          },
+          {
+            "_type": "stat",
+            "_key": "kfg",
+            "value": "4",
+            "label": "Global time zones"
+          },
+          {
+            "_type": "stat",
+            "_key": "kfh",
+            "value": "5.0",
+            "label": "Average client rating"
+          }
+        ]
+      },
+      {
+        "_type": "sectionFeatures",
+        "_key": "kfi",
+        "eyebrow": "What's included",
+        "heading": "Custom functionality, built the Shopify way.",
+        "columns": 3,
+        "items": [
+          {
+            "_type": "feature",
+            "_key": "kfj",
+            "icon": "code",
+            "title": "Private & custom apps",
+            "body": "Apps built for your store only, with exactly the features you need and nothing else."
+          },
+          {
+            "_type": "feature",
+            "_key": "kfk",
+            "icon": "sliders",
+            "title": "Shopify Functions",
+            "body": "Custom discounts, shipping, payment and cart rules that run natively and fast."
+          },
+          {
+            "_type": "feature",
+            "_key": "kfl",
+            "icon": "target",
+            "title": "Checkout extensions",
+            "body": "Fields, upsells and branded content in checkout with Checkout UI extensions."
+          },
+          {
+            "_type": "feature",
+            "_key": "kfm",
+            "icon": "layers",
+            "title": "Integrations",
+            "body": "ERP, PIM, 3PL, CRM and marketing tools connected reliably through Shopify’s APIs."
+          },
+          {
+            "_type": "feature",
+            "_key": "kfn",
+            "icon": "report",
+            "title": "Admin tools",
+            "body": "Embedded admin screens that save your team hours of manual work every week."
+          },
+          {
+            "_type": "feature",
+            "_key": "kfo",
+            "icon": "globe",
+            "title": "Public apps",
+            "body": "Apps built to Shopify’s standards and ready for review on the App Store."
+          }
+        ]
+      },
+      {
+        "_type": "sectionRichText",
+        "_key": "kfp",
+        "eyebrow": "Our approach",
+        "heading": "The right app is often the one you no longer pay for.",
+        "body": [
+          {
+            "_type": "block",
+            "_key": "kfr",
+            "style": "h3",
+            "markDefs": [],
+            "children": [
+              {
+                "_type": "span",
+                "_key": "kfq",
+                "text": "Replace, don’t stack",
+                "marks": []
+              }
+            ]
+          },
+          {
+            "_type": "block",
+            "_key": "kft",
+            "style": "normal",
+            "markDefs": [],
+            "children": [
+              {
+                "_type": "span",
+                "_key": "kfs",
+                "text": "Many stores pay for several apps that each do part of a job and slow the storefront down. A single custom app or Shopify Function can often replace them — faster, cheaper over time and fully under your control.",
+                "marks": []
+              }
+            ]
+          },
+          {
+            "_type": "block",
+            "_key": "kfv",
+            "style": "h3",
+            "markDefs": [],
+            "children": [
+              {
+                "_type": "span",
+                "_key": "kfu",
+                "text": "Built on Shopify’s modern platform",
+                "marks": []
+              }
+            ]
+          },
+          {
+            "_type": "block",
+            "_key": "kfx",
+            "style": "normal",
+            "markDefs": [],
+            "children": [
+              {
+                "_type": "span",
+                "_key": "kfw",
+                "text": "We build with Shopify’s current tools — the GraphQL Admin API, Functions, App Bridge and theme app extensions — so your app stays fast, secure and upgrade-safe as Shopify evolves.",
+                "marks": []
+              }
+            ]
+          },
+          {
+            "_type": "block",
+            "_key": "kfz",
+            "style": "h3",
+            "markDefs": [],
+            "children": [
+              {
+                "_type": "span",
+                "_key": "kfy",
+                "text": "Part of the whole store",
+                "marks": []
+              }
+            ]
+          },
+          {
+            "_type": "block",
+            "_key": "kga",
+            "style": "normal",
+            "markDefs": [
+              {
+                "_type": "link",
+                "_key": "kg1",
+                "href": "/pages/shopify-website-development-services"
+              },
+              {
+                "_type": "link",
+                "_key": "kg4",
+                "href": "/pages/shopify-plus-development-agency"
+              },
+              {
+                "_type": "link",
+                "_key": "kg7",
+                "href": "/services/shopify-growth-partnership"
+              }
+            ],
+            "children": [
+              {
+                "_type": "span",
+                "_key": "kg0",
+                "text": "Apps work best alongside a well-built theme. Pair them with ",
+                "marks": []
+              },
+              {
+                "_type": "span",
+                "_key": "kg2",
+                "text": "Shopify development",
+                "marks": ["kg1"]
+              },
+              {
+                "_type": "span",
+                "_key": "kg3",
+                "text": ", ",
+                "marks": []
+              },
+              {
+                "_type": "span",
+                "_key": "kg5",
+                "text": "Shopify Plus",
+                "marks": ["kg4"]
+              },
+              {
+                "_type": "span",
+                "_key": "kg6",
+                "text": " features or an ongoing ",
+                "marks": []
+              },
+              {
+                "_type": "span",
+                "_key": "kg8",
+                "text": "growth partnership",
+                "marks": ["kg7"]
+              },
+              {
+                "_type": "span",
+                "_key": "kg9",
+                "text": ".",
+                "marks": []
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "_type": "sectionSteps",
+        "_key": "kgb",
+        "eyebrow": "How we work",
+        "heading": "How we deliver Custom App Development.",
+        "steps": [
+          {
+            "_type": "step",
+            "_key": "kgc",
+            "title": "Discovery",
+            "body": "The workflow, data and edge cases mapped, with a clear spec and fixed quote."
+          },
+          {
+            "_type": "step",
+            "_key": "kgd",
+            "title": "Architecture",
+            "body": "APIs, data model, hosting and security planned before any code."
+          },
+          {
+            "_type": "step",
+            "_key": "kge",
+            "title": "Build",
+            "body": "Development in a dev store with progress you can try every week."
+          },
+          {
+            "_type": "step",
+            "_key": "kgf",
+            "title": "Test",
+            "body": "Real orders, edge cases and load tested before anything reaches your live store."
+          },
+          {
+            "_type": "step",
+            "_key": "kgg",
+            "title": "Launch & support",
+            "body": "Installed, monitored and maintained as Shopify’s APIs change."
+          }
+        ]
+      },
+      {
+        "_type": "sectionFit",
+        "_key": "kgh",
+        "eyebrow": "Is this right for you?",
+        "heading": "An honest answer before you get in touch.",
+        "goodTitle": "A good fit if",
+        "good": [
+          "You pay for several apps that together still do not fit your workflow",
+          "Your team repeats the same manual task in the admin every day",
+          "You need Shopify connected to an ERP, PIM or in-house system",
+          "You need custom discount, shipping or checkout logic"
+        ],
+        "notTitle": "Probably not yet if",
+        "notYet": [
+          "A well-reviewed App Store app already does the job",
+          "The process itself is still changing week to week",
+          "You have no budget for ongoing maintenance as APIs change"
+        ]
+      },
+      {
+        "_type": "sectionPitfalls",
+        "_key": "kgi",
+        "eyebrow": "Before you commit",
+        "heading": "What usually goes wrong.",
+        "lead": "Most problems are cheap to prevent and expensive to find later. This is what we watch for.",
+        "items": [
+          {
+            "_type": "pitfall",
+            "_key": "kgj",
+            "title": "Building what an app already does",
+            "body": "Custom code for a solved problem costs more to build and maintain.",
+            "fix": "We check the App Store and native features before writing code."
+          },
+          {
+            "_type": "pitfall",
+            "_key": "kgk",
+            "title": "Apps that slow the storefront",
+            "body": "Script-heavy apps add seconds to every page.",
+            "fix": "Functions and theme app extensions load only where needed."
+          },
+          {
+            "_type": "pitfall",
+            "_key": "kgl",
+            "title": "Fragile integrations",
+            "body": "Sync jobs that fail silently leave stock and orders wrong.",
+            "fix": "Retries, logging and alerts are built in from day one."
+          },
+          {
+            "_type": "pitfall",
+            "_key": "kgm",
+            "title": "Ignoring API versions",
+            "body": "Shopify retires API versions regularly, and old apps break.",
+            "fix": "Apps are kept on supported versions as part of support."
+          },
+          {
+            "_type": "pitfall",
+            "_key": "kgn",
+            "title": "No owner after launch",
+            "body": "Nobody knows how the app works when something changes.",
+            "fix": "You get documentation, the code and a team that knows it."
+          }
+        ]
+      },
+      {
+        "_type": "sectionCompare",
+        "_key": "kgo",
+        "eyebrow": "Compare",
+        "heading": "An App Store app or a custom app?",
+        "lead": "Off-the-shelf is usually the right start. Custom wins when the fit, cost or speed is wrong.",
+        "leftLabel": "App Store app",
+        "rightLabel": "Custom app by Heseven",
+        "rows": [
+          {
+            "_type": "compareRow",
+            "_key": "kgp",
+            "label": "Fit",
+            "left": "Built for thousands of stores",
+            "right": "Built around your exact workflow"
+          },
+          {
+            "_type": "compareRow",
+            "_key": "kgq",
+            "label": "Cost over time",
+            "left": "Monthly fees that grow with you",
+            "right": "One build, then maintenance"
+          },
+          {
+            "_type": "compareRow",
+            "_key": "kgr",
+            "label": "Speed",
+            "left": "Often loads scripts on every page",
+            "right": "Native Functions and extensions"
+          },
+          {
+            "_type": "compareRow",
+            "_key": "kgs",
+            "label": "Data",
+            "left": "Stored on the vendor’s servers",
+            "right": "Stays in your Shopify or your cloud"
+          },
+          {
+            "_type": "compareRow",
+            "_key": "kgt",
+            "label": "Changes",
+            "left": "Feature requests to a vendor",
+            "right": "Your roadmap, your priorities"
+          }
+        ]
+      },
+      {
+        "_type": "sectionPlans",
+        "_key": "kgu",
+        "eyebrow": "Ways to work together",
+        "heading": "Start small, or hand us the whole thing.",
+        "items": [
+          {
+            "_type": "plan",
+            "_key": "kgv",
+            "badge": "Fixed fee",
+            "title": "App & workflow audit",
+            "body": "Your app stack and manual workflows reviewed for what to replace or automate.",
+            "points": ["App stack review", "Workflow mapping", "Build or buy recommendations"]
+          },
+          {
+            "_type": "plan",
+            "_key": "kgw",
+            "badge": "Project",
+            "title": "Custom app build",
+            "body": "Spec, build, test and launch of your app or integration.",
+            "points": ["Technical spec", "Build and testing", "Launch and handover"]
+          },
+          {
+            "_type": "plan",
+            "_key": "kgx",
+            "badge": "Monthly",
+            "title": "App care",
+            "body": "Hosting, monitoring, API upgrades and new features.",
+            "points": ["Monitoring and alerts", "API version upgrades", "Feature development"]
+          }
+        ],
+        "cta": {
+          "_type": "cta",
+          "label": "Book a free intro call",
+          "href": "#quote"
+        }
+      },
+      {
+        "_type": "sectionTestimonials",
+        "_key": "kgy"
+      },
+      {
+        "_type": "sectionFaq",
+        "_key": "kgz",
+        "eyebrow": "FAQ",
+        "heading": "Custom App Development: questions, answered.",
+        "items": [
+          {
+            "_type": "faqItem",
+            "_key": "kh0",
+            "question": "When do I need a custom Shopify app?",
+            "answer": "When no App Store app fits your workflow, when you are paying for several apps to do one job, or when you need to connect Shopify to an in-house system."
+          },
+          {
+            "_type": "faqItem",
+            "_key": "kh1",
+            "question": "What is the difference between a private and a public app?",
+            "answer": "A custom (private) app is built for one store only. A public app is listed on the Shopify App Store for any merchant to install and must pass Shopify’s review."
+          },
+          {
+            "_type": "faqItem",
+            "_key": "kh2",
+            "question": "Can a custom app slow my store down?",
+            "answer": "Not when it is built properly. We use Shopify Functions and theme app extensions, which run natively and load only where needed."
+          },
+          {
+            "_type": "faqItem",
+            "_key": "kh3",
+            "question": "Who hosts and owns the app?",
+            "answer": "You own the code. We can host it on your own cloud account or manage hosting for you."
+          },
+          {
+            "_type": "faqItem",
+            "_key": "kh4",
+            "question": "How long does it take to build a Shopify app?",
+            "answer": "Small Functions or integrations take a few weeks; larger apps with admin screens typically take 6–12 weeks."
+          }
+        ]
+      },
+      {
+        "_type": "sectionLinks",
+        "_key": "kh5",
+        "eyebrow": "Keep reading",
+        "heading": "Everything around Custom App Development.",
+        "groups": [
+          {
+            "_type": "linkGroup",
+            "_key": "kh6",
+            "title": "Related services",
+            "links": [
+              {
+                "_type": "cta",
+                "_key": "kh7",
+                "label": "Shopify Website Development Services",
+                "href": "/pages/shopify-website-development-services"
+              },
+              {
+                "_type": "cta",
+                "_key": "kh8",
+                "label": "Shopify Plus Development Agency",
+                "href": "/pages/shopify-plus-development-agency"
+              },
+              {
+                "_type": "cta",
+                "_key": "kh9",
+                "label": "Growth Partnership",
+                "href": "/services/shopify-growth-partnership"
+              }
+            ]
+          },
+          {
+            "_type": "linkGroup",
+            "_key": "kha",
+            "title": "Read before you decide",
+            "links": [
+              {
+                "_type": "cta",
+                "_key": "khb",
+                "label": "What’s new in Shopify ecommerce development",
+                "href": "/blogs/news/what-s-new-in-shopify-ecommerce-development-for-2025"
+              },
+              {
+                "_type": "cta",
+                "_key": "khc",
+                "label": "Shopify development solutions for scalable stores",
+                "href": "/blogs/news/professional-shopify-development-solutions-services"
+              },
+              {
+                "_type": "cta",
+                "_key": "khd",
+                "label": "Why growing brands need a Shopify Plus agency",
+                "href": "/blogs/news/shopify-plus-ecommerce-agency-scale-your-brand"
+              }
+            ]
+          },
+          {
+            "_type": "linkGroup",
+            "_key": "khe",
+            "title": "Next steps",
+            "links": [
+              {
+                "_type": "cta",
+                "_key": "khf",
+                "label": "See our work",
+                "href": "/#work"
+              },
+              {
+                "_type": "cta",
+                "_key": "khg",
+                "label": "All services",
+                "href": "/services"
+              },
+              {
+                "_type": "cta",
+                "_key": "khh",
+                "label": "Contact us",
+                "href": "/pages/contact-us"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "_type": "sectionContact",
+        "_key": "khi",
+        "eyebrow": "Let's talk",
+        "heading": "Tell us about your Custom App Development project.",
+        "body": "A few quick questions and we will come back within one business day — with an honest view on whether this is the right next step.",
+        "points": [
+          "Reply within one business day",
+          "A senior specialist, not a sales team",
+          "No obligation, no hard sell"
+        ]
+      }
+    ],
+    "seo": {
+      "_type": "seo",
+      "title": "Shopify App Development | Custom & Private Apps",
+      "description": "Custom Shopify app development: private and public apps, Shopify Functions, checkout extensions and integrations, built by a Shopify Partner since 2018."
+    }
+  }
+]

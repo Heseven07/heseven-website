@@ -1,0 +1,168 @@
+---
+/**
+ * A rich-text section whose body is "subheading + paragraphs" groups (e.g. "Our approach"), drawn as an
+ * infographic: heading sticky on the left, the groups as numbered nodes on a glowing vertical line.
+ * Sections.astro picks this automatically via `toPoints()`; other rich text renders as plain prose.
+ */
+import SectionHead from './SectionHead.astro';
+import { toSegments } from '../../lib/portable-text';
+import type { PortableBlock } from '../../lib/sanity';
+
+export interface Point {
+  title: string;
+  body: PortableBlock[];
+}
+
+interface Props {
+  id: string;
+  eyebrow?: string;
+  heading?: string;
+  points: Point[];
+}
+const { id, eyebrow, heading, points } = Astro.props;
+const html = (blocks: PortableBlock[]) =>
+  toSegments(blocks)
+    .map((s) => (s.type === 'html' ? s.html : ''))
+    .join('');
+---
+
+<section class="relative overflow-hidden py-20 md:py-28" aria-labelledby={heading ? id : undefined}>
+  <div class="points-glow" aria-hidden="true"></div>
+  <div class="container-x relative grid gap-12 lg:grid-cols-12 lg:gap-16">
+    <div class="lg:col-span-5">
+      <div class="lg:sticky lg:top-32">
+        <SectionHead id={id} eyebrow={eyebrow} heading={heading} />
+        <p class="mt-6 inline-flex items-center gap-3 text-sm text-muted">
+          <span class="points-count">{String(points.length).padStart(2, '0')}</span>
+          principles behind every project
+        </p>
+      </div>
+    </div>
+    <ol class="points relative lg:col-span-7">
+      {points.map((p, i) => (
+        <li class="points-item" data-reveal style={`--reveal-delay:${i * 90}`}>
+          <span class="points-node" aria-hidden="true">
+            {String(i + 1).padStart(2, '0')}
+          </span>
+          <div class="points-card card">
+            <h3 class="text-xl font-semibold md:text-2xl">{p.title}</h3>
+            <div class="prose points-body mt-3" set:html={html(p.body)} />
+          </div>
+        </li>
+      ))}
+    </ol>
+  </div>
+</section>
+
+<style>
+  .points-glow {
+    position: absolute;
+    inset: 10% -20% auto auto;
+    width: 36rem;
+    height: 36rem;
+    border-radius: 50%;
+    background: radial-gradient(closest-side, rgb(139 108 255 / 0.14), transparent);
+    pointer-events: none;
+  }
+  .points-count {
+    display: inline-grid;
+    place-items: center;
+    width: 2.5rem;
+    height: 2.5rem;
+    border-radius: 999px;
+    border: 1px solid var(--color-line);
+    font-family: var(--font-display);
+    font-weight: 700;
+    color: var(--color-lime);
+  }
+  .points {
+    --node: 3rem;
+    display: grid;
+    gap: 1.25rem;
+  }
+  /* The line linking the nodes: lime → violet, fading out at the end. */
+  .points::before {
+    content: '';
+    position: absolute;
+    top: calc(var(--node) / 2);
+    bottom: calc(var(--node) / 2);
+    left: calc(var(--node) / 2 - 1px);
+    width: 2px;
+    background: linear-gradient(var(--color-lime), var(--color-violet) 70%, transparent);
+    opacity: 0.6;
+  }
+  .points-item {
+    position: relative;
+    display: grid;
+    grid-template-columns: var(--node) 1fr;
+    gap: 1.25rem;
+    align-items: start;
+  }
+  .points-node {
+    position: relative;
+    display: grid;
+    place-items: center;
+    width: var(--node);
+    height: var(--node);
+    border-radius: 999px;
+    background: var(--color-ink);
+    border: 1px solid rgb(181 243 107 / 0.5);
+    box-shadow:
+      0 0 0 6px var(--color-ink),
+      0 0 24px rgb(181 243 107 / 0.25);
+    font-family: var(--font-display);
+    font-size: 0.875rem;
+    font-weight: 700;
+    color: var(--color-lime);
+  }
+  .points-card {
+    position: relative;
+    padding: 1.75rem;
+    transition:
+      border-color 0.3s,
+      transform 0.3s;
+  }
+  .points-card:hover {
+    border-color: rgb(181 243 107 / 0.35);
+    transform: translateX(4px);
+  }
+  /* Arrow from the card towards its node. */
+  .points-card::before {
+    content: '';
+    position: absolute;
+    top: calc(var(--node) / 2 - 6px);
+    left: -7px;
+    width: 12px;
+    height: 12px;
+    rotate: 45deg;
+    background: inherit;
+    border-left: 1px solid var(--color-line);
+    border-bottom: 1px solid var(--color-line);
+  }
+  .points-body :global(p) {
+    margin: 0;
+    color: var(--color-muted);
+  }
+  .points-body :global(p + p) {
+    margin-top: 0.75rem;
+  }
+  @media (min-width: 768px) {
+    .points {
+      --node: 3.5rem;
+      gap: 1.5rem;
+    }
+    .points-node {
+      font-size: 1rem;
+    }
+    .points-card {
+      padding: 2rem;
+    }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .points-card,
+    .points-card:hover {
+      transition: none;
+      transform: none;
+    }
+  }
+</style>
