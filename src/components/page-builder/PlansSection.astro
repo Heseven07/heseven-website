@@ -1,0 +1,112 @@
+---
+/** "Ways to work together" — engagement models as cards with a badge (Fixed fee / Project / Monthly). */
+import SectionHead from './SectionHead.astro';
+import CtaButton from './CtaButton.astro';
+import type { Cta } from '../../lib/sanity';
+
+interface Plan {
+  _key?: string;
+  badge?: string;
+  title: string;
+  body?: string;
+  points?: string[];
+}
+interface Props {
+  id: string;
+  eyebrow?: string;
+  heading?: string;
+  lead?: string;
+  items?: Plan[];
+  cta?: Cta;
+}
+const { id, eyebrow, heading, lead, items = [], cta } = Astro.props;
+---
+
+<section class="bg-ink-2 py-20 md:py-28" aria-labelledby={heading ? id : undefined}>
+  <div class="container-x">
+    <SectionHead id={id} eyebrow={eyebrow} heading={heading} lead={lead} />
+    <ul class="mt-12 grid gap-4 lg:grid-cols-3">
+      {items.map((p, i) => (
+        <li class:list={['plan card', i === 1 && 'plan--lit']} data-reveal style={`--reveal-delay:${i * 90}`}>
+          <span class="plan-top">
+            <span class="plan-step">{String(i + 1).padStart(2, '0')}</span>
+            {p.badge && <span class="plan-badge">{p.badge}</span>}
+          </span>
+          <h3 class="mt-8 font-display text-2xl font-bold">{p.title}</h3>
+          {p.body && <p class="mt-3 text-muted">{p.body}</p>}
+          {p.points?.length ? (
+            <ul class="plan-points">
+              {p.points.map((pt) => (
+                <li>{pt}</li>
+              ))}
+            </ul>
+          ) : null}
+        </li>
+      ))}
+    </ul>
+    {cta && (
+      <div class="mt-10">
+        <CtaButton cta={cta} />
+      </div>
+    )}
+  </div>
+</section>
+
+<style>
+  .plan {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    padding: 2rem;
+  }
+  .plan--lit {
+    border-color: rgb(181 243 107 / 0.35);
+    background:
+      radial-gradient(100% 60% at 50% 0%, rgb(181 243 107 / 0.1), transparent 70%), rgb(29 26 40 / 0.4);
+  }
+  .plan-top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .plan-step {
+    font-family: var(--font-display);
+    font-size: 0.875rem;
+    letter-spacing: 0.1em;
+    color: var(--color-muted);
+  }
+  .plan-badge {
+    padding: 0.3rem 0.75rem;
+    border-radius: 999px;
+    border: 1px solid var(--color-line);
+    font-size: 0.7rem;
+    font-weight: 600;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--color-muted);
+  }
+  .plan--lit .plan-badge {
+    border-color: rgb(181 243 107 / 0.4);
+    background: rgb(181 243 107 / 0.1);
+    color: var(--color-lime);
+  }
+  .plan-points {
+    display: grid;
+    gap: 0.6rem;
+    margin-top: 1.5rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--color-line);
+  }
+  .plan-points li {
+    position: relative;
+    padding-left: 1.6rem;
+    font-size: 0.95rem;
+  }
+  .plan-points li::before {
+    content: '✓';
+    position: absolute;
+    left: 0;
+    color: var(--color-lime);
+    font-weight: 700;
+  }
+</style>

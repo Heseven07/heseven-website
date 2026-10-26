@@ -74,44 +74,79 @@ export const about = {
   body: 'Since 2018 we have helped founders and growing brands launch, migrate and scale on Shopify. Strategy, design, development and support live under one roof — so nothing gets lost in hand-offs.',
 };
 
-/** `slug` = page handle → URL /pages/<slug> (matches heseven.com's Shopify handles). */
-export type Service = { slug: string; title: string; summary: string; icon: string };
+/**
+ * `slug` = page handle → URL /pages/<slug> (matches heseven.com's Shopify handles); `href` overrides it
+ * for services that live at /services/<handle>.
+ * `tag` = small label on the homepage card; `viz` = which animated illustration it shows (Services.astro).
+ */
+export type ServiceViz = 'build' | 'migrate' | 'cro' | 'speed' | 'seo' | 'care' | 'app';
+export type Service = {
+  slug: string;
+  title: string;
+  summary: string;
+  icon: string;
+  tag: string;
+  viz: ServiceViz;
+  href?: string;
+};
 export const services: Service[] = [
   {
     slug: 'shopify-website-development-services',
     title: 'Store Development',
     summary: 'Custom Shopify and Shopify Plus themes built for speed, conversion and easy editing.',
     icon: icons.code,
+    tag: 'Build',
+    viz: 'build',
   },
   {
     slug: 'ecommerce-platform-migration-service',
     title: 'Platform Migration',
     summary: 'Move from WooCommerce, Magento or BigCommerce with zero data loss and SEO intact.',
     icon: icons.migrate,
+    tag: 'Migrate',
+    viz: 'migrate',
   },
   {
     slug: 'conversion-rate-optimisation',
     title: 'Conversion Optimisation',
     summary: 'Research-led UX changes and A/B tests that turn more visitors into customers.',
     icon: icons.trend,
+    tag: 'A/B tests',
+    viz: 'cro',
   },
   {
     slug: 'speed-optimization',
     title: 'Speed Optimisation',
     summary: 'Core Web Vitals fixes, app audits and image pipelines for a faster storefront.',
     icon: icons.bolt,
+    tag: 'Performance',
+    viz: 'speed',
   },
   {
     slug: 'shopify-seo-services',
     title: 'Shopify SEO',
     summary: 'Technical SEO, structured data and content that compounds organic revenue.',
     icon: icons.search,
+    tag: 'Organic',
+    viz: 'seo',
   },
   {
     slug: 'shopify-maintenance-service',
     title: 'Store Maintenance',
     summary: 'A dedicated team on retainer for updates, fixes and continuous improvements.',
     icon: icons.clock,
+    tag: 'Care',
+    viz: 'care',
+  },
+  {
+    slug: 'shopify-app-development',
+    href: '/services/shopify-app-development',
+    title: 'Custom App Development',
+    summary:
+      'Private and public Shopify apps, Functions and integrations — built when no app on the store does the job right.',
+    icon: icons.code,
+    tag: 'Apps',
+    viz: 'app',
   },
 ];
 

@@ -1,5 +1,5 @@
 /*
- * Deferred styles — everything that isn't needed for the first paint: the contact orb, cursor smoke,
+ * Deferred styles — everything that isn't needed for the first paint: the contact orb, the Services card animations,
  * the inside of the Services mega menu, the logo glint/flip, the About grid + comets, the Work 3D roll
  * and the globe card. global.css is inlined into every page (render-blocking); this file is loaded
  * without blocking render (see BaseLayout), which keeps the inlined CSS — and LCP — small.
@@ -196,17 +196,6 @@
     }
   }
 
-  /* Cursor splash canvas (scripts/cursor-smoke.ts): over everything, never catches clicks; screen-blended
-     so the ink only brightens what's under it and never hides button/link text */
-  .cursor-smoke {
-    mix-blend-mode: screen;
-    position: fixed;
-    inset: 0;
-    z-index: 60;
-    width: 100%;
-    height: 100%;
-    pointer-events: none;
-  }
   .mega-panel {
     @apply relative overflow-hidden rounded-[1.75rem] border border-white/10 p-8 text-fg xl:p-10;
     /* Fully opaque: translucency let page headings show through */
@@ -656,6 +645,274 @@
   /* Earth turns west → east, so the surface drifts left to right */
   @keyframes globe-spin {
     from {
+      transform: translateX(-50%);
+    }
+  }
+}
+
+/* Services bento — card mini-UI motion (layout is in Services.astro). Runs only while a card is on screen. */
+@layer components {
+  @media (prefers-reduced-motion: no-preference) {
+    .sv-card * {
+      animation-play-state: paused;
+    }
+    .sv-card.is-inview * {
+      animation-play-state: running;
+    }
+
+    /* Build: tiles pop in one by one, button pings, code chip floats */
+    .sv-tiles span {
+      animation: sv-pop 4.8s var(--ease-out-expo) infinite both;
+    }
+    .sv-tiles span:nth-child(2) {
+      animation-delay: 0.25s;
+    }
+    .sv-tiles span:nth-child(3) {
+      animation-delay: 0.5s;
+    }
+    .sv-hero .sv-ln {
+      transform-origin: left;
+      animation: sv-grow 4.8s var(--ease-out-expo) infinite both;
+    }
+    .sv-hero .sv-ln + .sv-ln {
+      animation-delay: 0.15s;
+    }
+    .sv-btn::after {
+      animation: sv-ping 2.4s ease-out infinite;
+    }
+    .sv-code {
+      animation: sv-float 5s ease-in-out infinite;
+    }
+    .sv-os {
+      animation: sv-float 5s ease-in-out -2.5s infinite;
+    }
+
+    /* Migrate: packets run along the path */
+    .sv-path i {
+      animation: sv-travel 2.4s linear infinite;
+    }
+    .sv-path i:nth-child(2) {
+      animation-delay: 0.8s;
+    }
+    .sv-path i:nth-child(3) {
+      animation-delay: 1.6s;
+    }
+    .sv-node--to {
+      animation: sv-glow 2.4s ease-in-out infinite;
+    }
+
+    /* Apps: data flows both ways, settings toggle */
+    .sv-path--back i {
+      animation-direction: reverse;
+    }
+    .sv-toggle::after {
+      animation: sv-toggle 3.2s var(--ease-out-expo) infinite;
+    }
+    .sv-toggle--2::after {
+      animation-delay: -1.6s;
+    }
+    .sv-installed {
+      animation: sv-pop-late 4s var(--ease-out-expo) infinite both;
+    }
+
+    /* CRO: bars race, B wins */
+    .sv-fill--a {
+      animation: sv-bar-a 4s var(--ease-out-expo) infinite both;
+    }
+    .sv-fill--b {
+      animation: sv-bar-b 4s var(--ease-out-expo) infinite both;
+    }
+    .sv-check,
+    .sv-win {
+      animation: sv-pop-late 4s var(--ease-out-expo) infinite both;
+    }
+
+    /* Speed: needle sweeps from slow to fast */
+    .sv-needle {
+      animation: sv-needle 4s var(--ease-out-expo) infinite both;
+    }
+
+    /* SEO: caret blinks; our result climbs to #1 */
+    .sv-caret {
+      animation: sv-blink 1s steps(1) infinite;
+    }
+    .sv-res--you {
+      animation: sv-climb 5s var(--ease-out-expo) infinite both;
+    }
+    .sv-res--1,
+    .sv-res--2 {
+      animation: sv-drop 5s var(--ease-out-expo) infinite both;
+    }
+
+    /* Care: heartbeat scrolls, tickets get ticked */
+    .sv-pulse svg {
+      animation: sv-scroll 3s linear infinite;
+    }
+    .sv-tick {
+      animation: sv-pop-late 4s var(--ease-out-expo) infinite both;
+    }
+    .sv-tick--2 {
+      animation-delay: 0.6s;
+    }
+  }
+
+  @keyframes sv-pop {
+    0%,
+    8% {
+      opacity: 0;
+      transform: scale(0.7);
+    }
+    25%,
+    85% {
+      opacity: 1;
+      transform: none;
+    }
+    100% {
+      opacity: 0;
+      transform: scale(0.95);
+    }
+  }
+  @keyframes sv-grow {
+    0% {
+      transform: scaleX(0);
+    }
+    25%,
+    100% {
+      transform: none;
+    }
+  }
+  @keyframes sv-ping {
+    0% {
+      opacity: 0.8;
+      transform: none;
+    }
+    70%,
+    100% {
+      opacity: 0;
+      transform: scale(1.5, 2);
+    }
+  }
+  @keyframes sv-float {
+    50% {
+      transform: translateY(-8px);
+    }
+  }
+  @keyframes sv-travel {
+    0% {
+      opacity: 0;
+      transform: translateX(0);
+    }
+    15%,
+    85% {
+      opacity: 1;
+    }
+    100% {
+      opacity: 0;
+      transform: translateX(calc(100cqw - 8px));
+    }
+  }
+  @keyframes sv-glow {
+    50% {
+      transform: scale(1.06);
+    }
+  }
+  @keyframes sv-bar-a {
+    0%,
+    10% {
+      transform: scaleX(0.05);
+    }
+    45%,
+    100% {
+      transform: scaleX(0.55);
+    }
+  }
+  @keyframes sv-bar-b {
+    0%,
+    10% {
+      transform: scaleX(0.05);
+    }
+    55%,
+    100% {
+      transform: scaleX(0.88);
+    }
+  }
+  @keyframes sv-pop-late {
+    0%,
+    50% {
+      opacity: 0;
+      transform: scale(0.4);
+    }
+    62%,
+    92% {
+      opacity: 1;
+      transform: none;
+    }
+    100% {
+      opacity: 0;
+    }
+  }
+  @keyframes sv-needle {
+    0%,
+    10% {
+      transform: rotate(-75deg);
+    }
+    35% {
+      transform: rotate(10deg);
+    }
+    60%,
+    92% {
+      transform: rotate(62deg);
+    }
+    100% {
+      transform: rotate(-75deg);
+    }
+  }
+  @keyframes sv-blink {
+    50% {
+      opacity: 0;
+    }
+  }
+  @keyframes sv-climb {
+    0%,
+    20% {
+      transform: none;
+    }
+    45%,
+    90% {
+      transform: translateY(-3.3rem);
+    }
+    100% {
+      transform: none;
+    }
+  }
+  @keyframes sv-drop {
+    0%,
+    20% {
+      transform: none;
+    }
+    45%,
+    90% {
+      transform: translateY(1.65rem);
+    }
+    100% {
+      transform: none;
+    }
+  }
+  @keyframes sv-toggle {
+    0%,
+    40% {
+      transform: none;
+    }
+    50%,
+    90% {
+      transform: translateX(0.7rem);
+    }
+    100% {
+      transform: none;
+    }
+  }
+  @keyframes sv-scroll {
+    to {
       transform: translateX(-50%);
     }
   }

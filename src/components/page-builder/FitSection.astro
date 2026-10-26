@@ -1,0 +1,138 @@
+---
+/** "Is this right for you?" — a lit card for a good fit, a muted one for "not yet". */
+import SectionHead from './SectionHead.astro';
+import CtaButton from './CtaButton.astro';
+import type { Cta } from '../../lib/sanity';
+
+interface Props {
+  id: string;
+  eyebrow?: string;
+  heading?: string;
+  goodTitle?: string;
+  good?: string[];
+  notTitle?: string;
+  notYet?: string[];
+  cta?: Cta;
+}
+const {
+  id,
+  eyebrow,
+  heading,
+  goodTitle = 'A good fit if',
+  good = [],
+  notTitle = 'Probably not yet if',
+  notYet = [],
+  cta,
+} = Astro.props;
+---
+
+<section class="container-x py-20 md:py-28" aria-labelledby={heading ? id : undefined}>
+  <SectionHead id={id} eyebrow={eyebrow} heading={heading} />
+  <div class="mt-12 grid gap-4 md:grid-cols-2">
+    <div class="fit fit--yes card" data-reveal>
+      <p class="fit-title">
+        <span class="fit-badge" aria-hidden="true">
+          ✓
+        </span>
+        {goodTitle}
+      </p>
+      <ul class="fit-list">
+        {good.map((g) => (
+          <li>{g}</li>
+        ))}
+      </ul>
+    </div>
+    <div class="fit fit--no card" data-reveal style="--reveal-delay:100">
+      <p class="fit-title">
+        <span class="fit-badge" aria-hidden="true">
+          ✕
+        </span>
+        {notTitle}
+      </p>
+      <ul class="fit-list">
+        {notYet.map((g) => (
+          <li>{g}</li>
+        ))}
+      </ul>
+    </div>
+  </div>
+  {cta && (
+    <div class="mt-10">
+      <CtaButton cta={cta} />
+    </div>
+  )}
+</section>
+
+<style>
+  .fit {
+    position: relative;
+    overflow: hidden;
+    padding: 2rem;
+  }
+  @media (min-width: 768px) {
+    .fit {
+      padding: 2.5rem;
+    }
+  }
+  .fit--yes {
+    border-color: rgb(181 243 107 / 0.35);
+    background:
+      radial-gradient(90% 70% at 0% 0%, rgb(181 243 107 / 0.12), transparent 70%), rgb(29 26 40 / 0.4);
+  }
+  .fit--no {
+    background: rgb(29 26 40 / 0.25);
+  }
+  .fit-title {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    font-family: var(--font-display);
+    font-size: 1.35rem;
+    font-weight: 700;
+  }
+  .fit-badge {
+    display: grid;
+    place-items: center;
+    width: 2rem;
+    height: 2rem;
+    flex: none;
+    border-radius: 50%;
+    font-size: 0.9rem;
+  }
+  .fit--yes .fit-badge {
+    background: var(--color-lime);
+    color: var(--color-ink);
+    box-shadow: 0 0 20px rgb(181 243 107 / 0.35);
+  }
+  .fit--no .fit-badge {
+    border: 1px solid var(--color-line);
+    color: var(--color-muted);
+  }
+  .fit-list {
+    display: grid;
+    gap: 0.9rem;
+    margin-top: 1.75rem;
+  }
+  .fit-list li {
+    position: relative;
+    padding-left: 1.5rem;
+    color: var(--color-muted);
+  }
+  .fit--yes .fit-list li {
+    color: var(--color-fg);
+  }
+  .fit-list li::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0.6em;
+    width: 0.5rem;
+    height: 0.5rem;
+    border-radius: 50%;
+    background: rgb(255 255 255 / 0.25);
+  }
+  .fit--yes .fit-list li::before {
+    background: var(--color-lime);
+    box-shadow: 0 0 8px var(--color-lime);
+  }
+</style>

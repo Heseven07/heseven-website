@@ -18,17 +18,20 @@ const blockText = (b: PortableBlock) => (b.children ?? []).map((c) => c.text ?? 
 
 /**
  * Posts migrated from Shopify start at h3/h4 (no h2), which breaks heading order under the page h1.
- * At render time only, shift every heading so the post's top level becomes h2. Stored content is untouched.
+ * At render time only, shift every heading so the body's top level becomes `top` (h2 for a post; h3
+ * inside a page-builder section that already has its own h2). Stored content is untouched.
  */
-export function normalizeHeadings(body: PortableBlock[] = []): PortableBlock[] {
+export function normalizeHeadings(body: PortableBlock[] = [], top = 2): PortableBlock[] {
   const levels = body.map((b) =>
     b._type === 'block' && /^h[1-6]$/.test(b.style ?? '') ? Number(b.style![1]) : 0,
   );
   const used = levels.filter(Boolean);
   if (!used.length) return body;
-  const shift = Math.min(...used) - 2;
-  if (shift <= 0) return body;
-  return body.map((b, i) => (levels[i] ? { ...b, style: `h${Math.max(2, levels[i]! - shift)}` } : b));
+  const shift = Math.min(...used) - top;
+  if (shift === 0) return body;
+  return body.map((b, i) =>
+    levels[i] ? { ...b, style: `h${Math.min(6, Math.max(top, levels[i]! - shift))}` } : b,
+  );
 }
 
 /** Links to the old domain stay on this site (made relative) instead of opening a new tab. */
@@ -58,8 +61,8 @@ const components: Partial<PortableTextHtmlComponents> = {
 
 export type BodySegment = { type: 'html'; html: string } | { type: 'image'; block: PortableBlock };
 
-export function toSegments(raw: PortableBlock[] = []): BodySegment[] {
-  const body = normalizeHeadings(raw);
+export function toSegments(raw: PortableBlock[] = [], top = 2): BodySegment[] {
+  const body = normalizeHeadings(raw, top);
   const out: BodySegment[] = [];
   let run: PortableBlock[] = [];
   const flush = () => {

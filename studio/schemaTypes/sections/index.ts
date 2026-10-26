@@ -180,6 +180,174 @@ export const sectionCta = defineType({
   preview: preview('CTA'),
 });
 
+const stringList = (name: string, title: string) =>
+  defineField({ name, title, type: 'array', of: [defineArrayMember({ type: 'string' })] });
+
+export const sectionFit = defineType({
+  name: 'sectionFit',
+  title: 'Is this right for you?',
+  type: 'object',
+  description: 'Two columns: when the service is a good fit, and when it is not (yet).',
+  fields: [
+    ...sectionIntro,
+    defineField({
+      name: 'goodTitle',
+      title: 'Good fit — column title',
+      type: 'string',
+      initialValue: 'A good fit if',
+    }),
+    stringList('good', 'Good fit — points'),
+    defineField({
+      name: 'notTitle',
+      title: 'Not yet — column title',
+      type: 'string',
+      initialValue: 'Probably not yet if',
+    }),
+    stringList('notYet', 'Not yet — points'),
+    defineField({ name: 'cta', title: 'Button (optional)', type: 'cta' }),
+  ],
+  preview: preview('Fit check'),
+});
+
+export const sectionPitfalls = defineType({
+  name: 'sectionPitfalls',
+  title: 'Common pitfalls',
+  type: 'object',
+  fields: [
+    ...sectionIntro,
+    defineField({ name: 'lead', title: 'Intro text', type: 'text', rows: 2 }),
+    defineField({
+      name: 'items',
+      type: 'array',
+      of: [
+        defineArrayMember({
+          type: 'object',
+          name: 'pitfall',
+          fields: [
+            defineField({ name: 'title', type: 'string', validation: (r) => r.required() }),
+            defineField({ name: 'body', title: 'What goes wrong', type: 'text', rows: 3 }),
+            defineField({ name: 'fix', title: 'How we avoid it', type: 'string' }),
+          ],
+          preview: { select: { title: 'title', subtitle: 'fix' } },
+        }),
+      ],
+    }),
+  ],
+  preview: preview('Pitfalls'),
+});
+
+export const sectionCompare = defineType({
+  name: 'sectionCompare',
+  title: 'Comparison table',
+  type: 'object',
+  fields: [
+    ...sectionIntro,
+    defineField({ name: 'lead', title: 'Intro text', type: 'text', rows: 2 }),
+    defineField({ name: 'leftLabel', title: 'Left column', type: 'string', validation: (r) => r.required() }),
+    defineField({
+      name: 'rightLabel',
+      title: 'Right column (highlighted)',
+      type: 'string',
+      validation: (r) => r.required(),
+    }),
+    defineField({
+      name: 'rows',
+      type: 'array',
+      of: [
+        defineArrayMember({
+          type: 'object',
+          name: 'compareRow',
+          fields: [
+            defineField({ name: 'label', type: 'string', validation: (r) => r.required() }),
+            defineField({ name: 'left', type: 'string' }),
+            defineField({ name: 'right', type: 'string' }),
+          ],
+          preview: { select: { title: 'label', subtitle: 'right' } },
+        }),
+      ],
+    }),
+    defineField({ name: 'note', title: 'Footnote', type: 'string' }),
+  ],
+  preview: preview('Comparison'),
+});
+
+export const sectionPlans = defineType({
+  name: 'sectionPlans',
+  title: 'Ways to work together',
+  type: 'object',
+  fields: [
+    ...sectionIntro,
+    defineField({ name: 'lead', title: 'Intro text', type: 'text', rows: 2 }),
+    defineField({
+      name: 'items',
+      type: 'array',
+      of: [
+        defineArrayMember({
+          type: 'object',
+          name: 'plan',
+          fields: [
+            defineField({ name: 'badge', type: 'string', description: 'e.g. Fixed fee, Project, Monthly' }),
+            defineField({ name: 'title', type: 'string', validation: (r) => r.required() }),
+            defineField({ name: 'body', type: 'text', rows: 3 }),
+            stringList('points', 'Included'),
+          ],
+          preview: { select: { title: 'title', subtitle: 'badge' } },
+        }),
+      ],
+    }),
+    defineField({ name: 'cta', title: 'Button', type: 'cta' }),
+  ],
+  preview: preview('Plans'),
+});
+
+export const sectionLinks = defineType({
+  name: 'sectionLinks',
+  title: 'Link hub',
+  type: 'object',
+  description: 'Grouped links to related services and guides.',
+  fields: [
+    ...sectionIntro,
+    defineField({
+      name: 'groups',
+      type: 'array',
+      of: [
+        defineArrayMember({
+          type: 'object',
+          name: 'linkGroup',
+          fields: [
+            defineField({ name: 'title', type: 'string', validation: (r) => r.required() }),
+            defineField({ name: 'links', type: 'array', of: [defineArrayMember({ type: 'cta' })] }),
+          ],
+          preview: { select: { title: 'title' } },
+        }),
+      ],
+    }),
+  ],
+  preview: preview('Link hub'),
+});
+
+export const sectionTestimonials = defineType({
+  name: 'sectionTestimonials',
+  title: 'Client reviews',
+  type: 'object',
+  description: 'Shows the client reviews from the homepage.',
+  fields: [...sectionIntro],
+  preview: preview('Reviews'),
+});
+
+export const sectionContact = defineType({
+  name: 'sectionContact',
+  title: 'Contact form',
+  type: 'object',
+  description: 'The quote form, with a short intro beside it. Use once per page.',
+  fields: [
+    ...sectionIntro,
+    defineField({ name: 'body', type: 'text', rows: 3 }),
+    stringList('points', 'Bullet points'),
+  ],
+  preview: preview('Contact form'),
+});
+
 export const sectionTypes = [
   sectionHero,
   sectionRichText,
@@ -188,5 +356,12 @@ export const sectionTypes = [
   sectionImageText,
   sectionSteps,
   sectionFaq,
+  sectionFit,
+  sectionPitfalls,
+  sectionCompare,
+  sectionPlans,
+  sectionTestimonials,
+  sectionLinks,
+  sectionContact,
   sectionCta,
 ];
