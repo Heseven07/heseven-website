@@ -177,3 +177,49 @@ function getBuilderPages(type: 'landingPage' | 'servicePage'): Promise<LandingPa
 export const getAllLandingPages = () => getBuilderPages('landingPage');
 /** Service pages at /services/<slug>. */
 export const getAllServicePages = () => getBuilderPages('servicePage');
+
+// ---------- Case studies ----------
+
+export type Accent = 'lime' | 'violet' | 'teal' | 'pink' | 'amber';
+export interface CaseStudy {
+  _id: string;
+  _updatedAt: string;
+  client: string;
+  slug: string;
+  website?: string;
+  headline: string;
+  summary: string;
+  industry: string;
+  platform?: string;
+  services: string[];
+  challenge?: string;
+  solution: { _key: string; title: string; body?: string }[];
+  highlights: string[];
+  result?: string;
+  quote?: { text?: string; name?: string; role?: string };
+  cover?: SanityImage;
+  mobile?: SanityImage;
+  gallery: SanityImage[];
+  fullStory: boolean;
+  featured?: boolean;
+  accent: Accent;
+  seo?: Post['seo'];
+}
+
+let caseStudyCache: Promise<CaseStudy[]> | undefined;
+
+/** Every published case study (full pages and "more recent work" links), in display order. */
+export function getCaseStudies(): Promise<CaseStudy[]> {
+  caseStudyCache ??= sanity.fetch<CaseStudy[]>(
+    `*[_type == "caseStudy" && defined(slug.current)]
+      | order(coalesce(order, 999) asc, _createdAt asc){
+        _id, _updatedAt, client, "slug": slug.current, website, headline, summary, industry, platform,
+        "services": coalesce(services, []), challenge, "solution": coalesce(solution, []),
+        "highlights": coalesce(highlights, []), result, quote,
+        cover{ ${imageFields} }, mobile{ ${imageFields} }, "gallery": coalesce(gallery[]{ ${imageFields} }, []),
+        "fullStory": fullStory != false, featured, "accent": coalesce(accent, "lime"),
+        seo{ title, description, noindex, ogImage{ ${imageFields} } }
+      }`,
+  );
+  return caseStudyCache;
+}

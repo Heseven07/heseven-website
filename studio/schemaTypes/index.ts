@@ -4,6 +4,7 @@ import { category } from './category';
 import { blockContent } from './blockContent';
 import { seo } from './seo';
 import { landingPage, servicePage } from './landingPage';
+import { caseStudy } from './caseStudy';
 import { sectionTypes } from './sections';
 import { cta } from './sections/shared';
 
@@ -15,6 +16,7 @@ export const schemaTypes = [
   seo,
   landingPage,
   servicePage,
+  caseStudy,
   cta,
   ...sectionTypes,
 ];

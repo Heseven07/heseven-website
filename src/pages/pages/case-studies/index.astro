@@ -1,0 +1,317 @@
+---
+/**
+ * Case studies listing at /pages/case-studies. Everything comes from Sanity (Studio → Case studies):
+ * a showreel wall of every store, full case studies as cards (featured first, then three a row), and the
+ * link-only entries as screenshot cards under "More recent work".
+ * Industry filter chips need JS; without it every card simply shows.
+ */
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import CaseCard from '../../../components/case-studies/CaseCard.astro';
+import ShowreelWall from '../../../components/case-studies/ShowreelWall.astro';
+import SanityImage from '../../../components/blog/SanityImage.astro';
+import Cta from '../../../components/sections/Cta.astro';
+import JsonLd from '../../../components/seo/JsonLd.astro';
+import { getCaseStudies } from '../../../lib/sanity';
+import { SITE } from '../../../config/site';
+
+const all = await getCaseStudies();
+const full = all.filter((c) => c.fullStory);
+const featured = full.find((c) => c.featured) ?? full[0];
+const rest = full.filter((c) => c !== featured);
+const recent = all.filter((c) => !c.fullStory && c.website);
+const industries = [...new Set(full.map((c) => c.industry))];
+const url = `${SITE.url}/pages/case-studies`;
+const host = (u: string) => new URL(u).hostname.replace(/^www\./, '');
+
+const schema = [
+  {
+    '@type': 'CollectionPage',
+    '@id': `${url}#webpage`,
+    url,
+    name: 'Shopify case studies',
+    isPartOf: { '@id': `${SITE.url}/#website` },
+    mainEntity: {
+      '@type': 'ItemList',
+      itemListElement: full.map((c, i) => ({
+        '@type': 'ListItem',
+        position: i + 1,
+        url: `${url}/${c.slug}`,
+        name: `${c.client}: ${c.headline}`,
+      })),
+    },
+  },
+  {
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      { '@type': 'ListItem', position: 1, name: 'Home', item: `${SITE.url}/` },
+      { '@type': 'ListItem', position: 2, name: 'Case studies', item: url },
+    ],
+  },
+];
+---
+
+<BaseLayout
+  title="Shopify Case Studies"
+  description="Shopify and Shopify Plus case studies from Heseven: bespoke themes, B2B and wholesale platforms, multi-vendor marketplaces and international stores."
+>
+  <section class="relative overflow-hidden" aria-labelledby="cs-title">
+    <div class="hero-bg" aria-hidden="true">
+      <div class="hero-glow"></div>
+      <div class="hero-grid"></div>
+    </div>
+    <div class="container-x pt-32 pb-16 md:pt-40 md:pb-20">
+      <p class="eyebrow">Case studies</p>
+      <h1 id="cs-title" class="mt-5 max-w-4xl text-5xl leading-[1.02] font-bold sm:text-7xl">
+        Stores we’ve designed, built and grown.
+      </h1>
+      <p class="mt-6 max-w-2xl text-lg text-muted">
+        Bespoke themes, B2B platforms, marketplaces and international stores on Shopify and Shopify Plus —
+        each built around a clear commercial goal.
+      </p>
+      <dl class="mt-10 flex flex-wrap gap-x-12 gap-y-4">
+        <div>
+          <dt class="text-sm text-muted">In-depth case studies</dt>
+          <dd class="font-display text-4xl font-bold">{full.length}</dd>
+        </div>
+        <div>
+          <dt class="text-sm text-muted">Stores in this portfolio</dt>
+          <dd class="font-display text-4xl font-bold">{full.length + recent.length}</dd>
+        </div>
+        <div>
+          <dt class="text-sm text-muted">Shopify Partner since</dt>
+          <dd class="font-display text-4xl font-bold">{SITE.foundingYear}</dd>
+        </div>
+      </dl>
+    </div>
+  </section>
+
+  <ShowreelWall stores={[...full, ...recent]} />
+
+  <section class="cs-lazy container-x pt-16 pb-24 md:pt-24 md:pb-32" aria-labelledby="all-title">
+    <h2 id="all-title" class="sr-only">
+      All case studies
+    </h2>
+    <div class="cs-filters" role="group" aria-label="Filter by industry" data-cs-filters>
+      <button type="button" class="chip-filter" aria-pressed="true" data-filter="">
+        All
+      </button>
+      {industries.map((ind) => (
+        <button type="button" class="chip-filter" aria-pressed="false" data-filter={ind}>
+          {ind}
+        </button>
+      ))}
+    </div>
+    <ul class="mt-8 grid gap-5 md:grid-cols-2 lg:grid-cols-3" data-cs-grid>
+      {featured && <CaseCard study={featured} featured />}
+      {rest.map((s, i) => (
+        <CaseCard study={s} delay={(i % 3) * 90} />
+      ))}
+    </ul>
+    <p class="mt-8 hidden text-muted" data-cs-empty>
+      No case studies in this industry yet.
+    </p>
+  </section>
+
+  {recent.length > 0 && (
+    <section class="cs-lazy bg-ink-2 py-20 md:py-28" aria-labelledby="recent-title">
+      <div class="container-x">
+        <p class="eyebrow">More recent work</p>
+        <h2 id="recent-title" class="mt-4 max-w-3xl text-4xl font-bold sm:text-5xl">
+          And plenty more stores, live today.
+        </h2>
+        <ul class="mt-12 grid gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+          {recent.map((r, i) => (
+            <li data-reveal style={`--reveal-delay:${(i % 4) * 70}`}>
+              <a href={r.website} target="_blank" rel="noopener" class="rw-card">
+                <span class="rw-frame">
+                  <span class="rw-bar" aria-hidden="true">
+                    <i />
+                    <i />
+                    <i />
+                  </span>
+                  <span class="rw-media">
+                    {r.cover ? (
+                      <SanityImage
+                        image={r.cover}
+                        alt={`${r.client} store homepage`}
+                        width={560}
+                        ratio={16 / 10}
+                        sizes="(min-width: 1280px) 22vw, (min-width: 640px) 45vw, 92vw"
+                        class="rw-img"
+                      />
+                    ) : (
+                      <span class="rw-ph">{r.client}</span>
+                    )}
+                  </span>
+                </span>
+                <span class="rw-meta">
+                  <span class="min-w-0">
+                    <span class="block truncate font-medium">{r.client}</span>
+                    <span class="block truncate text-sm text-muted">{host(r.website!)}</span>
+                  </span>
+                  <span class="rw-arrow" aria-hidden="true">
+                    ↗
+                  </span>
+                </span>
+                <span class="sr-only">(opens in a new tab)</span>
+              </a>
+            </li>
+          ))}
+        </ul>
+      </div>
+    </section>
+  )}
+
+  <div class="pt-24 md:pt-32">
+    <Cta />
+  </div>
+  <JsonLd data={schema} />
+</BaseLayout>
+
+<style>
+  /* Long, image-heavy sections: lay out and paint only near the viewport. */
+  .cs-lazy {
+    content-visibility: auto;
+    contain-intrinsic-size: auto 1600px;
+  }
+  .cs-filters {
+    display: none;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+  :global(.js) .cs-filters {
+    display: flex;
+  }
+  .chip-filter {
+    padding: 0.5rem 1rem;
+    border-radius: 999px;
+    border: 1px solid var(--color-line);
+    font-size: 0.875rem;
+    color: var(--color-muted);
+    transition:
+      background-color 0.2s,
+      color 0.2s,
+      border-color 0.2s;
+  }
+  .chip-filter:hover {
+    color: var(--color-fg);
+    border-color: rgb(255 255 255 / 0.25);
+  }
+  .chip-filter[aria-pressed='true'] {
+    background: var(--color-lime);
+    border-color: var(--color-lime);
+    color: var(--color-ink);
+  }
+  /* "More recent work" screenshot cards */
+  .rw-card {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    padding: 0.6rem;
+    border-radius: 1.25rem;
+    border: 1px solid var(--color-line);
+    background: rgb(29 26 40 / 0.35);
+    transition:
+      transform 0.5s var(--ease-out-expo),
+      border-color 0.3s;
+  }
+  .rw-card:hover {
+    transform: translateY(-6px);
+    border-color: rgb(181 243 107 / 0.4);
+  }
+  .rw-frame {
+    display: block;
+    overflow: hidden;
+    border-radius: 0.8rem;
+    border: 1px solid rgb(255 255 255 / 0.08);
+    background: var(--color-ink-2);
+  }
+  .rw-bar {
+    display: flex;
+    gap: 0.25rem;
+    padding: 0.4rem 0.55rem;
+    border-bottom: 1px solid rgb(255 255 255 / 0.08);
+  }
+  .rw-bar i {
+    width: 0.35rem;
+    height: 0.35rem;
+    border-radius: 50%;
+    background: rgb(255 255 255 / 0.2);
+  }
+  .rw-media {
+    display: block;
+    aspect-ratio: 16 / 10;
+    overflow: hidden;
+  }
+  .rw-media :global(.rw-img) {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: top;
+    transition: transform 1s var(--ease-out-expo);
+  }
+  .rw-card:hover :global(.rw-img) {
+    transform: scale(1.06);
+  }
+  .rw-ph {
+    display: grid;
+    place-items: center;
+    height: 100%;
+    font-family: var(--font-display);
+    color: var(--color-muted);
+  }
+  .rw-meta {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.75rem;
+    padding: 0.85rem 0.4rem 0.3rem;
+  }
+  .rw-arrow {
+    display: grid;
+    flex: none;
+    place-items: center;
+    width: 2rem;
+    height: 2rem;
+    border-radius: 50%;
+    border: 1px solid var(--color-line);
+    color: var(--color-lime);
+    transition:
+      transform 0.4s var(--ease-out-expo),
+      background-color 0.3s,
+      color 0.3s;
+  }
+  .rw-card:hover .rw-arrow {
+    background: var(--color-lime);
+    color: var(--color-ink);
+    transform: rotate(45deg);
+  }
+</style>
+
+<script>
+  // Industry filter: toggles cards by data-industry; "All" resets.
+  function initFilters() {
+    const bar = document.querySelector<HTMLElement>('[data-cs-filters]');
+    const cards = document.querySelectorAll<HTMLElement>('[data-cs-grid] > [data-industry]');
+    const empty = document.querySelector<HTMLElement>('[data-cs-empty]');
+    if (!bar) return;
+    bar.addEventListener('click', (e) => {
+      const btn = (e.target as Element).closest<HTMLButtonElement>('[data-filter]');
+      if (!btn) return;
+      const f = btn.dataset.filter ?? '';
+      bar.querySelectorAll('[data-filter]').forEach((b) => b.setAttribute('aria-pressed', String(b === btn)));
+      let shown = 0;
+      cards.forEach((c) => {
+        const on = !f || c.dataset.industry === f;
+        c.hidden = !on;
+        if (on) {
+          shown++;
+          c.classList.add('is-visible');
+        }
+      });
+      empty?.classList.toggle('hidden', shown > 0);
+    });
+  }
+  document.addEventListener('astro:page-load', initFilters);
+</script>

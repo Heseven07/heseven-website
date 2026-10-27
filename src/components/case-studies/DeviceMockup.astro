@@ -1,0 +1,194 @@
+---
+/**
+ * A case study's screenshots as devices: the desktop shot in a browser frame, the mobile shot in a phone
+ * overlapping its corner, an accent glow behind. Without a desktop shot (private platforms) it draws a
+ * branded cover with the client's initials instead.
+ */
+import SanityImage from '../blog/SanityImage.astro';
+import type { Accent, SanityImage as Img } from '../../lib/sanity';
+
+interface Props {
+  client: string;
+  website?: string;
+  cover?: Img;
+  mobile?: Img;
+  accent: Accent;
+  /** Hide the phone (small cards). */
+  phone?: boolean;
+  /** `sizes` for the desktop shot. */
+  sizes: string;
+  /** Load the desktop shot eagerly at high priority (above the fold, likely LCP). */
+  eager?: boolean;
+  class?: string;
+}
+const {
+  client,
+  website,
+  cover,
+  mobile,
+  accent,
+  phone = true,
+  sizes,
+  eager = false,
+  class: className,
+} = Astro.props;
+const host = website ? new URL(website).hostname.replace(/^www\./, '') : 'private platform';
+// "Black Sand" → BS; one-word names use their capitals ("CitizenM" → CM).
+const words = client.split(/\s+/);
+const initials = (
+  words.length > 1 ? words.map((w) => w[0]).join('') : (client.match(/[A-Z]/g) ?? [client[0]]).join('')
+)
+  .slice(0, 2)
+  .toUpperCase();
+---
+
+<div class:list={['dm', `dm--${accent}`, phone && mobile && 'dm--phone', className]}>
+  <div class="dm-browser">
+    <div class="dm-bar" aria-hidden="true">
+      <i></i>
+      <i></i>
+      <i></i>
+      <span class="dm-url">{host}</span>
+    </div>
+    <div class="dm-screen">
+      {cover ? (
+        <SanityImage
+          image={cover}
+          alt={cover.alt ?? `${client} store`}
+          width={1200}
+          ratio={16 / 10}
+          sizes={sizes}
+          loading={eager ? 'eager' : 'lazy'}
+          fetchpriority={eager ? 'high' : 'auto'}
+          class="dm-img"
+        />
+      ) : (
+        <div class="dm-placeholder" role="img" aria-label={`${client} — private platform`}>
+          <span class="dm-initials">{initials}</span>
+          <span class="dm-private">Private Shopify Plus platform</span>
+        </div>
+      )}
+    </div>
+  </div>
+  {phone && mobile && (
+    <div class="dm-phone">
+      <SanityImage
+        image={mobile}
+        alt={mobile.alt ?? `${client} store on mobile`}
+        width={320}
+        ratio={9 / 19.5}
+        sizes="160px"
+        class="dm-img"
+      />
+    </div>
+  )}
+</div>
+
+<style>
+  .dm {
+    --glow: 181 243 107;
+    position: relative;
+    isolation: isolate;
+  }
+  .dm--violet {
+    --glow: 139 108 255;
+  }
+  .dm--teal {
+    --glow: 94 234 212;
+  }
+  .dm--pink {
+    --glow: 244 114 182;
+  }
+  .dm--amber {
+    --glow: 251 191 36;
+  }
+  .dm::before {
+    content: '';
+    position: absolute;
+    inset: 8% 6% -6%;
+    z-index: -1;
+    border-radius: 50%;
+    background: radial-gradient(closest-side, rgb(var(--glow) / 0.28), transparent);
+    filter: blur(20px);
+  }
+  .dm--phone {
+    padding-right: 9%;
+    padding-bottom: 6%;
+  }
+  .dm-browser {
+    overflow: hidden;
+    border-radius: 0.9rem;
+    border: 1px solid var(--color-line);
+    background: var(--color-ink-2);
+    box-shadow: 0 30px 80px -30px rgb(0 0 0 / 0.8);
+  }
+  .dm-bar {
+    display: flex;
+    align-items: center;
+    gap: 0.35rem;
+    padding: 0.55rem 0.8rem;
+    border-bottom: 1px solid var(--color-line);
+  }
+  .dm-bar i {
+    width: 0.5rem;
+    height: 0.5rem;
+    border-radius: 50%;
+    background: rgb(255 255 255 / 0.18);
+  }
+  .dm-url {
+    margin-left: 0.6rem;
+    padding: 0.15rem 0.75rem;
+    border-radius: 999px;
+    background: rgb(255 255 255 / 0.06);
+    font-size: 0.7rem;
+    color: var(--color-muted);
+  }
+  .dm-screen {
+    aspect-ratio: 16 / 10;
+    overflow: hidden;
+  }
+  .dm :global(.dm-img) {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: top;
+  }
+  .dm-placeholder {
+    display: grid;
+    place-content: center;
+    gap: 0.75rem;
+    height: 100%;
+    text-align: center;
+    background:
+      radial-gradient(60% 80% at 30% 20%, rgb(var(--glow) / 0.35), transparent 70%),
+      linear-gradient(135deg, var(--color-ink-3), var(--color-ink));
+  }
+  .dm-initials {
+    font-family: var(--font-display);
+    font-size: clamp(3rem, 10vw, 7rem);
+    font-weight: 700;
+    line-height: 1;
+    color: rgb(var(--glow));
+  }
+  .dm-private {
+    font-size: 0.8rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--color-muted);
+  }
+  .dm-phone {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    width: 22%;
+    overflow: hidden;
+    border-radius: 1.4rem;
+    border: 4px solid #1b1924;
+    background: #000;
+    aspect-ratio: 9 / 19.5;
+    box-shadow:
+      0 0 0 1px var(--color-line),
+      0 24px 60px -20px rgb(0 0 0 / 0.9);
+  }
+</style>

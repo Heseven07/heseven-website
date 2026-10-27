@@ -24,7 +24,7 @@
 # Fallbacks for Shopify pages until they're built in Sanity (pruned automatically once they exist)
 /pages/about                                             /                                              301
 /pages/faqs                                              /                                              301
-/pages/our-work                                          /                                              301
+/pages/our-work                                          /pages/case-studies                            301
 /pages/case-studies                                      /#work                                         302
 /pages/get-in-touch                                      /pages/contact-us                              301
 /pages/new-lead                                          /pages/contact-us                              301

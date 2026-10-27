@@ -1,6 +1,5 @@
 /**
  * Pointer micro-interactions — only on devices with a real hover pointer.
- *  [data-tilt]      3D tilt + glare + cursor-follow badge (work cards)
  *  [data-spotlight] radial light following the cursor (cards)
  *  [data-magnetic]  element eases toward the cursor (primary CTAs)
  * Uses event delegation on document (bound once, survives view-transition swaps) and
@@ -20,20 +19,6 @@ export function initInteractions(reduceMotion: boolean) {
     frame = 0;
     const e = last;
     if (!e || !(e.target instanceof Element)) return;
-
-    const tilt = e.target.closest<HTMLElement>('[data-tilt]');
-    if (tilt) {
-      const media = tilt.querySelector<HTMLElement>('.work-media') ?? tilt;
-      const r = media.getBoundingClientRect();
-      const x = (e.clientX - r.left) / r.width;
-      const y = (e.clientY - r.top) / r.height;
-      media.style.setProperty('--rx', `${((0.5 - y) * 10).toFixed(2)}deg`);
-      media.style.setProperty('--ry', `${((x - 0.5) * 12).toFixed(2)}deg`);
-      media.style.setProperty('--mx', `${(x * 100).toFixed(1)}%`);
-      media.style.setProperty('--my', `${(y * 100).toFixed(1)}%`);
-      media.style.setProperty('--cx', `${(e.clientX - r.left).toFixed(0)}px`);
-      media.style.setProperty('--cy', `${(e.clientY - r.top).toFixed(0)}px`);
-    }
 
     const spot = e.target.closest<HTMLElement>('[data-spotlight]');
     if (spot) {
@@ -62,15 +47,9 @@ export function initInteractions(reduceMotion: boolean) {
     { passive: true },
   );
 
-  // Reset tilt when the pointer leaves a card (pointerout bubbles; check we truly left it).
+  // Release the magnet when the pointer leaves it (pointerout bubbles; check we truly left it).
   document.addEventListener('pointerout', (e) => {
     if (!(e.target instanceof Element)) return;
-    const tilt = e.target.closest<HTMLElement>('[data-tilt]');
-    if (tilt && !(e.relatedTarget instanceof Node && tilt.contains(e.relatedTarget))) {
-      const media = tilt.querySelector<HTMLElement>('.work-media') ?? tilt;
-      media.style.setProperty('--rx', '0deg');
-      media.style.setProperty('--ry', '0deg');
-    }
     if (magnet && !(e.relatedTarget instanceof Node && magnet.contains(e.relatedTarget))) {
       magnet.style.translate = '';
       magnet = null;

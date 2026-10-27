@@ -1,0 +1,429 @@
+---
+/**
+ * One case study at /pages/case-studies/<slug>, from Sanity (Studio → Case studies, "Has its own page" on).
+ * Hero + project facts → device showcase → the brief / what we did / the result (with a sticky contents
+ * list on desktop) → optional quote and gallery → next case study → CTA.
+ */
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import DeviceMockup from '../../../components/case-studies/DeviceMockup.astro';
+import SanityImage from '../../../components/blog/SanityImage.astro';
+import Cta from '../../../components/sections/Cta.astro';
+import JsonLd from '../../../components/seo/JsonLd.astro';
+import { getCaseStudies, imageUrl, type CaseStudy } from '../../../lib/sanity';
+import { SITE } from '../../../config/site';
+
+export async function getStaticPaths() {
+  const full = (await getCaseStudies()).filter((c) => c.fullStory);
+  return full.map((study, i) => ({
+    params: { slug: study.slug },
+    props: { study, next: full[(i + 1) % full.length] },
+  }));
+}
+
+const { study: s, next } = Astro.props as { study: CaseStudy; next: CaseStudy };
+const url = `${SITE.url}/pages/case-studies/${s.slug}`;
+const host = s.website ? new URL(s.website).hostname.replace(/^www\./, '') : undefined;
+const shareImage =
+  (s.seo?.ogImage ?? s.cover)
+    ? imageUrl((s.seo?.ogImage ?? s.cover)!)
+        .width(1200)
+        .height(630)
+        .fit('crop')
+        .format('jpg')
+        .url()
+    : undefined;
+const sections = [
+  s.challenge && { id: 'brief', label: 'The brief' },
+  s.solution.length && { id: 'what-we-did', label: 'What we did' },
+  s.result && { id: 'result', label: 'The result' },
+].filter(Boolean) as { id: string; label: string }[];
+
+const schema = [
+  {
+    '@type': 'CreativeWork',
+    '@id': `${url}#casestudy`,
+    url,
+    name: `${s.client}: ${s.headline}`,
+    headline: s.headline,
+    description: s.summary,
+    about: { '@type': 'Organization', name: s.client, ...(s.website ? { url: s.website } : {}) },
+    creator: { '@id': `${SITE.url}/#organization` },
+    keywords: [s.industry, ...s.services].join(', '),
+    ...(shareImage ? { image: shareImage } : {}),
+    dateModified: s._updatedAt,
+  },
+  {
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      { '@type': 'ListItem', position: 1, name: 'Home', item: `${SITE.url}/` },
+      { '@type': 'ListItem', position: 2, name: 'Case studies', item: `${SITE.url}/pages/case-studies` },
+      { '@type': 'ListItem', position: 3, name: s.client, item: url },
+    ],
+  },
+];
+---
+
+<BaseLayout
+  title={s.seo?.title ?? `${s.client} Case Study`}
+  description={s.seo?.description ?? s.summary}
+  image={shareImage}
+  noindex={s.seo?.noindex}
+  type="article"
+>
+  <article class:list={['cs', `cs--${s.accent}`]}>
+    <header class="relative overflow-hidden">
+      <div class="hero-bg" aria-hidden="true">
+        <div class="hero-glow"></div>
+        <div class="hero-grid"></div>
+      </div>
+      <div class="container-x pt-32 md:pt-40">
+        <nav aria-label="Breadcrumb" class="text-sm text-muted">
+          <ol class="flex flex-wrap items-center gap-2">
+            <li>
+              <a href="/" class="hover:text-fg">
+                Home
+              </a>
+            </li>
+            <li aria-hidden="true">/</li>
+            <li>
+              <a href="/pages/case-studies" class="hover:text-fg">
+                Case studies
+              </a>
+            </li>
+            <li aria-hidden="true">/</li>
+            <li aria-current="page" class="text-fg">
+              {s.client}
+            </li>
+          </ol>
+        </nav>
+        <p class="eyebrow mt-10">
+          {s.industry}
+          {s.platform && ` · ${s.platform}`}
+        </p>
+        <h1 class="mt-5 max-w-5xl text-5xl leading-[1.02] font-bold sm:text-7xl">{s.client}</h1>
+        <p class="mt-6 max-w-3xl text-xl text-fg/85 sm:text-2xl">{s.headline}</p>
+        <div class="mt-8 flex flex-wrap gap-3">
+          {s.website && (
+            <a href={s.website} target="_blank" rel="noopener" class="btn btn-primary btn-lg">
+              Visit {host} <span aria-hidden="true">↗</span>
+              <span class="sr-only">(opens in a new tab)</span>
+            </a>
+          )}
+          <a href="/pages/contact-us" class="btn btn-ghost btn-lg">
+            Start a similar project
+          </a>
+        </div>
+
+        <dl class="cs-facts">
+          <div>
+            <dt>Client</dt>
+            <dd>{s.client}</dd>
+          </div>
+          <div>
+            <dt>Industry</dt>
+            <dd>{s.industry}</dd>
+          </div>
+          <div>
+            <dt>Platform</dt>
+            <dd>{s.platform ?? 'Shopify'}</dd>
+          </div>
+          <div class="cs-facts-wide">
+            <dt>Services</dt>
+            <dd class="flex flex-wrap gap-1.5">
+              {s.services.map((t) => (
+                <span class="cs-chip">{t}</span>
+              ))}
+            </dd>
+          </div>
+        </dl>
+      </div>
+    </header>
+
+    <div class="container-x pt-14 md:pt-20">
+      <DeviceMockup
+        client={s.client}
+        website={s.website}
+        cover={s.cover}
+        mobile={s.mobile}
+        accent={s.accent}
+        sizes="(min-width: 1280px) 1100px, 92vw"
+        class="mx-auto max-w-6xl"
+      />
+    </div>
+
+    <div class="container-x grid gap-12 py-24 md:py-32 lg:grid-cols-12 lg:gap-16">
+      <aside class="lg:col-span-3">
+        <div class="lg:sticky lg:top-32">
+          {sections.length > 1 && (
+            <nav aria-label="On this page" class="hidden lg:block">
+              <p class="cs-label">On this page</p>
+              <ol class="mt-4 grid gap-2">
+                {sections.map((x, i) => (
+                  <li>
+                    <a href={`#${x.id}`} class="cs-toc">
+                      <span class="cs-toc-num">{String(i + 1).padStart(2, '0')}</span>
+                      {x.label}
+                    </a>
+                  </li>
+                ))}
+              </ol>
+            </nav>
+          )}
+          {s.highlights.length > 0 && (
+            <div class="lg:mt-12">
+              <p class="cs-label">Key features</p>
+              <ul class="mt-4 grid gap-2.5">
+                {s.highlights.map((h) => (
+                  <li class="cs-highlight">{h}</li>
+                ))}
+              </ul>
+            </div>
+          )}
+        </div>
+      </aside>
+
+      <div class="grid gap-20 lg:col-span-9">
+        {s.challenge && (
+          <section id="brief" class="scroll-mt-28" aria-labelledby="brief-title" data-reveal>
+            <p class="cs-label">01 · The brief</p>
+            <h2 id="brief-title" class="mt-4 text-3xl font-bold sm:text-4xl">
+              What {s.client} needed
+            </h2>
+            <p class="mt-6 max-w-3xl text-lg leading-relaxed text-fg/85">{s.challenge}</p>
+          </section>
+        )}
+
+        {s.solution.length > 0 && (
+          <section id="what-we-did" class="scroll-mt-28" aria-labelledby="work-title">
+            <p class="cs-label" data-reveal>
+              02 · What we did
+            </p>
+            <h2 id="work-title" class="mt-4 text-3xl font-bold sm:text-4xl" data-reveal>
+              How we built it
+            </h2>
+            <ol class="mt-10 grid gap-4 md:grid-cols-2">
+              {s.solution.map((p, i) => (
+                <li
+                  class:list={['cs-step card', s.solution.length % 2 === 1 && i === 0 && 'md:col-span-2']}
+                  data-reveal
+                  style={`--reveal-delay:${(i % 2) * 90}`}
+                >
+                  <span class="cs-step-num">{String(i + 1).padStart(2, '0')}</span>
+                  <h3 class="mt-5 text-xl font-semibold">{p.title}</h3>
+                  {p.body && <p class="mt-3 text-muted">{p.body}</p>}
+                </li>
+              ))}
+            </ol>
+          </section>
+        )}
+
+        {s.result && (
+          <section id="result" class="scroll-mt-28" aria-labelledby="result-title" data-reveal>
+            <div class="cs-result">
+              <p class="cs-label">03 · The result</p>
+              <h2 id="result-title" class="sr-only">
+                The result
+              </h2>
+              <p class="mt-6 font-display text-2xl leading-snug font-bold sm:text-3xl">{s.result}</p>
+            </div>
+          </section>
+        )}
+
+        {s.quote?.text && (
+          <figure class="card p-8 md:p-10" data-reveal>
+            <blockquote class="text-xl leading-relaxed sm:text-2xl">“{s.quote.text}”</blockquote>
+            {s.quote.name && (
+              <figcaption class="mt-6 text-sm text-muted">
+                <span class="font-medium text-fg">{s.quote.name}</span>
+                {s.quote.role && ` · ${s.quote.role}`}
+              </figcaption>
+            )}
+          </figure>
+        )}
+
+        {s.gallery.length > 0 && (
+          <section aria-label="Gallery" class="grid gap-4 sm:grid-cols-2">
+            {s.gallery.map((img) => (
+              <SanityImage
+                image={img}
+                width={900}
+                sizes="(min-width: 1024px) 38vw, 92vw"
+                class="w-full rounded-2xl border border-line"
+              />
+            ))}
+          </section>
+        )}
+      </div>
+    </div>
+
+    {next && next.slug !== s.slug && (
+      <section class="container-x pb-24 md:pb-32" aria-label="Next case study">
+        <a href={`/pages/case-studies/${next.slug}`} class="cs-next card card-spotlight group" data-spotlight>
+          <div>
+            <p class="cs-label">Next case study</p>
+            <p class="mt-4 font-display text-3xl font-bold sm:text-5xl">{next.client}</p>
+            <p class="mt-3 text-muted">{next.headline}</p>
+            <span class="mt-8 inline-flex items-center gap-2 font-medium text-lime">
+              Read it <span aria-hidden="true">→</span>
+            </span>
+          </div>
+          <DeviceMockup
+            client={next.client}
+            website={next.website}
+            cover={next.cover}
+            accent={next.accent}
+            phone={false}
+            sizes="(min-width: 1024px) 40vw, 92vw"
+          />
+        </a>
+      </section>
+    )}
+  </article>
+
+  <Cta />
+  <JsonLd data={schema} />
+</BaseLayout>
+
+<style>
+  .cs {
+    --accent: 181 243 107;
+  }
+  .cs--violet {
+    --accent: 139 108 255;
+  }
+  .cs--teal {
+    --accent: 94 234 212;
+  }
+  .cs--pink {
+    --accent: 244 114 182;
+  }
+  .cs--amber {
+    --accent: 251 191 36;
+  }
+  .cs-facts {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 1px;
+    margin-top: 3.5rem;
+    overflow: hidden;
+    border-radius: 1.5rem;
+    border: 1px solid var(--color-line);
+    background: var(--color-line);
+  }
+  .cs-facts > div {
+    padding: 1.25rem 1.5rem;
+    background: var(--color-ink);
+  }
+  .cs-facts dt {
+    font-size: 0.7rem;
+    font-weight: 600;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--color-muted);
+  }
+  .cs-facts dd {
+    margin-top: 0.5rem;
+    font-weight: 500;
+  }
+  /* Two columns on small screens: Platform and Services take a full row each (no empty cell). */
+  .cs-facts > div:nth-child(3),
+  .cs-facts-wide {
+    grid-column: 1 / -1;
+  }
+  @media (min-width: 1024px) {
+    .cs-facts {
+      grid-template-columns: 1fr 1fr 1fr 2fr;
+    }
+    .cs-facts > div:nth-child(3),
+    .cs-facts-wide {
+      grid-column: auto;
+    }
+  }
+  .cs-chip {
+    padding: 0.2rem 0.65rem;
+    border-radius: 999px;
+    border: 1px solid rgb(var(--accent) / 0.35);
+    background: rgb(var(--accent) / 0.08);
+    font-size: 0.8rem;
+  }
+  .cs-label {
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: rgb(var(--accent));
+  }
+  .cs-toc {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 0.4rem 0;
+    color: var(--color-muted);
+    transition: color 0.2s;
+  }
+  .cs-toc:hover {
+    color: var(--color-fg);
+  }
+  .cs-toc-num {
+    font-family: var(--font-display);
+    font-size: 0.8rem;
+  }
+  .cs-highlight {
+    position: relative;
+    padding-left: 1.4rem;
+    font-size: 0.95rem;
+  }
+  .cs-highlight::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0.55em;
+    width: 0.5rem;
+    height: 0.5rem;
+    border-radius: 50%;
+    background: rgb(var(--accent));
+    box-shadow: 0 0 10px rgb(var(--accent));
+  }
+  .cs-step {
+    padding: 1.75rem;
+  }
+  .cs-step-num {
+    display: grid;
+    place-items: center;
+    width: 2.5rem;
+    height: 2.5rem;
+    border-radius: 0.75rem;
+    border: 1px solid rgb(var(--accent) / 0.4);
+    background: rgb(var(--accent) / 0.1);
+    font-family: var(--font-display);
+    font-size: 0.85rem;
+    font-weight: 700;
+    color: rgb(var(--accent));
+  }
+  .cs-result {
+    position: relative;
+    overflow: hidden;
+    padding: 2.5rem;
+    border-radius: 2rem;
+    border: 1px solid rgb(var(--accent) / 0.35);
+    background:
+      radial-gradient(80% 120% at 0% 0%, rgb(var(--accent) / 0.16), transparent 60%), var(--color-ink-2);
+  }
+  @media (min-width: 768px) {
+    .cs-result {
+      padding: 3.5rem;
+    }
+  }
+  .cs-next {
+    display: grid;
+    gap: 2.5rem;
+    align-items: center;
+    padding: 2rem;
+  }
+  @media (min-width: 1024px) {
+    .cs-next {
+      grid-template-columns: minmax(0, 1fr) minmax(0, 1.2fr);
+      padding: 3rem;
+    }
+  }
+</style>

@@ -1,0 +1,147 @@
+---
+/** A case study card for the listing page: device mockup, client, headline and tags. */
+import DeviceMockup from './DeviceMockup.astro';
+import type { CaseStudy } from '../../lib/sanity';
+
+interface Props {
+  study: CaseStudy;
+  /** Full-width featured layout (mockup beside the text on large screens). */
+  featured?: boolean;
+  delay?: number;
+}
+const { study: s, featured = false, delay = 0 } = Astro.props;
+const href = `/pages/case-studies/${s.slug}`;
+---
+
+<li
+  class:list={['cs-card', featured && 'cs-card--featured']}
+  data-industry={s.industry}
+  data-reveal
+  style={`--reveal-delay:${delay}`}
+>
+  <a href={href} class="cs-link card card-spotlight group" data-spotlight>
+    <DeviceMockup
+      client={s.client}
+      website={s.website}
+      cover={s.cover}
+      mobile={s.mobile}
+      accent={s.accent}
+      phone={featured}
+      sizes={featured ? '(min-width: 1024px) 55vw, 92vw' : '(min-width: 768px) 44vw, 92vw'}
+      class="cs-media"
+    />
+    <div class="cs-body">
+      <p class="cs-meta">
+        <span>{s.industry}</span>
+        {s.platform && <span aria-hidden="true">·</span>}
+        {s.platform && <span>{s.platform}</span>}
+      </p>
+      <h3 class="cs-client">{s.client}</h3>
+      <p class="cs-headline">{s.headline}</p>
+      {featured && <p class="mt-4 text-muted">{s.summary}</p>}
+      <ul class="cs-tags" aria-label="Services">
+        {s.services.slice(0, featured ? 5 : 3).map((t) => (
+          <li>{t}</li>
+        ))}
+      </ul>
+      <span class="cs-more">
+        Read case study <span aria-hidden="true">→</span>
+      </span>
+    </div>
+  </a>
+</li>
+
+<style>
+  .cs-card {
+    display: flex;
+  }
+  .cs-card[hidden] {
+    display: none;
+  }
+  .cs-link {
+    display: flex;
+    flex-direction: column;
+    gap: 1.75rem;
+    width: 100%;
+    padding: 1.25rem;
+  }
+  @media (min-width: 768px) {
+    .cs-link {
+      padding: 1.75rem;
+    }
+  }
+  .cs-card--featured {
+    grid-column: 1 / -1;
+  }
+  @media (min-width: 1024px) {
+    .cs-card--featured .cs-link {
+      display: grid;
+      grid-template-columns: minmax(0, 1.35fr) minmax(0, 1fr);
+      align-items: center;
+      gap: 3rem;
+      padding: 2.5rem;
+    }
+  }
+  .cs-link :global(.cs-media) {
+    transition: transform 0.6s var(--ease-out-expo);
+  }
+  .cs-link:hover :global(.cs-media) {
+    transform: translateY(-6px);
+  }
+  .cs-body {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+  }
+  .cs-meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--color-lime);
+  }
+  .cs-client {
+    margin-top: 0.75rem;
+    font-family: var(--font-display);
+    font-size: 1.75rem;
+    font-weight: 700;
+    line-height: 1.1;
+  }
+  .cs-card--featured .cs-client {
+    font-size: clamp(2rem, 4vw, 3rem);
+  }
+  .cs-headline {
+    margin-top: 0.5rem;
+    font-size: 1.05rem;
+  }
+  .cs-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+    margin-top: 1.25rem;
+  }
+  .cs-tags li {
+    padding: 0.25rem 0.7rem;
+    border-radius: 999px;
+    border: 1px solid var(--color-line);
+    font-size: 0.75rem;
+    color: var(--color-muted);
+  }
+  .cs-more {
+    margin-top: auto;
+    padding-top: 1.5rem;
+    font-size: 0.9rem;
+    font-weight: 500;
+    color: var(--color-lime);
+  }
+  .cs-more span {
+    display: inline-block;
+    transition: transform 0.3s var(--ease-out-expo);
+  }
+  .cs-link:hover .cs-more span {
+    transform: translateX(4px);
+  }
+</style>

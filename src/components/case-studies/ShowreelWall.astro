@@ -1,0 +1,165 @@
+---
+/**
+ * "Showreel" — every store's homepage screenshot on a tilted 3D wall, three rows drifting in opposite
+ * directions like a video loop. Pure CSS (transform only); each row's list is doubled so the loop is
+ * seamless. Runs only while on screen ([data-inview] → .is-inview, motion.ts); static for reduced motion.
+ */
+import SanityImage from '../blog/SanityImage.astro';
+import type { CaseStudy } from '../../lib/sanity';
+
+interface Props {
+  stores: CaseStudy[];
+}
+const { stores } = Astro.props;
+const shots = stores.filter((s) => s.cover);
+const rows = [0, 1, 2].map((r) => shots.filter((_, i) => i % 3 === r));
+---
+
+<div class="sr" data-inview aria-hidden="true">
+  <div class="sr-plane">
+    {rows.map((row, r) => (
+      <div class:list={['sr-row', r === 1 && 'sr-row--rev']} style={`--dur:${70 + r * 12}s`}>
+        {[...row, ...row].map((s) => (
+          <figure class="sr-shot">
+            <span class="sr-bar">
+              <i />
+              <i />
+              <i />
+            </span>
+            <SanityImage image={s.cover!} alt="" width={480} ratio={16 / 10} sizes="15rem" class="sr-img" />
+          </figure>
+        ))}
+      </div>
+    ))}
+  </div>
+  <div class="sr-label">
+    <span class="sr-play">
+      <svg viewBox="0 0 24 24" width="14" height="14">
+        <path d="M8 5v14l11-7z" fill="currentColor"></path>
+      </svg>
+    </span>
+    Showreel · {shots.length} stores
+  </div>
+</div>
+
+<style>
+  .sr {
+    position: relative;
+    height: clamp(18rem, 42vw, 30rem);
+    overflow: hidden;
+    /* Skip its ~60 screenshots until it nears the viewport (keeps the page's LCP in budget). */
+    content-visibility: auto;
+    contain-intrinsic-size: auto clamp(18rem, 42vw, 30rem);
+    perspective: 1400px;
+    /* Fade the wall out at every edge. */
+    mask-image:
+      linear-gradient(90deg, transparent, #000 12%, #000 88%, transparent),
+      linear-gradient(transparent, #000 15%, #000 85%, transparent);
+    mask-composite: intersect;
+  }
+  .sr-plane {
+    position: absolute;
+    inset: -20% -10%;
+    display: grid;
+    align-content: center;
+    gap: 1.25rem;
+    transform: rotateX(22deg) rotateZ(-7deg);
+  }
+  .sr-row {
+    display: flex;
+    gap: 1.25rem;
+    width: max-content;
+  }
+  .sr-shot {
+    flex: none;
+    width: clamp(11rem, 18vw, 16rem);
+    overflow: hidden;
+    border-radius: 0.8rem;
+    border: 1px solid rgb(255 255 255 / 0.1);
+    background: var(--color-ink-2);
+    box-shadow: 0 20px 40px -20px rgb(0 0 0 / 0.9);
+  }
+  .sr-bar {
+    display: flex;
+    gap: 0.25rem;
+    padding: 0.4rem 0.5rem;
+    border-bottom: 1px solid rgb(255 255 255 / 0.08);
+  }
+  .sr-bar i {
+    width: 0.3rem;
+    height: 0.3rem;
+    border-radius: 50%;
+    background: rgb(255 255 255 / 0.2);
+  }
+  .sr-shot :global(.sr-img) {
+    display: block;
+    width: 100%;
+    aspect-ratio: 16 / 10;
+    object-fit: cover;
+    object-position: top;
+  }
+  .sr-label {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 0.6rem 1.25rem 0.6rem 0.6rem;
+    border-radius: 999px;
+    border: 1px solid rgb(255 255 255 / 0.18);
+    background: rgb(11 10 16 / 0.6);
+    backdrop-filter: blur(12px);
+    font-size: 0.9rem;
+    font-weight: 500;
+    white-space: nowrap;
+    translate: -50% -50%;
+  }
+  .sr-play {
+    position: relative;
+    display: grid;
+    place-items: center;
+    width: 2.25rem;
+    height: 2.25rem;
+    border-radius: 50%;
+    background: var(--color-lime);
+    color: var(--color-ink);
+    box-shadow: 0 0 24px rgb(181 243 107 / 0.5);
+  }
+  @media (prefers-reduced-motion: no-preference) {
+    .sr-row {
+      animation: sr-drift var(--dur) linear infinite;
+      animation-play-state: paused;
+    }
+    .sr-row--rev {
+      animation-direction: reverse;
+    }
+    .sr.is-inview .sr-row {
+      animation-play-state: running;
+    }
+    .sr-play::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      border-radius: 50%;
+      border: 2px solid var(--color-lime);
+      animation: sr-pulse 2.4s ease-out infinite;
+    }
+  }
+  /* Each row holds its list twice, so moving by half its width loops seamlessly. */
+  @keyframes sr-drift {
+    to {
+      transform: translateX(-50%);
+    }
+  }
+  @keyframes sr-pulse {
+    0% {
+      opacity: 0.8;
+      transform: scale(1);
+    }
+    100% {
+      opacity: 0;
+      transform: scale(1.8);
+    }
+  }
+</style>
