@@ -1,8 +1,8 @@
-// Full content of three heseven.com (Shopify) service pages, section by section, for our /pages/<handle>
+// Full content of four heseven.com (Shopify) service pages, section by section, for our /pages/<handle>
 // landing pages (read by seed-shopify-page-content.mjs). Text is the live Shopify copy as of 27 Oct 2026;
 // only words the Shopify HTML had run together were split ("trustedShopify" → "trusted Shopify") and
 // a few obvious typos fixed. Section kinds map to page-builder sections:
-//   hero · text (heading + paragraphs) · features · steps · plans · cta · faq
+//   hero · text (heading + paragraphs) · features · steps · plans · cta · contact · faq
 
 const CONTACT = '/pages/contact-us';
 
@@ -785,6 +785,247 @@ export const SHOPIFY_PAGES = {
           [
             'Do I need technical knowledge to work with a Shopify Virtual Assistant?',
             "Not at all, you don't need that kind of temerity. A Shopify virtual assistant will set up your store and integrate applications into it and even debug it without asking for your technical input.",
+          ],
+        ],
+      },
+    ],
+  ],
+  'shopify-plus-development-agency': [
+    [
+      'hero',
+      {
+        heading: 'Shopify Plus Development Agency',
+        lead: "Shopify Plus is designed as a one-stop solution for dynamic businesses that scale their eCommerce operations. The platform is classified as an advanced enterprise-grade platform, with extraordinary flexibility, performance, and automation that follow today's online stores in constant transition. An agency specialized in Shopify development like Heseven serves an optimal capacity-customized solution that maximizes the potential of your store with seamless user experience and superior functionality along with high conversion rates.",
+        cta: 'Get a Quote',
+      },
+    ],
+    [
+      'text',
+      {
+        heading:
+          'At Heseven, we use the power of Shopify Plus to create, optimize, and maintain enterprise-level eCommerce solutions.',
+        paras: [
+          "Whether you're a fast-growing brand making big strides or an established retailer migrating to Shopify Plus, our team of experienced developers and designers and strategists ensures that your store is built for scalability, efficiency, and long-term success. From custom store design and API integration to performance optimization and automation — here at Heseven, we provide comprehensive Shopify Plus development services.",
+        ],
+      },
+    ],
+    [
+      'features',
+      {
+        heading: 'Why Choose Heseven as the Best Shopify Plus Development Agency?',
+        lead: 'We, at Heseven, live by our commitment to top-notch Shopify Plus solutions to help brands survive and thrive in a competitive eCommerce environment tomorrow. Here is why we stand out as the best Shopify Plus development agency:',
+        columns: 3,
+        items: [
+          [
+            'users',
+            'Expertise and Experience',
+            'With years of experience in Shopify Plus development, our team of certified developers, designers, and strategists has built and optimized a number of successful high-performance e-commerce stores that are brilliant in design and speed. Our understanding of what Shopify Plus can do helps us design and deliver tailored solutions to fulfill specific business goals.',
+          ],
+          [
+            'sliders',
+            'Custom-Tailored Solutions',
+            'Each business has unique requirements and thus we claim to offer custom to the core Shopify Plus development service that works as requisite for fulfilling your brand needs. From custom theme development to third-party integrations and advanced automation, we deliver it all under one roof because we believe in solutions that drive growth and efficiency.',
+          ],
+          [
+            'layers',
+            'Scalable and Future-Proof Stores',
+            'Our development methodology emphasizes scalability and sustainability over the long haul. We build robust Shopify Plus stores that are designed for future growth and easy expansion according to your business evolution. Therefore, ensuring your brand is always ahead of the curve with flexible architecture and scalable solutions.',
+          ],
+          [
+            'migrate',
+            'Seamless Migration & Integration',
+            'Migrating to Shopify Plus or integrating third-party apps can be complex, but the team does an effortless job. We ensure to take care of an easy transfer with your SEO rankings, along with customer data and store functionality. Our integration skills allow seamless connections into ERPs, CRMs, and marketing tools to enhance your store with new capabilities.',
+          ],
+          [
+            'bolt',
+            'Performance-Driven Development',
+            'Our main focus is to act with speed, security, and performance on any given project. Different strategies for the optimization of Shopify Plus ensure faster load times, mobile responsiveness, and user experiences with high value for conversion. We apply leading-edge development techniques that ensure maximum efficiency with the highest user engagement.',
+          ],
+          [
+            'clock',
+            'Dedicated Support & Maintenance',
+            'Though maintenance and support are not meant to be separate from the eCommerce journey post-development, such support will help to keep your Shopify Plus store in running mode. The team can provide regular updates or security patches and troubleshoot or enhance the store and any of its requirements whenever required.',
+          ],
+          [
+            'heart',
+            'Heseven Client-Centric Approach',
+            'Because we pledge excellent service to our clients, we at Heseven believe in creating lasting relationships. The customer-first approach encourages the understanding of your business goals, challenges, and aspirations. Walking closely with you to create tailored solutions driving success along with transparency and reliability, not forgetting about exceptional results.',
+          ],
+        ],
+      },
+    ],
+    [
+      'features',
+      {
+        heading: 'Our Shopify Plus Development Services',
+        columns: 3,
+        items: [
+          [
+            'code',
+            'Shopify Plus Store Development',
+            'Creating a formidable online store that can scale comes with the right set of expertise; our Shopify Plus store development service ensures seamless execution of all things eCommerce from building a user-friendly interface to incorporating advanced functions. We develop high-performing stores armed with custom themes, user-friendly navigation, and fast-loading times strategically oriented to enhance engagement and conversion rates.',
+          ],
+          [
+            'migrate',
+            'Shopify Plus Migration Services',
+            'Moving over to Shopify Plus from any other platform can pose its challenges, but our specialists remain steadfast in ensuring a smooth and hassle-free transition. We take care of everything from data migration and transferring product catalogs to maintaining SEO viability and implementing custom features.',
+          ],
+          [
+            'sliders',
+            'Customized Shopify Plus Development',
+            'Every brand has its own set of unique demands, and our custom Shopify Plus development service is designed to match your specific business needs. Be it custom checkout experiences, advanced product filtering, or API integrations with third parties, we know how to build custom solutions.',
+          ],
+          [
+            'sparkles',
+            'Shopify Plus App Development',
+            'With our Shopify Plus app development, you can extend the functionality of your store. The custom Shopify apps we develop integrate seamlessly into your store and provide features and automation to help streamline operations. It can be an inventory management app, a customer loyalty program, or personalized shopping experiences — all of the accessories help enhance store functionality, thereby improving customer engagement and sales.',
+          ],
+          [
+            'bolt',
+            'Optimization in Shopify Plus Performance',
+            'Speed and performance are highly regarded factors in the journey towards eCommerce success. The performance optimization service for Shopify Plus is meant to improve site speed, lower page loading times, and improve user experience — involving code optimization, CDN integration, and caching techniques.',
+          ],
+          [
+            'clock',
+            'Shopify Plus Maintenance and Support',
+            'An efficient online store powered by Shopify Plus requires maintenance as well as support. Our dedicated support team works round the clock ensuring that your store gets 24/7 monitoring, security updates, bug fixes, and performance improvements. Instead of waiting for you to report an issue, we identify those problems regarding your eCommerce site and solve them before they grow into bigger problems.',
+          ],
+        ],
+      },
+    ],
+    [
+      'features',
+      {
+        heading: 'Some of our work that we are pretty damn proud of…',
+        columns: 3,
+        items: [
+          [
+            'sparkles',
+            'Coyalz Haircare',
+            'Custom Design & Development',
+            '/pages/case-studies/coyalz-haircare',
+          ],
+          ['sparkles', 'Tisha Boutique', 'Bespoke Design'],
+          ['sparkles', 'Powerlete', 'Bespoke Theme Development', '/pages/case-studies/powerlete'],
+          ['sparkles', 'Luxury Diffuser', 'Shopify Store Setup'],
+          ['sparkles', 'Caorunn Gin', 'Custom Store Development'],
+        ],
+      },
+    ],
+    [
+      'steps',
+      {
+        heading: 'Our Shopify Plus Development Process',
+        lead: "We have a well-structured and well-followed outcome-driven process within our agency, whereby we ensure significant development and optimization of a client's store. Our certified Shopify Plus development team has embraced the latest technology along with the existing industry best practices to give personalized, tailored solutions for scalable high-performance eCommerce solutions.",
+        steps: [
+          [
+            'Discovery & Consultation',
+            'The process is going to start with an in-depth consultation where we ask you regarding your business goals and target audience as well as your requirements. Our experts review your existing store (if applicable) and list down all the improvements that can be made.',
+          ],
+          [
+            'Custom Shopify Plus Development',
+            'Our team of developers for Shopify Plus Store specializes in developing custom solutions instead of playing the one-size-fits-all game. Be it custom themes, advanced features or headless commerce, we help build your store to perform, secure and scale.',
+          ],
+          [
+            'Third-Party Integrations',
+            'We smoothly integrate third-party apps, payment gateways, CRM, ERP, and other business tools that you deem necessary into your stores, so as to enhance its functionality. The Shopify Plus web development agency ensures that your store remains operational and free-flowing with a minimum of disruptions.',
+          ],
+          [
+            'Performance Optimization',
+            'Speed and user experience are of utmost importance when it comes to conversions. The list of services our Shopify Plus development agency offers includes rigorous testing, page speed improvement, and mobile responsiveness best practices in order to improve efficiency in a store.',
+          ],
+        ],
+      },
+    ],
+    [
+      'features',
+      {
+        heading: 'Industries We Serve',
+        lead: 'As the top Shopify Plus development agency, we cater to quite a few types of industries, thus helping brands achieve their potential through innovative Shopify Plus solutions.',
+        columns: 3,
+        items: [
+          [
+            'sparkles',
+            'Fashion & Apparel',
+            'From haute couture fashion retailers to streetwear brands, we create beautiful and conversion-friendly stores that win over customers and drive sales.',
+          ],
+          [
+            'heart',
+            'Health & Beauty',
+            'Our agency builds intuitive, fast-performing eCommerce experiences in Shopify Plus for skin care, make-up, and wellness brands.',
+          ],
+          [
+            'bolt',
+            'Electronics & Technology',
+            'We create and develop Shopify Plus stores for tech brands with appropriate integration, secure transactions, and compelling shopping experiences.',
+          ],
+          [
+            'target',
+            'Food & Beverage',
+            'We guide food brands through the development of scalable online stores with subscription models, seamless checkout experiences, and inventory management systems.',
+          ],
+          [
+            'layers',
+            'Home & Lifestyle',
+            'As a Shopify Plus store development agency, we ensure a mesmerizing, high-converting shopping experience for furniture, home décor, or lifestyle products.',
+          ],
+          [
+            'trend',
+            'Sports & Outdoor',
+            'We help sports and outdoor brands build feature-rich Shopify Plus stores with advanced product filtering, engaging visuals, and smooth customer journeys.',
+          ],
+        ],
+      },
+    ],
+    [
+      'contact',
+      {
+        heading: 'Contact Us',
+        body: 'Tell us about your Shopify Plus project and we will come back within one business day.',
+      },
+    ],
+    [
+      'text',
+      {
+        heading: 'The #1 Shopify Plus Development Agency',
+        paras: [
+          "The top Shopify Plus development agency assisting businesses to scale their eCommerce with robust and future-proof solutions. Years of experience and a team of Shopify Plus-certified experts are dedicated to the design, development, and optimization of Shopify Plus stores for maximum impact. The agency's Shopify Plus development services ensure a well-orchestrated start-to-finish execution whether you've been an enterprise brand seeking to migrate to Shopify Plus or a growing business toward refining its online presence.",
+        ],
+      },
+    ],
+    [
+      'faq',
+      {
+        eyebrow: 'Frequently asked questions',
+        heading: 'Last but not least, a few common questions:',
+        items: [
+          [
+            'What is Shopify Plus?',
+            'Shopify Plus is an advanced eCommerce platform built for enterprise applications designed for sky-high-grown companies and most big business verticals. Expensive features provided by it include checkout customizations, automation tools, rich APIs, and seamless integration with third-party applications. This is indeed where Shopify Plus surpasses others in scalability, meaning it can easily carry high traffic and volume in sales; anyone can use it without even much trouble.',
+          ],
+          [
+            'Why should I choose a Shopify Plus development agency?',
+            'A Shopify Plus development agency will design, develop and optimize stores and web solutions for Shopify Plus. This is to make both the development of your store based on the best practices and the effect based on user experience and performance metrics, conversion rates being one of them.',
+          ],
+          [
+            'What kind of services does a Shopify Plus development agency provide?',
+            'A Shopify Plus development agency offers a plethora of services including:\n• Custom Store Development: Developing unique, performance-driven Shopify Plus stores to suit the particular needs of the business.\n• Theme Design & Customization: Designing themes that are aesthetically pleasing and adaptable on mobile devices in accordance with the brand concept.\n• App & API Integrations: Connecting third-party applications with custom APIs to enhance further functionality.\n• Migration Services: Complete transfer of data and content from any other eCommerce platform.\n• Marketing & SEO Services: Marketing and SEO efforts to promote visibility and increase traffic.',
+          ],
+          [
+            'How long does it take to build a Shopify Plus store?',
+            'Building a Shopify Plus store takes a different amount of time depending on the complexity of the store, custom features involved, and integrations. Typically, a basic Shopify Plus store is up and running within four to eight weeks, while more complex projects with custom development, design, and third-party integrations may take anywhere from three to six months. Lastly, when migrating from another platform, the time frame is contingent upon the requirements for data transfer and setup.',
+          ],
+          [
+            'What is the cost of working with a Shopify Plus development agency?',
+            'Shopify Plus development agencies charge varying amounts based on the scope of work, the degree of customization available, and other services needed for the engagement. Basic developmental projects on setting up the Shopify Plus stores may cost $5,000 to $30,000, while custom developments, integrations, and design enhancements on more advanced stores are priced accordingly.',
+          ],
+          [
+            'Can a Shopify Plus development agency help me migrate from another platform?',
+            'Yes, Shopify Plus development agencies do migrate. This guarantees a well-managed transition from the support of the likes of Magento, WooCommerce, BigCommerce, or any other custom-built store. Migration services provided include:\n• Data Transition: Transfer security of products, customer data, and order history.\n• Design Matching: The look of the existing store can be matched and sometimes improved to optimize the user experience.\n• SEO Preservation: Maintain search engine ranking with URL redirects and metadata management.\n• Functionalities Matching: Enabling the smooth operation of all mandatory features and integrations on the Shopify Plus platform.',
+          ],
+          [
+            'What kind of support can I expect after my Shopify Plus store is live?',
+            "Most Shopify Plus development agencies require continuous support from the customers to ensure proper running of their store. Support services typically include:\n• Technical Maintenance: Fixing bugs, updating plugins, and optimizing site performance.\n• Security and Compliance: Regularly carries out security audits to make sure all vulnerabilities are taken care of.\n• Performance Monitoring: User behavior analysis to catch improvements in speed and usability.\n• Feature Updates: Increasing the capabilities of an e-commerce site as one's business matures.",
           ],
         ],
       },
