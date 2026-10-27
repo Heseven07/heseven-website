@@ -25,7 +25,12 @@ const { id, eyebrow, heading, lead, items = [], cta } = Astro.props;
 <section class="bg-ink-2 py-20 md:py-28" aria-labelledby={heading ? id : undefined}>
   <div class="container-x">
     <SectionHead id={id} eyebrow={eyebrow} heading={heading} lead={lead} />
-    <ul class="mt-12 grid gap-4 lg:grid-cols-3">
+    <ul
+      class:list={[
+        'mt-12 grid gap-4',
+        items.length === 4 ? 'md:grid-cols-2 xl:grid-cols-4' : 'lg:grid-cols-3',
+      ]}
+    >
       {items.map((p, i) => (
         <li class:list={['plan card', i === 1 && 'plan--lit']} data-reveal style={`--reveal-delay:${i * 90}`}>
           <span class="plan-top">

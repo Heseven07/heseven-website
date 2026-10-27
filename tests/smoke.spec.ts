@@ -8,6 +8,8 @@ const pages = [
   '/pages/shopify-website-development-services',
   '/pages/contact-us',
   '/pages/about',
+  '/pages/case-studies',
+  '/pages/case-studies/waldo-watches',
   '/blogs/news',
 ];
 

@@ -1,107 +1,367 @@
 ---
 /**
- * Selected work — horizontal 3D roll. Three cards are in view at once on desktop; the track is a real
- * horizontal scroller, and each card rolls on a drum (rotateY + scale) from its position in it via a CSS
- * scroll-driven `view(inline)` timeline, so the 3D runs on the compositor.
- *   Desktop (md+, JS): the section pins and vertical page scroll drives the track sideways (work-roll.ts).
- *   Mobile / no JS: native swipe with scroll-snap.
- * Mouse tilt + glare on the screenshot frame come from interactions.ts ([data-tilt]).
+ * Selected work — an "album rail": project screenshots as sleeves in a 3D fan, the active one facing you,
+ * sliding on by itself every few seconds. Rail below: prev · ticks · play/pause · ticks · next.
+ * The first frame (sleeve poses) is rendered here from the same `pose()` the script uses, so there is no
+ * layout shift and it reads fine without JS. Behaviour: src/scripts/album-rail.ts.
  */
 import { Picture } from 'astro:assets';
-import Counter from '../ui/Counter.astro';
 import { work } from '../../data/home';
+import { offsetOf, pose } from '../../scripts/album-rail';
 
-const pad = (n: number) => String(n).padStart(2, '0');
+const n = work.length;
+const host = (url?: string) => (url ? new URL(url).hostname.replace(/^www\./, '') : undefined);
+const half = Math.ceil(n / 2);
 ---
 
-<section id="work" class="work-pin scroll-mt-24" aria-labelledby="work-title" data-work-pin>
-  <div class="work-sticky">
-    <div class="container-x flex flex-col gap-6 md:flex-row md:items-end md:justify-between" data-reveal>
-      <div>
-        <p class="eyebrow">Selected work</p>
-        <h2 id="work-title" class="mt-4 text-4xl font-bold sm:text-5xl">
-          Work we're proud of.
-        </h2>
-        <p class="mt-4 text-lg text-muted">Real stores, measurable outcomes.</p>
-      </div>
-      <div class="flex items-center gap-4 text-sm text-muted" aria-hidden="true">
-        <span class="font-display text-fg">01</span>
-        <span class="work-progress">
-          <span class="work-progress-bar" data-work-progress></span>
-        </span>
-        <span class="font-display">{pad(work.length)}</span>
-      </div>
+<section id="work" class="scroll-mt-24 overflow-hidden py-24 md:py-32" aria-labelledby="work-title">
+  <div class="container-x flex flex-col gap-6 md:flex-row md:items-end md:justify-between" data-reveal>
+    <div>
+      <p class="eyebrow">Selected work</p>
+      <h2 id="work-title" class="mt-4 text-4xl font-bold sm:text-5xl">
+        Work we're proud of.
+      </h2>
+      <p class="mt-4 text-lg text-muted">Real stores, measurable outcomes.</p>
     </div>
+    <a href="/pages/case-studies" class="btn btn-ghost shrink-0 self-start md:self-auto">
+      All case studies <span aria-hidden="true">→</span>
+    </a>
+  </div>
 
-    <ul class="work-track" data-work-track>
+  <div
+    class="ar"
+    data-album
+    role="region"
+    aria-roledescription="carousel"
+    aria-label="Selected work"
+    tabindex="0"
+  >
+    <div class="ar-stage" data-album-stage>
       {work.map((w, i) => {
-        // Whole card links to the live store when one is available.
-        const Wrapper = w.url ? 'a' : 'div';
-        const host = w.url ? new URL(w.url).hostname.replace(/^www\./, '') : undefined;
-        const linkProps = w.url
-          ? {
-              href: w.url,
-              target: '_blank',
-              rel: 'noopener',
-              'aria-label': `${w.client}: ${w.metric} ${w.metricLabel.toLowerCase()} — visit the live store (opens in a new tab)`,
-            }
-          : {};
+        const o = offsetOf(i, 0, n);
+        const p = pose(o);
         return (
-          <li class="work-item">
-            <article
-              class:list={['work-card group', i % 2 ? 'work-card--lime' : 'work-card--violet']}
-              data-tilt
+          <article
+            class:list={['ar-card', o === 0 && 'is-active']}
+            style={`transform:${p.transform};opacity:${p.opacity};z-index:${p.zIndex}`}
+            aria-roledescription="slide"
+            aria-label={`${i + 1} of ${n}: ${w.client}`}
+            aria-hidden={o !== 0 ? 'true' : undefined}
+            data-album-card
+          >
+            <a
+              class="ar-sleeve"
+              href={w.caseStudy ? `/pages/case-studies/${w.caseStudy}` : (w.url ?? '#work')}
+              {...(!w.caseStudy && w.url ? { target: '_blank', rel: 'noopener' } : {})}
+              tabindex={o === 0 ? 0 : -1}
+              aria-label={`${w.client} — ${w.caseStudy ? 'read the case study' : 'visit the live store'}`}
             >
-              <Wrapper class="block p-3" {...linkProps}>
-                <div class="work-media">
-                  <div class="work-bar" aria-hidden="true">
-                    <span class="work-dot" />
-                    <span class="work-dot" />
-                    <span class="work-dot" />
-                    <span class="work-url">{host ?? `${w.slug}.myshopify.com`}</span>
-                  </div>
-                  <div class="relative overflow-hidden">
-                    <Picture
-                      src={w.image}
-                      alt={`${w.client} Shopify store homepage`}
-                      widths={[400, 600, 900]}
-                      sizes="(min-width: 768px) 30rem, 85vw"
-                      formats={['avif', 'webp']}
-                      class="work-img aspect-[16/10] w-full object-cover object-top"
-                    />
-                    <span class="work-glare" aria-hidden="true" />
-                    <span class="work-chip">{w.sector}</span>
-                  </div>
-                </div>
-                <div class="flex items-end justify-between gap-4 px-3 pt-5 pb-3">
-                  <div class="min-w-0">
-                    <p class="font-display text-sm text-muted">{pad(i + 1)}</p>
-                    <h3 class="mt-1 truncate font-display text-2xl font-bold tracking-tight transition-colors group-hover:text-lime">
-                      {w.client}
-                    </h3>
-                    {host ? (
-                      <p class="mt-1 text-sm text-fg/60">{host} ↗</p>
-                    ) : (
-                      <p class="mt-1 text-sm text-fg/60">{w.sector}</p>
-                    )}
-                  </div>
-                  <p class="shrink-0 text-right">
-                    <span class="block font-display text-4xl font-bold text-lime">
-                      <Counter value={w.metric} />
-                    </span>
-                    <span class="text-sm text-muted">{w.metricLabel}</span>
-                  </p>
-                </div>
-              </Wrapper>
-            </article>
-          </li>
+              <span class="ar-bar" aria-hidden="true">
+                <i />
+                <i />
+                <i />
+                <span class="ar-url">{host(w.url) ?? `${w.slug}.myshopify.com`}</span>
+              </span>
+              <Picture
+                src={w.image}
+                alt={`${w.client} Shopify store homepage`}
+                widths={[400, 640, 900]}
+                sizes="(min-width: 768px) 34rem, 78vw"
+                formats={['avif', 'webp']}
+                class="ar-img"
+              />
+            </a>
+          </article>
         );
       })}
-    </ul>
+    </div>
+
+    <div class="ar-info" aria-live="polite">
+      {work.map((w, i) => (
+        <div class="ar-info-item" data-album-info hidden={i !== 0}>
+          <p class="ar-sector">
+            {String(i + 1).padStart(2, '0')} · {w.sector}
+          </p>
+          <h3 class="ar-client">{w.client}</h3>
+          <p class="ar-metric">
+            <b>{w.metric}</b> {w.metricLabel.toLowerCase()}
+          </p>
+          <p class="ar-links">
+            {w.caseStudy && <a href={`/pages/case-studies/${w.caseStudy}`}>Read case study →</a>}
+            {w.url && (
+              <a href={w.url} target="_blank" rel="noopener">
+                Visit {host(w.url)} ↗<span class="sr-only"> (opens in a new tab)</span>
+              </a>
+            )}
+          </p>
+        </div>
+      ))}
+    </div>
+
+    <div class="ar-rail">
+      <button type="button" class="ar-arrow" data-album-prev aria-label="Previous project">
+        <span aria-hidden="true">←</span>
+      </button>
+      <div class="ar-ticks">
+        {work.slice(0, half).map((w, i) => (
+          <button
+            type="button"
+            class="ar-tick"
+            data-album-tick
+            aria-label={`Show ${w.client}`}
+            aria-current={i === 0 ? 'true' : 'false'}
+          />
+        ))}
+        <button
+          type="button"
+          class="ar-play"
+          data-album-play
+          aria-pressed="true"
+          aria-label="Pause slideshow"
+        >
+          <svg class="ar-icon-pause" viewBox="0 0 24 24" width="16" height="16" aria-hidden="true">
+            <path d="M8 5h3v14H8zM13 5h3v14h-3z" fill="currentColor"></path>
+          </svg>
+          <svg class="ar-icon-play" viewBox="0 0 24 24" width="16" height="16" aria-hidden="true">
+            <path d="M8 5v14l11-7z" fill="currentColor"></path>
+          </svg>
+        </button>
+        {work.slice(half).map((w) => (
+          <button
+            type="button"
+            class="ar-tick"
+            data-album-tick
+            aria-label={`Show ${w.client}`}
+            aria-current="false"
+          />
+        ))}
+      </div>
+      <button type="button" class="ar-arrow" data-album-next aria-label="Next project">
+        <span aria-hidden="true">→</span>
+      </button>
+    </div>
   </div>
 </section>
 
+<style>
+  .ar {
+    position: relative;
+    margin-top: 3.5rem;
+    outline: none;
+  }
+  .ar:focus-visible {
+    outline: 2px solid var(--color-lime);
+    outline-offset: 8px;
+    border-radius: 1rem;
+  }
+  /* The stage: one sleeve-sized box in the middle; every sleeve is stacked in it and posed in 3D. */
+  .ar-stage {
+    position: relative;
+    width: min(78vw, 34rem);
+    aspect-ratio: 16 / 11;
+    margin-inline: auto;
+    perspective: 1600px;
+    transform-style: preserve-3d;
+    touch-action: pan-y;
+    user-select: none;
+  }
+  .ar-card {
+    position: absolute;
+    inset: 0;
+    transform-style: preserve-3d;
+    transition:
+      transform 0.8s var(--ease-out-expo),
+      opacity 0.6s var(--ease-out-expo);
+    will-change: transform;
+  }
+  .ar-sleeve {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    border-radius: 1.25rem;
+    border: 1px solid rgb(255 255 255 / 0.12);
+    background: var(--color-ink-2);
+    box-shadow: 0 40px 80px -30px rgb(0 0 0 / 0.95);
+    cursor: pointer;
+    -webkit-user-drag: none;
+  }
+  .ar-card.is-active .ar-sleeve {
+    border-color: rgb(181 243 107 / 0.35);
+    box-shadow:
+      0 40px 80px -30px rgb(0 0 0 / 0.95),
+      0 0 60px -20px rgb(181 243 107 / 0.35);
+  }
+  .ar-bar {
+    display: flex;
+    flex: none;
+    align-items: center;
+    gap: 0.35rem;
+    padding: 0.55rem 0.8rem;
+    border-bottom: 1px solid rgb(255 255 255 / 0.08);
+  }
+  .ar-bar i {
+    width: 0.45rem;
+    height: 0.45rem;
+    border-radius: 50%;
+    background: rgb(255 255 255 / 0.2);
+  }
+  .ar-url {
+    margin-left: 0.5rem;
+    padding: 0.1rem 0.7rem;
+    border-radius: 999px;
+    background: rgb(255 255 255 / 0.06);
+    font-size: 0.7rem;
+    color: var(--color-muted);
+  }
+  .ar-sleeve :global(picture) {
+    flex: 1;
+    min-height: 0;
+  }
+  .ar-sleeve :global(.ar-img) {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: top;
+    pointer-events: none;
+  }
+
+  /* Active project details */
+  .ar-info {
+    margin-top: 3rem;
+    text-align: center;
+    padding-inline: 1.25rem;
+  }
+  .ar-sector {
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--color-lime);
+  }
+  .ar-client {
+    margin-top: 0.6rem;
+    font-family: var(--font-display);
+    font-size: clamp(1.75rem, 4vw, 2.5rem);
+    font-weight: 700;
+  }
+  .ar-metric {
+    margin-top: 0.4rem;
+    color: var(--color-muted);
+  }
+  .ar-metric b {
+    color: var(--color-fg);
+  }
+  .ar-links {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0.5rem 1.5rem;
+    margin-top: 1rem;
+    font-size: 0.9rem;
+    font-weight: 500;
+  }
+  .ar-links a {
+    color: var(--color-lime);
+  }
+  .ar-links a:hover {
+    text-decoration: underline;
+  }
+
+  /* Rail: prev · ticks · play · ticks · next */
+  .ar-rail {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1.25rem;
+    margin-top: 2.5rem;
+  }
+  .ar-ticks {
+    display: flex;
+    align-items: center;
+    gap: 0.25rem;
+  }
+  .ar-tick {
+    width: 1.5rem;
+    height: 2rem;
+    position: relative;
+  }
+  .ar-tick::before {
+    content: '';
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    width: 2px;
+    height: 0.8rem;
+    border-radius: 2px;
+    background: rgb(255 255 255 / 0.25);
+    translate: -50% -50%;
+    transition:
+      background-color 0.3s,
+      scale 0.3s;
+  }
+  .ar-tick:hover::before {
+    background: rgb(255 255 255 / 0.6);
+  }
+  .ar-tick[aria-current='true']::before {
+    background: var(--color-lime);
+    scale: 1 1.6;
+    box-shadow: 0 0 10px var(--color-lime);
+  }
+  .ar-play {
+    display: grid;
+    place-items: center;
+    width: 2.75rem;
+    height: 2.75rem;
+    margin-inline: 0.75rem;
+    border-radius: 50%;
+    background: rgb(139 108 255 / 0.25);
+    color: var(--color-fg);
+    border: 1px solid rgb(139 108 255 / 0.5);
+    transition: background-color 0.3s;
+  }
+  .ar-play:hover {
+    background: rgb(139 108 255 / 0.4);
+  }
+  .ar-icon-play {
+    display: none;
+  }
+  .ar:not(.is-playing) .ar-icon-pause {
+    display: none;
+  }
+  .ar:not(.is-playing) .ar-icon-play {
+    display: block;
+  }
+  .ar-arrow {
+    display: grid;
+    place-items: center;
+    width: 2.5rem;
+    height: 2.5rem;
+    border-radius: 50%;
+    color: var(--color-muted);
+    transition:
+      color 0.2s,
+      background-color 0.2s;
+  }
+  .ar-arrow:hover {
+    color: var(--color-fg);
+    background: rgb(255 255 255 / 0.06);
+  }
+  /* Without JS there is nothing to drive the rail. */
+  .ar:not(.is-ready) .ar-rail {
+    visibility: hidden;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .ar-card {
+      transition-duration: 0.01ms;
+    }
+  }
+</style>
+
 <script>
-  import { initWorkRoll } from '../../scripts/work-roll';
-  document.addEventListener('astro:page-load', initWorkRoll);
+  import { initAlbumRails } from '../../scripts/album-rail';
+  document.addEventListener('astro:page-load', initAlbumRails);
 </script>

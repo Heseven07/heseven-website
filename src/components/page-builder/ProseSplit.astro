@@ -1,0 +1,137 @@
+---
+/**
+ * A text section that is only paragraphs: text on the left, and on large screens a highlight card on the
+ * right that pulls the section's most quotable sentence (so the card always matches the topic) inside a
+ * slowly turning gradient border. Picked automatically by Sections.astro; the card is decorative
+ * (aria-hidden) because its sentence is already in the text.
+ */
+import SectionHead from './SectionHead.astro';
+import PortableTextBody from '../blog/PortableTextBody.astro';
+import type { PortableBlock } from '../../lib/sanity';
+
+interface Props {
+  id: string;
+  eyebrow?: string;
+  heading?: string;
+  body: PortableBlock[];
+}
+const { id, eyebrow, heading, body } = Astro.props;
+
+// The shortest complete sentence of 60+ characters reads best as a pull quote.
+const text = body.map((b) => (b.children ?? []).map((c) => c.text ?? '').join('')).join(' ');
+const sentences = text.match(/[^.!?]+[.!?]/g)?.map((s) => s.trim()) ?? [];
+const quote =
+  sentences.filter((s) => s.length >= 60 && s.length <= 170).sort((a, b) => a.length - b.length)[0] ??
+  sentences[0];
+---
+
+<section class="container-x py-20 md:py-28" aria-labelledby={heading ? id : undefined}>
+  <div class="grid items-center gap-12 lg:grid-cols-12 lg:gap-16">
+    <div class="lg:col-span-7">
+      <SectionHead id={id} eyebrow={eyebrow} heading={heading} />
+      <PortableTextBody blocks={body} class="mt-10" headingLevel={heading ? 3 : 2} />
+    </div>
+    {quote && (
+      <div class="ps-wrap hidden lg:col-span-5 lg:block" aria-hidden="true" data-reveal>
+        <div class="ps-card">
+          <span class="ps-mark">“</span>
+          <p class="ps-quote">{quote}</p>
+          <span class="ps-sign">
+            <span class="ps-dot" />
+            Heseven
+          </span>
+        </div>
+      </div>
+    )}
+  </div>
+</section>
+
+<style>
+  .ps-wrap {
+    position: relative;
+  }
+  /* Soft glow behind the card. */
+  .ps-wrap::before {
+    content: '';
+    position: absolute;
+    inset: 10% 5%;
+    border-radius: 50%;
+    background: radial-gradient(closest-side, rgb(139 108 255 / 0.25), transparent);
+    filter: blur(30px);
+  }
+  /* Gradient border: a rotating conic layer clipped to a 1px frame by the card's inner background. */
+  .ps-card {
+    position: relative;
+    isolation: isolate;
+    overflow: hidden;
+    padding: 2.75rem 2.5rem 2.25rem;
+    border-radius: 2rem;
+    background: rgb(255 255 255 / 0.08);
+  }
+  .ps-card::before {
+    content: '';
+    position: absolute;
+    inset: -60%;
+    z-index: -2;
+    background: conic-gradient(
+      from 0deg,
+      transparent 0 35%,
+      var(--color-lime) 60%,
+      var(--color-violet) 80%,
+      transparent 100%
+    );
+    animation: ps-spin 9s linear infinite;
+  }
+  .ps-card::after {
+    content: '';
+    position: absolute;
+    inset: 2px;
+    z-index: -1;
+    border-radius: calc(2rem - 2px);
+    background:
+      radial-gradient(120% 90% at 100% 0%, rgb(181 243 107 / 0.08), transparent 60%), var(--color-ink-2);
+  }
+  .ps-mark {
+    display: block;
+    height: 3.5rem;
+    font-family: var(--font-display);
+    font-size: 6rem;
+    line-height: 1;
+    color: var(--color-lime);
+  }
+  .ps-quote {
+    margin-top: 1rem;
+    font-family: var(--font-display);
+    font-size: 1.6rem;
+    font-weight: 700;
+    line-height: 1.3;
+  }
+  .ps-sign {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.6rem;
+    margin-top: 2rem;
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--color-muted);
+  }
+  .ps-dot {
+    width: 0.5rem;
+    height: 0.5rem;
+    border-radius: 50%;
+    background: var(--color-lime);
+    box-shadow: 0 0 10px var(--color-lime);
+  }
+  @keyframes ps-spin {
+    to {
+      transform: rotate(1turn);
+    }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .ps-card::before {
+      animation: none;
+    }
+  }
+</style>

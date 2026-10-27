@@ -8,6 +8,7 @@ import SectionHead from './SectionHead.astro';
 import CtaButton from './CtaButton.astro';
 import PortableTextBody from '../blog/PortableTextBody.astro';
 import PointsInfographic, { type Point } from './PointsInfographic.astro';
+import ProseSplit from './ProseSplit.astro';
 import SanityImage from '../blog/SanityImage.astro';
 import FitSection from './FitSection.astro';
 import PitfallsSection from './PitfallsSection.astro';
@@ -65,6 +66,17 @@ const cols: Record<number, string> = {
       const points = toPoints(s.body as PortableBlock[]);
       if (points)
         return <PointsInfographic id={id} eyebrow={s.eyebrow} heading={s.heading} points={points} />;
+      // Only plain paragraphs → text beside a highlight card instead of a half-empty row.
+      const blocks = (s.body ?? []) as PortableBlock[];
+      const plain =
+        blocks.length > 0 &&
+        blocks.every(
+          (b) =>
+            b._type === 'block' &&
+            (b.style ?? 'normal') === 'normal' &&
+            !(b as { listItem?: string }).listItem,
+        );
+      if (plain) return <ProseSplit id={id} eyebrow={s.eyebrow} heading={s.heading} body={blocks} />;
       return (
         <section class="container-x py-20 md:py-28" aria-labelledby={s.heading ? id : undefined}>
           <SectionHead id={id} eyebrow={s.eyebrow} heading={s.heading} />
@@ -187,7 +199,7 @@ const cols: Record<number, string> = {
           aria-labelledby={s.heading ? id : undefined}
         >
           <div class="container-x">
-            <SectionHead id={id} eyebrow={s.eyebrow} heading={s.heading} />
+            <SectionHead id={id} eyebrow={s.eyebrow} heading={s.heading} lead={s.lead} />
             <ol class="mt-12 grid gap-4 md:grid-cols-2 lg:grid-cols-3">
               {(s.steps ?? []).map((st: Any, j: number) => (
                 <li class="card p-8" data-reveal style={`--reveal-delay:${(j % 3) * 80}`}>
@@ -219,7 +231,7 @@ const cols: Record<number, string> = {
                     <span class="font-display text-lg font-semibold sm:text-xl">{f.question}</span>
                     <span class="faq-icon" aria-hidden="true" />
                   </summary>
-                  <p class="pb-6 text-muted">{f.answer}</p>
+                  <p class="pb-6 whitespace-pre-line text-muted">{f.answer}</p>
                 </details>
               ))}
             </div>

@@ -140,7 +140,8 @@ Rapid publishes collapse into one deploy of the latest content. A deploy takes ~
      Until both exist the workflow skips deploying with a warning.
 2. Sanity webhook (sanity.io/manage → project `flt9h8js` → API → Webhooks):
    - URL `https://api.github.com/repos/Heseven07/heseven-website/dispatches`, method POST, dataset `production`
-   - Filter `_type in ["post", "author", "category"]`, triggers create/update/delete, drafts excluded
+   - Filter `_type in ["post", "author", "category", "caseStudy", "landingPage", "servicePage"]`,
+     triggers create/update/delete, drafts excluded
    - Projection `{"event_type": "sanity-publish", "client_payload": {"id": _id, "type": _type}}`
    - Headers `Authorization: Bearer <GitHub fine-grained token>` (repo `heseven-website` only,
      **Contents: read & write**) and `Accept: application/vnd.github+json`
@@ -149,6 +150,14 @@ Rapid publishes collapse into one deploy of the latest content. A deploy takes ~
 ### Publishing a blog post
 
 Write in https://heseven.sanity.studio → **Publish** → watch GitHub → Actions → _Deploy_ → live in ~3 minutes.
+
+### Adding a case study
+
+No code needed — see [docs/adding-a-case-study.md](docs/adding-a-case-study.md) (written for non-technical editors).
+Studio → **Case studies** → create → fill the Story tab, add a desktop and a mobile screenshot → **Publish**.
+It appears at `/pages/case-studies/<slug>` and on `/pages/case-studies` after the next deploy. Turn off
+"Has its own page" to list a store under "More recent work" only. The starter content was seeded from
+`Heseven Casestudies.pdf` by `migration/seed-case-studies.mjs`.
 
 ### Manual fallback
 

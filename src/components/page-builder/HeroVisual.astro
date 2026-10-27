@@ -1,0 +1,570 @@
+---
+/**
+ * Animated SVG beside a builder-page hero that has no image, picked from the page topic:
+ *   whitelabel  "Your brand" storefront in front, Heseven's build layers (code / theme / apps) behind,
+ *               the brand name cycling to show it ships under any agency's name
+ *   care        store health monitor: turning gauge, radar sweep, heartbeat, ticks popping in
+ *   assistant   assistant hub with day-to-day tasks orbiting it and getting ticked off
+ *   store       a storefront assembling itself (default)
+ * Decorative (aria-hidden). Motion is transform/opacity only and stops for reduced motion.
+ */
+export type HeroVisualKind = 'whitelabel' | 'care' | 'assistant' | 'store';
+
+interface Props {
+  kind: HeroVisualKind;
+}
+const { kind } = Astro.props;
+
+const ticks = Array.from({ length: 36 }, (_, i) => (i * 360) / 36);
+const orbit = [
+  ['Orders', 0],
+  ['Products', 90],
+  ['Support', 180],
+  ['Reports', 270],
+] as const;
+const rad = (d: number) => (d * Math.PI) / 180;
+---
+
+<div class:list={['hv', `hv--${kind}`]} aria-hidden="true">
+  <svg viewBox="0 0 480 440" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <defs>
+      <radialGradient id="hv-glow" cx="50%" cy="45%" r="50%">
+        <stop offset="0" stop-color="#8b6cff" stop-opacity="0.35"></stop>
+        <stop offset="1" stop-color="#8b6cff" stop-opacity="0"></stop>
+      </radialGradient>
+      <linearGradient id="hv-lv" x1="0" y1="0" x2="1" y2="1">
+        <stop offset="0" stop-color="#b5f36b"></stop>
+        <stop offset="1" stop-color="#8b6cff"></stop>
+      </linearGradient>
+      <linearGradient id="hv-sweep" x1="0" y1="0" x2="1" y2="0">
+        <stop offset="0" stop-color="#b5f36b" stop-opacity="0"></stop>
+        <stop offset="1" stop-color="#b5f36b" stop-opacity="0.35"></stop>
+      </linearGradient>
+      <clipPath id="hv-beat">
+        <rect x="40" y="350" width="400" height="60"></rect>
+      </clipPath>
+    </defs>
+    <circle cx="240" cy="210" r="210" fill="url(#hv-glow)"></circle>
+
+    {kind === 'whitelabel' && (
+      <g>
+        {/* Heseven's build layers, behind */}
+        {[
+          ['CODE', 210, 28, 0.35],
+          ['THEME', 180, 58, 0.55],
+          ['APPS', 150, 88, 0.8],
+        ].map(([label, x, y, o], i) => (
+          <g class="hv-float" style={`--d:${i * -1.2}s`}>
+            <rect
+              x={x}
+              y={y}
+              width="270"
+              height="170"
+              rx="18"
+              fill="#1d1a28"
+              stroke="#ffffff"
+              stroke-opacity={0.1 + i * 0.05}
+              opacity={o}
+            />
+            <text
+              x={Number(x) + 228}
+              y={Number(y) + 26}
+              class="hv-mono"
+              fill="#a9a5b8"
+              text-anchor="end"
+              opacity={o}
+            >
+              {label}
+            </text>
+            {i === 0 &&
+              [0, 1, 2].map((r) => (
+                <rect
+                  x={Number(x) + 22}
+                  y={Number(y) + 46 + r * 18}
+                  width={120 - r * 30}
+                  height="6"
+                  rx="3"
+                  fill="#8b6cff"
+                  opacity="0.35"
+                />
+              ))}
+          </g>
+        ))}
+        {/* Data flowing from the build to the storefront */}
+        {[0, 1, 2].map((i) => (
+          <circle class="hv-beam" cx="330" cy="250" r="4" fill="#b5f36b" style={`--d:${i * -0.8}s`} />
+        ))}
+        {/* The storefront, under the agency's brand */}
+        <g class="hv-front">
+          <rect
+            x="40"
+            y="150"
+            width="300"
+            height="236"
+            rx="22"
+            fill="#14121c"
+            stroke="#b5f36b"
+            stroke-opacity="0.45"
+          />
+          <circle cx="62" cy="172" r="4" fill="#ffffff" opacity="0.2" />
+          <circle cx="76" cy="172" r="4" fill="#ffffff" opacity="0.2" />
+          <circle cx="90" cy="172" r="4" fill="#ffffff" opacity="0.2" />
+          <rect x="196" y="160" width="128" height="26" rx="13" fill="#b5f36b" />
+          {['YOUR BRAND', 'AGENCY CO.', 'STUDIO NORTH'].map((b, i) => (
+            <text
+              x="260"
+              y="177"
+              class="hv-brand"
+              style={`--d:${i * 2}s`}
+              text-anchor="middle"
+              fill="#0b0a10"
+            >
+              {b}
+            </text>
+          ))}
+          <rect x="60" y="200" width="260" height="70" rx="12" fill="#8b6cff" fill-opacity="0.18" />
+          <rect x="76" y="218" width="130" height="8" rx="4" fill="#f5f4f9" opacity="0.7" />
+          <rect x="76" y="234" width="90" height="6" rx="3" fill="#f5f4f9" opacity="0.35" />
+          <rect x="76" y="250" width="56" height="12" rx="6" fill="#b5f36b" />
+          {[0, 1, 2].map((i) => (
+            <rect
+              class="hv-pop"
+              style={`--d:${i * 0.35}s`}
+              x={60 + i * 88}
+              y="284"
+              width="80"
+              height="84"
+              rx="12"
+              fill="#ffffff"
+              fill-opacity="0.06"
+              stroke="#ffffff"
+              stroke-opacity="0.1"
+            />
+          ))}
+        </g>
+        <g class="hv-chip-float">
+          <rect
+            x="290"
+            y="368"
+            width="150"
+            height="32"
+            rx="16"
+            fill="#14121c"
+            stroke="#8b6cff"
+            stroke-opacity="0.6"
+          />
+          <circle cx="308" cy="384" r="4" fill="#b5f36b" />
+          <text x="320" y="388" class="hv-label" fill="#cfc4ff">
+            Built by Heseven · NDA
+          </text>
+        </g>
+      </g>
+    )}
+
+    {kind === 'care' && (
+      <g>
+        <g class="hv-spin-slow" style="transform-origin:240px 190px">
+          {ticks.map((a, i) => (
+            <line
+              x1={240 + 150 * Math.cos(rad(a))}
+              y1={190 + 150 * Math.sin(rad(a))}
+              x2={240 + (i % 3 === 0 ? 138 : 143) * Math.cos(rad(a))}
+              y2={190 + (i % 3 === 0 ? 138 : 143) * Math.sin(rad(a))}
+              stroke="#ffffff"
+              stroke-opacity={i % 3 === 0 ? 0.35 : 0.15}
+              stroke-width="2"
+            />
+          ))}
+        </g>
+        <path class="hv-sweep" d="M240 190 L370 190 A130 130 0 0 0 305 77.4 Z" fill="url(#hv-sweep)" />
+        <circle cx="240" cy="190" r="100" stroke="#ffffff" stroke-opacity="0.08" stroke-width="14" />
+        <circle
+          class="hv-arc"
+          cx="240"
+          cy="190"
+          r="100"
+          stroke="url(#hv-lv)"
+          stroke-width="14"
+          stroke-linecap="round"
+          stroke-dasharray="470 630"
+        />
+        <circle cx="240" cy="190" r="70" fill="#14121c" stroke="#ffffff" stroke-opacity="0.1" />
+        <path
+          class="hv-heart"
+          d="M240 205 C228 196 220 189 220 180 C220 173 226 168 232 168 C236 168 239 170 240 173 C241 170 244 168 248 168 C254 168 260 173 260 180 C260 189 252 196 240 205 Z"
+          fill="#b5f36b"
+        />
+        <text x="240" y="232" class="hv-mono" fill="#a9a5b8" text-anchor="middle">
+          HEALTHY
+        </text>
+        {[
+          ['Updates', 22, 40],
+          ['Backups', 340, 40],
+          ['Security', 14, 270],
+          ['Speed', 352, 270],
+        ].map(([label, x, y], i) => (
+          <g class="hv-tick" style={`--d:${i * 0.9}s`}>
+            <rect
+              x={x}
+              y={y}
+              width="112"
+              height="34"
+              rx="17"
+              fill="#14121c"
+              stroke="#b5f36b"
+              stroke-opacity="0.45"
+            />
+            <circle cx={Number(x) + 18} cy={Number(y) + 17} r="8" fill="#b5f36b" />
+            <path
+              d={`M${Number(x) + 14} ${Number(y) + 17} l3 3 l6 -6`}
+              stroke="#0b0a10"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            />
+            <text x={Number(x) + 34} y={Number(y) + 22} class="hv-label" fill="#f5f4f9">
+              {label}
+            </text>
+          </g>
+        ))}
+        <g clip-path="url(#hv-beat)">
+          <path
+            class="hv-beatline"
+            d="M40 380h60l10-22 14 44 10-22h66l10-22 14 44 10-22h66l10-22 14 44 10-22h66l10-22 14 44 10-22h66l10-22 14 44 10-22h60"
+            stroke="#b5f36b"
+            stroke-width="2.5"
+            stroke-linejoin="round"
+          />
+        </g>
+      </g>
+    )}
+
+    {kind === 'assistant' && (
+      <g>
+        <circle cx="240" cy="190" r="140" stroke="#ffffff" stroke-opacity="0.12" stroke-dasharray="4 8" />
+        <circle cx="240" cy="190" r="92" stroke="#8b6cff" stroke-opacity="0.25" />
+        <circle class="hv-pulse" cx="240" cy="190" r="46" fill="#b5f36b" fill-opacity="0.25" />
+        <circle
+          class="hv-pulse"
+          style="--d:-1.2s"
+          cx="240"
+          cy="190"
+          r="46"
+          fill="#b5f36b"
+          fill-opacity="0.25"
+        />
+        <circle cx="240" cy="190" r="44" fill="#b5f36b" />
+        <path
+          d="M222 178h36a6 6 0 0 1 6 6v16a6 6 0 0 1-6 6h-20l-10 8v-8h-6a6 6 0 0 1-6-6v-16a6 6 0 0 1 6-6Z"
+          fill="#0b0a10"
+        />
+        <circle cx="231" cy="192" r="2.5" fill="#b5f36b" class="hv-typing" />
+        <circle cx="240" cy="192" r="2.5" fill="#b5f36b" class="hv-typing" style="--d:0.2s" />
+        <circle cx="249" cy="192" r="2.5" fill="#b5f36b" class="hv-typing" style="--d:0.4s" />
+        <g class="hv-orbit" style="transform-origin:240px 190px">
+          {orbit.map(([label, a]) => (
+            <g transform={`translate(${240 + 140 * Math.cos(rad(a))} ${190 + 140 * Math.sin(rad(a))})`}>
+              <g class="hv-counter">
+                <rect
+                  x="-50"
+                  y="-16"
+                  width="100"
+                  height="32"
+                  rx="16"
+                  fill="#14121c"
+                  stroke="#8b6cff"
+                  stroke-opacity="0.6"
+                />
+                <circle cx="-32" cy="0" r="4" fill="#b5f36b" />
+                <text x="-22" y="4.5" class="hv-label" fill="#f5f4f9">
+                  {label}
+                </text>
+              </g>
+            </g>
+          ))}
+        </g>
+        <rect
+          x="110"
+          y="356"
+          width="260"
+          height="70"
+          rx="16"
+          fill="#14121c"
+          stroke="#ffffff"
+          stroke-opacity="0.1"
+        />
+        {[
+          ['Order #1042 shipped', 378],
+          ['New listing published', 404],
+        ].map(([t, y], i) => (
+          <g class="hv-tick" style={`--d:${i * 1.2}s`}>
+            <circle cx="134" cy={Number(y) - 4} r="7" fill="#b5f36b" />
+            <path
+              d={`M130.5 ${Number(y) - 4} l2.5 2.5 l5 -5`}
+              stroke="#0b0a10"
+              stroke-width="1.8"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            />
+            <text x="150" y={y} class="hv-label" fill="#f5f4f9">
+              {t}
+            </text>
+          </g>
+        ))}
+      </g>
+    )}
+
+    {kind === 'store' && (
+      <g>
+        <g class="hv-front">
+          <rect
+            x="60"
+            y="60"
+            width="360"
+            height="290"
+            rx="22"
+            fill="#14121c"
+            stroke="#ffffff"
+            stroke-opacity="0.12"
+          />
+          <circle cx="84" cy="84" r="4" fill="#ffffff" opacity="0.2" />
+          <circle cx="98" cy="84" r="4" fill="#ffffff" opacity="0.2" />
+          <circle cx="112" cy="84" r="4" fill="#ffffff" opacity="0.2" />
+          <rect x="84" y="108" width="312" height="90" rx="14" fill="url(#hv-lv)" fill-opacity="0.2" />
+          <rect x="104" y="132" width="150" height="10" rx="5" fill="#f5f4f9" opacity="0.7" />
+          <rect x="104" y="152" width="100" height="7" rx="3.5" fill="#f5f4f9" opacity="0.35" />
+          <rect x="104" y="170" width="64" height="14" rx="7" fill="#b5f36b" />
+          {[0, 1, 2].map((i) => (
+            <rect
+              class="hv-pop"
+              style={`--d:${i * 0.35}s`}
+              x={84 + i * 106}
+              y="214"
+              width="98"
+              height="112"
+              rx="12"
+              fill="#ffffff"
+              fill-opacity="0.06"
+              stroke="#ffffff"
+              stroke-opacity="0.1"
+            />
+          ))}
+        </g>
+        <g class="hv-chip-float">
+          <rect
+            x="300"
+            y="360"
+            width="130"
+            height="34"
+            rx="17"
+            fill="#14121c"
+            stroke="#b5f36b"
+            stroke-opacity="0.5"
+          />
+          <circle cx="320" cy="377" r="4" fill="#b5f36b" />
+          <text x="332" y="381" class="hv-label" fill="#f5f4f9">
+            New order
+          </text>
+        </g>
+      </g>
+    )}
+  </svg>
+</div>
+
+<style>
+  .hv {
+    width: 100%;
+    max-width: 34rem;
+    margin-inline: auto;
+  }
+  .hv svg {
+    display: block;
+    width: 100%;
+    height: auto;
+    overflow: visible;
+  }
+  .hv :global(.hv-mono) {
+    font-family: ui-monospace, monospace;
+    font-size: 11px;
+    letter-spacing: 0.18em;
+  }
+  .hv :global(.hv-label) {
+    font-family: var(--font-sans);
+    font-size: 12.5px;
+    font-weight: 500;
+  }
+  .hv :global(.hv-brand) {
+    font-family: var(--font-display);
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+  }
+
+  /* Loops that fade elements in start mid-cycle (negative delay), so the first paint is already full. */
+  @media (prefers-reduced-motion: no-preference) {
+    .hv :global(.hv-float) {
+      animation: hv-float 6s ease-in-out var(--d, 0s) infinite;
+    }
+    .hv :global(.hv-chip-float) {
+      animation: hv-float 5s ease-in-out -2s infinite;
+    }
+    .hv :global(.hv-beam) {
+      animation: hv-beam 2.4s linear var(--d, 0s) infinite;
+    }
+    .hv :global(.hv-brand) {
+      opacity: 0;
+      animation: hv-brand 6s ease-in-out var(--d, 0s) infinite;
+    }
+    .hv :global(.hv-pop) {
+      animation: hv-pop 4.8s cubic-bezier(0.16, 1, 0.3, 1) calc(-1 * var(--d, 0s) - 1.6s) infinite both;
+    }
+    .hv :global(.hv-spin-slow) {
+      animation: hv-spin 40s linear infinite;
+    }
+    .hv :global(.hv-sweep) {
+      transform-origin: 240px 190px;
+      animation: hv-spin 5s linear infinite;
+    }
+    .hv :global(.hv-arc) {
+      transform-origin: 240px 190px;
+      animation: hv-spin 12s linear infinite;
+    }
+    .hv :global(.hv-heart) {
+      transform-box: fill-box;
+      transform-origin: center;
+      animation: hv-heart 1.4s ease-in-out infinite;
+    }
+    .hv :global(.hv-tick) {
+      animation: hv-tick 4s cubic-bezier(0.16, 1, 0.3, 1) calc(-1 * var(--d, 0s) - 1.2s) infinite both;
+    }
+    .hv :global(.hv-beatline) {
+      animation: hv-beat 2.4s linear infinite;
+    }
+    .hv :global(.hv-pulse) {
+      transform-box: fill-box;
+      transform-origin: center;
+      animation: hv-pulse 2.4s ease-out var(--d, 0s) infinite;
+    }
+    .hv :global(.hv-typing) {
+      animation: hv-typing 1.2s ease-in-out var(--d, 0s) infinite;
+    }
+    .hv :global(.hv-orbit) {
+      animation: hv-spin 30s linear infinite;
+    }
+    .hv :global(.hv-counter) {
+      animation: hv-spin 30s linear infinite reverse;
+    }
+  }
+  /* Without motion, show the first brand name only. */
+  @media (prefers-reduced-motion: reduce) {
+    .hv :global(.hv-brand:not(:first-of-type)) {
+      display: none;
+    }
+  }
+
+  @keyframes hv-float {
+    50% {
+      transform: translateY(-8px);
+    }
+  }
+  @keyframes hv-beam {
+    0% {
+      opacity: 0;
+      transform: translate(0, 0);
+    }
+    20%,
+    80% {
+      opacity: 1;
+    }
+    100% {
+      opacity: 0;
+      transform: translate(-70px, 70px);
+    }
+  }
+  @keyframes hv-brand {
+    0%,
+    30% {
+      opacity: 1;
+    }
+    36%,
+    94% {
+      opacity: 0;
+    }
+    100% {
+      opacity: 1;
+    }
+  }
+  @keyframes hv-pop {
+    0%,
+    8% {
+      opacity: 0;
+    }
+    25%,
+    85% {
+      opacity: 1;
+    }
+    100% {
+      opacity: 0.2;
+    }
+  }
+  @keyframes hv-spin {
+    to {
+      transform: rotate(1turn);
+    }
+  }
+  @keyframes hv-heart {
+    0%,
+    100% {
+      transform: scale(1);
+    }
+    15% {
+      transform: scale(1.15);
+    }
+    30% {
+      transform: scale(1);
+    }
+    45% {
+      transform: scale(1.1);
+    }
+  }
+  /* Opacity only (SVG groups animating transform + opacity can drop out of paint in some browsers);
+     visible most of the cycle, so the chips never all disappear at once. */
+  @keyframes hv-tick {
+    0%,
+    6% {
+      opacity: 0;
+    }
+    16%,
+    94% {
+      opacity: 1;
+    }
+    100% {
+      opacity: 0;
+    }
+  }
+  /* One heartbeat period is 100 units, so the loop is seamless. */
+  @keyframes hv-beat {
+    to {
+      transform: translateX(-100px);
+    }
+  }
+  @keyframes hv-pulse {
+    0% {
+      opacity: 0.8;
+      transform: scale(1);
+    }
+    100% {
+      opacity: 0;
+      transform: scale(2.4);
+    }
+  }
+  @keyframes hv-typing {
+    0%,
+    100% {
+      opacity: 0.3;
+    }
+    50% {
+      opacity: 1;
+    }
+  }
+</style>

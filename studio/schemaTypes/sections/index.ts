@@ -125,6 +125,7 @@ export const sectionSteps = defineType({
   type: 'object',
   fields: [
     ...sectionIntro,
+    defineField({ name: 'lead', title: 'Intro text', type: 'text', rows: 2 }),
     defineField({
       name: 'steps',
       type: 'array',

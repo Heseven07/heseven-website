@@ -13,7 +13,6 @@ import waldo from '../assets/work/waldo-watch.jpg';
 
 export const nav = [
   { label: 'Services', href: '/services' },
-  { label: 'Work', href: '/#work' },
   { label: 'Case Studies', href: '/pages/case-studies' },
   { label: 'Process', href: '/#process' },
   { label: 'About', href: '/pages/about' },
@@ -188,6 +187,8 @@ export type CaseStudy = {
   image: ImageMetadata;
   /** Live store. Omit while a store is offline/password-protected. */
   url?: string;
+  /** Slug of its full case study at /pages/case-studies/<slug>, if there is one. */
+  caseStudy?: string;
 };
 export const work: CaseStudy[] = [
   {
@@ -198,6 +199,7 @@ export const work: CaseStudy[] = [
     metricLabel: 'Conversion rate',
     image: powerlete,
     url: 'https://www.powerleteclo.com/',
+    caseStudy: 'powerlete',
   },
   {
     slug: 'vroom-classic',
@@ -242,6 +244,7 @@ export const work: CaseStudy[] = [
     metricLabel: 'Customer LTV',
     image: waldo,
     url: 'https://waldowatches.com/',
+    caseStudy: 'waldo-watches',
   },
 ];
 
