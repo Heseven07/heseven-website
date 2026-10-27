@@ -4,6 +4,7 @@
  */
 import type { ImageMetadata } from 'astro';
 import { icons } from './icons';
+import { megaGroups } from './megaMenu';
 import powerlete from '../assets/work/powerlete.jpg';
 import vroom from '../assets/work/vroom-classic.jpg';
 import caorunn from '../assets/work/caorunn-gin.jpg';
@@ -37,12 +38,15 @@ export const hero = {
   ],
 };
 
+/** The links of one header mega menu column, by its title. */
+const megaLinks = (title: string) =>
+  (megaGroups.find((g) => g.title === title)?.items ?? []).map(({ label, href }) => ({ label, href }));
+
 /** Footer links — same as heseven.com's footer. */
 export const footerLinks = {
-  buildMigrate: [
-    { label: 'All services', href: '/services' },
-    { label: 'Shopify web design', href: '/services/shopify-web-design' },
-  ],
+  // Same links as the header's mega menu columns of the same name, plus the overview.
+  buildMigrate: [...megaLinks('Build & Migrate'), { label: 'All services', href: '/services' }],
+  convertOptimise: [...megaLinks('Convert & Optimise'), { label: 'All services', href: '/services' }],
   information: [
     { label: 'Why Shopify?', href: '/blogs/news/unlocking-e-commerce-success-the-power-of-shopify' },
     { label: 'Improve Conversion Rate', href: '/blogs/news/how-to-improve-your-conversion-rate' },
@@ -271,18 +275,42 @@ export const testimonials = [
   },
 ];
 
+/** "How we work" — `deliverable` is what the client has in hand at the end of each step. */
 export const process = {
   eyebrow: 'How we work',
   title: 'From kickoff to launch in 4–8 weeks.',
+  lead: 'Five clear steps, the same senior team throughout, and something you can see and sign off at the end of every one.',
   steps: [
-    { title: 'Kickoff', body: 'Goals, audience, KPIs and a clear scope — agreed in one focused session.' },
+    {
+      title: 'Kickoff',
+      body: 'Goals, audience, KPIs and a clear scope — agreed in one focused session.',
+      icon: icons.target,
+      deliverable: 'Project brief & agreed scope',
+    },
     {
       title: 'Discovery & wireframes',
       body: 'User journeys and low-fidelity layouts to validate structure early.',
+      icon: icons.search,
+      deliverable: 'User journeys & wireframes',
     },
-    { title: 'Design', body: 'High-fidelity, on-brand designs for every key template and breakpoint.' },
-    { title: 'Development', body: 'Clean, fast Shopify code with QA on real devices at every step.' },
-    { title: 'Launch & support', body: 'A smooth go-live, then ongoing optimisation and support.' },
+    {
+      title: 'Design',
+      body: 'High-fidelity, on-brand designs for every key template and breakpoint.',
+      icon: icons.sparkles,
+      deliverable: 'Designs for every key template',
+    },
+    {
+      title: 'Development',
+      body: 'Clean, fast Shopify code with QA on real devices at every step.',
+      icon: icons.code,
+      deliverable: 'Staging store, tested on real devices',
+    },
+    {
+      title: 'Launch & support',
+      body: 'A smooth go-live, then ongoing optimisation and support.',
+      icon: icons.trend,
+      deliverable: 'Live store & ongoing support plan',
+    },
   ],
 };
 

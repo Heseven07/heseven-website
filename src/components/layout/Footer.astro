@@ -1,7 +1,8 @@
 ---
 /**
- * Footer — same design and links as heseven.com: rounded dark panel with the green light-beam
- * background image, Information / Services / Build & Migrate columns, big "heseven" wordmark, Follow Us pills.
+ * Footer — same design as heseven.com: rounded dark panel with the green light-beam background image,
+ * Information / Services / Build & Migrate / Convert & Optimise columns, big "heseven" wordmark,
+ * Follow Us pills.
  * On mobile, the link columns collapse into accordions (open on desktop).
  */
 import { Image } from 'astro:assets';
@@ -20,6 +21,7 @@ const columns = [
   { id: 'information', title: 'Information', links: footerLinks.information },
   { id: 'services', title: 'Services', links: footerLinks.services },
   { id: 'build-migrate', title: 'Build & Migrate', links: footerLinks.buildMigrate },
+  { id: 'convert-optimise', title: 'Convert & Optimise', links: footerLinks.convertOptimise },
 ];
 ---
 
@@ -29,14 +31,14 @@ const columns = [
       src={footerBg}
       alt=""
       widths={[800, 1400, 2000]}
-      sizes="(min-width: 1440px) 1376px, 100vw"
+      sizes="(min-width: 1700px) 1636px, 100vw"
       loading="lazy"
       class="ft-bg"
     />
 
     <div class="relative px-6 pt-6 sm:px-10 md:px-12 md:pt-20">
       <!-- 1. Link columns: accordions on mobile, open columns on desktop -->
-      <div class="grid gap-x-10 md:grid-cols-3 lg:w-5/6">
+      <div class="grid gap-x-10 md:grid-cols-2 md:gap-y-14 xl:grid-cols-4">
         {columns.map((col) => (
           <details class="ft-col" open data-ft-acc>
             <summary class="ft-summary">
