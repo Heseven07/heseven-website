@@ -56,6 +56,7 @@ const BUILD = {
     cta: x.cta ? cta(x.cta) : undefined,
   }),
   cta: (x) => ({ _type: 'sectionCta', heading: x.heading, body: x.body, cta: cta(x.label) }),
+  contact: (x) => ({ _type: 'sectionContact', heading: x.heading, body: x.body }),
   faq: (x) => ({
     _type: 'sectionFaq',
     eyebrow: x.eyebrow,
