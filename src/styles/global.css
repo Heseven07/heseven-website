@@ -63,8 +63,8 @@
 /* ---------- Primitives ---------- */
 @layer components {
   .container-x {
-    /* 95rem (1520px) content width on large screens. */
-    @apply mx-auto w-full max-w-[95rem] px-5 sm:px-8;
+    /* 1700px content width on large screens; every section built on it follows. */
+    @apply mx-auto w-full max-w-[1700px] px-5 sm:px-8;
   }
   .btn {
     @apply inline-flex items-center justify-center gap-2 rounded-full px-6 py-3 text-sm font-medium transition-[transform,background-color,color] duration-300;
@@ -299,79 +299,6 @@
   }
   .marquee:hover .marquee-track {
     animation-play-state: paused;
-  }
-
-  /* Process — scroll-drawn timeline */
-  .process-line {
-    position: absolute;
-    background: var(--color-line);
-    border-radius: 2px;
-    overflow: hidden;
-  }
-  .process-line-fill {
-    position: absolute;
-    inset: 0;
-    background: linear-gradient(var(--dir, 90deg), var(--color-violet), var(--color-lime));
-    transform-origin: 0 0;
-    transform: scaleX(var(--p, 0));
-    box-shadow: 0 0 16px var(--color-lime);
-  }
-  .process-line[data-axis='y'] .process-line-fill {
-    --dir: 180deg;
-    transform: scaleY(var(--p, 0));
-  }
-  .process-step {
-    @apply relative flex gap-5 md:block;
-  }
-  .process-dot {
-    @apply relative z-10 grid size-12 shrink-0 place-items-center rounded-full border border-line bg-ink-2 font-display font-bold text-muted;
-    transition:
-      background-color 0.5s,
-      color 0.5s,
-      border-color 0.5s,
-      box-shadow 0.5s,
-      scale 0.5s var(--ease-out-expo);
-  }
-  .process-body {
-    @apply pt-2.5 md:pt-0;
-    translate: 0 12px;
-    transition: translate 0.8s var(--ease-out-expo);
-  }
-  /* Not-yet-reached steps are dimmed with colour, not opacity, so text keeps AA contrast. */
-  .process-body h3 {
-    color: var(--color-muted);
-    transition: color 0.6s;
-  }
-  .process-step.is-active .process-body h3 {
-    color: var(--color-fg);
-  }
-  @media (min-width: 768px) {
-    .process-body {
-      margin-top: 1.5rem;
-    }
-  }
-  .process-step.is-active .process-dot {
-    @apply border-lime bg-lime text-ink;
-    scale: 1.08;
-    box-shadow: 0 0 0 8px color-mix(in oklab, var(--color-lime) 15%, transparent);
-  }
-  .process-step.is-active .process-body {
-    translate: 0 0;
-  }
-  @media (min-width: 768px) and (min-height: 640px) and (prefers-reduced-motion: no-preference) {
-    .process-section {
-      height: 280vh;
-    }
-    .process-pin {
-      position: sticky;
-      top: 0;
-      height: 100vh;
-      display: flex;
-      align-items: center;
-    }
-  }
-  html:not(.js) .process-body {
-    translate: none;
   }
 
   /* Spotlight cards */
@@ -877,7 +804,7 @@
     @apply pointer-events-none absolute inset-0 -z-10 h-full w-full object-cover object-right opacity-40;
   }
   .ft-heading {
-    @apply font-display text-[1.75rem] leading-tight font-bold md:text-[2.125rem];
+    @apply font-display text-[1.75rem] leading-tight font-bold md:text-[2.125rem] xl:text-[clamp(1.4rem,1.9vw,2rem)] xl:whitespace-nowrap;
   }
   .ft-icon {
     @apply mt-1 size-4 shrink-0 fill-current;

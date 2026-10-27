@@ -1,8 +1,115 @@
 ---
-import BaseLayout from '../layouts/BaseLayout.astro';
-import PageHero from '../components/layout/PageHero.astro';
+/**
+ * Privacy policy. Describes what the site actually does: the quote form (Cloudflare Worker → Resend →
+ * our inbox), Cloudflare hosting and Turnstile, and consent-gated Meta Pixel / Google Analytics
+ * (Analytics.astro). Update it whenever a new tool that touches visitor data is added.
+ */
+import LegalPage, { type LegalSection } from '../components/layout/LegalPage.astro';
+import { SITE } from '../config/site';
+
+const a = SITE.address;
+const address = `${SITE.legalName}, ${a.streetAddress}, ${a.addressLocality} ${a.postalCode}, United Kingdom`;
+const mail = `<a href="mailto:${SITE.email}">${SITE.email}</a>`;
+
+const sections: LegalSection[] = [
+  {
+    id: 'who-we-are',
+    title: 'Who we are',
+    html: `<p>This website, heseven.com, is run by ${address} (“Heseven”, “we”, “us”). We are the controller of the personal data described in this policy.</p>
+<p>If you have any questions about this policy or how we handle your data, email us at ${mail}.</p>`,
+  },
+  {
+    id: 'what-we-collect',
+    title: 'What we collect',
+    html: `<p><strong>When you send an enquiry.</strong> Our quote form asks what you need, your budget and timeline, a short message, your name and email address, and optionally your website and country. We receive whatever you choose to tell us.</p>
+<p><strong>When you email us.</strong> Your email address, the content of your message and any attachments.</p>
+<p><strong>Technical data.</strong> Like every website, our hosting provider processes your IP address, browser type and the pages you request so the site can be delivered and protected from abuse. When you submit the form, a spam check also uses technical signals from your browser.</p>
+<p><strong>Analytics and advertising data — only with your consent.</strong> If you click “Accept” on our cookie banner, we use the Meta Pixel (and, where enabled, Google Analytics) to understand how visitors use the site and to measure our advertising. This involves cookies and identifiers described in the <a href="#cookies">cookies section</a>. If you click “Reject”, none of these tools load.</p>
+<p>We do not ask for special category data, and we ask you not to send it to us.</p>`,
+  },
+  {
+    id: 'how-we-use-it',
+    title: 'How we use your data and our legal basis',
+    html: `<ul>
+<li><strong>To reply to your enquiry and prepare a proposal</strong> — because you asked us to (steps before entering into a contract) and our legitimate interest in responding to people who contact us.</li>
+<li><strong>To deliver and secure the website</strong>, prevent spam and fraud — our legitimate interest in running a safe, working website.</li>
+<li><strong>To measure the site and our advertising</strong> (Meta Pixel, Google Analytics) — your consent, which you can withdraw at any time.</li>
+<li><strong>To keep business and accounting records</strong> if you become a client — our legal obligations.</li>
+</ul>
+<p>We do not sell your personal data, and we do not use it for automated decision-making that has legal or similarly significant effects on you.</p>`,
+  },
+  {
+    id: 'cookies',
+    title: 'Cookies and similar technologies',
+    html: `<p>When you first visit, a banner asks whether you accept analytics and advertising cookies. Your choice is saved in your browser's local storage (under the name <code>hs-consent</code>) so we don't ask again on every page.</p>
+<ul>
+<li><strong>Strictly necessary:</strong> storing your cookie choice, and security features of our hosting and spam protection. These don't need consent.</li>
+<li><strong>Advertising (with consent):</strong> the Meta Pixel sets cookies such as <code>_fbp</code> to measure visits and the results of our ads on Facebook and Instagram.</li>
+<li><strong>Analytics (with consent, where enabled):</strong> Google Analytics sets cookies such as <code>_ga</code> to count visits and see how pages are used.</li>
+</ul>
+<p>You can change your mind at any time with the <strong>Cookie settings</strong> link in the footer of every page, or by clearing this site's data in your browser.</p>`,
+  },
+  {
+    id: 'who-we-share-with',
+    title: 'Who we share it with',
+    html: `<p>We use a small number of trusted service providers who process data on our behalf and only as we instruct:</p>
+<ul>
+<li><strong>Cloudflare</strong> — website hosting, security and the Turnstile spam check on our form.</li>
+<li><strong>Resend</strong> — delivers enquiries from our form to our inbox.</li>
+<li><strong>Google</strong> — our email inbox (Gmail / Google Workspace) and, where enabled and only with your consent, Google Analytics.</li>
+<li><strong>Meta Platforms</strong> — the Meta Pixel, only with your consent.</li>
+</ul>
+<p>Our website content is managed in Sanity, which stores our pages and articles but not visitor data. We may also share data where the law requires it, or with professional advisers under a duty of confidentiality.</p>`,
+  },
+  {
+    id: 'international-transfers',
+    title: 'International transfers',
+    html: `<p>Some of our providers process data outside the UK, including in the United States. Where they do, the transfer is protected by an adequacy decision (such as the UK Extension to the EU–US Data Privacy Framework) or by appropriate safeguards such as the UK International Data Transfer Addendum to the EU Standard Contractual Clauses.</p>`,
+  },
+  {
+    id: 'how-long',
+    title: 'How long we keep it',
+    html: `<ul>
+<li><strong>Enquiries that don't lead to a project:</strong> up to 24 months after our last contact, then deleted.</li>
+<li><strong>Client records:</strong> for the length of our working relationship and up to six years afterwards, to meet legal and accounting requirements.</li>
+<li><strong>Analytics and advertising data:</strong> for the periods set by Google and Meta, which you can find in their own privacy policies.</li>
+</ul>`,
+  },
+  {
+    id: 'your-rights',
+    title: 'Your rights',
+    html: `<p>Under UK data protection law you have the right to:</p>
+<ul>
+<li>access the personal data we hold about you;</li>
+<li>ask us to correct or delete it;</li>
+<li>ask us to restrict how we use it, or object to our use of it;</li>
+<li>receive it in a portable format; and</li>
+<li>withdraw your consent at any time, where we rely on consent.</li>
+</ul>
+<p>To use any of these rights, email ${mail}. We will reply within one month. If you are unhappy with how we handle your data, you can complain to the Information Commissioner's Office at <a href="https://ico.org.uk" rel="noopener">ico.org.uk</a> — but we would appreciate the chance to put things right first.</p>`,
+  },
+  {
+    id: 'security',
+    title: 'Security',
+    html: `<p>Our website is served over HTTPS, and we limit access to enquiries to the people who need it to reply. No method of transmission over the internet is completely secure, but we take reasonable steps to protect your data.</p>`,
+  },
+  {
+    id: 'children',
+    title: 'Children',
+    html: `<p>Our services are for businesses. This website is not aimed at children, and we do not knowingly collect data from anyone under 16.</p>`,
+  },
+  {
+    id: 'changes',
+    title: 'Changes to this policy',
+    html: `<p>We may update this policy from time to time, for example when we add a new tool to the website. The date at the top of this page shows when it was last changed.</p>`,
+  },
+];
 ---
 
-<BaseLayout title="Privacy Policy" description="Privacy Policy for heseven.com, operated by Heseven Ltd.">
-  <PageHero title="Privacy Policy" lead="Placeholder — final legal copy to be supplied before launch." />
-</BaseLayout>
+<LegalPage
+  title="Privacy Policy"
+  description="How Heseven Ltd collects, uses and protects personal data on heseven.com — enquiries, cookies, analytics and your rights under UK GDPR."
+  lead="What we collect when you visit heseven.com or get in touch, why we collect it, and the choices you have."
+  updated="27 October 2026"
+  sections={sections}
+/>

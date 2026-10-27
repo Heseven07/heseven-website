@@ -4,7 +4,6 @@
  */
 import Lenis from 'lenis';
 import { initCounters } from './counters';
-import { initProcess } from './process';
 import { initInteractions } from './interactions';
 import { initGridComets } from './grid-comet';
 
@@ -50,7 +49,6 @@ document.addEventListener('astro:page-load', () => {
   initReveal();
   initInview();
   initCounters(reduceMotion);
-  initProcess(reduceMotion);
   initInteractions(reduceMotion);
   initGridComets();
 });

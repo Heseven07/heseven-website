@@ -1,0 +1,95 @@
+---
+/**
+ * Layout for legal pages (privacy, terms): page hero, "On this page" list sticky beside the text on
+ * desktop, numbered sections. Section bodies are trusted HTML strings written in the page files.
+ */
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import PageHero from './PageHero.astro';
+
+export interface LegalSection {
+  id: string;
+  title: string;
+  html: string;
+}
+interface Props {
+  title: string;
+  description: string;
+  lead: string;
+  updated: string;
+  sections: LegalSection[];
+}
+const { title, description, lead, updated, sections } = Astro.props;
+---
+
+<BaseLayout title={title} description={description}>
+  <PageHero eyebrow="Legal" title={title} lead={lead}>
+    <p class="mt-6 text-sm text-muted">Last updated: {updated}</p>
+  </PageHero>
+
+  <div class="container-x grid gap-12 pb-24 md:pb-32 lg:grid-cols-12 lg:gap-16">
+    <nav aria-label="On this page" class="hidden lg:col-span-3 lg:block">
+      <div class="sticky top-32">
+        <p class="legal-label">On this page</p>
+        <ol class="mt-4 grid gap-1">
+          {sections.map((s, i) => (
+            <li>
+              <a href={`#${s.id}`} class="legal-toc">
+                <span class="legal-num">{String(i + 1).padStart(2, '0')}</span>
+                {s.title}
+              </a>
+            </li>
+          ))}
+        </ol>
+      </div>
+    </nav>
+
+    <article class="lg:col-span-8 lg:col-start-5">
+      {sections.map((s, i) => (
+        <section id={s.id} class="legal-section scroll-mt-28" aria-labelledby={`${s.id}-title`}>
+          <h2 id={`${s.id}-title`} class="text-2xl font-bold sm:text-3xl">
+            <span class="legal-num legal-num--big">{String(i + 1).padStart(2, '0')}</span>
+            {s.title}
+          </h2>
+          <div class="prose mt-5" set:html={s.html} />
+        </section>
+      ))}
+    </article>
+  </div>
+</BaseLayout>
+
+<style>
+  .legal-label {
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--color-lime);
+  }
+  .legal-toc {
+    display: flex;
+    gap: 0.75rem;
+    padding: 0.35rem 0;
+    font-size: 0.925rem;
+    color: var(--color-muted);
+    transition: color 0.2s;
+  }
+  .legal-toc:hover {
+    color: var(--color-fg);
+  }
+  .legal-num {
+    font-family: var(--font-display);
+    font-size: 0.8rem;
+    color: var(--color-lime);
+  }
+  .legal-num--big {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-size: 0.85rem;
+    letter-spacing: 0.1em;
+  }
+  .legal-section + .legal-section {
+    margin-top: 3.5rem;
+    padding-top: 3.5rem;
+    border-top: 1px solid var(--color-line);
+  }
+</style>
