@@ -22,7 +22,10 @@ jobs:
       - run: npm ci
       - run: npm run format:check
       - run: npm run lint
+      # Same Meta Pixel ID as production, so Lighthouse and tests check the real page (with consent banner).
       - run: npm run build
+        env:
+          PUBLIC_META_PIXEL_ID: '564814566653097'
       - uses: actions/upload-artifact@v4
         with:
           name: dist

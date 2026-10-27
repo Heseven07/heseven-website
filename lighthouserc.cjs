@@ -37,18 +37,19 @@ module.exports = {
       },
     },
     assert: {
-      // Three budgets: the homepage must stay at 100; core pages ≥ 98; image-led blog pages ≥ 97.
+      // Three budgets: the homepage must stay at 100; core pages ≥ 98; image-led pages (blog and the
+      // case studies listing) ≥ 97.
       assertMatrix: [
         {
           matchingUrlPattern: '^http://localhost:\\d+/$',
           assertions: { ...strict, 'categories:performance': ['error', { minScore: 0.99 }] },
         },
         {
-          matchingUrlPattern: '^http://localhost:\\d+/(?!blogs/).+',
+          matchingUrlPattern: '^http://localhost:\\d+/(?!blogs/|pages/case-studies/?$).+',
           assertions: strict,
         },
         {
-          matchingUrlPattern: '^http://localhost:\\d+/blogs/.*',
+          matchingUrlPattern: '^http://localhost:\\d+/(blogs/.*|pages/case-studies/?)$',
           assertions: {
             ...strict,
             'categories:performance': ['error', { minScore: 0.97 }],
