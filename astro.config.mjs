@@ -1,8 +1,8 @@
 // @ts-check
 import { defineConfig, fontProviders } from 'astro/config';
-import sitemap from '@astrojs/sitemap';
 import tailwindcss from '@tailwindcss/vite';
 import pruneShadowedRedirects from './scripts/prune-redirects.mjs';
+import sitemapXml from './scripts/sitemap.mjs';
 
 // https://astro.build/config
 export default defineConfig({
@@ -25,9 +25,8 @@ export default defineConfig({
   integrations: [
     // Drops /pages/<handle> fallback redirects for pages that exist in this build.
     pruneShadowedRedirects(),
-    sitemap({
-      filter: (page) => !/\/(thank-you|styleguide)\/?$/.test(page),
-    }),
+    // Writes /sitemap.xml (same address as on Shopify) from the built pages, with lastmod dates.
+    sitemapXml(),
   ],
   // Self-hosted, latin-only, ONE weight per family (both preloaded) — keeps LCP font-swap off the critical path.
   // Adding a weight costs ~20 KB and Lighthouse points; check `npm run lighthouse` if you do. Files come from @fontsource packages (no network at build).

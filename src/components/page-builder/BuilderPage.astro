@@ -43,6 +43,7 @@ const schema = [
     url,
     name: baseTitle,
     description,
+    dateModified: page._updatedAt,
     isPartOf: { '@id': `${SITE.url}/#website` },
   },
   // Service pages also describe the service itself, offered by the organisation.

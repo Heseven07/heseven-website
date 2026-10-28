@@ -67,7 +67,7 @@ Check **Google Search Console → Pages** (clicks, last 12 months) to prioritise
 
 ## Utility — keep redirected, don't rebuild ⛔
 
-`usd`, `gbp` (currency switch), `partner-links`, `html-sitemap*` (5 pages; the new site has `/sitemap-index.xml`).
+`usd`, `gbp` (currency switch), `partner-links`, `html-sitemap*` (5 pages; the new site has `/sitemap.xml`).
 
 ## Unpublished on Shopify — ignore ⛔
 
