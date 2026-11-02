@@ -25,6 +25,8 @@ module.exports = {
         'http://localhost/services/shopify-web-design',
         'http://localhost/pages/shopify-website-development-services',
         'http://localhost/pages/contact-us',
+        'http://localhost/pages/contact-in',
+        'http://localhost/pages/audit',
         'http://localhost/pages/about',
         'http://localhost/pages/case-studies',
         'http://localhost/pages/case-studies/waldo-watches',

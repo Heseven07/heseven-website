@@ -2,8 +2,6 @@
  * Store audit form. Progressive enhancement over a normal POST form: submits JSON to /api/contact,
  * shows an inline success message and falls back to a pre-filled email if the API is unavailable.
  */
-import { loadTurnstile } from './turnstile';
-
 const loadedAt = performance.now();
 
 export function initAuditForm() {
@@ -19,7 +17,25 @@ export function initAuditForm() {
   const box = form.querySelector<HTMLElement>('[data-turnstile]');
 
   form.noValidate = true;
-  form.addEventListener('focusin', () => loadTurnstile(box), { once: true });
+
+  // Kept here, not shared with quote-form.ts: an import would stop Astro inlining these scripts (slower LCP).
+  const loadTurnstile = () => {
+    if (!box) return;
+    const render = () =>
+      window.turnstile?.render(box, {
+        sitekey: box.dataset.sitekey,
+        theme: 'dark',
+        'response-field-name': 'turnstileToken',
+      });
+    if (window.turnstile) return render();
+    window.__hsTurnstileReady = render;
+    const s = document.createElement('script');
+    s.src = 'https://challenges.cloudflare.com/turnstile/v0/api.js?render=explicit&onload=__hsTurnstileReady';
+    s.async = true;
+    document.head.append(s);
+  };
+
+  form.addEventListener('focusin', loadTurnstile, { once: true });
 
   const messageFor = (el: HTMLInputElement | HTMLTextAreaElement) => {
     if (el.validity.typeMismatch) return 'Please enter a valid email address.';

@@ -3,14 +3,17 @@
  * hides all but the current step, validates per step, lazy-loads Turnstile on the last step,
  * submits JSON to /api/contact and falls back to a pre-filled email if the API is unavailable.
  */
-import { loadTurnstile } from './turnstile';
-
 const CONTACT_EMAIL = 'info@heseven.com';
 const loadedAt = performance.now();
 
 declare global {
   interface Window {
+    turnstile?: {
+      render: (el: HTMLElement, opts: Record<string, unknown>) => string;
+      reset: (el?: HTMLElement) => void;
+    };
     gtag?: (...args: unknown[]) => void;
+    __hsTurnstileReady?: () => void;
     tlq?: (...args: unknown[]) => void;
   }
 }
@@ -58,7 +61,7 @@ export function initQuoteForm() {
     counter.textContent = String(current + 1);
     bar.style.transform = `scaleX(${(current + 1) / total})`;
     setError('');
-    if (current === total - 1) loadTurnstile(form.querySelector<HTMLElement>('[data-turnstile]'));
+    if (current === total - 1) loadTurnstile();
     if (focus) steps[current]!.querySelector<HTMLElement>('.qf-legend')?.focus({ preventScroll: true });
   };
 
@@ -184,6 +187,25 @@ export function initQuoteForm() {
       d.message ?? '',
     ].join('\n');
     return `mailto:${CONTACT_EMAIL}?subject=${encodeURIComponent(`Project enquiry: ${d.need ?? ''}`)}&body=${encodeURIComponent(body)}`;
+  };
+
+  let turnstileRequested = false;
+  const loadTurnstile = () => {
+    const box = form.querySelector<HTMLElement>('[data-turnstile]');
+    if (!box || turnstileRequested) return;
+    turnstileRequested = true;
+    const render = () =>
+      window.turnstile?.render(box, {
+        sitekey: box.dataset.sitekey,
+        theme: 'dark',
+        'response-field-name': 'turnstileToken',
+      });
+    if (window.turnstile) return render();
+    window.__hsTurnstileReady = render;
+    const s = document.createElement('script');
+    s.src = 'https://challenges.cloudflare.com/turnstile/v0/api.js?render=explicit&onload=__hsTurnstileReady';
+    s.async = true;
+    document.head.append(s);
   };
 
   show(0, false);
