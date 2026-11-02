@@ -31,6 +31,8 @@ jobs:
       # GA4 + Tracklution (public IDs, consent-gated in Analytics.astro). Read at build time.
       PUBLIC_GA4_ID: 'G-GB8B925EJJ'
       PUBLIC_TRACKLUTION_ID: 'LS-40501194-6'
+      # Turnstile site key (public). The secret key is a Worker secret: TURNSTILE_SECRET_KEY.
+      PUBLIC_TURNSTILE_SITE_KEY: '0x4AAAAAAFwQvDt8IyWZannE'
     steps:
       - name: Check deploy credentials
         id: creds
