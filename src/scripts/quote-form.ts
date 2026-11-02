@@ -126,7 +126,6 @@ export function initQuoteForm() {
         return;
       }
     }
-    if (!india) track('Contact');
     (form.elements.namedItem('formMs') as HTMLInputElement).value = String(
       Math.round(performance.now() - loadedAt),
     );
