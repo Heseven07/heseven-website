@@ -17,7 +17,7 @@
   "vars": {
     // TEMPORARY: Resend's test sender can only deliver to the Resend account owner's address.
     // Must be the Resend account's own email until heseven.com is verified there (then update CONTACT_FROM).
-    "CONTACT_TO": "info@heseven.com",
+    "CONTACT_TO": "dhiraj@heseven.com",
     // Until heseven.com is verified in Resend, Resend only allows this sender.
     "CONTACT_FROM": "Heseven Website <onboarding@resend.dev>",
   },
