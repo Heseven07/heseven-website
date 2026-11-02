@@ -10,7 +10,7 @@ declare global {
   interface Window {
     turnstile?: { render: (el: HTMLElement, opts: Record<string, unknown>) => string };
     gtag?: (...args: unknown[]) => void;
-    fbq?: (...args: unknown[]) => void;
+    tlq?: (...args: unknown[]) => void;
     __hsTurnstileReady?: () => void;
   }
 }
@@ -32,6 +32,15 @@ export function initQuoteForm() {
   const counter = card.querySelector<HTMLElement>('[data-qf-current]')!;
   const success = card.querySelector<HTMLElement>('[data-qf-success]')!;
   let current = 0;
+
+  // Tracklution funnel events, each once per form (no-op unless analytics were consented and loaded).
+  const tracked = new Set<string>();
+  const track = (event: string) => {
+    if (!window.tlq || tracked.has(event)) return;
+    tracked.add(event);
+    window.tlq('track', event);
+  };
+  const optionEvents: Record<string, string> = { need: 'Need', budget: 'Budget', timeline: 'Timeline' };
 
   form.noValidate = true;
   card.classList.add('is-staged');
@@ -87,6 +96,8 @@ export function initQuoteForm() {
       form.querySelectorAll('.cur').forEach((c) => (c.textContent = symbol));
       return;
     }
+    const optionEvent = optionEvents[input.name];
+    if (optionEvent) track(optionEvent);
     if (input.type === 'radio' && input.closest('[data-autoadvance]') && current < total - 1) {
       setTimeout(() => show(current + 1), 280);
     }
@@ -109,6 +120,7 @@ export function initQuoteForm() {
         return;
       }
     }
+    track('Contact');
     (form.elements.namedItem('formMs') as HTMLInputElement).value = String(
       Math.round(performance.now() - loadedAt),
     );
@@ -151,7 +163,7 @@ export function initQuoteForm() {
     success.focus();
     // Conversion events (no-ops unless analytics were consented and loaded).
     window.gtag?.('event', 'generate_lead', { service: data.need, budget: data.budget });
-    window.fbq?.('track', 'Lead');
+    track('Lead');
   };
 
   const mailto = (d: Record<string, string>) => {

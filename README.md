@@ -12,7 +12,7 @@ Target: **100 / 100 / 100 / 100** on PageSpeed Insights (mobile + desktop), enfo
 | Fonts     | Syne + Roboto, self-hosted via Astro Fonts API, latin-only, 2 preloads, metric-matched fallbacks         |
 | Motion    | View Transitions (`<ClientRouter />`), Lenis smooth scroll, IntersectionObserver reveals (`data-reveal`) |
 | CMS       | Sanity (Phase 4) — placeholder content until then                                                        |
-| Analytics | GA4 + Meta Pixel, consent-gated, **off until IDs are set** (see `.env.example`)                          |
+| Analytics | GA4 + Tracklution, consent-gated, **off until IDs are set** (see `.env.example`)                         |
 | Hosting   | Cloudflare Pages (`public/_headers`, `public/_redirects`)                                                |
 
 ## Getting started
@@ -41,16 +41,16 @@ npm run dev        # http://localhost:4321
 4. Animate only `transform` and `opacity`. Respect `prefers-reduced-motion`.
 5. Every new indexable page template → add its URL to `lighthouserc.cjs`.
 
-## Tracking (GA4 / Meta Pixel)
+## Tracking (GA4 / Tracklution)
 
 Disabled by default. To enable, set in Cloudflare Pages → Settings → Environment variables (or `.env` locally):
 
 ```
 PUBLIC_GA4_ID=G-XXXXXXXXXX
-PUBLIC_META_PIXEL_ID=000000000000000
+PUBLIC_TRACKLUTION_ID=LS-00000000-0
 ```
 
-A cookie banner then appears; scripts load only after "Accept". The original vendor snippets are kept as comments in `src/components/layout/Analytics.astro`.
+A cookie banner then appears; the script loads only after "Accept". The original vendor snippet is kept as a comment in `src/components/layout/Analytics.astro`.
 
 ## Blog / CMS (Sanity)
 
@@ -94,7 +94,7 @@ It posts to `/api/contact`, handled by the only server code in the project: `wor
   Turnstile's script loads only when the visitor reaches the last step, so it never affects Lighthouse.
 - **Delivery:** [Resend](https://resend.com) emails each brief to `CONTACT_TO` (set in `wrangler.jsonc`) with reply-to set to the visitor.
 - **Until keys are set**, the API answers 503 and the form shows a pre-filled `mailto:` link instead — no enquiry is lost.
-- **Analytics:** on success it fires GA4 `generate_lead` and Meta `Lead` (only if the visitor accepted cookies).
+- **Analytics:** on success it fires GA4 `generate_lead` and Tracklution `Lead` (only if the visitor accepted cookies).
 
 To switch on email delivery:
 

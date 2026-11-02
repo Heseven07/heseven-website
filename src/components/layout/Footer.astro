@@ -11,7 +11,7 @@ import { SITE } from '../../config/site';
 import { footerLinks } from '../../data/home';
 
 const year = new Date().getFullYear();
-const trackingEnabled = Boolean(import.meta.env.PUBLIC_GA4_ID || import.meta.env.PUBLIC_META_PIXEL_ID);
+const trackingEnabled = Boolean(import.meta.env.PUBLIC_GA4_ID || import.meta.env.PUBLIC_TRACKLUTION_ID);
 const social = [
   { label: 'Facebook', href: SITE.social.facebook },
   { label: 'Instagram', href: SITE.social.instagram },

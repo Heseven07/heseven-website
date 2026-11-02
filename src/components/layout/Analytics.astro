@@ -1,10 +1,10 @@
 ---
 /**
- * Consent-gated GA4 + Meta Pixel.
+ * Consent-gated GA4 + Tracklution.
  *
- * Both are OFF until an ID is set in the environment (.env / Cloudflare Pages vars):
+ * Each is OFF until its ID is set in the environment (.env / Cloudflare Pages vars):
  *   PUBLIC_GA4_ID=G-XXXXXXXXXX
- *   PUBLIC_META_PIXEL_ID=000000000000000
+ *   PUBLIC_TRACKLUTION_ID=LS-00000000-0
  *
  * Nothing third-party loads until the visitor accepts the cookie banner, and even then
  * only once the browser is idle. Lighthouse never clicks "Accept", so scores stay at 100.
@@ -21,20 +21,13 @@
  *   gtag('config', 'G-XXXXXXXXXX');
  * </script>
  *
- * <!-- Meta Pixel Code -->
- * <script>
- *   !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
- *   n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
- *   n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;
- *   t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,
- *   document,'script','https://connect.facebook.net/en_US/fbevents.js');
- *   fbq('init', '000000000000000');
- *   fbq('track', 'PageView');
- * </script>
+ * Tracklution: the same function as in load() below, followed by tlq('init', 'LS-00000000-0');
+ * tlq('track', 'PageView'); on every page and tlq('track', 'ViewContent'); on the contact page.
+ * The quote form's funnel events are in scripts/quote-form.ts.
  */
 const ga4Id = import.meta.env.PUBLIC_GA4_ID ?? '';
-const pixelId = import.meta.env.PUBLIC_META_PIXEL_ID ?? '';
-const enabled = Boolean(ga4Id || pixelId);
+const tracklutionId = import.meta.env.PUBLIC_TRACKLUTION_ID ?? '';
+const enabled = Boolean(ga4Id || tracklutionId);
 ---
 
 {enabled && (
@@ -49,8 +42,7 @@ const enabled = Boolean(ga4Id || pixelId);
       transition:persist
     >
       <p>
-        We use cookies to measure how the site is used and to improve our ads.{' '}
-        <a href="/privacy">Privacy policy</a>
+        We use cookies to measure how the site is used. <a href="/privacy">Privacy policy</a>
       </p>
       <div class="consent-actions">
         <button type="button" data-consent="reject" class="btn btn-ghost btn-sm">
@@ -61,7 +53,7 @@ const enabled = Boolean(ga4Id || pixelId);
         </button>
       </div>
     </div>
-    <script is:inline define:vars={{ ga4Id, pixelId }}>
+    <script is:inline define:vars={{ ga4Id, tracklutionId }}>
       /* eslint-disable -- ES5 inline loader kept close to the vendor snippets so they are easy to diff/update. */
       (function () {
         if (window.__hsAnalytics) return;
@@ -91,6 +83,11 @@ const enabled = Boolean(ga4Id || pixelId);
           document.head.appendChild(s);
         }
 
+        function trackPage() {
+          tlq('track', 'PageView');
+          if (/^\/pages\/contact-us\/?$/.test(location.pathname)) tlq('track', 'ViewContent');
+        }
+
         function load() {
           if (loaded) return;
           loaded = true;
@@ -100,45 +97,61 @@ const enabled = Boolean(ga4Id || pixelId);
               dataLayer.push(arguments);
             };
             gtag('consent', 'default', {
-              ad_storage: 'granted',
+              ad_storage: 'denied',
               analytics_storage: 'granted',
-              ad_user_data: 'granted',
-              ad_personalization: 'granted',
+              ad_user_data: 'denied',
+              ad_personalization: 'denied',
             });
             gtag('js', new Date());
             gtag('config', ga4Id);
             addScript('https://www.googletagmanager.com/gtag/js?id=' + ga4Id);
           }
-          if (pixelId) {
-            !(function (f, b, e, v, n, t, s) {
-              if (f.fbq) return;
-              n = f.fbq = function () {
-                n.callMethod ? n.callMethod.apply(n, arguments) : n.queue.push(arguments);
+          if (tracklutionId) {
+            !(function (t, l, r, o, c, k, s) {
+              if (t.tlq) return;
+              c = t.tlq = function () {
+                c.callMethod ? c.callMethod(arguments) : c.queue.push(arguments);
               };
-              if (!f._fbq) f._fbq = n;
-              n.push = n;
-              n.loaded = !0;
-              n.version = '2.0';
-              n.queue = [];
-              t = b.createElement(e);
-              t.async = !0;
-              t.src = v;
-              s = b.getElementsByTagName(e)[0];
-              s.parentNode.insertBefore(t, s);
-            })(window, document, 'script', 'https://connect.facebook.net/en_US/fbevents.js');
-            fbq('init', pixelId);
-            fbq('track', 'PageView');
+              if (!t._tlq) t._tlq = c;
+              c.push = c;
+              c.loaded = !0;
+              c.version = '1.0';
+              c.src = o;
+              c.queue = [];
+              k = l.createElement(r);
+              k.async = !0;
+              c.pd = false;
+              c.tools = null;
+              k.src = o;
+              s = l.getElementsByTagName(r)[0];
+              s.parentNode.insertBefore(k, s);
+              k.onerror = function () {
+                o = 'https://main-70753.trlution.com/js/script-dynamic.js?version=1793591553650';
+                t._tlq.src = o;
+                k = l.createElement(r);
+                k.async = !0;
+                k.src = o;
+                s.parentNode.insertBefore(k, s);
+              };
+            })(
+              window,
+              document,
+              'script',
+              'https://tralut.heseven.com/js/script-dynamic.js?version=1793591553650',
+            );
+            tlq('init', tracklutionId);
+            trackPage();
           }
         }
 
-        // Client-side navigations (view transitions): GA4 tracks history changes itself; Meta needs a nudge.
+        // Client-side navigations (view transitions): GA4 tracks history changes itself; Tracklution needs a nudge.
         var first = true;
         document.addEventListener('astro:page-load', function () {
           if (first) {
             first = false;
             return;
           }
-          if (loaded && window.fbq) fbq('track', 'PageView');
+          if (loaded && window.tlq) trackPage();
         });
 
         var banner = document.getElementById('consent');
