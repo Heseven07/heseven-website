@@ -7,7 +7,7 @@
  */
 
 const path = Astro.url.pathname.replace(/\/$/, '');
-const hidden = ['/pages/contact-us', '/pages/thank-you'].includes(path);
+const hidden = ['/pages/contact-us', '/pages/contact-in', '/pages/audit', '/pages/thank-you'].includes(path);
 ---
 
 {!hidden && (

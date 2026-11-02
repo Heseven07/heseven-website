@@ -1,0 +1,148 @@
+---
+/** "What we check": tabs built on radio inputs, so they work without JavaScript. */
+import SectionHeading from '../ui/SectionHeading.astro';
+import { auditAreas } from '../../data/audit';
+---
+
+<section class="py-24 md:py-32" aria-labelledby="audit-areas-title">
+  <div class="container-x">
+    <SectionHeading
+      id="audit-areas-title"
+      eyebrow="What we check"
+      title="Six areas that decide how your store performs."
+    />
+    <div class="aa-wrap" data-reveal>
+      {auditAreas.map((a, i) => (
+        <>
+          <input
+            class="aa-input"
+            type="radio"
+            name="audit-area"
+            id={`aa-${a.id}`}
+            aria-label={a.label}
+            checked={i === 0}
+          />
+          <label class="aa-tab" for={`aa-${a.id}`} style={`--n:${i + 1}`}>
+            {a.label}
+          </label>
+        </>
+      ))}
+      {auditAreas.map((a) => (
+        <div class="aa-panel" data-area={a.id}>
+          <div>
+            <h3 class="text-3xl font-bold">{a.title}</h3>
+            <p class="mt-4 max-w-lg text-lg text-muted">{a.body}</p>
+          </div>
+          <ul class="aa-checks">
+            {a.checks.map((c) => (
+              <li>
+                <span class="check-badge" aria-hidden="true">
+                  <svg
+                    viewBox="0 0 24 24"
+                    width="14"
+                    height="14"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="3"
+                  >
+                    <path d="m5 12.5 4.5 4.5L19 7.5" stroke-linecap="round" stroke-linejoin="round" />
+                  </svg>
+                </span>
+                {c}
+              </li>
+            ))}
+          </ul>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  .aa-wrap {
+    position: relative;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.6rem;
+    margin-top: 3rem;
+  }
+  .aa-input {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    opacity: 0;
+  }
+  .aa-tab {
+    order: var(--n);
+    padding: 0.6rem 1.15rem;
+    border: 1px solid var(--color-line);
+    border-radius: 999px;
+    color: var(--color-muted);
+    cursor: pointer;
+    transition:
+      color 0.25s,
+      border-color 0.25s,
+      background-color 0.25s;
+  }
+  .aa-tab:hover {
+    border-color: rgb(181 243 107 / 0.5);
+    color: var(--color-fg);
+  }
+  .aa-input:checked + .aa-tab {
+    border-color: var(--color-lime);
+    background: var(--color-lime);
+    color: var(--color-ink);
+  }
+  .aa-input:focus-visible + .aa-tab {
+    outline: 2px solid var(--color-lime);
+    outline-offset: 3px;
+  }
+  .aa-panel {
+    display: none;
+    order: 10;
+    width: 100%;
+    gap: 2.5rem;
+    margin-top: 1.25rem;
+    padding: 2rem;
+    border: 1px solid var(--color-line);
+    border-radius: 1.75rem;
+    background:
+      radial-gradient(80% 90% at 100% 0%, rgb(139 108 255 / 0.16), transparent 60%), var(--color-ink-2);
+  }
+  @media (min-width: 900px) {
+    .aa-panel {
+      grid-template-columns: 1.1fr 1fr;
+      padding: 3rem;
+    }
+  }
+  .aa-wrap:has(#aa-speed:checked) [data-area='speed'],
+  .aa-wrap:has(#aa-conversion:checked) [data-area='conversion'],
+  .aa-wrap:has(#aa-mobile:checked) [data-area='mobile'],
+  .aa-wrap:has(#aa-seo:checked) [data-area='seo'],
+  .aa-wrap:has(#aa-apps:checked) [data-area='apps'],
+  .aa-wrap:has(#aa-tracking:checked) [data-area='tracking'] {
+    display: grid;
+  }
+  .aa-checks {
+    display: grid;
+    align-content: center;
+    gap: 1rem;
+  }
+  .aa-checks li {
+    display: flex;
+    align-items: center;
+    gap: 0.85rem;
+    font-size: 1.05rem;
+  }
+  @media (prefers-reduced-motion: no-preference) {
+    .aa-panel {
+      animation: aa-in 0.45s cubic-bezier(0.2, 0.7, 0.2, 1);
+    }
+    @keyframes aa-in {
+      from {
+        opacity: 0;
+        transform: translateY(14px);
+      }
+    }
+  }
+</style>

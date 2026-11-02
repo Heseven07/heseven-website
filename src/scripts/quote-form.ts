@@ -8,10 +8,13 @@ const loadedAt = performance.now();
 
 declare global {
   interface Window {
-    turnstile?: { render: (el: HTMLElement, opts: Record<string, unknown>) => string };
+    turnstile?: {
+      render: (el: HTMLElement, opts: Record<string, unknown>) => string;
+      reset: (el?: HTMLElement) => void;
+    };
     gtag?: (...args: unknown[]) => void;
-    tlq?: (...args: unknown[]) => void;
     __hsTurnstileReady?: () => void;
+    tlq?: (...args: unknown[]) => void;
   }
 }
 
@@ -33,7 +36,9 @@ export function initQuoteForm() {
   const success = card.querySelector<HTMLElement>('[data-qf-success]')!;
   let current = 0;
 
-  // Tracklution funnel events, each once per form (no-op unless analytics were consented and loaded).
+  // Tracklution events, each once per form (no-op unless analytics were consented and loaded).
+  // /pages/contact-in only tracks its final "Lead From India"; the other forms track the whole funnel.
+  const india = form.dataset.region === 'india';
   const tracked = new Set<string>();
   const track = (event: string) => {
     if (!window.tlq || tracked.has(event)) return;
@@ -73,6 +78,7 @@ export function initQuoteForm() {
     if (invalid.type === 'radio') msg = 'Please pick one option to continue.';
     else if (invalid.validity.valueMissing) msg = `Please fill in “${labelFor(invalid)}”.`;
     else if (invalid.validity.typeMismatch) msg = 'Please enter a valid email address.';
+    else if (invalid.validity.patternMismatch) msg = 'Please enter a valid mobile number.';
     else if (invalid.validity.tooShort) msg = 'Could you add a little more detail (10+ characters)?';
     setError(msg);
     invalid.focus();
@@ -97,7 +103,7 @@ export function initQuoteForm() {
       return;
     }
     const optionEvent = optionEvents[input.name];
-    if (optionEvent) track(optionEvent);
+    if (optionEvent && !india) track(optionEvent);
     if (input.type === 'radio' && input.closest('[data-autoadvance]') && current < total - 1) {
       setTimeout(() => show(current + 1), 280);
     }
@@ -120,7 +126,7 @@ export function initQuoteForm() {
         return;
       }
     }
-    track('Contact');
+    if (!india) track('Contact');
     (form.elements.namedItem('formMs') as HTMLInputElement).value = String(
       Math.round(performance.now() - loadedAt),
     );
@@ -163,14 +169,16 @@ export function initQuoteForm() {
     success.focus();
     // Conversion events (no-ops unless analytics were consented and loaded).
     window.gtag?.('event', 'generate_lead', { service: data.need, budget: data.budget });
-    track('Lead');
+    track(india ? 'Lead From India' : 'Lead');
   };
 
   const mailto = (d: Record<string, string>) => {
     const body = [
       `Name: ${d.name ?? ''}`,
       `Email: ${d.email ?? ''}`,
-      `Country: ${d.country ?? ''}`,
+      ...(d.source === 'india'
+        ? ['Lead from India', `Mobile: ${d.phone ?? ''}`]
+        : [`Country: ${d.country ?? ''}`]),
       `Website: ${d.website ?? ''}`,
       `Need: ${d.need ?? ''}`,
       `Budget: ${d.budget ?? ''} ${d.currency ?? ''}`,
