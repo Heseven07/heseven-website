@@ -23,8 +23,25 @@ function initInview() {
 
 function initLenis() {
   if (reduceMotion || lenis) return;
-  lenis = new Lenis({ lerp: 0.1, anchors: true, autoRaf: true });
+  lenis = new Lenis({ lerp: 0.1, autoRaf: true });
 }
+
+// Same-page links glide with Lenis. Handled in the capture phase, or the view-transition router jumps there first.
+document.addEventListener(
+  'click',
+  (e) => {
+    const link = (e.target as Element).closest?.<HTMLAnchorElement>('a[href^="#"]:not(.skip-link)');
+    const target = link && document.getElementById(link.hash.slice(1));
+    if (!lenis || !target) return;
+    e.preventDefault();
+    history.pushState(history.state, '', link.hash);
+    lenis.scrollTo(target, {
+      duration: 1.2,
+      easing: (t) => (t < 0.5 ? 4 * t ** 3 : 1 - (-2 * t + 2) ** 3 / 2),
+    });
+  },
+  true,
+);
 
 function initReveal() {
   observer?.disconnect();

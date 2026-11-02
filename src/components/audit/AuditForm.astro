@@ -1,0 +1,84 @@
+---
+/** Store audit form. Logic: src/scripts/audit-form.ts. Without JS it posts normally (worker redirects to thank-you). */
+import Arrow from '../ui/Arrow.astro';
+import { SITE } from '../../config/site';
+
+const turnstileSiteKey = import.meta.env.PUBLIC_TURNSTILE_SITE_KEY ?? '';
+---
+
+<div class="qf-card scroll-mt-28" id="audit-form">
+  <div class="qf-head">
+    <p class="eyebrow">Request your audit</p>
+  </div>
+
+  <form action="/api/contact" method="post" data-audit-form data-email={SITE.email}>
+    <input type="hidden" name="source" value="audit" />
+    <div class="qf-field">
+      <label for="af-name">Name</label>
+      <input id="af-name" name="name" type="text" autocomplete="name" required maxlength="120" />
+    </div>
+    <div class="qf-field">
+      <label for="af-email">Email</label>
+      <input id="af-email" name="email" type="email" autocomplete="email" required maxlength="200" />
+    </div>
+    <div class="qf-field">
+      <label for="af-website">Store URL</label>
+      <input
+        id="af-website"
+        name="website"
+        type="text"
+        inputmode="url"
+        autocomplete="url"
+        required
+        maxlength="200"
+        placeholder="yourstore.com"
+      />
+    </div>
+    <div class="qf-field">
+      <label for="af-message">
+        Message <span class="text-muted">(optional)</span>
+      </label>
+      <textarea
+        id="af-message"
+        name="message"
+        rows="4"
+        maxlength="5000"
+        placeholder="What would you most like us to look at?"
+      ></textarea>
+    </div>
+    <!-- Honeypot: humans never see or fill this. -->
+    <div class="qf-hp" aria-hidden="true">
+      <label for="af-company">Company (leave this empty)</label>
+      <input id="af-company" name="company" type="text" tabindex="-1" autocomplete="off" />
+    </div>
+    <input type="hidden" name="formMs" value="" />
+    {turnstileSiteKey && <div class="qf-turnstile" data-turnstile data-sitekey={turnstileSiteKey} />}
+    <p class="mt-4 text-xs text-muted">
+      By sending this you agree to our{' '}
+      <a href="/privacy" class="underline">
+        privacy policy
+      </a>
+      . No spam — ever.
+    </p>
+    <p class="qf-error" role="alert" data-qf-error></p>
+    <button type="submit" class="btn btn-primary mt-6 w-full" data-qf-submit>
+      <span data-qf-submit-label>Request my audit</span>
+      <Arrow />
+    </button>
+  </form>
+
+  <div class="qf-success" data-qf-success hidden tabindex="-1">
+    <span class="qf-success-icon" aria-hidden="true">
+      <svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" stroke-width="2.4">
+        <path d="m5 12.5 4.5 4.5L19 7.5" stroke-linecap="round" stroke-linejoin="round" pathLength="1"></path>
+      </svg>
+    </span>
+    <h2 class="mt-6 text-3xl font-bold">Thanks — request received.</h2>
+    <p class="mt-3 text-muted">A Shopify specialist will reply within one business day.</p>
+  </div>
+</div>
+
+<script>
+  import { initAuditForm } from '../../scripts/audit-form';
+  document.addEventListener('astro:page-load', initAuditForm);
+</script>

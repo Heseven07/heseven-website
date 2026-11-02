@@ -1,0 +1,31 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import ContactHero from '../../components/contact/ContactHero.astro';
+import NextSteps from '../../components/contact/NextSteps.astro';
+import ClientMarquee from '../../components/sections/ClientMarquee.astro';
+import Testimonials from '../../components/sections/Testimonials.astro';
+import Faq from '../../components/sections/Faq.astro';
+import GlobalClocks from '../../components/sections/GlobalClocks.astro';
+import JsonLd from '../../components/seo/JsonLd.astro';
+import { SITE } from '../../config/site';
+
+const schema = {
+  '@type': 'ContactPage',
+  name: 'Contact Heseven India',
+  url: `${SITE.url}/pages/contact-in`,
+  about: { '@id': `${SITE.url}/#organization` },
+};
+---
+
+<BaseLayout
+  title="Contact Heseven India — Get a Shopify Project Quote"
+  description="Tell us about your Shopify project in India. A Heseven strategist replies within one business day with next steps, a free scoping call and a fixed-price quote."
+>
+  <ContactHero india />
+  <ClientMarquee />
+  <NextSteps />
+  <Testimonials />
+  <Faq />
+  <GlobalClocks />
+  <JsonLd data={schema} />
+</BaseLayout>

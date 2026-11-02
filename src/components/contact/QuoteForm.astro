@@ -4,10 +4,16 @@
  * - With JS: one question per step, progress bar, auto-advance on single-choice steps,
  *   async submit to /api/contact, inline success. Logic: src/scripts/quote-form.ts
  * - Without JS: every step is visible and the form posts normally (worker redirects to /thanks/).
+ * - india (/pages/contact-in): INR budgets, mobile number instead of country, emails marked "Lead from India".
  */
 import Arrow from '../ui/Arrow.astro';
-import { quoteForm } from '../../data/contact';
+import { indiaBudgets, quoteForm } from '../../data/contact';
 import { SITE } from '../../config/site';
+
+interface Props {
+  india?: boolean;
+}
+const { india = false } = Astro.props;
 
 const turnstileSiteKey = import.meta.env.PUBLIC_TURNSTILE_SITE_KEY ?? '';
 const steps = 4;
@@ -26,7 +32,15 @@ const splitAmounts = (label: string) => label.split(/(\d+k\+?)/);
     <span data-qf-bar></span>
   </div>
 
-  <form class="quote-form" action="/api/contact" method="post" data-quote-form data-steps={steps}>
+  <form
+    class="quote-form"
+    action="/api/contact"
+    method="post"
+    data-quote-form
+    data-steps={steps}
+    data-region={india ? 'india' : undefined}
+  >
+    {india && <input type="hidden" name="source" value="india" />}
     <!-- 1 · Need -->
     <fieldset class="qf-step" data-step="1">
       <legend class="qf-legend" tabindex="-1">
@@ -48,35 +62,51 @@ const splitAmounts = (label: string) => label.split(/(\d+k\+?)/);
       <legend class="qf-legend" tabindex="-1">
         What's your budget?
       </legend>
-      <div class="qf-currency" role="radiogroup" aria-label="Currency">
-        <label class="seg">
-          <input type="radio" name="currency" value="USD" checked />
-          <span>USD $</span>
-        </label>
-        <label class="seg">
-          <input type="radio" name="currency" value="GBP" />
-          <span>GBP £</span>
-        </label>
-      </div>
-      <div class="qf-chips" data-autoadvance>
-        {quoteForm.budgets.map((b) => (
-          <label class="chip">
-            <input type="radio" name="budget" value={b} required />
-            <span>
-              {splitAmounts(b).map((part) =>
-                /^\d/.test(part) ? (
-                  <>
-                    <span class="cur">$</span>
-                    {part}
-                  </>
-                ) : (
-                  part
-                ),
-              )}
-            </span>
-          </label>
-        ))}
-      </div>
+      {india ? (
+        <>
+          <input type="hidden" name="currency" value="INR" />
+          <div class="qf-chips" data-autoadvance>
+            {indiaBudgets.map((b) => (
+              <label class="chip">
+                <input type="radio" name="budget" value={b} required />
+                <span>{b}</span>
+              </label>
+            ))}
+          </div>
+        </>
+      ) : (
+        <>
+          <div class="qf-currency" role="radiogroup" aria-label="Currency">
+            <label class="seg">
+              <input type="radio" name="currency" value="USD" checked />
+              <span>USD $</span>
+            </label>
+            <label class="seg">
+              <input type="radio" name="currency" value="GBP" />
+              <span>GBP £</span>
+            </label>
+          </div>
+          <div class="qf-chips" data-autoadvance>
+            {quoteForm.budgets.map((b) => (
+              <label class="chip">
+                <input type="radio" name="budget" value={b} required />
+                <span>
+                  {splitAmounts(b).map((part) =>
+                    /^\d/.test(part) ? (
+                      <>
+                        <span class="cur">$</span>
+                        {part}
+                      </>
+                    ) : (
+                      part
+                    ),
+                  )}
+                </span>
+              </label>
+            ))}
+          </div>
+        </>
+      )}
     </fieldset>
 
     <!-- 3 · Project -->
@@ -140,12 +170,29 @@ const splitAmounts = (label: string) => label.split(/(\d+k\+?)/);
           <input id="qf-email" name="email" type="email" autocomplete="email" required maxlength="200" />
         </div>
       </div>
-      <div class="qf-field">
-        <label for="qf-country">
-          Country <span class="text-muted">(optional)</span>
-        </label>
-        <input id="qf-country" name="country" type="text" autocomplete="country-name" maxlength="80" />
-      </div>
+      {india ? (
+        <div class="qf-field">
+          <label for="qf-phone">Mobile number</label>
+          <input
+            id="qf-phone"
+            name="phone"
+            type="tel"
+            inputmode="tel"
+            autocomplete="tel"
+            required
+            maxlength="20"
+            pattern="[+0-9 \(\)\-]{10,20}"
+            placeholder="+91 98765 43210"
+          />
+        </div>
+      ) : (
+        <div class="qf-field">
+          <label for="qf-country">
+            Country <span class="text-muted">(optional)</span>
+          </label>
+          <input id="qf-country" name="country" type="text" autocomplete="country-name" maxlength="80" />
+        </div>
+      )}
       <!-- Honeypot: humans never see or fill this. -->
       <div class="qf-hp" aria-hidden="true">
         <label for="qf-company">Company (leave this empty)</label>

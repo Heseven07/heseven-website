@@ -3,15 +3,15 @@
  * hides all but the current step, validates per step, lazy-loads Turnstile on the last step,
  * submits JSON to /api/contact and falls back to a pre-filled email if the API is unavailable.
  */
+import { loadTurnstile } from './turnstile';
+
 const CONTACT_EMAIL = 'info@heseven.com';
 const loadedAt = performance.now();
 
 declare global {
   interface Window {
-    turnstile?: { render: (el: HTMLElement, opts: Record<string, unknown>) => string };
     gtag?: (...args: unknown[]) => void;
     tlq?: (...args: unknown[]) => void;
-    __hsTurnstileReady?: () => void;
   }
 }
 
@@ -33,7 +33,9 @@ export function initQuoteForm() {
   const success = card.querySelector<HTMLElement>('[data-qf-success]')!;
   let current = 0;
 
-  // Tracklution funnel events, each once per form (no-op unless analytics were consented and loaded).
+  // Tracklution events, each once per form (no-op unless analytics were consented and loaded).
+  // /pages/contact-in only tracks its final "Lead From India"; the other forms track the whole funnel.
+  const india = form.dataset.region === 'india';
   const tracked = new Set<string>();
   const track = (event: string) => {
     if (!window.tlq || tracked.has(event)) return;
@@ -56,7 +58,7 @@ export function initQuoteForm() {
     counter.textContent = String(current + 1);
     bar.style.transform = `scaleX(${(current + 1) / total})`;
     setError('');
-    if (current === total - 1) loadTurnstile();
+    if (current === total - 1) loadTurnstile(form.querySelector<HTMLElement>('[data-turnstile]'));
     if (focus) steps[current]!.querySelector<HTMLElement>('.qf-legend')?.focus({ preventScroll: true });
   };
 
@@ -73,6 +75,7 @@ export function initQuoteForm() {
     if (invalid.type === 'radio') msg = 'Please pick one option to continue.';
     else if (invalid.validity.valueMissing) msg = `Please fill in “${labelFor(invalid)}”.`;
     else if (invalid.validity.typeMismatch) msg = 'Please enter a valid email address.';
+    else if (invalid.validity.patternMismatch) msg = 'Please enter a valid mobile number.';
     else if (invalid.validity.tooShort) msg = 'Could you add a little more detail (10+ characters)?';
     setError(msg);
     invalid.focus();
@@ -97,7 +100,7 @@ export function initQuoteForm() {
       return;
     }
     const optionEvent = optionEvents[input.name];
-    if (optionEvent) track(optionEvent);
+    if (optionEvent && !india) track(optionEvent);
     if (input.type === 'radio' && input.closest('[data-autoadvance]') && current < total - 1) {
       setTimeout(() => show(current + 1), 280);
     }
@@ -120,7 +123,7 @@ export function initQuoteForm() {
         return;
       }
     }
-    track('Contact');
+    if (!india) track('Contact');
     (form.elements.namedItem('formMs') as HTMLInputElement).value = String(
       Math.round(performance.now() - loadedAt),
     );
@@ -163,14 +166,16 @@ export function initQuoteForm() {
     success.focus();
     // Conversion events (no-ops unless analytics were consented and loaded).
     window.gtag?.('event', 'generate_lead', { service: data.need, budget: data.budget });
-    track('Lead');
+    track(india ? 'Lead From India' : 'Lead');
   };
 
   const mailto = (d: Record<string, string>) => {
     const body = [
       `Name: ${d.name ?? ''}`,
       `Email: ${d.email ?? ''}`,
-      `Country: ${d.country ?? ''}`,
+      ...(d.source === 'india'
+        ? ['Lead from India', `Mobile: ${d.phone ?? ''}`]
+        : [`Country: ${d.country ?? ''}`]),
       `Website: ${d.website ?? ''}`,
       `Need: ${d.need ?? ''}`,
       `Budget: ${d.budget ?? ''} ${d.currency ?? ''}`,
@@ -179,25 +184,6 @@ export function initQuoteForm() {
       d.message ?? '',
     ].join('\n');
     return `mailto:${CONTACT_EMAIL}?subject=${encodeURIComponent(`Project enquiry: ${d.need ?? ''}`)}&body=${encodeURIComponent(body)}`;
-  };
-
-  let turnstileRequested = false;
-  const loadTurnstile = () => {
-    const box = form.querySelector<HTMLElement>('[data-turnstile]');
-    if (!box || turnstileRequested) return;
-    turnstileRequested = true;
-    const render = () =>
-      window.turnstile?.render(box, {
-        sitekey: box.dataset.sitekey,
-        theme: 'dark',
-        'response-field-name': 'turnstileToken',
-      });
-    if (window.turnstile) return render();
-    window.__hsTurnstileReady = render;
-    const s = document.createElement('script');
-    s.src = 'https://challenges.cloudflare.com/turnstile/v0/api.js?render=explicit&onload=__hsTurnstileReady';
-    s.async = true;
-    document.head.append(s);
   };
 
   show(0, false);

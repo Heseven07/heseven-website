@@ -1,0 +1,118 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import AuditForm from '../../components/audit/AuditForm.astro';
+import AuditScan from '../../components/audit/AuditScan.astro';
+import AuditAreas from '../../components/audit/AuditAreas.astro';
+import ClientMarquee from '../../components/sections/ClientMarquee.astro';
+import SectionHeading from '../../components/ui/SectionHeading.astro';
+import Arrow from '../../components/ui/Arrow.astro';
+import JsonLd from '../../components/seo/JsonLd.astro';
+import { auditHero as h, auditSteps } from '../../data/audit';
+import { SITE } from '../../config/site';
+
+const schema = {
+  '@type': 'WebPage',
+  name: 'Shopify Store Audit',
+  url: `${SITE.url}/pages/audit`,
+  about: { '@id': `${SITE.url}/#organization` },
+};
+---
+
+<BaseLayout
+  title="Shopify Store Audit — Find What to Fix First"
+  description="Request a Shopify store audit from Heseven. Our specialists review speed, conversion, mobile UX, SEO, apps and tracking, then tell you what to fix first."
+>
+  <section class="relative isolate overflow-hidden" aria-labelledby="audit-title">
+    <div class="hero-bg" aria-hidden="true">
+      <div class="hero-glow"></div>
+      <div class="hero-grid"></div>
+    </div>
+    <div class="container-x grid gap-12 pt-32 pb-20 md:pt-40 lg:grid-cols-12 lg:gap-x-16 lg:gap-y-12 lg:pb-28">
+      <div class="lg:col-span-7 lg:pt-6">
+        <p class="eyebrow hero-in" style="--i:0">
+          {h.eyebrow}
+        </p>
+        <h1 id="audit-title" class="mt-6 text-5xl leading-[0.98] font-bold sm:text-6xl xl:text-7xl">
+          {h.title}
+        </h1>
+        <p class="hero-in mt-6 max-w-xl text-lg text-muted" style="--i:2">
+          {h.lead}
+        </p>
+        <ul class="hero-in mt-8 grid gap-3" style="--i:3">
+          {h.points.map((p) => (
+            <li class="flex items-center gap-3">
+              <span class="check-badge" aria-hidden="true">
+                <svg
+                  viewBox="0 0 24 24"
+                  width="14"
+                  height="14"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="3"
+                >
+                  <path d="m5 12.5 4.5 4.5L19 7.5" stroke-linecap="round" stroke-linejoin="round" />
+                </svg>
+              </span>
+              {p}
+            </li>
+          ))}
+        </ul>
+      </div>
+      <div class="lg:col-span-5 lg:col-start-8 lg:row-span-2 lg:row-start-1">
+        <div class="qf-glow lg:sticky lg:top-28">
+          <AuditForm />
+        </div>
+      </div>
+      <div class="lg:col-span-7" data-reveal>
+        <AuditScan />
+      </div>
+    </div>
+  </section>
+
+  <ClientMarquee />
+  <AuditAreas />
+
+  <section class="bg-ink-2 py-24 md:py-32" aria-labelledby="audit-steps-title">
+    <div class="container-x">
+      <SectionHeading id="audit-steps-title" eyebrow="How it works" title="Three steps to a clearer plan." />
+      <ol class="mt-12 grid gap-5 md:grid-cols-3">
+        {auditSteps.map((s, i) => (
+          <li class="ah-step" data-reveal style={`--reveal-delay:${i * 90}`}>
+            <span class="ah-num" aria-hidden="true">
+              {String(i + 1).padStart(2, '0')}
+            </span>
+            <h3 class="mt-6 text-2xl font-bold">{s.title}</h3>
+            <p class="mt-3 text-muted">{s.body}</p>
+          </li>
+        ))}
+      </ol>
+      <a href="#audit-form" class="btn btn-primary btn-lg mt-12">
+        Request my audit <Arrow />
+      </a>
+    </div>
+  </section>
+  <JsonLd data={schema} />
+</BaseLayout>
+
+<style>
+  .ah-step {
+    padding: 2rem;
+    border: 1px solid var(--color-line);
+    border-radius: 1.5rem;
+    background: var(--color-ink-3);
+    transition:
+      transform 0.35s cubic-bezier(0.2, 0.7, 0.2, 1),
+      border-color 0.35s;
+  }
+  .ah-step:hover {
+    border-color: rgb(181 243 107 / 0.4);
+    transform: translateY(-6px);
+  }
+  .ah-num {
+    font-family: var(--font-display);
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: transparent;
+    -webkit-text-stroke: 1px var(--color-lime);
+  }
+</style>

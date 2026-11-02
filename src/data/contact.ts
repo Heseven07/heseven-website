@@ -40,6 +40,9 @@ export const quoteForm = {
   timelines: ['ASAP', '1–3 months', '3–6 months', 'Just exploring'],
 };
 
+/** /pages/contact-in: INR budget bands (symbol included, no currency switch). */
+export const indiaBudgets = ['₹25k', '₹35k', '₹45k', '₹1 lakh', '₹1.5 lakh', '₹2 lakh+', 'Not sure yet'];
+
 export const nextSteps = [
   {
     when: 'Within hours',

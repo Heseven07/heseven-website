@@ -32,6 +32,8 @@ const LIMITS: Record<string, number> = {
   name: 120,
   email: 200,
   country: 80,
+  phone: 20,
+  source: 20,
 };
 
 const json = (status: number, body: Record<string, unknown>) =>
@@ -62,9 +64,14 @@ function validate(f: Fields): string | null {
     f[key] = (f[key] ?? '').trim();
     if (f[key]!.length > max) return `${key} is too long`;
   }
-  if (!f.need) return 'need is required';
-  if (!f.budget) return 'budget is required';
-  if (f.message!.length < 10) return 'message is too short';
+  if (f.source === 'india' && !/^[+0-9 ()-]{10,20}$/.test(f.phone!)) return 'phone is invalid';
+  if (f.source === 'audit') {
+    if (!f.website) return 'website is required';
+  } else {
+    if (!f.need) return 'need is required';
+    if (!f.budget) return 'budget is required';
+    if (f.message!.length < 10) return 'message is too short';
+  }
   if (!f.name) return 'name is required';
   if (!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(f.email!)) return 'email is invalid';
   return null;
@@ -84,15 +91,25 @@ async function verifyTurnstile(token: string, secret: string, ip: string | null)
 }
 
 function emailBodies(f: Fields) {
-  const rows: [string, string][] = [
-    ['Name', f.name!],
-    ['Email', f.email!],
-    ['Country', f.country || '—'],
-    ['Website', f.website || '—'],
-    ['Need', f.need!],
-    ['Budget', `${f.budget} (${f.currency || 'USD'})`],
-    ['Timeline', f.timeline || '—'],
-  ];
+  const india = f.source === 'india';
+  const rows: [string, string][] =
+    f.source === 'audit'
+      ? [
+          ['Lead', 'Audit request'],
+          ['Name', f.name!],
+          ['Email', f.email!],
+          ['Store URL', f.website!],
+        ]
+      : [
+          ...(india ? ([['Lead', 'Lead from India']] as [string, string][]) : []),
+          ['Name', f.name!],
+          ['Email', f.email!],
+          india ? ['Mobile', f.phone!] : ['Country', f.country || '—'],
+          ['Website', f.website || '—'],
+          ['Need', f.need!],
+          ['Budget', `${f.budget} (${f.currency || 'USD'})`],
+          ['Timeline', f.timeline || '—'],
+        ];
   const text = `${rows.map(([k, v]) => `${k}: ${v}`).join('\n')}\n\n${f.message}`;
   const html = `<table cellpadding="6" style="font-family:system-ui,sans-serif;font-size:14px">${rows
     .map(([k, v]) => `<tr><td style="color:#666">${k}</td><td><strong>${escapeHtml(v)}</strong></td></tr>`)
@@ -153,7 +170,10 @@ async function handleContact(request: Request, env: Env): Promise<Response> {
       from: env.CONTACT_FROM || 'Heseven Website <onboarding@resend.dev>',
       to: [env.CONTACT_TO || 'info@heseven.com'],
       reply_to: f.email,
-      subject: `New enquiry: ${f.need} — ${f.name}`,
+      subject:
+        f.source === 'audit'
+          ? `Audit request: ${f.website} — ${f.name}`
+          : `${f.source === 'india' ? 'Lead from India' : 'New enquiry'}: ${f.need} — ${f.name}`,
       text,
       html,
     }),

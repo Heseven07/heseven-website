@@ -2,6 +2,11 @@
 import QuoteForm from './QuoteForm.astro';
 import Counter from '../ui/Counter.astro';
 import { contactHero as c } from '../../data/contact';
+
+interface Props {
+  india?: boolean;
+}
+const { india = false } = Astro.props;
 ---
 
 <section class="relative isolate overflow-hidden" aria-labelledby="contact-title">
@@ -29,7 +34,7 @@ import { contactHero as c } from '../../data/contact';
 
     <div class="lg:col-span-6 lg:col-start-7 lg:row-span-2 lg:row-start-1">
       <div class="qf-glow lg:sticky lg:top-28">
-        <QuoteForm />
+        <QuoteForm india={india} />
       </div>
     </div>
 
