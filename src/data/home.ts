@@ -18,7 +18,7 @@ export const nav = [
   { label: 'Process', href: '/#process' },
   { label: 'About', href: '/pages/about' },
   { label: 'Blog', href: '/blogs/news' },
-  { label: 'Contact', href: '/pages/contact-us' },
+  { label: 'Free Audit', href: '/pages/audit' },
 ];
 
 export const hero = {
