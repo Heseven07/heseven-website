@@ -33,3 +33,6 @@ test-results/
 
 # local editor/agent config
 .claude/
+
+# Local Worker secrets (wrangler dev)
+.dev.vars
