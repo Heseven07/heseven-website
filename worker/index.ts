@@ -2,7 +2,8 @@
  * Cloudflare Worker — runs ONLY for /api/* (see `run_worker_first` in wrangler.jsonc).
  * Every other request is served straight from static assets without invoking this code.
  *
- * GET /api/geo → { country }: the visitor's ISO country code (Cloudflare), for the cookie banner rules.
+ * GET /api/geo.json → { country }: the visitor's ISO country code (Cloudflare), for the cookie banner
+ *   rules. public/api/geo.json is the static stand-in ({ country: null }) used off Cloudflare.
  *
  * POST /api/contact
  *   Spam: honeypot field, minimum fill time, same-origin check, Cloudflare Turnstile (if configured).
@@ -201,7 +202,7 @@ export default {
       if (request.method !== 'POST') return json(405, { ok: false, error: 'method_not_allowed' });
       return handleContact(request, env);
     }
-    if (url.pathname === '/api/geo') {
+    if (url.pathname === '/api/geo.json') {
       const cf = (request as Request & { cf?: { country?: string } }).cf;
       return json(200, { country: cf?.country ?? request.headers.get('cf-ipcountry') ?? null });
     }

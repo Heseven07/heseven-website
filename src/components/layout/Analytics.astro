@@ -6,10 +6,11 @@
  *   PUBLIC_GA4_ID=G-XXXXXXXXXX
  *   PUBLIC_TRACKLUTION_ID=LS-00000000-0
  *
- * UK and Canada (business decision, by country from /api/geo): nothing third-party loads until the
+ * UK and Canada (business decision, by country from /api/geo.json): nothing third-party loads until the
  * visitor accepts the cookie banner. Everywhere else tracking loads unless they click "Reject"
  * (ignoring the banner counts as a yes). Either way it loads only once the browser is idle, and an
- * unknown country is treated like the UK. The static Lighthouse server has no /api/geo, so scores stay at 100.
+ * unknown country is treated like the UK. Off Cloudflare (Lighthouse, astro preview), public/api/geo.json answers { country: null }, so
+ * nothing loads and scores stay at 100.
  * If no ID is set, this component renders nothing (no banner, no script).
  *
  * ---- Original vendor snippets (for reference; the loader below is equivalent) ----
@@ -93,7 +94,7 @@ const enabled = Boolean(ga4Id || tracklutionId);
             var saved = sessionStorage.getItem('hs-geo');
             if (saved !== null) return cb(saved);
           } catch (e) {}
-          fetch('/api/geo')
+          fetch('/api/geo.json')
             .then(function (r) {
               return r.ok ? r.json() : {};
             })
