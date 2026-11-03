@@ -106,6 +106,18 @@ npx wrangler secret put TURNSTILE_SECRET_KEY  # from Cloudflare → Turnstile (o
 Put the Turnstile **site** key in `.env` as `PUBLIC_TURNSTILE_SITE_KEY`, then `npm run deploy`.
 To send from `@heseven.com`, verify the domain in Resend and update `CONTACT_FROM` in `wrangler.jsonc`.
 
+**Capsule CRM.** Each valid enquiry is also added to Capsule (`worker/capsule.ts`): the visitor is found
+by email or created as a person, and an opportunity is created with the enquiry details. Each is tagged
+`Website: Contact`, `Website: India` or `Website: Audit`. This runs after the response is sent, so if
+Capsule fails the email still goes out (the error shows in the Worker logs). To switch it on:
+
+```bash
+npx wrangler secret put CAPSULE_API_TOKEN     # Capsule → My Preferences → API Authentication Tokens
+```
+
+New opportunities start in the first milestone of the oldest active pipeline. To pick another stage,
+set `CAPSULE_MILESTONE_ID` under `vars` in `wrangler.jsonc`.
+
 Test the Worker locally: `npm run build && npx wrangler dev`.
 
 ## Workflow
