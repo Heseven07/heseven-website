@@ -170,6 +170,23 @@ const splitAmounts = (label: string) => label.split(/(\d+k\+?)/);
           <input id="qf-email" name="email" type="email" autocomplete="email" required maxlength="200" />
         </div>
       </div>
+      {!india && (
+        <div class="qf-field">
+          <label for="qf-whatsapp">
+            WhatsApp number <span class="text-muted">(optional)</span>
+          </label>
+          <input
+            id="qf-whatsapp"
+            name="whatsapp"
+            type="tel"
+            inputmode="tel"
+            autocomplete="tel"
+            maxlength="20"
+            pattern="[+0-9 \(\)\-]{7,20}"
+            placeholder="+44 7700 900123"
+          />
+        </div>
+      )}
       {india ? (
         <div class="qf-field">
           <label for="qf-phone">Mobile number</label>

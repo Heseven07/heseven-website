@@ -33,6 +33,7 @@ const LIMITS: Record<string, number> = {
   email: 200,
   country: 80,
   phone: 20,
+  whatsapp: 20,
   source: 20,
 };
 
@@ -65,6 +66,7 @@ function validate(f: Fields): string | null {
     if (f[key]!.length > max) return `${key} is too long`;
   }
   if (f.source === 'india' && !/^[+0-9 ()-]{10,20}$/.test(f.phone!)) return 'phone is invalid';
+  if (f.whatsapp && !/^[+0-9 ()-]{7,20}$/.test(f.whatsapp)) return 'whatsapp is invalid';
   if (f.source === 'audit') {
     if (!f.website) return 'website is required';
   } else {
@@ -104,7 +106,12 @@ function emailBodies(f: Fields) {
           ...(india ? ([['Lead', 'Lead from India']] as [string, string][]) : []),
           ['Name', f.name!],
           ['Email', f.email!],
-          india ? ['Mobile', f.phone!] : ['Country', f.country || '—'],
+          ...((india
+            ? [['Mobile', f.phone!]]
+            : [
+                ['WhatsApp', f.whatsapp || '—'],
+                ['Country', f.country || '—'],
+              ]) as [string, string][]),
           ['Website', f.website || '—'],
           ['Need', f.need!],
           ['Budget', `${f.budget} (${f.currency || 'USD'})`],
