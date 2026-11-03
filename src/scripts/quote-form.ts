@@ -78,7 +78,7 @@ export function initQuoteForm() {
     if (invalid.type === 'radio') msg = 'Please pick one option to continue.';
     else if (invalid.validity.valueMissing) msg = `Please fill in “${labelFor(invalid)}”.`;
     else if (invalid.validity.typeMismatch) msg = 'Please enter a valid email address.';
-    else if (invalid.validity.patternMismatch) msg = 'Please enter a valid mobile number.';
+    else if (invalid.validity.patternMismatch) msg = 'Please enter a valid phone number.';
     else if (invalid.validity.tooShort) msg = 'Could you add a little more detail (10+ characters)?';
     setError(msg);
     invalid.focus();
@@ -177,7 +177,7 @@ export function initQuoteForm() {
       `Email: ${d.email ?? ''}`,
       ...(d.source === 'india'
         ? ['Lead from India', `Mobile: ${d.phone ?? ''}`]
-        : [`Country: ${d.country ?? ''}`]),
+        : [`WhatsApp: ${d.whatsapp ?? ''}`, `Country: ${d.country ?? ''}`]),
       `Website: ${d.website ?? ''}`,
       `Need: ${d.need ?? ''}`,
       `Budget: ${d.budget ?? ''} ${d.currency ?? ''}`,
