@@ -1,7 +1,7 @@
 ---
 /**
  * Privacy policy. Describes what the site actually does: the quote form (Cloudflare Worker → Resend →
- * our inbox), Cloudflare hosting and Turnstile, and consent-gated Google Analytics / Tracklution
+ * our inbox), Cloudflare hosting and Turnstile, and consent-gated Google Analytics / Tracklution (which forwards events to Meta)
  * (Analytics.astro). Update it whenever a new tool that touches visitor data is added.
  */
 import LegalPage, { type LegalSection } from '../components/layout/LegalPage.astro';
@@ -24,7 +24,7 @@ const sections: LegalSection[] = [
     html: `<p><strong>When you send an enquiry.</strong> Our quote form asks what you need, your budget and timeline, a short message, your name and email address, and optionally your website, WhatsApp number and country. Our form for clients in India also asks for your mobile number. Our audit form asks for your name, email address, store URL and an optional message. We receive whatever you choose to tell us.</p>
 <p><strong>When you email us.</strong> Your email address, the content of your message and any attachments.</p>
 <p><strong>Technical data.</strong> Like every website, our hosting provider processes your IP address, browser type and the pages you request so the site can be delivered and protected from abuse. When you submit the form, a spam check also uses technical signals from your browser.</p>
-<p><strong>Analytics data — only with your consent.</strong> If you click “Accept” on our cookie banner, we use Google Analytics and Tracklution to understand how visitors use the site. This involves cookies and identifiers described in the <a href="#cookies">cookies section</a>. If you click “Reject”, neither of them loads.</p>
+<p><strong>Analytics and advertising data.</strong> If you visit from the UK or Canada, we only use these tools after you click “Accept” on our cookie banner. Everywhere else they run unless you click “Reject”. We use Google Analytics and Tracklution to understand how visitors use the site and to measure our advertising. Tracklution can share events, such as page views and enquiries, with Meta. This involves cookies and identifiers described in the <a href="#cookies">cookies section</a>. Once you click “Reject”, neither of them loads.</p>
 <p>We do not ask for special category data, and we ask you not to send it to us.</p>`,
   },
   {
@@ -33,7 +33,7 @@ const sections: LegalSection[] = [
     html: `<ul>
 <li><strong>To reply to your enquiry and prepare a proposal</strong> — because you asked us to (steps before entering into a contract) and our legitimate interest in responding to people who contact us.</li>
 <li><strong>To deliver and secure the website</strong>, prevent spam and fraud — our legitimate interest in running a safe, working website.</li>
-<li><strong>To measure how the site is used</strong> (Google Analytics, Tracklution) — your consent, which you can withdraw at any time.</li>
+<li><strong>To measure the site and our advertising</strong> (Google Analytics, Tracklution, Meta) — in the UK and Canada, your consent; elsewhere, our legitimate interest in measuring our website and advertising. Either way you can opt out at any time by clicking “Reject”.</li>
 <li><strong>To keep business and accounting records</strong> if you become a client — our legal obligations.</li>
 </ul>
 <p>We do not sell your personal data, and we do not use it for automated decision-making that has legal or similarly significant effects on you.</p>`,
@@ -41,10 +41,11 @@ const sections: LegalSection[] = [
   {
     id: 'cookies',
     title: 'Cookies and similar technologies',
-    html: `<p>When you first visit, a banner asks whether you accept analytics cookies. Your choice is saved in your browser's local storage (under the name <code>hs-consent</code>) so we don't ask again on every page.</p>
+    html: `<p>When you first visit, a banner asks whether you accept analytics and advertising cookies. In the UK and Canada nothing loads until you click “Accept”; elsewhere these cookies are used unless you click “Reject”. Your choice is saved in your browser's local storage (under the name <code>hs-consent</code>) so we don't ask again on every page.</p>
 <ul>
 <li><strong>Strictly necessary:</strong> storing your cookie choice, and security features of our hosting and spam protection. These don't need consent.</li>
-<li><strong>Analytics (with consent):</strong> Google Analytics sets cookies such as <code>_ga</code> to count visits and see how pages are used. Tracklution records visits and actions on the site through its tracking script.</li>
+<li><strong>Analytics:</strong> Google Analytics sets cookies such as <code>_ga</code> to count visits and see how pages are used. Tracklution records visits and actions on the site through its tracking script.</li>
+<li><strong>Advertising:</strong> Tracklution can send those events to Meta to measure the results of our ads on Facebook and Instagram. Google Analytics may also share data with Google Ads if the accounts are linked.</li>
 </ul>
 <p>You can change your mind at any time with the <strong>Cookie settings</strong> link in the footer of every page, or by clearing this site's data in your browser.</p>`,
   },
@@ -55,8 +56,9 @@ const sections: LegalSection[] = [
 <ul>
 <li><strong>Cloudflare</strong> — website hosting, security and the Turnstile spam check on our form.</li>
 <li><strong>Resend</strong> — delivers enquiries from our form to our inbox.</li>
-<li><strong>Google</strong> — our email inbox (Gmail / Google Workspace) and, only with your consent, Google Analytics.</li>
-<li><strong>Tracklution</strong> — site measurement, only with your consent.</li>
+<li><strong>Google</strong> — our email inbox (Gmail / Google Workspace) and, unless you opt out (in the UK and Canada, only with your consent), Google Analytics.</li>
+<li><strong>Tracklution</strong> — site and advertising measurement, unless you opt out (in the UK and Canada, only with your consent).</li>
+<li><strong>Meta Platforms</strong> — receives events through Tracklution to measure our advertising, unless you opt out (in the UK and Canada, only with your consent).</li>
 </ul>
 <p>Our website content is managed in Sanity, which stores our pages and articles but not visitor data. We may also share data where the law requires it, or with professional advisers under a duty of confidentiality.</p>`,
   },
@@ -71,7 +73,7 @@ const sections: LegalSection[] = [
     html: `<ul>
 <li><strong>Enquiries that don't lead to a project:</strong> up to 24 months after our last contact, then deleted.</li>
 <li><strong>Client records:</strong> for the length of our working relationship and up to six years afterwards, to meet legal and accounting requirements.</li>
-<li><strong>Analytics data:</strong> for the periods set in Google Analytics and Tracklution; their own privacy policies explain how they handle this data.</li>
+<li><strong>Analytics and advertising data:</strong> for the periods set in Google Analytics, Tracklution and Meta; their own privacy policies explain how they handle this data.</li>
 </ul>`,
   },
   {

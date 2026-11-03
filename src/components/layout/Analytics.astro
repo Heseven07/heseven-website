@@ -6,8 +6,11 @@
  *   PUBLIC_GA4_ID=G-XXXXXXXXXX
  *   PUBLIC_TRACKLUTION_ID=LS-00000000-0
  *
- * Nothing third-party loads until the visitor accepts the cookie banner, and even then
- * only once the browser is idle. Lighthouse never clicks "Accept", so scores stay at 100.
+ * UK and Canada (business decision, by country from /api/geo.json): nothing third-party loads until the
+ * visitor accepts the cookie banner. Everywhere else tracking loads unless they click "Reject"
+ * (ignoring the banner counts as a yes). Either way it loads only once the browser is idle, and an
+ * unknown country is treated like the UK. Off Cloudflare (Lighthouse, astro preview), public/api/geo.json answers { country: null }, so
+ * nothing loads and scores stay at 100.
  * If no ID is set, this component renders nothing (no banner, no script).
  *
  * ---- Original vendor snippets (for reference; the loader below is equivalent) ----
@@ -42,7 +45,8 @@ const enabled = Boolean(ga4Id || tracklutionId);
       transition:persist
     >
       <p>
-        We use cookies to measure how the site is used. <a href="/privacy">Privacy policy</a>
+        We use cookies to measure how the site is used and to improve our ads.{' '}
+        <a href="/privacy">Privacy policy</a>
       </p>
       <div class="consent-actions">
         <button type="button" data-consent="reject" class="btn btn-ghost btn-sm">
@@ -59,6 +63,7 @@ const enabled = Boolean(ga4Id || tracklutionId);
         if (window.__hsAnalytics) return;
         window.__hsAnalytics = true;
         var KEY = 'hs-consent';
+        var CONSENT_COUNTRIES = ['GB', 'CA'];
         var loaded = false;
 
         function read() {
@@ -83,6 +88,28 @@ const enabled = Boolean(ga4Id || tracklutionId);
           document.head.appendChild(s);
         }
 
+        // Visitor's country from the Worker (Cloudflare geolocation), once per browser session.
+        function country(cb) {
+          try {
+            var saved = sessionStorage.getItem('hs-geo');
+            if (saved !== null) return cb(saved);
+          } catch (e) {}
+          fetch('/api/geo.json')
+            .then(function (r) {
+              return r.ok ? r.json() : {};
+            })
+            .catch(function () {
+              return {};
+            })
+            .then(function (d) {
+              var c = (d && d.country) || '';
+              try {
+                if (c) sessionStorage.setItem('hs-geo', c);
+              } catch (e) {}
+              cb(c);
+            });
+        }
+
         function trackPage() {
           tlq('track', 'PageView');
           if (/^\/pages\/contact-us\/?$/.test(location.pathname)) tlq('track', 'ViewContent');
@@ -97,10 +124,10 @@ const enabled = Boolean(ga4Id || tracklutionId);
               dataLayer.push(arguments);
             };
             gtag('consent', 'default', {
-              ad_storage: 'denied',
+              ad_storage: 'granted',
               analytics_storage: 'granted',
-              ad_user_data: 'denied',
-              ad_personalization: 'denied',
+              ad_user_data: 'granted',
+              ad_personalization: 'granted',
             });
             gtag('js', new Date());
             gtag('config', ga4Id);
@@ -140,6 +167,8 @@ const enabled = Boolean(ga4Id || tracklutionId);
               'https://tralut.heseven.com/js/script-dynamic.js?version=1793591553650',
             );
             tlq('init', tracklutionId);
+            // Tracklution "basic consent mode": this only runs after "Accept", which covers both.
+            tlq('set', 'Consent', { analyticsConsent: 'granted', marketingConsent: 'granted' });
             trackPage();
           }
         }
@@ -158,9 +187,12 @@ const enabled = Boolean(ga4Id || tracklutionId);
         var choice = read();
         if (choice === 'accept') {
           idle(load);
-        } else if (!choice && banner) {
+        } else if (!choice) {
           idle(function () {
-            banner.hidden = false;
+            if (banner) banner.hidden = false;
+            country(function (c) {
+              if (c && CONSENT_COUNTRIES.indexOf(c) === -1) load();
+            });
           });
         }
 
@@ -172,6 +204,7 @@ const enabled = Boolean(ga4Id || tracklutionId);
           var b = document.getElementById('consent');
           if (b) b.hidden = true;
           if (v === 'accept') idle(load);
+          else if (loaded) location.reload();
         });
 
         // Footer "Cookie settings" link: <button data-consent-open>
