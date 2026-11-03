@@ -21,6 +21,6 @@
     // Until heseven.com is verified in Resend, Resend only allows this sender.
     "CONTACT_FROM": "Heseven Website <onboarding@resend.dev>",
   },
-  // Secrets (never commit): npx wrangler secret put RESEND_API_KEY / TURNSTILE_SECRET_KEY
+  // Secrets (never commit): npx wrangler secret put RESEND_API_KEY / TURNSTILE_SECRET_KEY / CAPSULE_API_TOKEN
   "observability": { "enabled": true },
 }

@@ -5,13 +5,16 @@
  * POST /api/contact
  *   Spam: honeypot field, minimum fill time, same-origin check, Cloudflare Turnstile (if configured).
  *   Delivery: Resend (https://resend.com) → CONTACT_TO, with reply-to set to the visitor.
+ *   CRM: valid enquiries are also added to Capsule (worker/capsule.ts) in the background.
  *   Accepts JSON (JS form) or urlencoded (no-JS fallback → 303 redirect to /pages/thank-you).
  *
- * Secrets (wrangler secret put …): RESEND_API_KEY, TURNSTILE_SECRET_KEY
- * Vars (wrangler.jsonc):           CONTACT_TO, CONTACT_FROM
+ * Secrets (wrangler secret put …): RESEND_API_KEY, TURNSTILE_SECRET_KEY, CAPSULE_API_TOKEN
+ * Vars (wrangler.jsonc):           CONTACT_TO, CONTACT_FROM, CAPSULE_MILESTONE_ID (optional)
  */
 
-interface Env {
+import { syncToCapsule, type CapsuleEnv } from './capsule';
+
+interface Env extends CapsuleEnv {
   ASSETS: { fetch: (request: Request) => Promise<Response> };
   RESEND_API_KEY?: string;
   TURNSTILE_SECRET_KEY?: string;
@@ -20,6 +23,8 @@ interface Env {
 }
 
 type Fields = Record<string, string>;
+/** The part of Cloudflare's ExecutionContext used here. */
+type Ctx = { waitUntil: (promise: Promise<unknown>) => void };
 
 const MIN_FILL_MS = 3000;
 const LIMITS: Record<string, number> = {
@@ -128,7 +133,7 @@ function emailBodies(f: Fields) {
   return { text, html };
 }
 
-async function handleContact(request: Request, env: Env): Promise<Response> {
+async function handleContact(request: Request, env: Env, ctx: Ctx): Promise<Response> {
   const wantsJson = (request.headers.get('content-type') ?? '').includes('application/json');
   const done = (status: number, body: Record<string, unknown>) =>
     wantsJson
@@ -167,6 +172,9 @@ async function handleContact(request: Request, env: Env): Promise<Response> {
     if (!ok) return done(400, { ok: false, error: 'turnstile' });
   }
 
+  // CRM copy runs after the response, independent of the email (a failed send still reaches Capsule).
+  ctx.waitUntil(syncToCapsule(env, f));
+
   if (!env.RESEND_API_KEY) return done(503, { ok: false, error: 'not_configured' });
 
   const { text, html } = emailBodies(f);
@@ -193,11 +201,11 @@ async function handleContact(request: Request, env: Env): Promise<Response> {
 }
 
 export default {
-  async fetch(request: Request, env: Env): Promise<Response> {
+  async fetch(request: Request, env: Env, ctx: Ctx): Promise<Response> {
     const url = new URL(request.url);
     if (url.pathname === '/api/contact') {
       if (request.method !== 'POST') return json(405, { ok: false, error: 'method_not_allowed' });
-      return handleContact(request, env);
+      return handleContact(request, env, ctx);
     }
     if (url.pathname.startsWith('/api/')) return json(404, { ok: false, error: 'not_found' });
     return env.ASSETS.fetch(request);
