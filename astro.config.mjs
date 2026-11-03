@@ -58,5 +58,11 @@ export default defineConfig({
   ],
   vite: {
     plugins: [tailwindcss()],
+    build: {
+      // Page scripts up to 8 KB go inline in the HTML (an extra script file costs LCP); everything
+      // else keeps Vite's default 4 KB limit.
+      assetsInlineLimit: (file, content) =>
+        file.includes('_astro_type_script_') ? content.length < 8192 : undefined,
+    },
   },
 });
