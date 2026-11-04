@@ -6,11 +6,15 @@
  *   PUBLIC_GA4_ID=G-XXXXXXXXXX
  *   PUBLIC_TRACKLUTION_ID=LS-00000000-0
  *
- * UK and Canada (business decision, by country from /api/geo.json): nothing third-party loads until the
- * visitor accepts the cookie banner. Everywhere else tracking loads unless they click "Reject"
- * (ignoring the banner counts as a yes). Either way it loads only once the browser is idle, and an
- * unknown country is treated like the UK. Off Cloudflare (Lighthouse, astro preview), public/api/geo.json answers { country: null }, so
- * nothing loads and scores stay at 100.
+ * Rules by the visitor's country (business decision; from /api/geo.json, cached per session):
+ *  - Opt-in (UK, EU/EEA, Canada, Brazil, or country unknown): banner shown, nothing loads until "Accept".
+ *  - Opt-out (US, Switzerland): tracking loads, banner shown so the visitor can "Reject".
+ *  - Everywhere else (e.g. India): no banner, tracking loads. "Cookie settings" in the footer still lets
+ *    anyone reject.
+ * A browser Global Privacy Control signal counts as "Reject" unless the visitor accepted. "Reject" clears
+ * Google's cookies and reloads the page if tracking had loaded. Everything loads only once the browser is
+ * idle. Off Cloudflare (Lighthouse, astro preview), public/api/geo.json answers { country: null }, so the
+ * opt-in rule applies, nothing loads and scores stay at 100.
  * If no ID is set, this component renders nothing (no banner, no script).
  *
  * ---- Original vendor snippets (for reference; the loader below is equivalent) ----
@@ -63,7 +67,33 @@ const enabled = Boolean(ga4Id || tracklutionId);
         if (window.__hsAnalytics) return;
         window.__hsAnalytics = true;
         var KEY = 'hs-consent';
-        var CONSENT_COUNTRIES = ['GB', 'CA'];
+        // prettier-ignore
+        var OPT_IN = ['GB', 'CA', 'BR', 'AT', 'BE', 'BG', 'HR', 'CY', 'CZ', 'DK', 'EE', 'FI', 'FR', 'DE', 'GR',
+          'HU', 'IE', 'IT', 'LV', 'LT', 'LU', 'MT', 'NL', 'PL', 'PT', 'RO', 'SK', 'SI', 'ES', 'SE', 'IS', 'LI', 'NO'];
+        var OPT_OUT = ['US', 'CH'];
+        var gpc = navigator.globalPrivacyControl === true;
+
+        function rule(c) {
+          if (!c || OPT_IN.indexOf(c) !== -1) return 'opt-in';
+          return OPT_OUT.indexOf(c) !== -1 ? 'opt-out' : 'none';
+        }
+
+        // Google's first-party cookies (GA4, Ads) and storage; Tracklution keeps its id server-side.
+        function clearTracking() {
+          var host = location.hostname;
+          var domains = ['', host, '.' + host, '.' + host.replace(/^www\./, '')];
+          document.cookie.split(';').forEach(function (c) {
+            var name = c.split('=')[0].trim();
+            if (!/^(_ga|_gid|_gat|_gcl|_fbp|_fbc)/.test(name)) return;
+            domains.forEach(function (d) {
+              document.cookie =
+                name + '=; expires=Thu, 01 Jan 1970 00:00:00 GMT; path=/' + (d ? '; domain=' + d : '');
+            });
+          });
+          try {
+            localStorage.removeItem('_gcl_ls');
+          } catch (e) {}
+        }
         var loaded = false;
 
         function read() {
@@ -187,11 +217,15 @@ const enabled = Boolean(ga4Id || tracklutionId);
         var choice = read();
         if (choice === 'accept') {
           idle(load);
+        } else if (choice === 'reject') {
+          // Also catches cookies GA rewrote just before the reload that followed "Reject".
+          clearTracking();
         } else if (!choice) {
           idle(function () {
-            if (banner) banner.hidden = false;
             country(function (c) {
-              if (c && CONSENT_COUNTRIES.indexOf(c) === -1) load();
+              var r = rule(c);
+              if (r !== 'none' && banner) banner.hidden = false;
+              if (r !== 'opt-in' && !gpc) load();
             });
           });
         }
@@ -204,7 +238,10 @@ const enabled = Boolean(ga4Id || tracklutionId);
           var b = document.getElementById('consent');
           if (b) b.hidden = true;
           if (v === 'accept') idle(load);
-          else if (loaded) location.reload();
+          else {
+            clearTracking();
+            if (loaded) location.reload();
+          }
         });
 
         // Footer "Cookie settings" link: <button data-consent-open>
