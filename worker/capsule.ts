@@ -7,6 +7,12 @@
  * Secret: CAPSULE_API_TOKEN (Capsule → My Preferences → API Authentication Tokens).
  * Var (optional): CAPSULE_MILESTONE_ID, the stage new opportunities start in. Without it, the
  * first milestone of the oldest active pipeline is used.
+ *
+ * Offline conversions (pushStageEvents, run by the Worker's cron every 15 minutes): when a website
+ * opportunity (tagged "Website: …") moves to a mapped stage, the event goes to Tracklution's webhook,
+ * which matches it by email/phone to the visitor's tracked session (the forms send ContactInfo) and
+ * forwards it to the ad platforms. Only stage changes inside the cron's 15-minute window are sent,
+ * so each change goes once. Secret: TRACKLUTION_WEBHOOK_URL (Tracklution → Webhook).
  */
 
 type Fields = Record<string, string>;
@@ -14,6 +20,7 @@ type Fields = Record<string, string>;
 export interface CapsuleEnv {
   CAPSULE_API_TOKEN?: string;
   CAPSULE_MILESTONE_ID?: string;
+  TRACKLUTION_WEBHOOK_URL?: string;
   /** Tests only: point the sync at a mock server. */
   CAPSULE_API_BASE?: string;
 }
@@ -102,5 +109,64 @@ export async function syncToCapsule(env: CapsuleEnv, f: Fields): Promise<void> {
     });
   } catch (err) {
     console.error('capsule sync failed', String(err));
+  }
+}
+
+/** Capsule stage name → Tracklution event. Closed-won stages (100%) always send DealWon. */
+const STAGE_EVENTS: Record<string, string> = {
+  Qualified: 'QualifiedLead',
+  Meeting: 'MeetingBooked',
+  Proposal: 'ProposalSent',
+  Negotiation: 'NegotiationStarted',
+  Contract: 'ContractSent',
+};
+export const CRON_WINDOW_MS = 15 * 60 * 1000;
+
+type Opportunity = {
+  id: number;
+  party: { id: number };
+  milestone: { name: string; complete?: boolean; probability?: number };
+  value?: { amount?: number; currency?: string };
+  lastStageChangedAt?: string;
+  tags?: { name: string }[];
+};
+type Person = { emailAddresses?: { address: string }[]; phoneNumbers?: { number: string }[] };
+
+export async function pushStageEvents(env: CapsuleEnv, scheduledTime: number): Promise<void> {
+  if (!env.CAPSULE_API_TOKEN || !env.TRACKLUTION_WEBHOOK_URL) return;
+  const from = scheduledTime - CRON_WINDOW_MS;
+  try {
+    const since = new Date(from - 60_000).toISOString();
+    const { opportunities } = await call<{ opportunities: Opportunity[] }>(
+      env,
+      `/opportunities?since=${encodeURIComponent(since)}&perPage=100&embed=tags,milestone`,
+    );
+    for (const o of opportunities) {
+      const changed = Date.parse(o.lastStageChangedAt ?? '');
+      if (!(changed >= from && changed < scheduledTime)) continue;
+      if (!o.tags?.some((t) => t.name.startsWith('Website:'))) continue;
+      const won = o.milestone.complete && o.milestone.probability === 100;
+      const event = won ? 'DealWon' : STAGE_EVENTS[o.milestone.name];
+      if (!event) continue;
+
+      const { party } = await call<{ party: Person }>(env, `/parties/${o.party.id}`);
+      const email = party.emailAddresses?.[0]?.address;
+      const phoneNumber = party.phoneNumbers?.[0]?.number;
+      if (!email && !phoneNumber) continue;
+      const url = new URL(env.TRACKLUTION_WEBHOOK_URL);
+      url.searchParams.set('track', event);
+      const res = await fetch(url, {
+        method: 'POST',
+        headers: { 'content-type': 'application/json' },
+        body: JSON.stringify({
+          email,
+          phoneNumber,
+          ...(won && o.value?.amount ? { value: o.value.amount, currency: o.value.currency } : {}),
+        }),
+      });
+      if (!res.ok) throw new Error(`tracklution ${event} for opportunity ${o.id} → ${res.status}`);
+    }
+  } catch (err) {
+    console.error('stage events failed', String(err));
   }
 }

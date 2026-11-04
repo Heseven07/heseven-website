@@ -84,6 +84,13 @@ export function initAuditForm() {
       success.focus();
       // Conversion events (no-ops unless analytics were consented and loaded).
       window.gtag?.('event', 'generate_lead', { service: 'Store audit' });
+      // Lets Tracklution match later CRM events (QualifiedLead, DealWon) to this visit; it hashes these.
+      const [firstName, ...rest] = (data.name ?? '').trim().split(/\s+/);
+      window.tlq?.('set', 'ContactInfo', {
+        email: data.email,
+        firstName,
+        lastName: rest.join(' ') || undefined,
+      });
       window.tlq?.('track', 'Lead (audit)');
     } catch {
       if (box) window.turnstile?.reset(box);

@@ -118,6 +118,18 @@ npx wrangler secret put CAPSULE_API_TOKEN     # Capsule → My Preferences → A
 New opportunities start in the first milestone of the oldest active pipeline. To pick another stage,
 set `CAPSULE_MILESTONE_ID` under `vars` in `wrangler.jsonc`.
 
+**Offline conversions (Capsule → Tracklution → ad platforms).** The forms send Tracklution the
+visitor's contact details (`ContactInfo`, hashed by Tracklution) with the lead. Every 15 minutes a Worker
+cron checks Capsule for website opportunities (tagged `Website: …`) that changed stage, and sends the
+event to Tracklution's webhook: Qualified → `QualifiedLead`, Meeting → `MeetingBooked`, Proposal →
+`ProposalSent`, Negotiation → `NegotiationStarted`, Contract → `ContractSent`, closed as won →
+`DealWon` (with the deal value). Tracklution matches it to the original visit by email/phone. Stage
+names live in `STAGE_EVENTS` in `worker/capsule.ts`. To switch it on:
+
+```bash
+npx wrangler secret put TRACKLUTION_WEBHOOK_URL   # Tracklution → Webhook (protected URL)
+```
+
 Test the Worker locally: `npm run build && npx wrangler dev`.
 
 ## Workflow
