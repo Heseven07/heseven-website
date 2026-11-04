@@ -11,11 +11,14 @@
  *   CRM: valid enquiries are also added to Capsule (worker/capsule.ts) in the background.
  *   Accepts JSON (JS form) or urlencoded (no-JS fallback → 303 redirect to /pages/thank-you).
  *
- * Secrets (wrangler secret put …): RESEND_API_KEY, TURNSTILE_SECRET_KEY, CAPSULE_API_TOKEN
+ * Secrets (wrangler secret put …): RESEND_API_KEY, TURNSTILE_SECRET_KEY, CAPSULE_API_TOKEN,
+ *   TRACKLUTION_WEBHOOK_URL
+ *
+ * Cron (wrangler.jsonc triggers): every 15 minutes, Capsule stage changes → Tracklution (worker/capsule.ts).
  * Vars (wrangler.jsonc):           CONTACT_TO, CONTACT_FROM, CAPSULE_MILESTONE_ID (optional)
  */
 
-import { syncToCapsule, type CapsuleEnv } from './capsule';
+import { pushStageEvents, syncToCapsule, type CapsuleEnv } from './capsule';
 
 interface Env extends CapsuleEnv {
   ASSETS: { fetch: (request: Request) => Promise<Response> };
@@ -216,5 +219,9 @@ export default {
     }
     if (url.pathname.startsWith('/api/')) return json(404, { ok: false, error: 'not_found' });
     return env.ASSETS.fetch(request);
+  },
+
+  async scheduled(controller: { scheduledTime: number }, env: Env, ctx: Ctx): Promise<void> {
+    ctx.waitUntil(pushStageEvents(env, controller.scheduledTime));
   },
 };

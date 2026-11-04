@@ -168,6 +168,14 @@ export function initQuoteForm() {
     success.focus();
     // Conversion events (no-ops unless analytics were consented and loaded).
     window.gtag?.('event', 'generate_lead', { service: data.need, budget: data.budget });
+    // Lets Tracklution match later CRM events (QualifiedLead, DealWon) to this visit; it hashes these.
+    const [firstName, ...rest] = (data.name ?? '').trim().split(/\s+/);
+    window.tlq?.('set', 'ContactInfo', {
+      email: data.email,
+      phoneNumber: data.phone || data.whatsapp || undefined,
+      firstName,
+      lastName: rest.join(' ') || undefined,
+    });
     track(india ? 'Lead From India' : 'Lead');
   };
 
