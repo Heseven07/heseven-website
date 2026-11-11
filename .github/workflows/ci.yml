@@ -27,7 +27,7 @@ jobs:
         env:
           PUBLIC_GA4_ID: 'G-GB8B925EJJ'
           PUBLIC_TRACKLUTION_ID: 'LS-40501194-6'
-      - uses: actions/upload-artifact@v4
+      - uses: actions/upload-artifact@v7
         with:
           name: dist
           path: dist
